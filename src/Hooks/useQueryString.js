@@ -15,12 +15,12 @@ const useQueryString = () => {
         return;
       }
 
-      if(key === 'area' || key === 'status' || key === 'service'){
-        searchParamsObject[key] = [value];
-      }else {
+      // if(key === 'area' || key === 'status' || key === 'service'){
+      //   searchParamsObject[key] = [value];
+      // }else {
         searchParamsObject[key] = value;
 
-      }
+      // }
 
     });
     return searchParamsObject;
