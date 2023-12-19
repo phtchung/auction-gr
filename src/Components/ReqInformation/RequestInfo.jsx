@@ -1,16 +1,19 @@
 import {numberToString} from "../../Utils/constant.js";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined.js";
 
 const RequestInfo = ({state}) => {
     const stateStr = numberToString(state)
   return(
       <>
-          <div className="flex justify-between m-4 items-center px-2">
-              <div className="text-left text-base font-medium"> List - {stateStr} - Request Detail</div>
+          <div className="flex m-4 gap-2 items-center px-2">
+              <div className="text-left text-lg ">List - {stateStr} </div>
+                  <ArrowForwardIosOutlinedIcon sx={{fontSize:16}} fontSize="small" color="gray"></ArrowForwardIosOutlinedIcon>
+                  <div className=" font-semibold">Request Detail </div>
           </div>
           <div className="border-b border-gray-400  mx-5"></div>
           <div className="flex justify-between m-2.5 items-center px-2">
-              <div className="text-left text-sm font-medium ">Request Information</div>
-              <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
+              <div className="text-left text-sm font-semibold ">Request Information</div>
+              <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
           </div>
 
           <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">

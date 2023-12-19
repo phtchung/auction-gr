@@ -11,6 +11,8 @@ import ListDeliveryWait from "../../Components/ListDeliveryWait/listDeliveryWait
 import ListCompletion from "../../Components/ListCompletion/ListCompletion.jsx";
 import ListCancel from "../../Components/ListCancel/ListCancel.jsx";
 import SideBar from "../../Components/SideBar/index.jsx";
+import ListWonCompletion from "../../Components/ListWonCompletion/ListWonCompletion.jsx";
+import ListWonCancel from "../../Components/ListWonCancel/ListWonCancel.jsx";
 
 const WinOrdersTracking = () => {
 
@@ -115,10 +117,10 @@ const WinOrdersTracking = () => {
                                     <ListDeliveryWait/>
                                 </TabPanel>
                                 <TabPanel value='3' sx={{width: '96%'}}>
-                                    <ListCompletion/>
+                                    <ListWonCompletion/>
                                 </TabPanel>
                                 <TabPanel value='4' sx={{width: '96%'}}>
-                                    <ListCancel/>
+                                    <ListWonCancel/>
                                 </TabPanel>
                             </TabContext>
                         }

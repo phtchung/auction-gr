@@ -1,5 +1,6 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import {useLocation} from "react-router-dom";
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 
 const WinOrderDetail = () => {
@@ -8,7 +9,7 @@ const WinOrderDetail = () => {
     const state = parseInt(new URLSearchParams(location.search).get('state'));
     const stateStr = state === 4 ?
         'Done' : [5,6,7].includes(state) ?
-            'Delivery Wait' : state == 8 ?
+            'Delivery Wait' : state === 8 ?
                 'Completed' : state === 9 ?
                     'Cancel' : null
 
@@ -17,12 +18,14 @@ const WinOrderDetail = () => {
             <div className="wrapper">
                 <SideBar/>
                 <div className="home-right bg-white">
-                    <div className="flex justify-between m-4 items-center px-2">
-                        <div className="text-left text-base font-medium"> List - {stateStr} - Detail</div>
+                    <div className="flex  m-4 gap-2 items-center px-2">
+                        <div className="text-left text-lg "> List - {stateStr} </div>
+                        <ArrowForwardIosOutlinedIcon sx={{fontSize:16}} fontSize="small" color="gray"></ArrowForwardIosOutlinedIcon>
+                        <div className="font-semibold"> {stateStr}  Detail</div>
                     </div>
                     <div className="border-b border-gray-400  mx-5"></div>
                     <div className="flex justify-between m-2.5 items-center px-2">
-                        <div className="text-left text-sm font-medium ">Product Information</div>
+                        <div className="text-left text-sm font-semibold ">Product Information</div>
                         <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
                     </div>
 
@@ -71,7 +74,7 @@ const WinOrderDetail = () => {
                     {state && state !== 4 &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
-                                <div className="text-left text-base font-medium ">Delivery Information</div>
+                                <div className="text-left text-sm font-semibold ">Delivery Information</div>
                             </div>
                             <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
                                 <div className="grid grid-cols-6 text-left">

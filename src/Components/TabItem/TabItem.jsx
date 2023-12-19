@@ -7,7 +7,7 @@ const TabItem = ({data , count}) => {
                   {data.name}
               </div>
               <div className="border-b border-gray-400"></div>
-              <div className="font-semibold  px-3 text-2xl">{count}</div>
+              <div className="font-semibold bg-slate-100 px-3 text-2xl">{count}</div>
               <div
                   className={`absolute -right-2 -top-2 text-white text-xs font-light rounded-md px-1 ${data.color}`}>
                   {data.top}

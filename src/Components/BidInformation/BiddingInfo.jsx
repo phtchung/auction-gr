@@ -6,7 +6,7 @@ const BiddingInfo = ({state}) => {
   return(
       <>
         <div className="flex justify-between m-2.5 items-center px-2">
-          <div className="text-left text-base font-medium ">Bidding Information</div>
+          <div className="text-left text-sm font-semibold ">Bidding Information</div>
         </div>
 
         <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-xs space-y-6 ">

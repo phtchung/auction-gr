@@ -35,7 +35,7 @@ const ListApprove = () => {
                     </div>
                         <div style={{textAlign: 'center'}}>
                             <button onClick={openPopup}
-                                    className="p-2 rounded-4 bg-neutral-900  text-white border-gray-400 hover:bg-neutral-600 text-sm  font-medium focus:outline-0">
+                                    className="p-2 rounded bg-neutral-900  text-white border-gray-400 hover:bg-neutral-600 text-sm  font-medium focus:outline-0">
                                 Create Request
                             </button>
 
