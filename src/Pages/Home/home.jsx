@@ -56,6 +56,7 @@ const Home = () => {
                               <div className=" w-1/5"> Ngày sinh</div>
                               <LocalizationProvider dateFormats="fullDate" dateAdapter={AdapterDayjs}>
                                   <DatePicker  defaultValue={dayjs('2022-04-17')}
+                                               sx={{ '& .MuiInputBase-input':{width:258}}}
                                                components={{
                                       OpenPickerIcon: () =>
                                           <KeyboardArrowDownIcon></KeyboardArrowDownIcon>

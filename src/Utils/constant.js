@@ -73,6 +73,8 @@ export const tabData = [
     { value: '7', name: 'Delivery start',top:'Departure', count: 3, color:'bg-indigo-800' },
     { value: '8', name: 'Completed',top:'Completion', count: 2, color:'bg-emerald-800' },
     { value: '9', name: 'Cancel',top:'Cancel', count: 2, color:'bg-red-600' },
+    { value: '10', name: 'Reject',top:'Reject', count: 3, color:'bg-rose-900' },
+
 ];
 
 export const tabData1 = [

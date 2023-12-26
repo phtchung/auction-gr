@@ -41,6 +41,7 @@ const TableData = ({cols , rows}) => {
                                   <TableRow hover key={row.id}
                                             style={{cursor:'pointer'}}
                                             onClick={() => navigate(`/reqOrderDetail?state=${row.status}`)}
+
                                   >
                                       {cols && cols.map((column) => {
                                           let value = row[column.id];

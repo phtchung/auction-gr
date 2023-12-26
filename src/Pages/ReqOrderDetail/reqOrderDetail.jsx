@@ -17,8 +17,6 @@ const ReqOrderDetail = () => {
                     <RequestInfo state={state}/>
                     {state !== undefined && state !== 1 ? <BiddingInfo state={state}/> : <></>}
                     {state !== undefined && [5, 6].includes(state) ? <UpdatePopup state={state}/> : <></>}
-
-
                     {state === 11 &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">

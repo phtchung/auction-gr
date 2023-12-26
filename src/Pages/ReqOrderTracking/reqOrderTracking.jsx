@@ -17,6 +17,7 @@ import ListConfirm from "../../Components/ListConfirm/ListConfirm.jsx";
 import ListDeparture from "../../Components/ListDeparture/ListDeparture.jsx";
 import ListCompletion from "../../Components/ListCompletion/ListCompletion.jsx";
 import ListCancel from "../../Components/ListCancel/ListCancel.jsx";
+import ListReject from "../../Components/ListReject/ListReject.jsx";
 const ReqOrderTracking = () => {
 
     const [value, setValue] = useState('1');
@@ -208,6 +209,24 @@ const ReqOrderTracking = () => {
                                          },
                                      }}
                                  />
+                                 <Tab
+                                     label={
+                                         <TabItem data={tabData[8]} count={tabData[8].count}></TabItem>}
+                                     value="10"
+                                     sx={{
+                                         "&.Mui-selected": {
+                                             margin: "0",
+                                             padding: "0",
+                                             borderBottom: "none",
+                                             textTransform: "none",
+                                             color: "gray",
+                                             backgroundColor: "rgb(226 232 240)"
+                                         },
+                                         "&:not(.Mui-selected)": {
+                                             margin: "0", padding: "0", borderBottom: "0", textTransform: "none"
+                                         },
+                                     }}
+                                 />
                              </TabList>
                          </Box>
                          <TabPanel  value='1' sx={{width: '96%'}}>
@@ -236,6 +255,9 @@ const ReqOrderTracking = () => {
                          </TabPanel>
                          <TabPanel value='9' sx={{width: '96%'}}>
                              <ListCancel/>
+                         </TabPanel>
+                         <TabPanel value='10' sx={{width: '96%'}}>
+                             <ListReject/>
                          </TabPanel>
 
                      </TabContext>
