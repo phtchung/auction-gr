@@ -1,14 +1,26 @@
 import {numberToString} from "../../Utils/constant.js";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined.js";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined.js";
+import {useNavigate} from "react-router-dom";
 
 const RequestInfo = ({state}) => {
+    const navigate = useNavigate()
     const stateStr = numberToString(state)
   return(
       <>
-          <div className="flex m-4 gap-2 items-center px-2">
-              <div className="text-left text-lg ">List - {stateStr} </div>
-                  <ArrowForwardIosOutlinedIcon sx={{fontSize:16}} fontSize="small" color="gray"></ArrowForwardIosOutlinedIcon>
-                  <div className=" font-semibold">Request Detail </div>
+          <div className="flex m-4 gap-2 items-center px-2 justify-between">
+              <div className="flex items-center cursor-pointer" onClick={() => navigate(-1)}>
+                  <ArrowBackIosOutlinedIcon sx={{fontSize: 20}} color='rgb(212,212,212)'></ArrowBackIosOutlinedIcon>
+                  <div className="text-sm"> TRỞ LẠI</div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                  <div className="text-left text-lg ">List - {stateStr} </div>
+                  <ArrowForwardIosOutlinedIcon sx={{fontSize: 18}} fontSize="small"
+                                               color="gray"></ArrowForwardIosOutlinedIcon>
+                  <div className="">Request Detail</div>
+              </div>
+
           </div>
           <div className="border-b border-gray-400  mx-5"></div>
           <div className="flex justify-between m-2.5 items-center px-2">

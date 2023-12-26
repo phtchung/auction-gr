@@ -1,7 +1,7 @@
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonIcon from '@mui/icons-material/Person';
 import './sidebar.css'
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 const SideBar = () => {
@@ -34,7 +34,7 @@ const SideBar = () => {
                         navigate('/winOrderTracking')
                     }}>
                         <ListAltIcon fontSize="medium"></ListAltIcon>
-                        <div className="hover:text-orange-400 sidebar-item">
+                        <div className="hover:text-orange-400 sidebar-item" to='/winOrderTracking'>
                             Đơn Mua
                         </div>
                     </div>
@@ -49,7 +49,7 @@ const SideBar = () => {
                     <div className=" flex gap-3 items-center" onClick={() => {
                         navigate('/productBid')
                     }}>
-                        <img src="src/assets/hammer_838391.png" style={{maxWidth: '12%'}} alt=""/>
+                        <img src="../../src/assets/hammer_838391.png" style={{maxWidth: '12%'}} alt=""/>
                         <div className="hover:text-orange-400 sidebar-item">
                             Đang tham gia
                         </div>
@@ -57,7 +57,7 @@ const SideBar = () => {
                     <div className=" flex gap-3 items-center" onClick={() => {
                         navigate('/auctionHistory')
                     }}>
-                        <img src="src/assets/law.png" style={{maxWidth: '12%'}} alt=""/>
+                        <img src="../../src/assets/law.png" style={{maxWidth: '12%'}} alt=""/>
                         <div className="hover:text-orange-400 sidebar-item">
                             Lịch sử đấu giá
                         </div>
@@ -65,7 +65,7 @@ const SideBar = () => {
                     <div className=" flex gap-3 items-center" onClick={() => {
                         navigate('/saleHistory')
                     }}>
-                        <img src="src/assets/time-management.png" style={{maxWidth: '12%'}} alt=""/>
+                        <img src="../../src/assets/time-management.png" style={{maxWidth: '12%'}} alt=""/>
                         <div className="hover:text-orange-400 sidebar-item">
                             Lịch sử bán
                         </div>
@@ -73,7 +73,7 @@ const SideBar = () => {
                     <div className=" flex gap-3 items-center" onClick={() => {
                         navigate('/reqHistory')
                     }}>
-                        <img src="src/assets/request-for-proposal.png" style={{maxWidth: '12%'}} alt=""/>
+                        <img src="../../src/assets/request-for-proposal.png" style={{maxWidth: '12%'}} alt=""/>
                         <div className="hover:text-orange-400 sidebar-item">Lịch sử yêu cầu
                         </div>
                     </div>

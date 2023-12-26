@@ -100,7 +100,7 @@ const SaleHistory = () => {
                                 <TableBody>
                                     {rows.map((row) => (
                                         <TableRow
-                                            onClick={() => navigate(`/reqOrderDetail?state=8`)}
+                                            onClick={() => navigate(`/saleHistory/reqOrderDetail?state=8`)}
                                             key={row.name}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0} }}
                                         >

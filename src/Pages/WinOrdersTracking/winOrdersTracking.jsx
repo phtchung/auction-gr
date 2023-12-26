@@ -8,8 +8,6 @@ import { useState} from "react";
 import TabItem from "../../Components/TabItem/TabItem.jsx";
 import ListAuctionWinning from "../../Components/ListAuctionWinning/listAuctionWinning.jsx";
 import ListDeliveryWait from "../../Components/ListDeliveryWait/listDeliveryWait.jsx";
-import ListCompletion from "../../Components/ListCompletion/ListCompletion.jsx";
-import ListCancel from "../../Components/ListCancel/ListCancel.jsx";
 import SideBar from "../../Components/SideBar/index.jsx";
 import ListWonCompletion from "../../Components/ListWonCompletion/ListWonCompletion.jsx";
 import ListWonCancel from "../../Components/ListWonCancel/ListWonCancel.jsx";

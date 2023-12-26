@@ -4,7 +4,7 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,} from "react-router-dom";
 
 
 const RequestHistory = () => {
@@ -98,7 +98,7 @@ const RequestHistory = () => {
                                   {rows.map((row) => (
                                       <TableRow
                                           key={row.name}
-                                          onClick={() => navigate(`/reqOrderDetail?state=1`)}
+                                          onClick={() => navigate(`/reqHistory/reqOrderDetail?state=1`)}
                                           sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                       >
                                           <TableCell component="th" scope="row" align="center">

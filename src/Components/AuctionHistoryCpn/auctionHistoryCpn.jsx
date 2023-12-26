@@ -1,15 +1,18 @@
 import StarIcon from '@mui/icons-material/Star';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import {useNavigate} from "react-router-dom";
 
 const AuctionHistoryCpn = () => {
+    const id = 11234532;
+
+    const navigate = useNavigate()
     return(
         <>
-            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm ">
-                <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
+            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm cursor-pointer"  onClick={()=> navigate(`/auctionHistory/auction/${id}`)}>
+                <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150" >
                     <div className="font-semibold pr-10">
                         Nguyễn Văn A
                     </div>
-                    <div className="">
+                    <div className="" >
                         4.5
                     </div>
                     <StarIcon fontSize="small"
