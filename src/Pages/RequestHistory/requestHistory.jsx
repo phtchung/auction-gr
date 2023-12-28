@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import {useNavigate,} from "react-router-dom";
+import Header from "../../Components/Header/header.jsx";
 
 
 const RequestHistory = () => {
@@ -24,6 +25,7 @@ const RequestHistory = () => {
     ];
   return(
       <>
+          <Header/>
           <div className="wrapper">
               <SideBar/>
               <div className="home-right">

@@ -2,6 +2,7 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {useState} from "react";
 import {Button, Input} from "@material-tailwind/react";
 import ProductBiddingCpn from "../../Components/ProductBiddingCpn/productBiddingCpn.jsx";
+import Header from "../../Components/Header/header.jsx";
 
 
 const ProductBidding = () => {
@@ -9,6 +10,7 @@ const ProductBidding = () => {
     const onChange = ({ target }) => setEmail(target.value);
     return (
         <>
+            <Header/>
             <div className="wrapper">
                 <SideBar/>
                 <div className="home-right ">

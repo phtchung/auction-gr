@@ -34,8 +34,7 @@ const ProductBiddingCpn = () => {
                       </div>
                       <div className="flex flex-col">
                           <div className="px-4 max-w-3xl text-base text-left">
-                              Giấy Lót Nồi Chiên Không Dầu 1 SET 50 Tờ Tiện Lợi, Giấy Nến Vàng Lót Nồi Chiên
-                              Không Dầu Đa Năng Tiện Dụng FAMAHA
+                              Đồng hồ CASIO Fx8201 Rolex 2022 Italy
                           </div>
                           <div style={{color: 'rgba(0,0,0,.54)'}} className="px-4 mt-2 max-w-3xl text-left">
                               Rank : S

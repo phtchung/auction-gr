@@ -4,9 +4,10 @@ import dayjs from "dayjs";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Header from "../../Components/Header/header.jsx";
 const Home = () => {
   return(
-      <>
+      <>  <Header></Header>
           <div className="wrapper">
               <SideBar></SideBar>
               <div className="home-right bg-white">

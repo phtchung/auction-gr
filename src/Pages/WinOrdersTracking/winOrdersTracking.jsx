@@ -11,9 +11,11 @@ import ListDeliveryWait from "../../Components/ListDeliveryWait/listDeliveryWait
 import SideBar from "../../Components/SideBar/index.jsx";
 import ListWonCompletion from "../../Components/ListWonCompletion/ListWonCompletion.jsx";
 import ListWonCancel from "../../Components/ListWonCancel/ListWonCancel.jsx";
+import {useNavigate} from "react-router-dom";
+import Header from "../../Components/Header/header.jsx";
 
 const WinOrdersTracking = () => {
-
+    const navigate = useNavigate()
     const [value, setValue] = useState('1');
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -21,6 +23,7 @@ const WinOrdersTracking = () => {
 
     return (
         <>
+            <Header/>
             <div className="wrapper" >
                 <SideBar></SideBar>
                 <div className="home-right ">
@@ -34,6 +37,7 @@ const WinOrdersTracking = () => {
                                     <TabList onChange={handleChange} aria-label="lab API tabs example">
 
                                         <Tab
+
                                             label={
                                                 <TabItem data={tabData1[0]} count={tabData1[0].count}></TabItem>}
                                             value='1'

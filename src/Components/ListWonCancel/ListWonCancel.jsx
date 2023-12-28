@@ -1,5 +1,5 @@
 import {rowCancel,colCancel} from "../../Utils/constant.js";
-import TableData from "../TableData/TableData.jsx";
+import AuctionTable from "../AuctionTable/auctionTable.jsx";
 
 const ListWonCancel = () => {
 
@@ -13,7 +13,7 @@ const ListWonCancel = () => {
                 </div>
 
                 <div className="border-b-2 border-gray-300 "></div>
-                <TableData cols={colCancel} rows={rowCancel}></TableData>
+                <AuctionTable cols={colCancel} rows={rowCancel}></AuctionTable>
             </div>
         </>
     )

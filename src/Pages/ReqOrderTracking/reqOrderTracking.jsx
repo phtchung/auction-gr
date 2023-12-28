@@ -18,6 +18,7 @@ import ListDeparture from "../../Components/ListDeparture/ListDeparture.jsx";
 import ListCompletion from "../../Components/ListCompletion/ListCompletion.jsx";
 import ListCancel from "../../Components/ListCancel/ListCancel.jsx";
 import ListReject from "../../Components/ListReject/ListReject.jsx";
+import Header from "../../Components/Header/header.jsx";
 const ReqOrderTracking = () => {
 
     const [value, setValue] = useState('1');
@@ -27,6 +28,7 @@ const ReqOrderTracking = () => {
 
   return (
     <>
+        <Header/>
      <div className="wrapper" >
          <SideBar></SideBar>
          <div className="home-right ">

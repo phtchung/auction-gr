@@ -1,27 +1,46 @@
 import SideBar from "../../Components/SideBar/index.jsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import Header from "../../Components/Header/header.jsx";
+import {Button} from "@material-tailwind/react";
+import {useState} from "react";
+import {DialogContent, DialogTitle, FormControl,Dialog, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close.js";
 
 
 const WinOrderDetail = () => {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
 
+    const navigate = useNavigate()
     const location = useLocation();
     const state = parseInt(new URLSearchParams(location.search).get('state'));
     const stateStr = state === 4 ?
         'Done' : [5,6,7].includes(state) ?
             'Delivery Wait' : state === 8 ?
-                'Completed' : state === 9 ?
+                'Completed' : state === 11 ?
                     'Cancel' : null
 
     return (
-        <>
+        <>  <Header/>
             <div className="wrapper">
                 <SideBar/>
                 <div className="home-right bg-white">
-                    <div className="flex  m-4 gap-2 items-center px-2">
-                        <div className="text-left text-lg "> List - {stateStr} </div>
-                        <ArrowForwardIosOutlinedIcon sx={{fontSize:16}} fontSize="small" color="gray"></ArrowForwardIosOutlinedIcon>
-                        <div className="font-semibold"> {stateStr}  Detail</div>
+                    <div className="flex m-4 gap-2 items-center px-2 justify-between">
+                        <div className="flex items-center cursor-pointer" onClick={() => navigate(-1)}>
+                            <ArrowBackIosOutlinedIcon sx={{fontSize: 20}}
+                                                      color='rgb(212,212,212)'></ArrowBackIosOutlinedIcon>
+                            <div className="text-sm"> TRỞ LẠI</div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                            <div className="text-left text-lg ">List - {stateStr} </div>
+                            <ArrowForwardIosOutlinedIcon sx={{fontSize: 18}} fontSize="small"
+                                                         color="gray"></ArrowForwardIosOutlinedIcon>
+                            <div className="">{stateStr} Detail</div>
+                        </div>
+
                     </div>
                     <div className="border-b border-gray-400  mx-5"></div>
                     <div className="flex justify-between m-2.5 items-center px-2">
@@ -99,6 +118,114 @@ const WinOrderDetail = () => {
                                     </div>
                                 </div>
                             </div>
+                        </>
+                    }
+                    {state && state === 4 &&
+                        <>
+                            <div className="flex justify-between m-2.5 items-center px-2 ">
+                                <div className="text-left text-sm font-semibold ">Delivery Information</div>
+                            </div>
+                            <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6  ">
+                                <div className="grid grid-cols-6 text-left items-center">
+                                    <div> Tên :</div>
+                                    <div className="font-normal col-span-2">
+                                        <input type="text" name="price" id="name" disabled
+                                               value="Phạm Thành Chung"
+                                               className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 items-center text-left">
+                                    <div> Số điện thoại :</div>
+                                    <div className="font-normal col-span-2">
+                                        <input type="text" name="phone" id="phone" placeholder="Số điện thoại"
+                                               className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 items-center text-left">
+                                    <div> Địa chỉ :</div>
+                                    <div className="font-normal col-span-2">
+                                        <input type="text" name="address" id="address" placeholder="Địa chỉ"
+                                               className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 items-center text-left">
+                                    <div> Ghi chú :</div>
+                                    <div className="font-normal col-span-2">
+                                        <input type="text" name="note" id="note" placeholder="Ghi chú"
+                                               className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 text-left items-center">
+                                    <div> Hình thức thanh toán :</div>
+                                    <div className="font-normal col-span-2">
+                                        <input type="text" name="method" id="method" disabled
+                                               value="Tiền mặt"
+                                               className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="flex gap-2 mb-6">
+                                <span className="w-2/5 "></span>
+                                <Button onClick={handleOpen} className="bg-black" variant="filled">
+                                    Gửi
+                                </Button>
+                            </div>
+
+                            <Dialog
+                                open={open} onClose={handleOpen} fullWidth maxWidth="md">
+                                <DialogTitle>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-semibold text-sm">Xác nhận thông tin giao hàng</span>
+                                        <div onClick={handleOpen}
+                                             className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
+                                            <CloseIcon></CloseIcon>
+                                        </div>
+                                    </div>
+                                    <div className="border-b mt-2  border-gray-300"></div>
+                                </DialogTitle>
+                                <DialogContent>
+                                    <Stack spacing={2} margin={1}>
+                                        <div
+                                            className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Tên :</div>
+                                                <div className=" col-span-2"> Phạm Huy Hùng</div>
+
+                                            </div>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Số điện thoại :</div>
+                                                <div className=" col-span-2"> 0971751699</div>
+                                            </div>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Địa chỉ :</div>
+                                                <div className=" col-span-5">
+                                                    67a ngõ 128c Đại La, Hai Bà Trưng, Hà Nội
+                                                </div>
+                                            </div>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Ghi chú :</div>
+                                                <div className=" col-span-5">
+                                                    67a ngõ 128c E4
+                                                </div>
+                                            </div>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Thanh toán :</div>
+                                                <div className=" col-span-2"> Tiền mặt</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-4 justify-end my-2">
+                                            <Button onClick={handleOpen} className="bg-red-500 border-none py-1 px-8"
+                                                    variant="filled">
+                                            Hủy
+                                            </Button>
+                                            <Button onClick={handleOpen} className="bg-black py-3 border-none px-8" variant="filled">
+                                                Gửi
+                                            </Button>
+                                        </div>
+                                    </Stack>
+                                </DialogContent>
+                            </Dialog>
                         </>
                     }
 

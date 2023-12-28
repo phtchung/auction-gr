@@ -2,6 +2,7 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {useState} from "react";
 import {Button, Input} from "@material-tailwind/react";
 import AuctionHistoryCpn from "../../Components/AuctionHistoryCpn/auctionHistoryCpn.jsx";
+import Header from "../../Components/Header/header.jsx";
 
 
 const AuctionHistory = () => {
@@ -9,6 +10,7 @@ const AuctionHistory = () => {
     const onChange = ({ target }) => setEmail(target.value);
     return (
         <>
+            <Header/>
             <div className="wrapper">
                 <SideBar/>
                 <div className="home-right ">
