@@ -7,10 +7,24 @@ import CloseIcon from '@mui/icons-material/Close';
 import {useState} from "react";
 import TableData from "../TableData/TableData.jsx";
 
-const ListApprove = () => {
+const ListPending = () => {
 
     const [open,openchange]=useState(false);
     const [open1,openchange1]=useState(false);
+
+    const [request,setRequest]= useState(null);
+
+    const handleRequest = (key,value) => {
+       setRequest({...request,[key]:value})
+        console.log(request)
+    }
+    const rankItems = [
+        { value: 'S', label: 'S' },
+        { value: 'A', label: 'A' },
+        { value: 'B', label: 'B' },
+        { value: 'C', label: 'C' },
+        { value: 'D', label: 'D' },
+    ];
 
     const openPopup=()=>{
         openchange(true);
@@ -43,7 +57,7 @@ const ListApprove = () => {
                                 open={open} onClose={closepopup} fullWidth maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
-                                        <span className="font-semibold text-lg">Create Request</span>
+                                        <span className="font-semibold text-base">Create Request</span>
                                         <div onClick={closepopup}
                                              className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
                                             <CloseIcon></CloseIcon>
@@ -54,12 +68,13 @@ const ListApprove = () => {
                                 </DialogTitle>
                                 <DialogContent>
                                     <Stack spacing={2} margin={1}>
-                                        <div className="text-base font-semibold">
+                                        <div className="text-sm font-semibold">
                                             Product Information
                                         </div>
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField id="filled-basic" fullWidth sx={{maxWidth: 690}}
                                                        color="info"
+                                                       onChange={(e) => handleRequest("product_name", e.target.value)}
                                                        label="Product Name" size="small" variant="filled"/>
                                             <FormControl size="small" variant="filled" sx={{minWidth: 200}}>
                                                 <InputLabel
@@ -68,9 +83,11 @@ const ListApprove = () => {
                                                     labelId="demo-simple-select-filled-label"
                                                     id="demo-simple-select-filled"
                                                 >
-                                                    <MenuItem value={10}>S</MenuItem>
-                                                    <MenuItem value={20}>A</MenuItem>
-                                                    <MenuItem value={30}>B</MenuItem>
+                                                    {rankItems.map((item) => (
+                                                        <MenuItem key={item.value} value={item.value} onClick={() => handleRequest('rank',item.value)}>
+                                                            {item.label}
+                                                        </MenuItem>
+                                                    ))}
                                                 </Select>
                                             </FormControl>
                                         </div>
@@ -177,4 +194,4 @@ const ListApprove = () => {
     )
 }
 
-export default ListApprove;
+export default ListPending;

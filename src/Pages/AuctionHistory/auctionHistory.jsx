@@ -3,10 +3,13 @@ import {useState} from "react";
 import {Button, Input} from "@material-tailwind/react";
 import AuctionHistoryCpn from "../../Components/AuctionHistoryCpn/auctionHistoryCpn.jsx";
 import Header from "../../Components/Header/header.jsx";
+import useAuctionHistory from "./useAuctionHistory.jsx";
 
 
 const AuctionHistory = () => {
     const [email, setEmail] = useState("");
+    const {aucHistoryData, isLoading , isSuccess} = useAuctionHistory();
+    console.log(aucHistoryData)
     const onChange = ({ target }) => setEmail(target.value);
     return (
         <>
@@ -38,8 +41,12 @@ const AuctionHistory = () => {
                         </Button>
                     </div>
 
+                    {
+                        isSuccess && aucHistoryData.map((data) => (
+                            <AuctionHistoryCpn key={data.id} data={data} />
+                        ))
+                    }
 
-                    <AuctionHistoryCpn/>
 
 
 

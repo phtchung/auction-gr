@@ -1,16 +1,18 @@
 import StarIcon from '@mui/icons-material/Star';
-import {useNavigate} from "react-router-dom";
+import {useNavigate } from "react-router-dom";
+import {formatDateTime} from "../../Utils/constant.js";
 
-const AuctionHistoryCpn = () => {
-    const id = 11234532;
+const AuctionHistoryCpn = ({data}) => {
+    console.log(data)
+
 
     const navigate = useNavigate()
     return(
         <>
-            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm cursor-pointer"  onClick={()=> navigate(`/auctionHistory/auction/${id}`)}>
+            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm cursor-pointer"  onClick={()=> navigate('/auctionHistory'+`/auction/${data.id}`)}>
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150" >
                     <div className="font-semibold pr-10">
-                        Nguyễn Văn A
+                        {data?.seller_name}
                     </div>
                     <div className="" >
                         4.5
@@ -19,7 +21,7 @@ const AuctionHistoryCpn = () => {
                               sx={{color: 'rgb(245 158 11)', width: 14, height: 14}}></StarIcon>
 
                     <div className="flex items-center gap-3 ml-auto">
-                        <div className="leading-10 pr-4 border-r border-gray-200">2023-09-07 19:00:00</div>
+                        <div className="leading-10 pr-4 border-r border-gray-200">{formatDateTime(data.completed_at)}</div>
                         <div
                             className="p-2  py-2  right-0   rounded  text-red-600 border-gray-400 border-none text-sm  font-medium focus:outline-0">
                            HOÀN THÀNH
@@ -35,16 +37,15 @@ const AuctionHistoryCpn = () => {
                         </div>
                         <div className="flex flex-col">
                             <div className="px-4 max-w-3xl text-base text-left">
-                                Giấy Lót Nồi Chiên Không Dầu 1 SET 50 Tờ Tiện Lợi, Giấy Nến Vàng Lót Nồi Chiên
-                                Không Dầu Đa Năng Tiện Dụng FAMAHA
+                                {data.product_name}
                             </div>
                             <div style={{color: 'rgba(0,0,0,.54)'}} className="px-4 mt-2 max-w-3xl text-left">
-                                Rank : S
+                                Rank : {data.rank}
                             </div>
                         </div>
                     </div>
                     <div className="text-red-500 text-base ml-auto px-5">
-                        26.000đ
+                        {data.reserve_price}đ
                     </div>
                 </div>
                 <div className="py-4 flex items-center " style={{backgroundColor: '#fffefb'}}>
@@ -55,7 +56,7 @@ const AuctionHistoryCpn = () => {
 
                     <div className="flex ml-auto items-center gap-2 px-6">
                         <div className="">Giá trúng thầu :</div>
-                        <div className="text-red-500 text-2xl">115.000đ</div>
+                        <div className="text-red-500 text-2xl">{data.final_price}đ</div>
                     </div>
                 </div>
 
