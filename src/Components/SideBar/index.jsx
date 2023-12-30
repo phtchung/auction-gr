@@ -25,7 +25,7 @@ const SideBar = () => {
                     <div className=" flex gap-3 items-center  ">
                         <PersonIcon fontSize="medium"></PersonIcon>
                         <div className={`sidebar-item ${selectedItem === 1 ? 'selected' : ''}`}
-                             onClick={() => selectItem(1, '/user')}>
+                             onClick={() => selectItem(1, '/user/profile')}>
                             Hồ Sơ Cá Nhân
                         </div>
                     </div>

@@ -238,3 +238,19 @@ export const numberToString = (state) => {
             return null;
     }
 };
+
+
+export const formatDateTime = (inputDateString) => {
+    const inputDate = new Date(inputDateString);
+    const formatDateComponent = (component) => String(component).padStart(2, '0');
+
+    const year = formatDateComponent(inputDate.getFullYear());
+    const month = formatDateComponent(inputDate.getMonth() + 1);
+    const day = formatDateComponent(inputDate.getDate());
+    const hours = formatDateComponent(inputDate.getHours());
+    const minutes = formatDateComponent(inputDate.getMinutes());
+    const seconds = formatDateComponent(inputDate.getSeconds());
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+

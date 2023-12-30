@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {
     Navbar,
     Typography,
@@ -8,11 +8,19 @@ import {
     MenuItem,
     Avatar,
 } from "@material-tailwind/react";
+import {useNavigate} from "react-router-dom";
 
 function ProfileMenu() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+    const navigate = useNavigate()
+
     const closeMenu = () => setIsMenuOpen(false);
+
+    const handleClick = () => {
+        navigate('/user/profile')
+        setIsMenuOpen(false)
+    }
 
     return (
         <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -34,7 +42,7 @@ function ProfileMenu() {
             <MenuList className="p-1">
                     return (
                         <MenuItem
-                            onClick={closeMenu}
+                            onClick={handleClick}
                             className="flex items-center gap-2 rounded hover:outline-none"
                         >
                             <Typography
@@ -72,8 +80,11 @@ function ProfileMenu() {
 
 const Header = () => {
     // profile menu component
+    const accessToken = useMemo(() => localStorage.getItem('accessToken'), []);
 
     const [isNavOpen, setIsNavOpen] = React.useState(false);
+
+    const navigate = useNavigate()
 
     const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
@@ -92,12 +103,24 @@ const Header = () => {
                 >
                     Home
                 </Typography>
+                <div className="flex gap-6">
+                    {
+                        !accessToken && <>
+                            <button className="bg-black text-sm " onClick={() => navigate('/login')}>
+                                Đăng nhập
+                            </button>
+                        </>
+                    }
+                    {
+                        accessToken &&  <ProfileMenu/>
+                    }
 
-                <ProfileMenu />
+                </div>
+
             </div>
-        </Navbar>
+          </Navbar>
 
-</>
+      </>
   )
 }
 
