@@ -18,22 +18,18 @@ const Profile = () => {
         isLoading,
 
     } = useProfile();
-    console.log('aaaa',userData)
-    const [gender,setGender] = useState(userData?.gender || false)
     const [data,setData] = useState(userData)
     const queryClient = useQueryClient();
-    const handleRadio = () => {
-        setGender((prevValue) => !prevValue);
-
+    const handleRadio = (value) => {
+        console.log(value)
         setData({
             ...data,
-            'gender': !gender,
+            'gender': value,
         });
     }
     const handleData = ((key,value) => {
       setData({...data,[key]:value})
     })
-    console.log(userData)
 
     const update = useMutation({
         mutationFn: () => updateUserInfo({ ...data, userId: userData.id }),
@@ -97,9 +93,9 @@ const Profile = () => {
                                   <div className=" w-1/5"> Giới tính</div>
                                   <div className="flex gap-3">
 
-                                      <input id="male" className="peer/draft" type="radio" name="gender"  defaultChecked={userData.gender}  onChange={handleRadio}/>
+                                      <input id="male" className="peer/draft" type="radio" name="gender"  defaultChecked={userData.gender && userData.gender ==='1' || false}  onChange={() => handleRadio(1)}/>
                                       <label htmlFor="male" className="peer-checked/draft:text-orange-500">Nam</label>
-                                      <input id="female" className="peer/published" type="radio" name="gender"  defaultChecked={!userData.gender}  onChange={handleRadio} />
+                                      <input id="female" className="peer/published" type="radio" name="gender"  defaultChecked={userData.gender && userData.gender ==='0' || false}  onChange={() => handleRadio(0)} />
                                       <label htmlFor="female"
                                              className="peer-checked/published:text-orange-500">Nữ</label>
                                   </div>

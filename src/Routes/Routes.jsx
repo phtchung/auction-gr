@@ -23,7 +23,7 @@ export const UserRoutes = [
     {path:"/winOrderTracking/winOrderDetail", element :<WinOrderDetail/>},
     {path:"/saleHistory/reqOrderDetail", element :<ReqOrderDetail/>},
     {path: "/reqOrderTracking/reqOrderDetail", element: <ReqOrderDetail/>},
-    {path: "/reqHistory/reqOrderDetail", element: <ReqOrderDetail/>},
+    {path: "/reqHistory/reqOrderDetail/:id", element: <ReqOrderDetail/>},
     {path: "/winOrderTracking", element: <WinOrdersTracking/>},
     {path: "/user/profile", element: <Profile/>},
     {path: "/productBid", element: <ProductBidding/>},

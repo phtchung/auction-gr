@@ -1,6 +1,6 @@
 
 
-const BiddingInfo = ({state}) => {
+const BiddingInfo = ({data}) => {
 
 
   return(
@@ -13,18 +13,18 @@ const BiddingInfo = ({state}) => {
 
           <div className="grid grid-cols-6 text-left">
             <div> Type of auction :</div>
-            <div className="font-normal  col-span-2"> Đấu giá tăng</div>
+            <div className="font-normal  col-span-2"> {data.type_of_auction === 1 ? 'Đấu giá tăng' : "Đấu giá giảm "}</div>
           </div>
 
           <div className="grid grid-cols-6 text-left">
             <div> Bidding Start Time :</div>
-            <div className="font-normal  col-span-2"> 2023-09-09 13:03:21</div>
+            <div className="font-normal  col-span-2"> {data.start_time}</div>
             <di> Bidding Finish Time :</di>
-            <div className="font-normal col-span-2"> 2023-09-09 15:03:21</div>
+            <div className="font-normal col-span-2"> {data.finish_time}</div>
           </div>
 
           {
-            state!== undefined && state !== 2 && state !== 2 && state !== 10 && state !== 11 &&
+            data.status!== undefined && data.status !== 2 && data.status !== 3 && data.status !== 10 && data.status !== 11 &&
               <>
                 <div className="grid grid-cols-6 text-left">
                   <div> Giá trúng thầu :</div>
@@ -56,7 +56,6 @@ const BiddingInfo = ({state}) => {
                 </div>
               </>
           }
-
 
         </div>
       </>

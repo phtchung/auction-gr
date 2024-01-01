@@ -19,15 +19,15 @@ export default function useRequestHistory(){
         start_time: start_time,
         finish_time: finish_time,
     });
-    console.log('que',queryString)
+
     const parseData = useCallback((item) => {
         console.log('item',item)
         const reqHis = item?.requests.map((data) => {
             return {
-                id: data._id.slice(0,14),
+                id: data._id,
                 product_name:data.product_name,
                 rank:data.rank,
-                status:data.status === 1 ? 'Đang duyệt' : data.status === 2 ? 'Đã duyệt' : 'Từ chối',
+                status:data.status ,
                 createdAt :formatDateTime(new Date(data.createdAt))
             };
         })

@@ -26,6 +26,7 @@ const RequestHistory = () => {
             ...filter}
         setQueryString(params)
     }
+
   return(
       <>
           <Header/>
@@ -40,14 +41,14 @@ const RequestHistory = () => {
                       <div className="font-medium text-xs p-3 ">Tìm kiếm ngày :</div>
                       <div className="flex-col ">
                           <LocalizationProvider dateFormats="fullDate" dateAdapter={AdapterDayjs}>
-                              <DatePicker defaultValue={dayjs('2022-04-17')}
+                              <DatePicker defaultValue={dayjs(new Date()).subtract(7, 'day')}
                                           sx={{margin: 3, '& .MuiInputBase-input': {width: 150, fontSize: 12}}}
                                           onChange={(newValue) => handleFilter('start_time',newValue.toISOString())}
 
                               />
                           </LocalizationProvider>
                           <LocalizationProvider dateFormats="fullDate" dateAdapter={AdapterDayjs}>
-                              <DatePicker defaultValue={dayjs('2022-04-17')}
+                              <DatePicker defaultValue={dayjs(new Date())}
                                           sx={{margin: 3, '& .MuiInputBase-input': {width: 150, fontSize: 12}}}
                                           onChange={(newValue) => handleFilter('finish_time',newValue.toISOString())}
 
@@ -115,16 +116,16 @@ const RequestHistory = () => {
                                           {reqHistoryData.map((row) => (
                                               <TableRow
                                                   key={row.id}
-                                                  onClick={() => navigate(`/reqHistory/reqOrderDetail?state=1`)}
+                                                  onClick={() => navigate(`/reqHistory/reqOrderDetail/${row.id}?status=${row.status}`)}
                                                   sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                               >
                                                   <TableCell component="th" scope="row" align="center">
-                                                      {row.id}
+                                                      {row.id.slice(0,14)}
                                                   </TableCell>
                                                   <TableCell align="center">{row.createdAt}</TableCell>
                                                   <TableCell align="center">{row.product_name}</TableCell>
                                                   <TableCell align="center">{row.rank}</TableCell>
-                                                  <TableCell sx={{color:'red'}} align="center">{row.status}</TableCell>
+                                                  <TableCell sx={{color:'red'}} align="center">{row.status === 1 ? 'Đang duyệt' : row.status === 2 ? 'Đã duyệt' : 'Từ chối'}</TableCell>
                                               </TableRow>
                                           ))}
                                       </TableBody>
