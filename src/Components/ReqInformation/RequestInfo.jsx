@@ -1,11 +1,12 @@
 import {numberToString} from "../../Utils/constant.js";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined.js";
-import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined.js";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate} from "react-router-dom";
 
-const RequestInfo = ({state}) => {
+const RequestInfo = ({data}) => {
+    console.log(data)
     const navigate = useNavigate()
-    const stateStr = numberToString(state)
+    const stateStr = numberToString(data.status)
   return(
       <>
           <div className="flex m-4 gap-2 items-center px-2 justify-between">
@@ -32,39 +33,38 @@ const RequestInfo = ({state}) => {
 
               <div className="grid grid-cols-6 text-left">
                   <div> Request ID :</div>
-                  <div className="font-normal  col-span-2"> 20230903203322</div>
+                  <div className="font-normal  col-span-2"> {data.id.slice(0,14)}</div>
                   <di> Request Time :</di>
-                  <div className="font-normal col-span-2"> 2023-09-09 15:03:21</div>
+                  <div className="font-normal col-span-2"> {data.createdAt}</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
                   <div> Product Name :</div>
-                  <div className="font-normal  col-span-5"> Đồng hồ Rolex A532 2022</div>
+                  <div className="font-normal  col-span-5"> {data.product_name}</div>
               </div>
               <div className="grid grid-cols-6 text-left">
                   <div> Category :</div>
                   <div className="font-normal col-span-2"> Đồng hồ</div>
                   <div> Rank :</div>
-                  <div className="font-normal col-span-2"> S</div>
+                  <div className="font-normal col-span-2"> {data.rank}</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
                   <div> Reverse Price :</div>
-                  <div className="font-normal col-span-2"> 290.000 VND</div>
+                  <div className="font-normal col-span-2"> {data.reserve_price} VND</div>
                   <div> Sale Price :</div>
-                  <div className="font-normal col-span-2"> 4.000.000 VND</div>
+                  <div className="font-normal col-span-2"> {data.sale_price} VND</div>
               </div>
               <div className="grid grid-cols-6 text-left font-medium">
                   <div> Step Price :</div>
-                  <div className="font-normal col-span-2"> 10.000 VND</div>
+                  <div className="font-normal col-span-2"> {data.step_price} VND</div>
                   <div> Shipping Fee :</div>
-                  <div className="font-normal col-span-2"> 30.000 VND</div>
+                  <div className="font-normal col-span-2"> {data.shipping_fee} VND</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
                   <div> Description :</div>
-                  <div className="font-normal col-span-5"> Đồng hồ sịn , mới dùng 3 lần.
-                      Còn bảo hành hãng 3 tháng
+                  <div className="font-normal col-span-5"> {data.description}
                   </div>
               </div>
 
