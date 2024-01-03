@@ -1,5 +1,4 @@
 
-
 export const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -77,11 +76,11 @@ export const tabData = [
 ];
 
 export const tabData1 = [
-    { value: '1', name: 'Auction winning',top:'Win', count: 3, color:'bg-yellow-500' },
-    { value: '2', name: 'Delivery wait',top:'Wait', count: 4, color:'bg-indigo-800' },
-    { value: '3', name: 'Completed',top:'Completed', count: 5, color:'bg-emerald-800' },
-    { value: '4', name: 'Cancel',top:'Cancel', count: 6, color:'bg-red-600' },
-    { value: '5', name: 'Return',top:'Return', count: 2, color:'bg-cyan-500' },
+    { value: '1', name: 'Auction winning',top:'Win', color:'bg-yellow-500' },
+    { value: '2', name: 'Delivery wait',top:'Wait', color:'bg-indigo-800' },
+    { value: '3', name: 'Completed',top:'Completed', color:'bg-emerald-800' },
+    { value: '4', name: 'Cancel',top:'Cancel', color:'bg-red-600' },
+    { value: '5', name: 'Return',top:'Return', color:'bg-cyan-500' },
 
 ];
 
@@ -193,13 +192,6 @@ export const colAuctionWin = [
 
 ]
 
-export const rowAuctionWin = [
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029 Đồng hồ Rolex A14-5029', reserve: 25000, winning_price: 100000,bidding_time:'23/07/09 09:05:00', winning_time:'23/07/09 09:05:00',status:4 },
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', reserve: 25000, winning_price: 100000,bidding_time:'23/07/09 09:05:00', winning_time:'23/07/09 09:05:00' },
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', reserve: 25000, winning_price: 100000,bidding_time:'23/07/09 09:05:00', winning_time:'23/07/09 09:05:00' },
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', reserve: 25000, winning_price: 100000,bidding_time:'23/07/09 09:05:00', winning_time:'23/07/09 09:05:00' },
-
-];
 
 export const colDlvWait = [
     { id: 'product_id', name: 'Mã sản phẩm' },
@@ -208,14 +200,6 @@ export const colDlvWait = [
     { id: 'status', name: 'Trạng thái đơn' },
 
 ]
-
-export const rowDlvWait = [
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', total_price:370000,address:'Số 1 Trần Đại Nghĩa Hai Bà Trưng',dlv_state:6,status:5 },
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', total_price:370000,address:'Số 1 Trần Đại Nghĩa Hai Bà Trưng',dlv_state:7,status:6},
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', total_price:370000,address:'Số 1 Trần Đại Nghĩa Hai Bà Trưng',dlv_state:8 },
-    { product_id: 1, name: 'Đồng hồ Rolex A14-5029', total_price:370000,address:'Số 1 Trần Đại Nghĩa Hai Bà Trưng',dlv_state:8 },
-
-];
 
 export const pending = { value: '1', name: 'Pending',top:'Pending', count: 2, color:'bg-cyan-400' }
 

@@ -19,7 +19,7 @@ const WinOrdersTracking = () => {
         handelClick(tabIndex);
     };
 
-    const {isLoading , isSuccess, winTrackingData , colData,status,setStatus} = useWinOrdersTracking()
+    const {isLoading , isSuccess, winTrackingData ,isScCount,winCount, colData,status,setStatus} = useWinOrdersTracking()
 
     const [selectedTab, setSelectedTab] = useState(status);
     const handelClick = (value) => {
@@ -41,17 +41,17 @@ const WinOrdersTracking = () => {
                     <div className="flex items-center font-normal justify-center pt-10 flex-wrap  ">
 
                         {
-                           isSuccess && <div className="flex justify-end">
+                           isSuccess && isScCount &&  <div className="flex justify-end">
                                 <>
-                                    <TabItem data={tabData1[0]}  count={tabData1[0].count}
+                                    <TabItem data={tabData1[0]}  count={winCount.count_AucW}
                                              onClick={() => handelClick(4)} isSelected={selectedTab === 4}></TabItem>
-                                    <TabItem data={tabData1[1]} count={tabData1[1].count}
+                                    <TabItem data={tabData1[1]} count={winCount.count_DlvW}
                                         onClick={() => handelClick(567)} isSelected={selectedTab === 567}></TabItem>
-                                    <TabItem data={tabData1[2]} count={tabData1[2].count}
+                                    <TabItem data={tabData1[2]} count={winCount.count_Cpl}
                                              onClick={() => handelClick(8)} isSelected={selectedTab === 8}></TabItem>
-                                    <TabItem data={tabData1[3]} count={tabData1[3].count}
+                                    <TabItem data={tabData1[3]} count={winCount.count_Can}
                                              onClick={() => handelClick(11)} isSelected={selectedTab === 11}></TabItem>
-                                    <TabItem data={tabData1[4]} count={tabData1[4].count}
+                                    <TabItem data={tabData1[4]} count={winCount.count_Ret}
                                              onClick={() => handelClick(9)} isSelected={selectedTab === 9}></TabItem>
 
                                 </>
