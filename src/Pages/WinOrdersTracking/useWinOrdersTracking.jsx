@@ -9,7 +9,7 @@ import {
     processStatus
 } from "../../Utils/constant.js";
 import {useSearchParams } from "react-router-dom";
-import {getWinTrackingData} from "../../Services/productService.jsx";
+import {getWinCount, getWinTrackingData} from "../../Services/productService.jsx";
 
 export default function useWinOrdersTracking(){
 
@@ -19,7 +19,6 @@ export default function useWinOrdersTracking(){
     const [status , setStatus] = useState(processStatus(parseInt(searchParams.get('status'))))
 
 
-    console.log(status)
     const parseData = useCallback((item) => {
         console.log('item',item)
         const winTrackingData = item?.winOrderList?.map((data) => {
@@ -42,8 +41,11 @@ export default function useWinOrdersTracking(){
     }, []);
 
 
+
+
+
     const { data, isSuccess, isLoading } = useQuery({
-        queryKey: ['getRequestHistory',status],
+        queryKey: ['getWinTracking',status],
         queryFn: () => getWinTrackingData(status),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
@@ -51,11 +53,22 @@ export default function useWinOrdersTracking(){
     });
 
 
+    const { data : winCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
+        queryKey: ['getWinCount'],
+        queryFn: () => getWinCount(),
+        staleTime: 20 * 1000,
+
+    });
+
+    console.log(winCount)
     return {
         winTrackingData: data?.winTrackingData,
         colData : data?.colTrackingData,
         isSuccess,
         isLoading,
+        winCount : winCount?.data,
+        isScCount,
+        isLdCount,
         status,
         setStatus
     };
