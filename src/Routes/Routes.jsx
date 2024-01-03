@@ -10,6 +10,7 @@ import SaleHistory from "../Pages/SaleHistory/saleHistory.jsx";
 import AucHistoryDetail from "../Components/AuctionHistoryDetail/aucHistoryDetail.jsx";
 import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
+import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
 
 export const NormalRoutes = [
     {path: "/login", element: <Login/>},
@@ -21,9 +22,9 @@ export const UserRoutes = [
     {path: "/", element: <Home/>},
     {path: "/reqOrderTracking", element: <ReqOrderTracking/>},
     {path:"/winOrderTracking/winOrderDetail", element :<WinOrderDetail/>},
-    {path:"/saleHistory/reqOrderDetail", element :<ReqOrderDetail/>},
+    {path:"/saleHistory/reqOrderDetail/:id", element :<ReqOrderDetail/>},
     {path: "/reqOrderTracking/reqOrderDetail", element: <ReqOrderDetail/>},
-    {path: "/reqHistory/reqOrderDetail/:id", element: <ReqOrderDetail/>},
+    {path: "/reqHistory/reqHistoryDetail/:id", element: <ReqHistoryDetail/>},
     {path: "/winOrderTracking", element: <WinOrdersTracking/>},
     {path: "/user/profile", element: <Profile/>},
     {path: "/productBid", element: <ProductBidding/>},
