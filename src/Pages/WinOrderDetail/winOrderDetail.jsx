@@ -7,6 +7,7 @@ import {Button} from "@material-tailwind/react";
 import {useState} from "react";
 import {DialogContent, DialogTitle, FormControl,Dialog, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close.js";
+import {processStatus, statusToString} from "../../Utils/constant.js";
 
 
 const WinOrderDetail = () => {
@@ -15,12 +16,8 @@ const WinOrderDetail = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
-    const state = parseInt(new URLSearchParams(location.search).get('state'));
-    const stateStr = state === 4 ?
-        'Done' : [5,6,7].includes(state) ?
-            'Delivery Wait' : state === 8 ?
-                'Completed' : state === 11 ?
-                    'Cancel' : null
+    const status = parseInt(new URLSearchParams(location.search).get('status'));
+    const stateStr = statusToString(processStatus(status))
 
     return (
         <>  <Header/>
@@ -90,7 +87,7 @@ const WinOrderDetail = () => {
 
                     </div>
 
-                    {state && state !== 4 &&
+                    {status && (status !== 4 && status !== 11) &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
                                 <div className="text-left text-sm font-semibold ">Delivery Information</div>
@@ -120,7 +117,7 @@ const WinOrderDetail = () => {
                             </div>
                         </>
                     }
-                    {state && state === 4 &&
+                    {status && status === 4 &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2 ">
                                 <div className="text-left text-sm font-semibold ">Delivery Information</div>
@@ -229,6 +226,27 @@ const WinOrderDetail = () => {
                         </>
                     }
 
+                    {
+                        status === 11 && <>
+                            <div className="flex justify-between m-2.5 items-center px-2">
+                                <div className="text-left text-sm font-semibold ">Lí do hủy</div>
+                            </div>
+
+                            <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-xs space-y-6 ">
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Tác nhân :</div>
+                                    <div className="font-normal  col-span-2">Người dùng </div>
+                                </div>
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Lí do :</div>
+                                    <div className="font-normal  col-span-2">Quá thời gian điền thông tin nhận hàng
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    }
 
                 </div>
 
