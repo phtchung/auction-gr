@@ -19,3 +19,16 @@ export const getAuctionHistoryDetail = async(productId) => {
         url: `/product/history/${productId}`
     })
 }
+
+
+export const getWinTrackingData = async (status ) => {
+    return privateHttp({
+        method: 'POST',
+        url: '/product/winOrderList',
+        data:{
+            status : status
+        },
+
+    })
+}
+

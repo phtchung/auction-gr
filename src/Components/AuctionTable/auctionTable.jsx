@@ -2,7 +2,7 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "
 import {useNavigate} from "react-router-dom";
 
 const AuctionTable = ({cols , rows}) => {
-
+    console.log(rows)
     const navigate = useNavigate()
     // const [rowperpage, rowperpagechange] = useState(10);
     // const handlechangepage = (event, newpage) => {
@@ -40,7 +40,7 @@ const AuctionTable = ({cols , rows}) => {
                                 return (
                                     <TableRow hover key={row.id}
                                               style={{cursor:'pointer'}}
-                                              onClick={() => navigate(`/winOrderTracking/winOrderDetail?state=${row.status}`)}
+                                              onClick={() => navigate(`/winOrderTracking/winOrderDetail?status=${row.status}`)}
                                     >
                                         {cols && cols.map((column) => {
                                             let value = row[column.id];
@@ -68,6 +68,21 @@ const AuctionTable = ({cols , rows}) => {
                                     </TableRow>
                                 )
                             })}
+                        {rows.length === 0 && <>
+                            <tr >
+                                <TableCell
+                                    align="center"
+                                    colSpan={cols.length}
+                                    style={{
+                                    color: 'dimgray',
+                                    fontWeight: '550',
+                                    fontSize: '12px',
+
+                                }}> Không có dữ liệu</TableCell>
+                            </tr>
+
+                        </>
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
