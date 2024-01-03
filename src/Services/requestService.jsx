@@ -18,3 +18,10 @@ export const getReqDetail = async (reqId) =>{
     })
 }
 
+export const getReqHistoryDetail = async (reqId) =>{
+    return  privateHttp({
+        method: 'GET',
+        url: `/request/history/${reqId}`,
+
+    })
+}

@@ -33,7 +33,7 @@ const RequestInfo = ({data}) => {
 
               <div className="grid grid-cols-6 text-left">
                   <div> Request ID :</div>
-                  <div className="font-normal  col-span-2"> {data.id.slice(0,14)}</div>
+                  <div className="font-normal  col-span-2"> {data.request_id.slice(0,14)}</div>
                   <di> Request Time :</di>
                   <div className="font-normal col-span-2"> {data.createdAt}</div>
               </div>

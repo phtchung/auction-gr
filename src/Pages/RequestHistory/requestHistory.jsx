@@ -116,7 +116,7 @@ const RequestHistory = () => {
                                           {reqHistoryData.map((row) => (
                                               <TableRow
                                                   key={row.id}
-                                                  onClick={() => navigate(`/reqHistory/reqOrderDetail/${row.id}?status=${row.status}`)}
+                                                  onClick={() => navigate(`/reqHistory/reqHistoryDetail/${row.id}?status=${row.status}`)}
                                                   sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                               >
                                                   <TableCell component="th" scope="row" align="center">

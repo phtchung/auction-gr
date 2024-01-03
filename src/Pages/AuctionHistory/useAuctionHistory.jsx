@@ -24,7 +24,7 @@ export default function useAuctionHistory(){
 
     const { data, isSuccess, isLoading } = useQuery({
         queryKey: ['getAuctionHistory'],
-        queryFn: () => getAuctionHistory({status:'9'}),
+        queryFn: () => getAuctionHistory({status:'8'}),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data)
     });
