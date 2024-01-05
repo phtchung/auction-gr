@@ -15,6 +15,7 @@ const WinOrdersTracking = () => {
 
     const {isLoading , isSuccess, winTrackingData ,isScCount,winCount, colData,status,setStatus} = useWinOrdersTracking()
 
+
     const [selectedTab, setSelectedTab] = useState(status);
     const handelClick = (value) => {
         setStatus(processStatus(value))

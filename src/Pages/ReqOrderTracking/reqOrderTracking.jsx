@@ -4,7 +4,6 @@ import {
     categories, numberToString,
     pending,
     rankItems, reqConvertStatus,
-    statusToString,
     tabData
 } from "../../Utils/constant.js";
 import {useState} from "react";
@@ -30,36 +29,45 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const ReqOrderTracking = () => {
 
-    const {isLdCount, isScCount, reqCount,isLoading,colData,isSuccess,reqTrackingData,  status, setStatus} = useReqOrderTracking()
+    const {
+        isLdCount,
+        isScCount,
+        reqCount,
+        isLoading,
+        colData,
+        isSuccess,
+        reqTrackingData,
+        status,
+        setStatus
+    } = useReqOrderTracking()
 
-    const [open,openchange]=useState(false);
-    const [open1,openchange1]=useState(false);
+    const [open, openchange] = useState(false);
+    const [open1, openchange1] = useState(false);
 
-    const [request,setRequest]= useState(null);
+    const [request, setRequest] = useState(null);
 
-    const handleRequest = (key,value) => {
-        setRequest({...request,[key]:value})
-        console.log('req',request)
+    const handleRequest = (key, value) => {
+        setRequest({...request, [key]: value})
+        console.log('req', request)
     }
 
     console.log(reqTrackingData)
 
-    const openPopup=()=>{
+    const openPopup = () => {
         openchange(true);
     }
-    const closepopup=()=>{
+    const closepopup = () => {
         openchange(false);
     }
-    const openPopup1=()=>{
+    const openPopup1 = () => {
         openchange1(true);
     }
-    const closePopup1=()=>{
+    const closePopup1 = () => {
         openchange1(false);
     }
 
-
     const navigate = useNavigate()
-    const [selectedTab, setSelectedTab] = useState(1);
+    const [selectedTab, setSelectedTab] = useState(status);
     const handelClick = (value) => {
         setStatus(reqConvertStatus(value))
         setSelectedTab(value);

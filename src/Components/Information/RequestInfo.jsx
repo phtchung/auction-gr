@@ -35,7 +35,7 @@ const RequestInfo = ({data}) => {
                   <div> Mã yêu cầu :</div>
                   <div className="font-normal  col-span-2"> {data.request_id.slice(0,14)}</div>
                   <di> Thời gian yêu cầu :</di>
-                  <div className="font-normal col-span-2"> {data.createdAt}</div>
+                  <div className="font-normal col-span-2"> {data.status === 1 ? data.createdAt : data.request_time  }</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
@@ -44,7 +44,7 @@ const RequestInfo = ({data}) => {
               </div>
               <div className="grid grid-cols-6 text-left">
                   <div> Danh mục :</div>
-                  <div className="font-normal col-span-2"> Đồng hồ</div>
+                  <div className="font-normal col-span-2"> {data.category_name}</div>
                   <div> Chất lượng :</div>
                   <div className="font-normal col-span-2"> {data.rank}</div>
               </div>

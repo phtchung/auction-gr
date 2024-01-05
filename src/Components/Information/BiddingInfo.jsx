@@ -45,9 +45,9 @@ const BiddingInfo = ({data}) => {
 
                       <div className="grid grid-cols-6 text-left">
                           <div> Người trúng thầu :</div>
-                          <div className="font-normal col-span-2"> Phạm Huy Hùng</div>
+                          <div className="font-normal col-span-2"> {data.deliData.name}</div>
                           <div> Phone Number :</div>
-                          <div className="font-normal col-span-2"> 0971751699</div>
+                          <div className="font-normal col-span-2"> {data.deliData.phone}</div>
                       </div>
 
                   </>
