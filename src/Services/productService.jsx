@@ -63,3 +63,11 @@ export const getReqTracking = async (status ) => {
 
     })
 }
+
+export const getReqDetail = async (reqId) =>{
+    return  privateHttp({
+        method: 'GET',
+        url: `/product/req/${reqId}`,
+
+    })
+}
