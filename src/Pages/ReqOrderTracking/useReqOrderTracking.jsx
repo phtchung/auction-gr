@@ -9,9 +9,9 @@ import {
     processStatus
 } from "../../Utils/constant.js";
 import {useSearchParams } from "react-router-dom";
-import {getWinCount, getWinTrackingData} from "../../Services/productService.jsx";
+import {getReqCount, getWinTrackingData} from "../../Services/productService.jsx";
 
-export default function useWinOrdersTracking(){
+export default function useReqOrderTracking(){
 
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -40,30 +40,30 @@ export default function useWinOrdersTracking(){
         return { winTrackingData , colTrackingData  };
     }, []);
 
+    //
+    // const { data, isSuccess, isLoading } = useQuery({
+    //     queryKey: ['getReqTracking',status],
+    //     queryFn: () => getReqTracking(status),
+    //     staleTime: 20 * 1000,
+    //     select: (data) => parseData(data.data),
+    //     enabled: !!status
+    // });
 
-    const { data, isSuccess, isLoading } = useQuery({
-        queryKey: ['getWinTracking',status],
-        queryFn: () => getWinTrackingData(status),
+
+    const { data : reqCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
+        queryKey: ['getReqCount'],
+        queryFn: () => getReqCount(),
         staleTime: 20 * 1000,
-        select: (data) => parseData(data.data),
-        enabled: !!status
+
     });
 
-
-    const { data : winCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
-        queryKey: ['getWinCount'],
-        queryFn: () => getWinCount(),
-        staleTime: 20 * 1000,
-
-    });
-
-    console.log(winCount)
+    console.log(reqCount)
     return {
-        winTrackingData: data?.winTrackingData,
-        colData : data?.colTrackingData,
-        isSuccess,
-        isLoading,
-        winCount : winCount?.data,
+        // winTrackingData: data?.winTrackingData,
+        // colData : data?.colTrackingData,
+        // isSuccess,
+        // isLoading,
+        reqCount : reqCount?.data,
         isScCount,
         isLdCount,
         status,

@@ -40,7 +40,7 @@ const AuctionTable = ({cols , rows}) => {
                                 return (
                                     <TableRow hover key={row.id}
                                               style={{cursor:'pointer'}}
-                                              onClick={() => navigate(`/winOrderTracking/winOrderDetail?status=${row.status}`)}
+                                              onClick={() => navigate(`/winOrderTracking/winOrderDetail/${row.product_id}?status=${row.status}`)}
                                     >
                                         {cols && cols.map((column) => {
                                             let value = row[column.id];

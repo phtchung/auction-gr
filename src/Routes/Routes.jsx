@@ -20,16 +20,17 @@ export const NormalRoutes = [
 
 export const UserRoutes = [
     {path: "/", element: <Home/>},
-    {path: "/reqOrderTracking", element: <ReqOrderTracking/>},
-    {path:"/winOrderTracking/winOrderDetail", element :<WinOrderDetail/>},
+    {path:"/winOrderTracking/winOrderDetail/:id", element :<WinOrderDetail/>},
     {path:"/saleHistory/reqOrderDetail/:id", element :<ReqOrderDetail/>},
-    {path: "/reqOrderTracking/reqOrderDetail", element: <ReqOrderDetail/>},
     {path: "/reqHistory/reqHistoryDetail/:id", element: <ReqHistoryDetail/>},
     {path: "/winOrderTracking", element: <WinOrdersTracking/>},
     {path: "/user/profile", element: <Profile/>},
-    {path: "/productBid", element: <ProductBidding/>},
     {path: "/auctionHistory", element: <AuctionHistory/>},
     {path: "/reqHistory", element: <RequestHistory/>},
     {path: "/saleHistory", element: <SaleHistory/>},
     {path: "/auctionHistory/auction/:id", element: <AucHistoryDetail/>},
+    
+    {path: "/reqOrderTracking", element: <ReqOrderTracking/>},
+    {path: "/reqOrderTracking/reqOrderDetail", element: <ReqOrderDetail/>},
+    {path: "/productBid", element: <ProductBidding/>},
 ]

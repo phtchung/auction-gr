@@ -1,23 +1,25 @@
 import SideBar from "../../Components/SideBar/index.jsx";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import Header from "../../Components/Header/header.jsx";
 import {Button} from "@material-tailwind/react";
 import {useState} from "react";
-import {DialogContent, DialogTitle, FormControl,Dialog, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close.js";
+import {DialogContent, DialogTitle,Dialog, Stack} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import {processStatus, statusToString} from "../../Utils/constant.js";
+import useWinOrderDetail from "./useWinOrderDetail.jsx";
 
 
 const WinOrderDetail = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
+    const {isLoading , isSuccess , winDetailData} = useWinOrderDetail()
+    console.log(winDetailData)
     const navigate = useNavigate()
-    const location = useLocation();
-    const status = parseInt(new URLSearchParams(location.search).get('status'));
-    const stateStr = statusToString(processStatus(status))
+
+    const stateStr = isSuccess && statusToString(processStatus(winDetailData.status))
 
     return (
         <>  <Header/>
@@ -45,49 +47,76 @@ const WinOrderDetail = () => {
                         <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
                     </div>
 
-                    <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
 
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Người bán :</div>
-                            <div className="font-normal col-span-2"> Hoa</div>
-                            <div> Số điện thoại :</div>
-                            <div className="font-normal col-span-2"> 0918286381</div>
-                        </div>
+                    {
+                        isSuccess && <>
+                            <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
 
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Product Name :</div>
-                            <div className="font-normal  col-span-5"> Đồng hồ Rolex A532 2022</div>
-                        </div>
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Category :</div>
-                            <div className="font-normal col-span-2"> Đồng hồ</div>
-                            <div> Rank :</div>
-                            <div className="font-normal col-span-2"> S</div>
-                        </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Người bán :</div>
+                                    <div className="font-normal col-span-2"> Hoa</div>
+                                    <div> Số điện thoại :</div>
+                                    <div className="font-normal col-span-2"> 0918286381</div>
+                                </div>
 
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Giá khởi điểm :</div>
-                            <div className="font-normal col-span-2"> 290.000 VND</div>
-                            <div> Giá trúng thầu :</div>
-                            <div className="font-normal col-span-2"> 4.000.000 VND</div>
-                        </div>
-                        <div className="grid grid-cols-6 text-left font-medium">
-                            <div> Phí ship :</div>
-                            <div className="font-normal col-span-2"> 30.000 VND</div>
-                            <div> Tổng tiền :</div>
-                            <div className="font-normal col-span-2"><strong>4.030.000 VND</strong></div>
-                        </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Product Name :</div>
+                                    <div className="font-normal  col-span-5"> {winDetailData.product_name}</div>
+                                </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Category :</div>
+                                    <div className="font-normal col-span-2"> Đồng hồ</div>
+                                    <div> Rank :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.rank}</div>
+                                </div>
 
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Thời gian thắng :</div>
-                            <div className="font-normal  col-span-2"> 2023-09-09 15:03:21</div>
-                            <di> Hạn hoàn thành thủ tục :</di>
-                            <div className=" col-span-2 font-bold"> 2023-09-09 15:03:21</div>
-                        </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Giá khởi điểm :</div>
+                                    <div className="font-normal col-span-2">{winDetailData.reserve_price} VND</div>
+                                </div>
 
-                    </div>
+                            </div>
+                        </>
+                    }
 
-                    {status && (status !== 4 && status !== 11) &&
+                    {
+                        isSuccess && <>
+                            <div className="flex justify-between m-2.5 items-center px-2">
+                                <div className="text-left text-sm font-semibold ">Bidding Information</div>
+                            </div>
+                            <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Thời gian bắt đầu :</div>
+                                    <div className="font-normal  col-span-2"> {winDetailData.start_time}</div>
+                                    <di> Thời gian kết thúc :</di>
+                                    <div className=" col-span-2 font-normal"> {winDetailData.finish_time}</div>
+                                </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Thời gian thắng :</div>
+                                    <div className="font-normal  col-span-2"> {winDetailData.victory_time}</div>
+                                    <di> Hạn hoàn thành thủ tục :</di>
+                                    <div className=" col-span-2 font-bold"> {winDetailData.procedure_complete_time}</div>
+                                </div>
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Giá trúng thầu :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.final_price} VND</div>
+                                    <div> Phí ship :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.shipping_fee} VND</div>
+                                </div>
+
+                                <div className="grid grid-cols-6 text-left font-medium">
+                                    <div> Tổng tiền :</div>
+                                    <div className="font-normal col-span-2"><strong>{winDetailData.total_price} VND</strong></div>
+                                </div>
+
+                            </div>
+                        </>
+                    }
+
+
+                    {isSuccess && (winDetailData.status !== 4 && winDetailData.status !== 11) &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
                                 <div className="text-left text-sm font-semibold ">Delivery Information</div>
@@ -117,7 +146,7 @@ const WinOrderDetail = () => {
                             </div>
                         </>
                     }
-                    {status && status === 4 &&
+                    {isSuccess && winDetailData.status === 4 &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2 ">
                                 <div className="text-left text-sm font-semibold ">Delivery Information</div>
@@ -214,9 +243,10 @@ const WinOrderDetail = () => {
                                         <div className="flex gap-4 justify-end my-2">
                                             <Button onClick={handleOpen} className="bg-red-500 border-none py-1 px-8"
                                                     variant="filled">
-                                            Hủy
+                                                Hủy
                                             </Button>
-                                            <Button onClick={handleOpen} className="bg-black py-3 border-none px-8" variant="filled">
+                                            <Button onClick={handleOpen} className="bg-black py-3 border-none px-8"
+                                                    variant="filled">
                                                 Gửi
                                             </Button>
                                         </div>
@@ -227,7 +257,7 @@ const WinOrderDetail = () => {
                     }
 
                     {
-                        status === 11 && <>
+                        isSuccess && winDetailData.status === 11 && <>
                             <div className="flex justify-between m-2.5 items-center px-2">
                                 <div className="text-left text-sm font-semibold ">Lí do hủy</div>
                             </div>
@@ -236,7 +266,7 @@ const WinOrderDetail = () => {
 
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Tác nhân :</div>
-                                    <div className="font-normal  col-span-2">Người dùng </div>
+                                    <div className="font-normal  col-span-2">Người dùng</div>
                                 </div>
 
                                 <div className="grid grid-cols-6 text-left">

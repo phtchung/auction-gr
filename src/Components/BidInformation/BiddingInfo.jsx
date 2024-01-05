@@ -7,21 +7,21 @@ const BiddingInfo = ({data}) => {
   return(
       <>
           <div className="flex justify-between m-2.5 items-center px-2">
-              <div className="text-left text-sm font-semibold ">Bidding Information</div>
+              <div className="text-left text-sm font-semibold ">Thông tin đấu giá</div>
           </div>
 
           <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-xs space-y-6 ">
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Type of auction :</div>
+                  <div> Hình thức :</div>
                   <div
                       className="font-normal  col-span-2"> {data.type_of_auction === 1 ? 'Đấu giá tăng' : "Đấu giá giảm "}</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Bidding Start Time :</div>
+                  <div> Thời gian bắt đầu :</div>
                   <div className="font-normal  col-span-2"> {data.start_time}</div>
-                  <di> Bidding Finish Time :</di>
+                  <di> Thời gian kết thúc :</di>
                   <div className="font-normal col-span-2"> {data.finish_time}</div>
               </div>
 
@@ -57,11 +57,11 @@ const BiddingInfo = ({data}) => {
           {
               ( data.status === 7 || data.status === 8 || data.status === 9 ) && <>
                   <div className="flex justify-between m-2.5 items-center px-2">
-                      <div className="text-left text-sm font-semibold ">Delivery Information</div>
+                      <div className="text-left text-sm font-semibold ">Thông tin vận chuyển</div>
                   </div>
                   <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-xs space-y-6 ">
                       <div className="grid grid-cols-6 text-left">
-                          <div> Tên người nhận :</div>
+                          <div>  Người nhận :</div>
                           <div className="font-normal col-span-2"> {data.deliData.name}</div>
                           <div> Số điện thoại :</div>
                           <div className="font-normal col-span-2"> {data.deliData.phone}</div>

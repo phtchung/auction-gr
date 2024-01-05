@@ -13,12 +13,6 @@ const WinOrdersTracking = () => {
 
 
 
-    const handleTabClick = (tabIndex) => {
-        setSelectedTab(tabIndex);
-        // Gọi hàm handelClick với giá trị tabIndex nếu bạn muốn thực hiện thêm logic
-        handelClick(tabIndex);
-    };
-
     const {isLoading , isSuccess, winTrackingData ,isScCount,winCount, colData,status,setStatus} = useWinOrdersTracking()
 
     const [selectedTab, setSelectedTab] = useState(status);
@@ -62,7 +56,7 @@ const WinOrdersTracking = () => {
 
                     {
                         isSuccess  && <>
-                            <div className="border border-gray-300">
+                            <div className="border border-gray-300 mt-6">
                                 <div className="flex items-center justify-between  bg-white  p-2 text-sm">
                                     <div className="text-left font-medium my-2 ml-3 ">
                                         List - {statusToString(processStatus(status))}
