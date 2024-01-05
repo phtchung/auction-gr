@@ -5,7 +5,6 @@ import {formatDateTime} from "../../Utils/constant.js";
 const AuctionHistoryCpn = ({data}) => {
     console.log(data)
 
-
     const navigate = useNavigate()
     return(
         <>

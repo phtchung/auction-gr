@@ -1,53 +1,53 @@
 import {useCallback, useState} from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
-    colAuctionWin,
-    colCompletion,
-    colDlvWait,
-    colWinCancel,
+    convertStatusToData,
     formatDateTime,
-    processStatus
+     reqConvertStatus
 } from "../../Utils/constant.js";
 import {useSearchParams } from "react-router-dom";
-import {getReqCount, getWinTrackingData} from "../../Services/productService.jsx";
+import {getReqCount, getReqTracking} from "../../Services/productService.jsx";
 
 export default function useReqOrderTracking(){
 
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const [status , setStatus] = useState(processStatus(parseInt(searchParams.get('status'))))
+    const [status , setStatus] = useState(reqConvertStatus(parseInt(searchParams.get('status'))))
 
 
     const parseData = useCallback((item) => {
         console.log('item',item)
-        const winTrackingData = item?.winOrderList?.map((data) => {
+        const reqTrackingData = item?.reqOrderList?.map((data) => {
             return {
                 product_id: data?._id,
                 product_name:data?.product_name,
                 rank:data?.rank,
                 status:data?.status ,
-                createdAt :formatDateTime(new Date(data?.createdAt)),
-                reserve_price:data?.reserve_price,
-                final_price: data?.final_price,
+                request_time :formatDateTime(new Date(data?.createdAt)),
+                reserve_price:data?.reserve_price+' VND',
+                sale_price:data?.sale_price+' VND',
+                final_price: data?.final_price+'VND',
                 victory_time :formatDateTime(new Date(data?.victory_time)),
-                total_price: data?.final_price + data?.shipping_fee
+                total_price: data?.final_price + data?.shipping_fee+' VND',
+                completed_at:formatDateTime(new Date(data?.product_delivery?.completed_at)),
+                request_id:data?._id,
             };
         })
 
-        const colTrackingData = item.status === 4 ? colAuctionWin : item.status === 567 ? colDlvWait : item.status === 8 ? colCompletion : item.status === 9 ? colWinCancel : colWinCancel
+        const colTrackingData = convertStatusToData(item.status)
 
-        return { winTrackingData , colTrackingData  };
+        return { reqTrackingData , colTrackingData  };
     }, []);
 
-    //
-    // const { data, isSuccess, isLoading } = useQuery({
-    //     queryKey: ['getReqTracking',status],
-    //     queryFn: () => getReqTracking(status),
-    //     staleTime: 20 * 1000,
-    //     select: (data) => parseData(data.data),
-    //     enabled: !!status
-    // });
+
+    const { data, isSuccess, isLoading } = useQuery({
+        queryKey: ['getReqTracking',status],
+        queryFn: () => getReqTracking(status),
+        staleTime: 20 * 1000,
+        select: (data) => parseData(data.data),
+        enabled: !!status
+    });
 
 
     const { data : reqCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
@@ -59,10 +59,10 @@ export default function useReqOrderTracking(){
 
     console.log(reqCount)
     return {
-        // winTrackingData: data?.winTrackingData,
-        // colData : data?.colTrackingData,
-        // isSuccess,
-        // isLoading,
+        reqTrackingData: data?.reqTrackingData,
+        colData : data?.colTrackingData,
+        isSuccess,
+        isLoading,
         reqCount : reqCount?.data,
         isScCount,
         isLdCount,
