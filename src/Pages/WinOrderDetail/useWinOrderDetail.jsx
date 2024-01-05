@@ -14,6 +14,8 @@ export default function useWinOrderDetail(){
         const detail = {
             product_id: data?._id,
             product_name: data?.product_name,
+            name:data?.seller_id.name,
+            phone:data?.seller_id.phone,
             description: data?.description,
             step_price: data?.step_price,
             shipping_fee:data?.shipping_fee,
@@ -27,8 +29,13 @@ export default function useWinOrderDetail(){
             procedure_complete_time:formatDateTime(new Date(data?.procedure_complete_time)),
             total_price : data?.final_price + data?.shipping_fee,
             rank: data?.rank,
+            receiver:data?.product_delivery?.name,
+            phone_receiver : data?.product_delivery?.phone,
+            address:data?.product_delivery?.address,
+            note:data?.product_delivery?.note,
             status: data?.status,
             type_of_auction:data?.type_of_auction,
+            category_name:data?.category_id?.name,
         }
         return { detail };
     }, []);

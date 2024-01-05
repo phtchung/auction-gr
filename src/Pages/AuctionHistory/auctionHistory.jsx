@@ -5,12 +5,11 @@ import AuctionHistoryCpn from "../../Components/AuctionHistoryCpn/auctionHistory
 import Header from "../../Components/Header/header.jsx";
 import useAuctionHistory from "./useAuctionHistory.jsx";
 
-
 const AuctionHistory = () => {
-    const [email, setEmail] = useState("");
+    const [search, setSearch] = useState("");
     const {aucHistoryData, isLoading , isSuccess} = useAuctionHistory();
     console.log(aucHistoryData)
-    const onChange = ({ target }) => setEmail(target.value);
+    const onChange = ({ target }) => setSearch(target.value);
     return (
         <>
             <Header/>
@@ -23,9 +22,9 @@ const AuctionHistory = () => {
                     <div className="border-b border-neutral-300 "></div>
                     <div className="relative flex w-full ">
                         <Input
-                            type="email"
+                            type="search"
                             style={{backgroundColor: '#eaeaea'}}
-                            value={email}
+                            value={search}
                             onChange={onChange}
                             placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
                             className="pr-30 pl-5"
@@ -35,7 +34,7 @@ const AuctionHistory = () => {
                         />
                         <Button
                             size="sm"
-                            className={`!absolute right-1 top-1 rounded ${email ? 'bg-black' : 'bg-gray-400'}`}
+                            className={`!absolute right-1 top-1 rounded ${search ? 'bg-black' : 'bg-gray-400'}`}
                         >
                             Search
                         </Button>
@@ -46,9 +45,6 @@ const AuctionHistory = () => {
                             <AuctionHistoryCpn key={data.id} data={data} />
                         ))
                     }
-
-
-
 
                 </div>
             </div>

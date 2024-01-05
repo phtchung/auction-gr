@@ -53,3 +53,13 @@ export const getReqCount = async() => {
         url: `/product/reqCount`
     })
 }
+export const getReqTracking = async (status ) => {
+    return privateHttp({
+        method: 'POST',
+        url: '/product/reqOrderList',
+        data:{
+            status : status
+        },
+
+    })
+}

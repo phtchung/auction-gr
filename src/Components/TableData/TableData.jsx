@@ -41,8 +41,7 @@ const TableData = ({cols , rows}) => {
                                   <TableRow hover key={row.id}
 
                                             style={{cursor:'pointer'}}
-                                            onClick={() => navigate(`/reqOrderTracking/reqOrderDetail?state=${row.status}`)}
-
+                                            onClick={() => navigate(`/reqOrderTracking/reqOrderDetail/${row.product_id}?state=${row.status}`)}
                                   >
                                       {cols && cols.map((column) => {
                                           let value = row[column.id];
@@ -67,6 +66,21 @@ const TableData = ({cols , rows}) => {
                                   </TableRow>
                               )
                           })}
+                      {rows.length === 0 && <>
+                          <tr >
+                              <TableCell
+                                  align="center"
+                                  colSpan={cols.length}
+                                  style={{
+                                      color: 'dimgray',
+                                      fontWeight: '550',
+                                      fontSize: '12px',
+
+                                  }}> Không có dữ liệu</TableCell>
+                          </tr>
+
+                      </>
+                      }
                   </TableBody>
               </Table>
           </TableContainer>

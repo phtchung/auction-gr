@@ -4,11 +4,11 @@ export const formatNumber = (number) => {
 }
 
 export const colPending = [
-    { id: 'request_time', name: 'Time' },
-    { id: 'request_id', name: 'Request ID' },
-    { id: 'product_name', name: 'Product Name' },
-    { id: 'reserve_price', name: 'Reserve Price' },
-    { id: 'sale_price', name: 'Sale Price' },
+    { id: 'request_time', name: 'Thời gian yêu cầu' },
+    { id: 'request_id', name: 'Mã yêu cầu' },
+    { id: 'product_name', name: 'Tên sản phẩm' },
+    { id: 'reserve_price', name: 'Giá khởi điểm' },
+    { id: 'sale_price', name: 'Giá bán trực tiếp' },
 ]
 export const rows = [
     { id: 1, name: 'Đồng hồ Rolex A14-5029', reserve: 25000, sale: 100000,time:'23/07/09 09:05:00', rank:'S',status:1 },
@@ -138,7 +138,7 @@ export const colCompletion = [
     { id: 'product_id', name: 'Mã sản phẩm' },
     { id: 'product_name', name: 'Tên sản phẩm'},
     { id: 'total_price', name: 'Tổng tiền' },
-    { id: 'completed_time', name: 'Thời gian nhận' },
+    { id: 'completed_at', name: 'Thời gian nhận' },
 
 ]
 
@@ -229,8 +229,10 @@ export const numberToString = (state) => {
             return 'Failure';
         case 11:
             return 'Cancel';
+        case 13:
+            return 'Reject';
         default:
-            return null;
+            return 'Pending';
     }
 };
 
@@ -302,3 +304,26 @@ export function processStatus(status) {
         return 4;
     }
 }
+
+export function reqConvertStatus(status) {
+    if (status === 1 || status === 2 || status === 3 || status === 5 || status === 6 || status === 7 || status === 8 || status === 10 || status === 11 || status === 13) {
+        return status;
+    } else {
+        return 1;
+    }
+}
+
+export const rankItems = [
+    { value: 'S', label: 'S' },
+    { value: 'A', label: 'A' },
+    { value: 'B', label: 'B' },
+    { value: 'C', label: 'C' },
+    { value: 'D', label: 'D' },
+];
+
+export const categories = [
+    { value: '1', label: 'Đồng hồ' },
+    { value: '2', label: 'Điện tử' },
+    { value: '3', label: 'Trang sức' },
+
+];

@@ -43,7 +43,7 @@ const WinOrderDetail = () => {
                     </div>
                     <div className="border-b border-gray-400  mx-5"></div>
                     <div className="flex justify-between m-2.5 items-center px-2">
-                        <div className="text-left text-sm font-semibold ">Product Information</div>
+                        <div className="text-left text-sm font-semibold ">Thông tin sản phẩm</div>
                         <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
                     </div>
 
@@ -54,18 +54,18 @@ const WinOrderDetail = () => {
 
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Người bán :</div>
-                                    <div className="font-normal col-span-2"> Hoa</div>
+                                    <div className="font-normal col-span-2">{winDetailData.name}</div>
                                     <div> Số điện thoại :</div>
-                                    <div className="font-normal col-span-2"> 0918286381</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.phone}</div>
                                 </div>
 
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Product Name :</div>
-                                    <div className="font-normal  col-span-5"> {winDetailData.product_name}</div>
+                                    <div className="font-normal  col-span-5">{winDetailData.product_name}</div>
                                 </div>
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Category :</div>
-                                    <div className="font-normal col-span-2"> Đồng hồ</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.category_name}</div>
                                     <div> Rank :</div>
                                     <div className="font-normal col-span-2"> {winDetailData.rank}</div>
                                 </div>
@@ -74,7 +74,6 @@ const WinOrderDetail = () => {
                                     <div> Giá khởi điểm :</div>
                                     <div className="font-normal col-span-2">{winDetailData.reserve_price} VND</div>
                                 </div>
-
                             </div>
                         </>
                     }
@@ -82,7 +81,7 @@ const WinOrderDetail = () => {
                     {
                         isSuccess && <>
                             <div className="flex justify-between m-2.5 items-center px-2">
-                                <div className="text-left text-sm font-semibold ">Bidding Information</div>
+                                <div className="text-left text-sm font-semibold "> Thông tin đấu giá </div>
                             </div>
                             <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
 
@@ -119,28 +118,28 @@ const WinOrderDetail = () => {
                     {isSuccess && (winDetailData.status !== 4 && winDetailData.status !== 11) &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
-                                <div className="text-left text-sm font-semibold ">Delivery Information</div>
+                                <div className="text-left text-sm font-semibold ">Thông tin giao hàng</div>
                             </div>
                             <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
                                 <div className="grid grid-cols-6 text-left">
-                                    <div> Người trúng thầu :</div>
-                                    <div className="font-normal col-span-2"> Phạm Huy Hùng</div>
+                                    <div> Người nhận :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.receiver}</div>
                                     <div> Phone Number :</div>
-                                    <div className="font-normal col-span-2"> 0971751699</div>
+                                    <div className="font-normal col-span-2"> {winDetailData.phone_receiver}</div>
                                 </div>
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Địa chỉ :</div>
-                                    <div className="font-normal col-span-5"> 67a ngõ 128c Đại La, Hai Bà Trưng, Hà Nội
+                                    <div className="font-normal col-span-5"> {winDetailData.address}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Ghi chú :</div>
-                                    <div className="font-normal col-span-5"> 67a ngõ 128c Đại La, Hai Bà Trưng, Hà Nội
+                                    <div className="font-normal col-span-5"> {winDetailData.note}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Trạng thái đơn hiện tại :</div>
-                                    <div className="font-normal col-span-2 text-amber-400"> Đã xác nhận bởi người bán
+                                    <div className="font-normal col-span-2 text-amber-400"> {winDetailData.status}
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +148,7 @@ const WinOrderDetail = () => {
                     {isSuccess && winDetailData.status === 4 &&
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2 ">
-                                <div className="text-left text-sm font-semibold ">Delivery Information</div>
+                                <div className="text-left text-sm font-semibold ">Thông tin giao hàng</div>
                             </div>
                             <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6  ">
                                 <div className="grid grid-cols-6 text-left items-center">

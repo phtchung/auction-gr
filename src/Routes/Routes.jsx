@@ -29,8 +29,8 @@ export const UserRoutes = [
     {path: "/reqHistory", element: <RequestHistory/>},
     {path: "/saleHistory", element: <SaleHistory/>},
     {path: "/auctionHistory/auction/:id", element: <AucHistoryDetail/>},
-    
     {path: "/reqOrderTracking", element: <ReqOrderTracking/>},
-    {path: "/reqOrderTracking/reqOrderDetail", element: <ReqOrderDetail/>},
+
+    {path: "/reqOrderTracking/reqOrderDetail/:id", element: <ReqOrderDetail/>},
     {path: "/productBid", element: <ProductBidding/>},
 ]

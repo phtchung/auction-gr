@@ -15,9 +15,12 @@ const AucHistoryDetail = () => {
     console.log(aucHistoryParams)
     const {isLoading , isSuccess , data} = useQuery({
         queryKey:['getAucHistoryDetail'],
-        queryFn :() => getAuctionHistoryDetail(aucHistoryParams.id)
+        queryFn :() => getAuctionHistoryDetail(aucHistoryParams.id),
+        select:(data)=> data.data,
+        enabled:!!aucHistoryParams
+
     })
-    console.log(data?.data)
+    console.log(data)
     const steps = [
         'Đấu giá thành công',
         'Xác nhận đơn hàng',
@@ -49,22 +52,22 @@ const AucHistoryDetail = () => {
 
                                   <Step>
                                       <StepLabel>{steps[0]} <br/> <span
-                                          className="text-xs text-stone-400">{formatDateTime(data.data.victory_time)}</span>
+                                          className="text-xs text-stone-400">{formatDateTime(data.victory_time)}</span>
                                       </StepLabel>
                                   </Step>
                                   <Step>
                                       <StepLabel>{steps[1]} <br/> <span
-                                          className="text-xs text-stone-400">{formatDateTime(data.data.createdAt)}</span>
+                                          className="text-xs text-stone-400">{formatDateTime(data.product_delivery.created_at)}</span>
                                       </StepLabel>
                                   </Step>
                                   <Step>
                                       <StepLabel>{steps[2]} <br/> <span
-                                          className="text-xs text-stone-400">{formatDateTime(data.data.delivery_start_at)}</span>
+                                          className="text-xs text-stone-400">{formatDateTime(data.product_delivery.delivery_start_at)}</span>
                                       </StepLabel>
                                   </Step>
                                   <Step>
                                       <StepLabel>{steps[3]} <br/> <span
-                                          className="text-xs text-stone-400">{formatDateTime(data.data.completed_at)}</span>
+                                          className="text-xs text-stone-400">{formatDateTime(data.product_delivery.completed_at)}</span>
                                       </StepLabel>
                                   </Step>
 
@@ -78,9 +81,9 @@ const AucHistoryDetail = () => {
                                   </div>
 
                                   <div className="flex-col mt-4 mx-6  ">
-                                      <div className="mb-3">{data.data.name}</div>
-                                      <div className="text-xs text-neutral-500 mb-2">{data.data.phone}</div>
-                                      <div className="text-xs text-neutral-500">{data.data.address}
+                                      <div className="mb-3">{data.product_delivery.name}</div>
+                                      <div className="text-xs text-neutral-500 mb-2">{data.product_delivery.phone}</div>
+                                      <div className="text-xs text-neutral-500">{data.product_delivery.address}
                                       </div>
                                   </div>
                               </div>
@@ -97,11 +100,11 @@ const AucHistoryDetail = () => {
                                           </div>
                                           <div className="flex flex-col text-sm">
                                               <div className="px-4 max-w-3xl  text-left">
-                                                  {data.data.product_name}
+                                                  {data.product_name}
                                               </div>
                                               <div style={{color: 'rgba(0,0,0,.54)'}}
                                                    className="px-4 mt-2 max-w-3xl text-left">
-                                                  Rank : {data.data.rank}
+                                                  Rank : {data.rank}
                                               </div>
                                           </div>
                                       </div>
@@ -116,12 +119,12 @@ const AucHistoryDetail = () => {
                                       </div>
                                       <div className="col-1 text-right mr-6">
                                           <div className="border-b border-gray-200 "></div>
-                                          <div className="border-b border-gray-200  p-3">{data.data.reserve_price}đ</div>
-                                          <div className="border-b border-gray-200 p-3">{data.data.final_price}đ</div>
-                                          <div className="border-b border-gray-200 p-3">{data.data.shipping_fee}đ</div>
+                                          <div className="border-b border-gray-200  p-3">{data.reserve_price}đ</div>
+                                          <div className="border-b border-gray-200 p-3">{data.final_price}đ</div>
+                                          <div className="border-b border-gray-200 p-3">{data.shipping_fee}đ</div>
                                           <div
                                               className="border-b border-gray-200 font-semibold text-base text-gray-600 p-4">
-                                              {data.data.final_price + data.data.shipping_fee}đ
+                                              {data.final_price + data.shipping_fee}đ
                                           </div>
                                       </div>
                                   </div>

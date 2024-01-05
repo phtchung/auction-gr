@@ -22,7 +22,7 @@ export default function useSaleHistory(){
 
     const parseData = useCallback((item) => {
         console.log('item',item)
-        const saleHis = item?.saleData.map((data) => {
+        const saleHis = item?.products.map((data) => {
             return {
                 productId: data?._id,
                 product_name:data?.product_name,
@@ -30,7 +30,7 @@ export default function useSaleHistory(){
                 request_id:data?.request_id,
                 shipping_fee:data?.shipping_fee,
                 status:data?.status ,
-                completed_at :formatDateTime(new Date(data?.completed_at))
+                completed_at :formatDateTime(new Date(data?.product_delivery?.completed_at))
             };
         })
 

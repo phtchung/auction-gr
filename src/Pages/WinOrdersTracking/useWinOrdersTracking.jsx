@@ -31,7 +31,8 @@ export default function useWinOrdersTracking(){
                 reserve_price:data?.reserve_price,
                 final_price: data?.final_price,
                 victory_time :formatDateTime(new Date(data?.victory_time)),
-                total_price: data?.final_price + data?.shipping_fee
+                total_price: data?.final_price + data?.shipping_fee,
+                completed_at:formatDateTime(new Date(data?.product_delivery?.completed_at)),
             };
         })
 

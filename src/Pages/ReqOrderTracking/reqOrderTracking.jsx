@@ -1,6 +1,12 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import "./home.css"
-import {colSuccess, pending, processStatus, rows, statusToString, tabData} from "../../Utils/constant.js";
+import {
+    categories, numberToString,
+    pending,
+    rankItems, reqConvertStatus,
+    statusToString,
+    tabData
+} from "../../Utils/constant.js";
 import {useState} from "react";
 import TabItem from "../../Components/TabItem/TabItem.jsx";
 import Header from "../../Components/Header/header.jsx";
@@ -24,7 +30,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const ReqOrderTracking = () => {
 
-    const {isLdCount, isScCount, reqCount} = useReqOrderTracking()
+    const {isLdCount, isScCount, reqCount,isLoading,colData,isSuccess,reqTrackingData,  status, setStatus} = useReqOrderTracking()
 
     const [open,openchange]=useState(false);
     const [open1,openchange1]=useState(false);
@@ -35,20 +41,8 @@ const ReqOrderTracking = () => {
         setRequest({...request,[key]:value})
         console.log('req',request)
     }
-    const rankItems = [
-        { value: 'S', label: 'S' },
-        { value: 'A', label: 'A' },
-        { value: 'B', label: 'B' },
-        { value: 'C', label: 'C' },
-        { value: 'D', label: 'D' },
-    ];
 
-    const categories = [
-        { value: '1', label: 'Đồng hồ' },
-        { value: '2', label: 'Điện tử' },
-        { value: '3', label: 'Trang sức' },
-
-    ];
+    console.log(reqTrackingData)
 
     const openPopup=()=>{
         openchange(true);
@@ -67,7 +61,7 @@ const ReqOrderTracking = () => {
     const navigate = useNavigate()
     const [selectedTab, setSelectedTab] = useState(1);
     const handelClick = (value) => {
-        // setStatus(processStatus(value))
+        setStatus(reqConvertStatus(value))
         setSelectedTab(value);
         navigate(`/reqOrderTracking?status=${value}`)
     }
@@ -253,16 +247,21 @@ const ReqOrderTracking = () => {
                         </DialogContent>
                     </Dialog>
 
-                    <div className="border border-gray-300 mt-6">
-                        <div className="flex items-center justify-between  bg-white  p-2 text-sm">
-                            <div className="text-left font-medium my-2 ml-3 ">
-                                List -
-                            </div>
-                        </div>
+                    {
+                        isSuccess && <>
+                            <div className="border border-gray-300 mt-6">
+                                <div className="flex items-center justify-between  bg-white  p-2 text-sm">
+                                    <div className="text-left font-medium my-2 ml-3 ">
+                                        List - {numberToString(status)}
+                                    </div>
+                                </div>
 
-                        <div className="border-b-2 border-gray-300 "></div>
-                        <TableData cols={colSuccess} rows={rows}></TableData>
-                    </div>
+                                <div className="border-b-2 border-gray-300 "></div>
+                                <TableData cols={colData} rows={reqTrackingData}></TableData>
+                            </div>
+                        </>
+                    }
+
                 </div>
             </div>
         </>

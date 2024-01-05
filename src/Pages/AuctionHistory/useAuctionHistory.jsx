@@ -8,13 +8,13 @@ export default function useAuctionHistory(){
     const parseData = useCallback((item) => {
         const aucHis = item?.map((data) => {
             return {
-                id: data._id,
-                seller_name: data.seller_name,
-                product_name:data.product_name,
-                rank:data.rank,
-                reserve_price:data.reserve_price,
-                final_price:data.final_price,
-                completed_at:data.completed_at,
+                id: data?._id,
+                seller_name: data?.seller_id?.name,
+                product_name:data?.product_name,
+                rank:data?.rank,
+                reserve_price:data?.reserve_price,
+                final_price:data?.final_price,
+                completed_at:data?.product_delivery?.completed_at,
             };
         })
 
