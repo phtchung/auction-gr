@@ -3,13 +3,12 @@ export const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export const columns = [
-    { id: 'time', name: 'Time' },
-    { id: 'id', name: 'Request ID' },
-    { id: 'name', name: 'Product Name' },
-    { id: 'reserve', name: 'Reserve Price' },
-    { id: 'sale', name: 'Sale Price' },
-    { id: 'rank', name: 'Rank' },
+export const colPending = [
+    { id: 'request_time', name: 'Time' },
+    { id: 'request_id', name: 'Request ID' },
+    { id: 'product_name', name: 'Product Name' },
+    { id: 'reserve_price', name: 'Reserve Price' },
+    { id: 'sale_price', name: 'Sale Price' },
 ]
 export const rows = [
     { id: 1, name: 'Đồng hồ Rolex A14-5029', reserve: 25000, sale: 100000,time:'23/07/09 09:05:00', rank:'S',status:1 },
@@ -25,13 +24,12 @@ export const rows = [
 
 ];
 
-export const columns1 = [
-    { id: 'time', name: 'Thời gian gửi' },
-    { id: 'id', name: 'Mã yêu cầu' },
-    { id: 'name', name: 'Tên sản phẩm' },
-    { id: 'reserve', name: 'Giá khởi điểm' },
-    { id: 'bidding_time', name: 'Thời gian đấu giá' },
-    { id: 'rank', name: 'Chất lượng' },
+export const colAppr = [
+    { id: 'request_time', name: 'Thời gian gửi' },
+    { id: 'request_id', name: 'Mã yêu cầu' },
+    { id: 'product_name', name: 'Tên sản phẩm' },
+    { id: 'reserve_price', name: 'Giá khởi điểm' },
+    { id: 'start_time', name: 'Thời gian đấu giá' },
 
 ]
 
@@ -47,10 +45,10 @@ export const rows1 = [
 
 export const colSuccess = [
     { id: 'product_id', name: 'Mã sản phẩm' },
-    { id: 'name', name: 'Tên sản phẩm'},
-    { id: 'reserve', name: 'Giá khởi điểm'},
-    { id: 'winning_price', name: 'Giá trúng thầu' },
-    { id: 'winning_time', name: 'Thời gian thắng' },
+    { id: 'product_name', name: 'Tên sản phẩm'},
+    { id: 'reserve_price', name: 'Giá khởi điểm'},
+    { id: 'final_price', name: 'Giá trúng thầu' },
+    { id: 'victory_time', name: 'Thời gian thắng' },
 
 ]
 
@@ -84,10 +82,10 @@ export const tabData1 = [
 
 ];
 
-export const colFailure = [
+export const colFail = [
     { id: 'product_id', name: 'Mã sản phẩm' },
-    { id: 'name', name: 'Tên sản phẩm'},
-    { id: 'reserve', name: 'Giá khởi điểm'},
+    { id: 'product_name', name: 'Tên sản phẩm'},
+    { id: 'reserve_price', name: 'Giá khởi điểm'},
     { id: 'bidding_time', name: 'Thời gian đấu giá' },
     { id: 'finish_time', name: 'Thời gian kết thúc' },
 
@@ -102,11 +100,10 @@ export const rowFailure = [
 ];
 
 
-export const colConfirm = [
+export const colConf = [
     { id: 'product_id', name: 'Mã sản phẩm' },
-    { id: 'name', name: 'Tên sản phẩm'},
-    { id: 'reserve', name: 'Giá khởi điểm'},
-    { id: 'winning_price', name: 'Giá trúng thầu' },
+    { id: 'product_name', name: 'Tên sản phẩm'},
+    { id: 'final_price', name: 'Giá trúng thầu' },
     { id: 'shipping_fee', name: 'Phí vận chuyển' },
     { id: 'total_price', name: 'Tổng tiền' },
 
@@ -120,11 +117,11 @@ export const rowConfirm = [
 
 ];
 
-export const colDeparture = [
+export const colDlv = [
     { id: 'product_id', name: 'Mã sản phẩm' },
-    { id: 'name', name: 'Tên sản phẩm'},
+    { id: 'product_name', name: 'Tên sản phẩm'},
     { id: 'total_price', name: 'Tổng tiền' },
-    { id: 'phone_number', name: 'Số điện thoại' },
+    { id: 'phone', name: 'Số điện thoại' },
     { id: 'address', name: 'Địa chỉ' },
 
 ]
@@ -154,15 +151,21 @@ export const rowCompletion = [
 ];
 
 export const colCancel = [
-    { id: 'request_time', name: 'Thời gian gửi' },
-    { id: 'request_id', name: 'Mã yêu cầu' },
-    { id: 'name', name: 'Tên sản phẩm'},
-    { id: 'reserve', name: 'Giá khởi điểm' },
-    { id: 'action_by', name: 'Tác nhân'},
-    { id: 'reason', name: 'Lí do' },
+    { id: 'product_id', name: 'Mã sản phẩm' },
+    { id: 'product_name', name: 'Tên sản phẩm'},
+    { id: 'total_price', name: 'Tổng tiền' },
+    { id: 'cancel_time', name: 'Thời gian hủy' },
 
 ]
 
+export const colReject = [
+    { id: 'request_id', name: 'Mã yêu cầu' },
+    { id: 'product_name', name: 'Tên sản phẩm'},
+    { id: 'reserve_price', name: 'Giá khởi điểm' },
+    { id: 'reject_time', name: 'Thời gian từ chối' },
+    { id: 'action_by', name: 'Tác nhân' },
+
+]
 export const colWinCancel = [
     { id: 'product_id', name: 'Mã sản phẩm' },
     { id: 'product_name', name: 'Tên sản phẩm'},
@@ -248,6 +251,34 @@ export const statusToString = (state) => {
             return 'Auction Winning';
     }
 };
+
+
+export function convertStatusToData(status) {
+    switch (status) {
+        case 1:
+            return colPending;
+        case 2:
+            return colAppr;
+        case 3:
+            return colAppr;
+        case 5:
+            return colSuccess;
+        case 6:
+            return colConf;
+        case 7:
+            return colDlv;
+        case 8:
+            return colCompletion;
+        case 10:
+            return colFail;
+        case 11:
+            return colCancel;
+        case 13:
+            return colReject;
+        default:
+            return colPending;
+    }
+}
 
 export const formatDateTime = (inputDateString) => {
     const inputDate = new Date(inputDateString);

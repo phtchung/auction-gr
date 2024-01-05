@@ -1,7 +1,7 @@
 import {
     Dialog, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Stack,  TextField,
 } from "@mui/material";
-import { columns, rows} from "../../Utils/constant.js";
+import {colPending, columns, rows} from "../../Utils/constant.js";
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import CloseIcon from '@mui/icons-material/Close';
 import {useState} from "react";
@@ -57,7 +57,7 @@ const ListPending = () => {
                                 open={open} onClose={closepopup} fullWidth maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
-                                        <span className="font-semibold text-base">Create Request</span>
+                                        <span className="font-semibold text-base">Tạo yêu cầu đấu giá</span>
                                         <div onClick={closepopup}
                                              className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
                                             <CloseIcon></CloseIcon>
@@ -69,16 +69,16 @@ const ListPending = () => {
                                 <DialogContent>
                                     <Stack spacing={2} margin={1}>
                                         <div className="text-sm font-semibold">
-                                            Product Information
+                                            Thông tin sản phẩm
                                         </div>
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField id="filled-basic" fullWidth sx={{maxWidth: 690}}
                                                        color="info"
                                                        onChange={(e) => handleRequest("product_name", e.target.value)}
-                                                       label="Product Name" size="small" variant="filled"/>
+                                                       label="Tên sản phẩm" size="small" variant="filled"/>
                                             <FormControl size="small" variant="filled" sx={{minWidth: 200}}>
                                                 <InputLabel
-                                                    id="demo-simple-select-filled-label">Rank</InputLabel>
+                                                    id="demo-simple-select-filled-label">Chất lượng</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-filled-label"
                                                     id="demo-simple-select-filled"
@@ -93,7 +93,7 @@ const ListPending = () => {
                                         </div>
                                         <FormControl size="small" variant="filled" sx={{m: 1, maxWidth: 405}}>
                                             <InputLabel
-                                                id="demo-simple-select-filled-label">Category</InputLabel>
+                                                id="demo-simple-select-filled-label">Danh mục</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-filled-label"
                                                 id="demo-simple-select-filled"
@@ -109,22 +109,22 @@ const ListPending = () => {
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField size="small" id="filled-basic" fullWidth
                                                        color="info"
-                                                       label="Sale Price" variant="filled"/>
+                                                       label="Giá bán trực tiếp" variant="filled"/>
                                             <TextField size="small" id="filled-basic" fullWidth
                                                        color="info"
-                                                       label="Reverse Price" variant="filled"/>
+                                                       label="Giá khởi điểm" variant="filled"/>
                                             <TextField size="small" id="filled-basic" fullWidth
                                                        color="info"
                                                        label="Step Price" variant="filled"/>
                                             <TextField size="small" id="filled-basic" fullWidth
                                                        color="info"
-                                                       label="Shipping Fee" variant="filled"/>
+                                                       label="Phí vận chuyển" variant="filled"/>
                                         </div>
                                         <div className="text-base font-semibold">
-                                            Product Image
+                                            Hình ảnh sản phẩm
                                         </div>
                                         <div className="text-base font-semibold">
-                                            Product Description
+                                            Mô tả sản phẩm
                                         </div>
                                         <TextField
                                             id="outlined-multiline-static"
@@ -137,12 +137,12 @@ const ListPending = () => {
                                         <div className="flex gap-4 justify-end my-2">
                                             <button onClick={closepopup}
                                                     className="bg-red-500 text-base text-white hover:bg-red-400 border-none font-medium focus:outline-0">
-                                                Cancel
+                                                Hủy
                                             </button>
                                             <button
                                                 onClick={openPopup1}
                                                 className="bg-black text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
-                                                Submit
+                                                Gửi
                                             </button>
                                         </div>
                                     </Stack>
@@ -157,7 +157,7 @@ const ListPending = () => {
                 <Dialog
                     open={open1} onClose={closePopup1} maxWidth='xs'>
                     <DialogTitle>
-                        <span className="font-semibold text-base">Request Confirm</span>
+                        <span className="font-semibold text-base">Xác nhận gửi yêu cầu</span>
                         <div className="border-b-2 mt-2  border-gray-300"></div>
                     </DialogTitle>
                     <DialogContent>
@@ -165,9 +165,9 @@ const ListPending = () => {
                             <div className="flex-col items-center text-center">
                                 <TaskAltIcon color="success" fontSize='large'></TaskAltIcon>
                                 <div className="text-xl font-semibold mt-3">
-                                    Are you sure
+                                    Bạn có chắc chắn
                                 </div>
-                                <div className='text-base'>you want to create a request to sell a product
+                                <div className='text-base'>muốn gửi yêu cầu không
                                     ?
                                 </div>
                             </div>
@@ -175,12 +175,12 @@ const ListPending = () => {
                             <div className="flex gap-4 justify-end mt-1 ">
                                 <button onClick={closePopup1}
                                         className="bg-red-600  text-base text-white hover:bg-red-400 border-none font-medium focus:outline-0">
-                                    No
+                                    Hủy
                                 </button>
                                 <button
                                     onClick={closePopup1}
                                     className="bg-green-800 text-base text-white hover:bg-green-600 border-none font-medium focus:outline-0">
-                                    Yes
+                                    Có
                                 </button>
                             </div>
                         </Stack>
@@ -188,7 +188,7 @@ const ListPending = () => {
                 </Dialog>
 
                 <div className="border-b-2 border-gray-300 "></div>
-                <TableData cols={columns} rows={rows}></TableData>
+                <TableData cols={colPending} rows={rows}></TableData>
             </div>
         </>
     )

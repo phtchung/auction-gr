@@ -25,51 +25,51 @@ const RequestInfo = ({data}) => {
           </div>
           <div className="border-b border-gray-400  mx-5"></div>
           <div className="flex justify-between m-2.5 items-center px-2">
-              <div className="text-left text-sm font-semibold ">Request Information</div>
+              <div className="text-left text-sm font-semibold ">Thông tin sản phẩm</div>
               <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
           </div>
 
           <div className="items-center font-medium text-xs gap-6 my-8 mx-8 px-1 space-y-6 ">
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Request ID :</div>
+                  <div> Mã yêu cầu :</div>
                   <div className="font-normal  col-span-2"> {data.request_id.slice(0,14)}</div>
-                  <di> Request Time :</di>
+                  <di> Thời gian yêu cầu :</di>
                   <div className="font-normal col-span-2"> {data.createdAt}</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Product Name :</div>
+                  <div> Tên sản phẩm :</div>
                   <div className="font-normal  col-span-5"> {data.product_name}</div>
               </div>
               <div className="grid grid-cols-6 text-left">
-                  <div> Category :</div>
+                  <div> Danh mục :</div>
                   <div className="font-normal col-span-2"> Đồng hồ</div>
-                  <div> Rank :</div>
+                  <div> Chất lượng :</div>
                   <div className="font-normal col-span-2"> {data.rank}</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Reverse Price :</div>
+                  <div> Giá khởi điểm :</div>
                   <div className="font-normal col-span-2"> {data.reserve_price} VND</div>
-                  <div> Sale Price :</div>
+                  <div> Giá bán trực tiếp :</div>
                   <div className="font-normal col-span-2"> {data.sale_price} VND</div>
               </div>
               <div className="grid grid-cols-6 text-left font-medium">
                   <div> Step Price :</div>
                   <div className="font-normal col-span-2"> {data.step_price} VND</div>
-                  <div> Shipping Fee :</div>
+                  <div> Phí vận chuyển :</div>
                   <div className="font-normal col-span-2"> {data.shipping_fee} VND</div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Description :</div>
+                  <div> Mô tả sản phẩm :</div>
                   <div className="font-normal col-span-5"> {data.description}
                   </div>
               </div>
 
               <div className="grid grid-cols-6 text-left">
-                  <div> Product Image :</div>
+                  <div> Hỉnh ảnh sản phẩm :</div>
                   <div className="font-normal col-span-5"></div>
               </div>
           </div>

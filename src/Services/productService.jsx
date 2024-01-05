@@ -32,9 +32,24 @@ export const getWinTrackingData = async (status ) => {
     })
 }
 
+export const getWinOrderDetail = async (Id) =>{
+    return  privateHttp({
+        method: 'GET',
+        url: `/product/win/${Id}`,
+    })
+}
+
+
 export const getWinCount = async() => {
     return privateHttp({
         method: 'GET',
         url: `/product/winCount`
+    })
+}
+
+export const getReqCount = async() => {
+    return privateHttp({
+        method: 'GET',
+        url: `/product/reqCount`
     })
 }
