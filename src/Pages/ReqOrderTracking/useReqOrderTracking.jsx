@@ -17,7 +17,6 @@ export default function useReqOrderTracking(){
 
 
     const parseData = useCallback((item) => {
-        console.log('item',item)
         const reqTrackingData = item?.reqOrderList?.map((data) => {
             return {
                 product_id: data?._id,
@@ -41,7 +40,7 @@ export default function useReqOrderTracking(){
     }, []);
 
 
-    const { data, isSuccess, isLoading } = useQuery({
+    const { data, isSuccess, isLoading,refetch } = useQuery({
         queryKey: ['getReqTracking',status],
         queryFn: () => getReqTracking(status),
         staleTime: 20 * 1000,
@@ -50,20 +49,20 @@ export default function useReqOrderTracking(){
     });
 
 
-    const { data : reqCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
+    const { data : reqCount, isSuccess : isScCount, isLoading :isLdCount,refetch:refetch1 } = useQuery({
         queryKey: ['getReqCount'],
         queryFn: () => getReqCount(),
         staleTime: 20 * 1000,
 
     });
 
-    console.log(reqCount)
     return {
         reqTrackingData: data?.reqTrackingData,
         colData : data?.colTrackingData,
         isSuccess,
         isLoading,
         reqCount : reqCount?.data,
+        refetch,refetch1,
         isScCount,
         isLdCount,
         status,
