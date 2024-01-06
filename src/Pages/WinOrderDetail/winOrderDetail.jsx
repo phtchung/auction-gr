@@ -4,11 +4,14 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import Header from "../../Components/Header/header.jsx";
 import {Button} from "@material-tailwind/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {DialogContent, DialogTitle,Dialog, Stack} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import {processStatus, statusToString} from "../../Utils/constant.js";
 import useWinOrderDetail from "./useWinOrderDetail.jsx";
+import {toast} from "react-toastify";
+import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
+import useWinOrdersTracking from "../WinOrdersTracking/useWinOrdersTracking.jsx";
 
 
 const WinOrderDetail = () => {
@@ -16,11 +19,46 @@ const WinOrderDetail = () => {
     const handleOpen = () => setOpen(!open);
 
     const {isLoading , isSuccess , winDetailData} = useWinOrderDetail()
-    console.log(winDetailData)
+    const {
+        refetch,
+        refetch1,
+    } = useWinOrdersTracking()
+
+   const [dlvInfor, setDlvInfor] =  useState( null)
     const navigate = useNavigate()
 
     const stateStr = isSuccess && statusToString(processStatus(winDetailData.status))
 
+    useEffect(() => {
+        if (isSuccess) {
+            setDlvInfor({...dlvInfor,'product_id':winDetailData?.product_id,'payment_method':'Tiền mặt'});
+        }
+    }, [isSuccess, winDetailData]);
+    const handleDlvInfor = (key,value) => {
+        setDlvInfor({...dlvInfor,[key]: value})
+    }
+
+    const handleSendDlvInfor = async () => {
+        try {
+            if (!dlvInfor) {
+                toast.error('Chưa điền thông tin');
+                return;
+            }
+            const res = await sendDeliveryInfor(
+                {...dlvInfor}
+            );
+            toast.success('Gửi yêu cầu thành công', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 500,
+            });
+            refetch()
+            refetch1()
+            setOpen(false)
+            navigate('/winOrderTracking?status=567')
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
+    }
     return (
         <>  <Header/>
             <div className="wrapper">
@@ -46,7 +84,6 @@ const WinOrderDetail = () => {
                         <div className="text-left text-sm font-semibold ">Thông tin sản phẩm</div>
                         <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4"> {stateStr}</div>
                     </div>
-
 
                     {
                         isSuccess && <>
@@ -154,8 +191,9 @@ const WinOrderDetail = () => {
                                 <div className="grid grid-cols-6 text-left items-center">
                                     <div> Tên :</div>
                                     <div className="font-normal col-span-2">
-                                        <input type="text" name="price" id="name" disabled
-                                               value="Phạm Thành Chung"
+                                        <input type="text" name="price" id="name"
+                                               defaultValue="Phạm Thành Chung"
+                                               onChange={(e) => handleDlvInfor('name',e.target.value)}
                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
                                     </div>
                                 </div>
@@ -163,6 +201,7 @@ const WinOrderDetail = () => {
                                     <div> Số điện thoại :</div>
                                     <div className="font-normal col-span-2">
                                         <input type="text" name="phone" id="phone" placeholder="Số điện thoại"
+                                               onChange={(e) => handleDlvInfor('phone',e.target.value)}
                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
                                     </div>
                                 </div>
@@ -170,6 +209,8 @@ const WinOrderDetail = () => {
                                     <div> Địa chỉ :</div>
                                     <div className="font-normal col-span-2">
                                         <input type="text" name="address" id="address" placeholder="Địa chỉ"
+                                               onChange={(e) => handleDlvInfor('address',e.target.value)}
+
                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
                                     </div>
                                 </div>
@@ -177,6 +218,7 @@ const WinOrderDetail = () => {
                                     <div> Ghi chú :</div>
                                     <div className="font-normal col-span-2">
                                         <input type="text" name="note" id="note" placeholder="Ghi chú"
+                                               onChange={(e) => handleDlvInfor('note',e.target.value)}
                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"/>
                                     </div>
                                 </div>
@@ -215,23 +257,23 @@ const WinOrderDetail = () => {
                                             className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Tên :</div>
-                                                <div className=" col-span-2"> Phạm Huy Hùng</div>
+                                                <div className=" col-span-2"> {dlvInfor?.name || null}</div>
 
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Số điện thoại :</div>
-                                                <div className=" col-span-2"> 0971751699</div>
+                                                <div className=" col-span-2"> {dlvInfor?.phone || null}</div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Địa chỉ :</div>
                                                 <div className=" col-span-5">
-                                                    67a ngõ 128c Đại La, Hai Bà Trưng, Hà Nội
+                                                    {dlvInfor?.address || null}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Ghi chú :</div>
                                                 <div className=" col-span-5">
-                                                    67a ngõ 128c E4
+                                                    {dlvInfor?.note || null}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
@@ -244,7 +286,7 @@ const WinOrderDetail = () => {
                                                     variant="filled">
                                                 Hủy
                                             </Button>
-                                            <Button onClick={handleOpen} className="bg-black py-3 border-none px-8"
+                                            <Button onClick={handleSendDlvInfor} className="bg-black py-3 border-none px-8"
                                                     variant="filled">
                                                 Gửi
                                             </Button>
