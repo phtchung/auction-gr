@@ -26,6 +26,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import {sendRequest} from "../../Services/requestService.jsx";
+import {toast} from "react-toastify";
 
 const ReqOrderTracking = () => {
 
@@ -34,6 +36,8 @@ const ReqOrderTracking = () => {
         isScCount,
         reqCount,
         isLoading,
+        refetch,
+        refetch1,
         colData,
         isSuccess,
         reqTrackingData,
@@ -43,6 +47,7 @@ const ReqOrderTracking = () => {
 
     const [open, openchange] = useState(false);
     const [open1, openchange1] = useState(false);
+    const [open2, openchange2] = useState(false);
 
     const [request, setRequest] = useState(null);
 
@@ -51,14 +56,19 @@ const ReqOrderTracking = () => {
         console.log('req', request)
     }
 
-    console.log(reqTrackingData)
-
     const openPopup = () => {
         openchange(true);
     }
     const closepopup = () => {
         openchange(false);
     }
+    const openPopup2 = () => {
+        openchange2(true);
+    }
+    const closePopup2 = () => {
+        openchange2(false);
+    }
+
     const openPopup1 = () => {
         openchange1(true);
     }
@@ -72,6 +82,42 @@ const ReqOrderTracking = () => {
         setStatus(reqConvertStatus(value))
         setSelectedTab(value);
         navigate(`/reqOrderTracking?status=${value}`)
+    }
+    const handleData = () => {
+        setRequest({...request})
+        closePopup2()
+        closepopup()
+    }
+
+    const handleDeleteData = () => {
+        setRequest(null)
+        closePopup2()
+        closepopup()
+    }
+
+    const handleSendRequest = async () => {
+        try {
+            if (!request) {
+                toast.error('Chưa điền thông tin');
+                closePopup1(true)
+                return;
+            }
+            const res = await sendRequest(
+                {...request}
+            );
+            toast.success('Gửi yêu cầu thành công', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 500,
+            });
+            refetch()
+            refetch1()
+            openchange1(false)
+            openchange(false)
+            setRequest(null);
+
+        } catch (error) {
+                toast.error(error?.response?.data?.message);
+        }
     }
 
     return (
@@ -140,6 +186,7 @@ const ReqOrderTracking = () => {
                                     <div className="flex justify-between items-center gap-6">
                                         <TextField id="filled-basic" fullWidth sx={{maxWidth: 690}}
                                                    color="info"
+                                                   defaultValue={request?.product_name ? request?.product_name : null}
                                                    onChange={(e) => handleRequest("product_name", e.target.value)}
                                                    label="Tên sản phẩm" size="small" variant="filled"/>
                                         <FormControl size="small" variant="filled" sx={{minWidth: 200}}>
@@ -174,20 +221,25 @@ const ReqOrderTracking = () => {
                                         </Select>
                                     </FormControl>
                                     <div className="text-base font-semibold">
-                                        Product Price
+                                        Giá sản phẩm
                                     </div>
                                     <div className="flex justify-between items-center gap-6">
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
+                                                   onChange={(e) => handleRequest("sale_price", e.target.value)}
                                                    label="Giá bán trực tiếp" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
+                                                   onChange={(e) => handleRequest("reserve_price", e.target.value)}
                                                    label="Giá khởi điểm" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
+                                                   onChange={(e) => handleRequest("step_price", e.target.value)}
+
                                                    label="Step Price" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
+                                                   onChange={(e) => handleRequest("shipping_fee", e.target.value)}
                                                    label="Phí vận chuyển" variant="filled"/>
                                     </div>
                                     <div className="text-base font-semibold">
@@ -201,11 +253,12 @@ const ReqOrderTracking = () => {
                                         multiline
                                         size="small"
                                         label="Description"
+                                        onChange={(e) => handleRequest("description", e.target.value)}
                                         variant="filled"
                                         maxRows={8}
                                     />
                                     <div className="flex gap-4 justify-end my-2">
-                                        <button onClick={closepopup}
+                                        <button onClick={openPopup2}
                                                 className="bg-red-500 text-base text-white hover:bg-red-400 border-none font-medium focus:outline-0">
                                             Hủy
                                         </button>
@@ -232,11 +285,7 @@ const ReqOrderTracking = () => {
                             <Stack spacing={2} margin={1}>
                                 <div className="flex-col items-center text-center">
                                     <TaskAltIcon color="success" fontSize='large'></TaskAltIcon>
-                                    <div className="text-xl font-semibold mt-3">
-                                        Bạn có chắc chắn
-                                    </div>
-                                    <div className='text-base'>muốn gửi yêu cầu không
-                                        ?
+                                    <div className='text-base'>  Bạn có chắc chắn muốn gửi yêu cầu không ?
                                     </div>
                                 </div>
 
@@ -246,7 +295,38 @@ const ReqOrderTracking = () => {
                                         Hủy
                                     </button>
                                     <button
-                                        onClick={closePopup1}
+                                        onClick={handleSendRequest}
+                                        className="bg-green-800 text-base text-white hover:bg-green-600 border-none font-medium focus:outline-0">
+                                        Có
+                                    </button>
+                                </div>
+                            </Stack>
+                        </DialogContent>
+                    </Dialog>
+
+
+                    {/*dialog hủy confirm*/}
+                    <Dialog
+                        open={open2} onClose={() => closePopup2} maxWidth='xs'>
+                        <DialogTitle>
+                            <span className="font-semibold text-base">Xác nhận gửi yêu cầu</span>
+                            <div className="border-b-2 mt-2  border-gray-300"></div>
+                        </DialogTitle>
+                        <DialogContent>
+                            <Stack spacing={2} margin={1}>
+                                <div className="flex-col items-center text-center">
+                                    <TaskAltIcon color="success" fontSize='large'></TaskAltIcon>
+                                    <div className='text-base'>  Giữ thông tin hiện tại ?
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-4 justify-end mt-1 ">
+                                    <button onClick={handleDeleteData}
+                                            className="bg-red-600  text-base text-white hover:bg-red-400 border-none font-medium focus:outline-0">
+                                        Không
+                                    </button>
+                                    <button
+                                        onClick={handleData}
                                         className="bg-green-800 text-base text-white hover:bg-green-600 border-none font-medium focus:outline-0">
                                         Có
                                     </button>
