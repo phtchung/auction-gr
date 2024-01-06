@@ -188,10 +188,10 @@ const ReqOrderTracking = () => {
                                                    color="info"
                                                    defaultValue={request?.product_name ? request?.product_name : null}
                                                    onChange={(e) => handleRequest("product_name", e.target.value)}
-                                                   label="Tên sản phẩm" size="small" variant="filled"/>
+                                                   label="Tên sản phẩm *" size="small" variant="filled"/>
                                         <FormControl size="small" variant="filled" sx={{minWidth: 200}}>
                                             <InputLabel
-                                                id="demo-simple-select-filled-label">Chất lượng</InputLabel>
+                                                id="demo-simple-select-filled-label">Chất lượng *</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-filled-label"
                                                 id="demo-simple-select-filled"
@@ -207,7 +207,7 @@ const ReqOrderTracking = () => {
                                     </div>
                                     <FormControl size="small" variant="filled" sx={{m: 1, maxWidth: 405}}>
                                         <InputLabel
-                                            id="demo-simple-select-filled-label">Danh mục</InputLabel>
+                                            id="demo-simple-select-filled-label">Danh mục *</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-filled-label"
                                             id="demo-simple-select-filled"
@@ -221,26 +221,27 @@ const ReqOrderTracking = () => {
                                         </Select>
                                     </FormControl>
                                     <div className="text-base font-semibold">
-                                        Giá sản phẩm
+                                        Giá sản phẩm (VND)
                                     </div>
                                     <div className="flex justify-between items-center gap-6">
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
+                                                   required
+                                                   error={request?.sale_price ? false : true}
                                                    onChange={(e) => handleRequest("sale_price", e.target.value)}
                                                    label="Giá bán trực tiếp" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
                                                    onChange={(e) => handleRequest("reserve_price", e.target.value)}
-                                                   label="Giá khởi điểm" variant="filled"/>
+                                                   label="Giá khởi điểm *" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
                                                    onChange={(e) => handleRequest("step_price", e.target.value)}
-
-                                                   label="Step Price" variant="filled"/>
+                                                   label="Step Price *" variant="filled"/>
                                         <TextField size="small" id="filled-basic" fullWidth
                                                    color="info"
                                                    onChange={(e) => handleRequest("shipping_fee", e.target.value)}
-                                                   label="Phí vận chuyển" variant="filled"/>
+                                                   label="Phí vận chuyển *" variant="filled"/>
                                     </div>
                                     <div className="text-base font-semibold">
                                         Hình ảnh sản phẩm

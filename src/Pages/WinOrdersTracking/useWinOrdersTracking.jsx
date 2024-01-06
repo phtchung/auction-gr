@@ -42,7 +42,7 @@ export default function useWinOrdersTracking(){
     }, []);
 
 
-    const { data, isSuccess, isLoading } = useQuery({
+    const { data, isSuccess, isLoading,refetch:refetch1 } = useQuery({
         queryKey: ['getWinTracking',status],
         queryFn: () => getWinTrackingData(status),
         staleTime: 20 * 1000,
@@ -51,7 +51,7 @@ export default function useWinOrdersTracking(){
     });
 
 
-    const { data : winCount, isSuccess : isScCount, isLoading :isLdCount } = useQuery({
+    const { data : winCount, isSuccess : isScCount, isLoading :isLdCount,refetch } = useQuery({
         queryKey: ['getWinCount'],
         queryFn: () => getWinCount(),
         staleTime: 20 * 1000,
@@ -68,6 +68,7 @@ export default function useWinOrdersTracking(){
         isScCount,
         isLdCount,
         status,
-        setStatus
+        setStatus,
+        refetch,refetch1
     };
 }
