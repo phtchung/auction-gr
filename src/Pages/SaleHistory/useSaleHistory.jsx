@@ -3,17 +3,20 @@ import { useQuery } from '@tanstack/react-query';
 
 import {formatDateTime} from "../../Utils/constant.js";
 import {getSaleHistory} from "../../Services/saleService.jsx";
+import dayjs from "dayjs";
 
 export default function useSaleHistory(){
 
     const currentDateTime = new Date();
     const [finish_time,setFinishTime ] = useState(new Date(currentDateTime.setHours(0, 0, 0, 0)).toISOString());
-    const [start_time, setStartTime] = useState(() => {
-        const sevenDaysAgo = new Date(currentDateTime);
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-        sevenDaysAgo.setHours(0, 0, 0, 0);
-        return sevenDaysAgo.toISOString();
-    });
+    const [start_time, setStartTime] = useState(dayjs().subtract(7, 'day').startOf('day'));
+
+    // const [start_time, setStartTime] = useState(() => {
+    //     const sevenDaysAgo = new Date(currentDateTime);
+    //     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    //     sevenDaysAgo.setHours(0, 0, 0, 0);
+    //     return sevenDaysAgo.toISOString();
+    // });
 
     const [queryString, setQueryString] = useState({
         start_time: start_time,

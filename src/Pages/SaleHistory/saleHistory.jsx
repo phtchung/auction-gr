@@ -44,7 +44,7 @@ const SaleHistory = () => {
                                 <LocalizationProvider dateFormats="fullDate" dateAdapter={AdapterDayjs}>
                                     <DatePicker  defaultValue={dayjs(new Date()).subtract(7, 'day')}
                                                  sx={{margin:3, '& .MuiInputBase-input':{width:150,fontSize:12}}}
-                                                 onChange={(newValue) => handleFilter('start_time',newValue.toISOString())}
+                                                 onChange={(newValue) => handleFilter('start_time',newValue.startOf('day').toISOString())}
                                     />
                                 </LocalizationProvider>
                                 <LocalizationProvider dateFormats="fullDate" dateAdapter={AdapterDayjs}>
