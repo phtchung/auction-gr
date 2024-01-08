@@ -9,8 +9,3 @@ const publicHttp = axios.create({
 });
 
 export default publicHttp;
-
-
-
-
-
