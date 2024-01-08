@@ -1,31 +1,26 @@
-import { useLocation , Navigate} from "react-router-dom";
-import {useMemo} from "react";
+import { useLocation, Navigate } from "react-router-dom";
+import { useMemo } from "react";
 
+const RequireAuth = ({ children }) => {
+  const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
 
-const RequireAuth = ({children}) => {
-    const accessToken = useMemo(() => localStorage.getItem('accessToken'), []);
+  const location = useLocation();
 
-    const location = useLocation()
+  if (!accessToken) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
+};
 
-    if(!accessToken){
-        return <Navigate to="/login" state={{from : location}} replace  />
-    }
-    return children
-}
+export default RequireAuth;
 
-export default RequireAuth
+export const CheckLogin = ({ children }) => {
+  const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
 
+  const location = useLocation();
 
-
-export const CheckLogin = ({children}) => {
-    const accessToken = useMemo(() => localStorage.getItem('accessToken'), []);
-
-    const location = useLocation()
-
-    if(accessToken){
-        return <Navigate to="/" state={{from : location}} replace  />
-    }
-    return children
-}
-
-
+  if (accessToken) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+  return children;
+};
