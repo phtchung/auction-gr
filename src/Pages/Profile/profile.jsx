@@ -9,9 +9,7 @@ import {useState} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {toast} from "react-toastify";
 import {updateUserInfo} from "../../Services/userService";
-import login from "../Login/login.jsx";
-import {Button} from "@material-tailwind/react";
-import {Fab} from "@mui/material";
+
 
 const Profile = () => {
     const {userData, isSuccess, isLoading} = useProfile();
@@ -64,6 +62,8 @@ const Profile = () => {
                                 Thông tin cá nhân
                             </div>
                             <div className="border-b border-neutral-200 "></div>
+
+                            <h5>Multiple File Upload Example</h5>
 
                             <div className="items-center pt-6 text-sm gap-6 my-8 mx-8 px-1  ">
                                 <div className="flex-1 pr-5 px-12 text-lef w-4/6">
