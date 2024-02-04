@@ -8,7 +8,7 @@ import {
     reqConvertStatus,
     tabData,
 } from "../../Utils/constant.js";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import TabItem from "../../Components/TabItem/TabItem.jsx";
 import Header from "../../Components/Header/header.jsx";
 import TableData from "../../Components/TableData/TableData.jsx";
@@ -29,7 +29,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import {sendRequest} from "../../Services/requestService.jsx";
 import {toast} from "react-toastify";
-import FileUpload from "../../Components/file/file.jsx";
+import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 
 const ReqOrderTracking = () => {
     const {
@@ -51,16 +51,20 @@ const ReqOrderTracking = () => {
     const [open2, openchange2] = useState(false);
 
     const [request, setRequest] = useState(null);
-
+    const requestCurrent = useRef(null);
     const handleRequest = (key, value) => {
         setRequest({...request, [key]: value});
         console.log("req", request);
     };
 
+
     const handleFileUpload = (formData) => {
         handleRequest("files", formData)
         console.log("Final FormData:", formData);
     };
+    const handleSingleFileUpload = (formData) => {
+        handleRequest("singlefile", formData)
+    }
     const openPopup = () => {
         openchange(true);
     };
@@ -88,6 +92,7 @@ const ReqOrderTracking = () => {
         navigate(`/reqOrderTracking?status=${value}`);
     };
     const handleData = () => {
+        requestCurrent.current = request;
         setRequest({...request});
         closePopup2();
         closepopup();
@@ -255,6 +260,9 @@ const ReqOrderTracking = () => {
                                             <Select
                                                 labelId="demo-simple-select-filled-label"
                                                 id="demo-simple-select-filled"
+                                                defaultValue={
+                                                    requestCurrent?.current?.rank ? requestCurrent?.current?.rank : null
+                                                }
                                             >
                                                 {rankItems.map((item) => (
                                                     <MenuItem
@@ -291,7 +299,7 @@ const ReqOrderTracking = () => {
                                             ))}
                                         </Select>
                                     </FormControl>
-                                    <div className="text-base font-semibold">
+                                    <div className="text-sm font-semibold">
                                         Giá sản phẩm (VND)
                                     </div>
                                     <div className="flex justify-between items-center gap-6">
@@ -301,7 +309,6 @@ const ReqOrderTracking = () => {
                                             fullWidth
                                             color="info"
                                             required
-                                            error={request?.sale_price ? false : true}
                                             onChange={(e) =>
                                                 handleRequest("sale_price", e.target.value)
                                             }
@@ -342,14 +349,25 @@ const ReqOrderTracking = () => {
                                             variant="filled"
                                         />
                                     </div>
-                                    <div className="text-base font-semibold">
+                                    <div className="text-sm font-semibold">
                                         Hình ảnh sản phẩm <small className="font-thin text-xs">[Định dạng* png/jpg, kích
+                                        thước nhỏ hơn 2MB, 01 ảnh]</small>
+                                    </div>
+                                    <div>
+                                        <FileUpload length={1} onGetFormData={handleSingleFileUpload}/>
+                                    </div>
+                                    <div className="text-sm font-semibold">
+                                        Các hình ảnh liên quan khác <small className="font-thin text-xs">[Định dạng* png/jpg, kích
                                         thước nhỏ hơn 2MB, tối đa 16 ảnh]</small>
                                     </div>
                                     <div>
-                                        <FileUpload onGetFormData={handleFileUpload}/>
+                                        <FileUpload length={16} onGetFormData={handleFileUpload}/>
                                     </div>
-                                    <div className="text-base font-semibold">Mô tả sản phẩm</div>
+                                    <div className="text-sm font-semibold">Mô tả sản phẩm
+                                        <small
+                                            className="font-thin text-xs"> [Nêu rõ đặc điểm của sản phẩm]
+                                        </small>
+                                    </div>
                                     <TextField
                                         id="outlined-multiline-static"
                                         multiline
@@ -359,7 +377,7 @@ const ReqOrderTracking = () => {
                                             handleRequest("description", e.target.value)
                                         }
                                         variant="filled"
-                                        maxRows={8}
+                                        maxRows={16}
                                     />
                                     <div className="flex gap-4 justify-end my-2">
                                         <button

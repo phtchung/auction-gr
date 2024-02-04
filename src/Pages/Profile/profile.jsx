@@ -63,8 +63,6 @@ const Profile = () => {
                             </div>
                             <div className="border-b border-neutral-200 "></div>
 
-                            <h5>Multiple File Upload Example</h5>
-
                             <div className="items-center pt-6 text-sm gap-6 my-8 mx-8 px-1  ">
                                 <div className="flex-1 pr-5 px-12 text-lef w-4/6">
                                     <div className="flex pt-3 pb-5 gap-6 text-right">

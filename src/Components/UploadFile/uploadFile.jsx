@@ -9,7 +9,8 @@ const getBase64 = (file) =>
         reader.onload = () => resolve(reader.result);
         reader.onerror = (error) => reject(error);
     });
-const FileUpload = ({ onGetFormData }) => {
+const FileUpload = ({ onGetFormData ,length }) => {
+    console.log(length)
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -27,7 +28,7 @@ const FileUpload = ({ onGetFormData }) => {
     const beforeUpload = (file) => {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
         if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
+            message.error('You can only upload JPG/PNG UploadFile!');
         }
         const isLt2M = file.size / 1024 / 1024 < 2;
         if (!isLt2M) {
@@ -75,7 +76,7 @@ const FileUpload = ({ onGetFormData }) => {
                 beforeUpload={beforeUpload}
 
             >
-                {fileList.length >= 16 ? null : uploadButton}
+                {fileList.length >= length ? null : uploadButton}
             </Upload>
             <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
                 <img
