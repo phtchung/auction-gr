@@ -28,6 +28,7 @@ export default function useReqOrderDetail() {
       finish_time: formatDateTime(new Date(data?.finish_time)),
       request_time: formatDateTime(new Date(data?.request_id?.createdAt)),
       image_list:data?.image_list,
+      main_image:data?.main_image,
       rank: data?.rank,
       status: data?.status,
       type_of_auction: data?.type_of_auction,

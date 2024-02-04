@@ -8,8 +8,7 @@ import {convertWinStatus} from "../../Utils/constant.js";
 
 const ReqOrderDetail = () => {
     const {reqData, isLoading, isSuccess} = useReqOrderDetail();
-    console.log(reqData, isLoading, isSuccess);
-    console.log(reqData)
+
     return (
         <>
             <Header/>

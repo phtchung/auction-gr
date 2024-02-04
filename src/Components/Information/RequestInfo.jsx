@@ -92,24 +92,42 @@ const RequestInfo = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Hỉnh ảnh sản phẩm :</div>
                     <div className="font-normal col-span-5">
-
                     </div>
                 </div>
-                <div className="grid grid-cols-6 text-left mb-4">
-                    <Image.PreviewGroup
-                        preview={{
-                            onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
-                        }}
-                    >
+                {data.main_image &&
+                    <>
+                        <div className="grid grid-cols-6 text-left mb-4">
+                            <Image.PreviewGroup
+                                preview={{
+                                    onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                                }}
+                            >
+                                <div className="font-normal col-span-1 mb-2">
+                                    <Image height={150} width={150}
+                                           src={data.main_image}/>
+                                </div>
 
-                      {data?.image_list.map((imageUrl, index) => (
-                          <>
-                            <div className="font-normal col-span-1 mb-2">
-                              <Image key={index} height={150} width={150}
-                                     src={imageUrl}/>
-                            </div>
-                          </>
-                      ))}
+                            </Image.PreviewGroup>
+                        </div>
+                    </>
+                }
+                    <div className="grid grid-cols-6 text-left">
+                    <div> Các hình ảnh liên quan :</div>
+                    </div>
+                    <div className="grid grid-cols-6 text-left mb-4">
+                    <Image.PreviewGroup
+                    preview={{
+                    onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                }}
+            >
+                {data?.image_list.map((imageUrl, index) => (
+                    <>
+                    <div className="font-normal col-span-1 mb-2">
+                                    <Image key={index} height={150} width={150}
+                                           src={imageUrl}/>
+                                </div>
+                            </>
+                        ))}
                     </Image.PreviewGroup>
                 </div>
             </div>
