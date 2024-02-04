@@ -1,4 +1,5 @@
 import privateHttp from "./http/privateHttp.config";
+import privateHttp1 from "./Http/privateHttp1.config.js";
 
 export const getRequestHistory = async (params) => {
   return privateHttp({
@@ -16,7 +17,7 @@ export const getReqHistoryDetail = async (reqId) => {
 };
 
 export const sendRequest = async (request) => {
-  return privateHttp({
+  return privateHttp1({
     method: "POST",
     url: "/requests",
     data: request,
