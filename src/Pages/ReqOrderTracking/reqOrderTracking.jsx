@@ -57,7 +57,6 @@ const ReqOrderTracking = () => {
         console.log("req", request);
     };
 
-
     const handleFileUpload = (formData) => {
         handleRequest("files", formData)
         console.log("Final FormData:", formData);
@@ -222,7 +221,7 @@ const ReqOrderTracking = () => {
                                         onClick={closepopup}
                                         className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
                                     >
-                                        <CloseIcon></CloseIcon>
+
                                     </div>
                                 </div>
 
@@ -287,6 +286,9 @@ const ReqOrderTracking = () => {
                                         <Select
                                             labelId="demo-simple-select-filled-label"
                                             id="demo-simple-select-filled"
+                                            defaultValue={
+                                                request?.category ? request?.category : null
+                                            }
                                         >
                                             {categories.map((item) => (
                                                 <MenuItem
@@ -300,7 +302,8 @@ const ReqOrderTracking = () => {
                                         </Select>
                                     </FormControl>
                                     <div className="text-sm font-semibold">
-                                        Giá sản phẩm (VND)
+                                        Giá sản phẩm
+                                        <small className="font-thin text-xs"> [Đơn vị : VND]</small>
                                     </div>
                                     <div className="flex justify-between items-center gap-6">
                                         <TextField
@@ -309,6 +312,9 @@ const ReqOrderTracking = () => {
                                             fullWidth
                                             color="info"
                                             required
+                                            defaultValue={
+                                                request?.sale_price ? request?.sale_price : null
+                                            }
                                             onChange={(e) =>
                                                 handleRequest("sale_price", e.target.value)
                                             }
@@ -320,6 +326,9 @@ const ReqOrderTracking = () => {
                                             id="filled-basic"
                                             fullWidth
                                             color="info"
+                                            defaultValue={
+                                                request?.reserve_price ? request?.reserve_price : null
+                                            }
                                             onChange={(e) =>
                                                 handleRequest("reserve_price", e.target.value)
                                             }
@@ -331,6 +340,9 @@ const ReqOrderTracking = () => {
                                             id="filled-basic"
                                             fullWidth
                                             color="info"
+                                            defaultValue={
+                                                request?.step_price ? request?.step_price : null
+                                            }
                                             onChange={(e) =>
                                                 handleRequest("step_price", e.target.value)
                                             }
@@ -342,6 +354,9 @@ const ReqOrderTracking = () => {
                                             id="filled-basic"
                                             fullWidth
                                             color="info"
+                                            defaultValue={
+                                                request?.shipping_fee ? request?.shipping_fee : null
+                                            }
                                             onChange={(e) =>
                                                 handleRequest("shipping_fee", e.target.value)
                                             }
@@ -361,7 +376,7 @@ const ReqOrderTracking = () => {
                                         thước nhỏ hơn 2MB, tối đa 16 ảnh]</small>
                                     </div>
                                     <div>
-                                        <FileUpload length={16} onGetFormData={handleFileUpload}/>
+                                        <FileUpload  length={16} onGetFormData={handleFileUpload}/>
                                     </div>
                                     <div className="text-sm font-semibold">Mô tả sản phẩm
                                         <small
@@ -373,6 +388,9 @@ const ReqOrderTracking = () => {
                                         multiline
                                         size="small"
                                         label="Description"
+                                        defaultValue={
+                                            request?.description ? request?.description : null
+                                        }
                                         onChange={(e) =>
                                             handleRequest("description", e.target.value)
                                         }

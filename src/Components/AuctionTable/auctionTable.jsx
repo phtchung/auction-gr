@@ -3,25 +3,25 @@ import {
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
+    TableHead, TablePagination,
     TableRow,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {convertWinStatus} from "../../Utils/constant.js";
+import {useState} from "react";
 
 const AuctionTable = ({cols, rows}) => {
-    console.log(rows);
-    const navigate = useNavigate();
-    // const [rowperpage, rowperpagechange] = useState(10);
-    // const handlechangepage = (event, newpage) => {
-    //     pagechange(newpage)
-    // }
-    // const handleRowsPerPage = (event) => {
-    //     rowperpagechange(+event.target.value)
-    //     pagechange(0);
-    // }
-    // const [page, pagechange] = useState(0);
 
+    const navigate = useNavigate();
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
     return (
         <>
             <TableContainer sx={{maxHeight: 800, backgroundColor: "#fff"}}>
@@ -47,7 +47,9 @@ const AuctionTable = ({cols, rows}) => {
                     </TableHead>
                     <TableBody>
                         {rows &&
-                            rows.map((row) => {
+                            rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
                                 return (
                                     <TableRow
                                         hover
@@ -80,7 +82,6 @@ const AuctionTable = ({cols, rows}) => {
                                                         }}
                                                         size="small"
                                                         align={"center"}
-                                                        key={value}
                                                     >
                                                         {value}
                                                     </TableCell>
@@ -109,17 +110,16 @@ const AuctionTable = ({cols, rows}) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/*<TablePagination*/}
-            {/*    rowsPerPageOptions={[5, 10, 15]}*/}
-            {/*    rowsPerPage={rowperpage}*/}
-            {/*    page={page}*/}
-            {/*    count={rowsSuccess.length}*/}
-            {/*    component="div"*/}
-            {/*    sx={{fontSize:'12px'}}*/}
-            {/*    onPageChange={handlechangepage}*/}
-            {/*    onRowsPerPageChange={handleRowsPerPage}*/}
-            {/*>*/}
-            {/*</TablePagination>*/}
+            <TablePagination
+                rowsPerPageOptions={[10, 20, 50]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                sx={{fontSize:'12px'}}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
         </>
     );
 };

@@ -9,7 +9,7 @@ const getBase64 = (file) =>
         reader.onload = () => resolve(reader.result);
         reader.onerror = (error) => reject(error);
     });
-const FileUpload = ({ onGetFormData ,length }) => {
+const FileUpload = ({ onGetFormData ,length ,def}) => {
     console.log(length)
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -37,7 +37,7 @@ const FileUpload = ({ onGetFormData ,length }) => {
         return isJpgOrPng && isLt2M;
     };
     const handleChange = ({ fileList: newFileList }) =>{
-        console.log(newFileList)
+
         setFileList(newFileList);
 
         let formData = new FormData();
@@ -74,6 +74,7 @@ const FileUpload = ({ onGetFormData ,length }) => {
                 onPreview={handlePreview}
                 onChange={handleChange}
                 beforeUpload={beforeUpload}
+                defaultFileList={onGetFormData}
 
             >
                 {fileList.length >= length ? null : uploadButton}
