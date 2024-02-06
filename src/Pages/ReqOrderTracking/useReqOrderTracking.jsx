@@ -26,11 +26,17 @@ export default function useReqOrderTracking() {
         reserve_price: data?.reserve_price + " VND",
         sale_price: data?.sale_price + " VND",
         final_price: data?.final_price + "VND",
+        start_time:formatDateTime(new Date(data?.start_time)),
+        finish_time:formatDateTime(new Date(data?.finish_time)),
+        cancel_time:formatDateTime(new Date(data?.updatedAt)),
         victory_time: formatDateTime(new Date(data?.victory_time)),
         total_price: data?.final_price + data?.shipping_fee + " VND",
         completed_at: formatDateTime(
           new Date(data?.product_delivery?.completed_at),
         ),
+        shipping_fee:data?.shipping_fee,
+        phone:data?.product_delivery?.phone,
+        address:data?.product_delivery?.address,
         request_id: data?._id,
       };
     });

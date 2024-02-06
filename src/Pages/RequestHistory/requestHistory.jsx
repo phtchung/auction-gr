@@ -45,7 +45,7 @@ const RequestHistory = () => {
                         Lịch sử yêu cầu
                     </div>
                     <div className="border-b border-neutral-300 "></div>
-                    <div className="bg-white p-3 m-7 h-28 text-sm gap-7 justify-around flex">
+                    <div className="bg-white p-3 m-7 border-gray-300 border h-28 text-sm gap-7 justify-around flex">
                         <div className="font-medium text-xs p-3 ">Tìm kiếm ngày :</div>
                         <div className="flex-col ">
                             <LocalizationProvider
@@ -89,7 +89,7 @@ const RequestHistory = () => {
                     </div>
                     {isSuccess && (
                         <>
-                            <div className="bg-white p-2 m-7 text-sm h-24">
+                            <div className="bg-white border-gray-300 border p-2 m-7 text-sm h-24">
                                 <table style={{width: "100%"}}>
                                     <thead>
                                     <tr

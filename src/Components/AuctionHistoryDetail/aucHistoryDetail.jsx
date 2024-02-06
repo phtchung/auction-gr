@@ -55,7 +55,7 @@ const AucHistoryDetail = () => {
                     <StepLabel>
                       {steps[0]} <br />{" "}
                       <span className="text-xs text-stone-400">
-                        {formatDateTime(data.victory_time)}
+                        {formatDateTime(data?.victory_time)}
                       </span>
                     </StepLabel>
                   </Step>
@@ -63,7 +63,7 @@ const AucHistoryDetail = () => {
                     <StepLabel>
                       {steps[1]} <br />{" "}
                       <span className="text-xs text-stone-400">
-                        {formatDateTime(data.product_delivery.created_at)}
+                        {formatDateTime(data.product_delivery?.created_at)}
                       </span>
                     </StepLabel>
                   </Step>
@@ -72,7 +72,7 @@ const AucHistoryDetail = () => {
                       {steps[2]} <br />{" "}
                       <span className="text-xs text-stone-400">
                         {formatDateTime(
-                          data.product_delivery.delivery_start_at,
+                          data.product_delivery?.delivery_start_at,
                         )}
                       </span>
                     </StepLabel>
@@ -81,7 +81,7 @@ const AucHistoryDetail = () => {
                     <StepLabel>
                       {steps[3]} <br />{" "}
                       <span className="text-xs text-stone-400">
-                        {formatDateTime(data.product_delivery.completed_at)}
+                        {formatDateTime(data.product_delivery?.completed_at)}
                       </span>
                     </StepLabel>
                   </Step>
@@ -96,12 +96,12 @@ const AucHistoryDetail = () => {
                   </div>
 
                   <div className="flex-col mt-4 mx-6  ">
-                    <div className="mb-3">{data.product_delivery.name}</div>
+                    <div className="mb-3">{data.product_delivery?.name}</div>
                     <div className="text-xs text-neutral-500 mb-2">
-                      {data.product_delivery.phone}
+                      {data.product_delivery?.phone}
                     </div>
                     <div className="text-xs text-neutral-500">
-                      {data.product_delivery.address}
+                      {data.product_delivery?.address}
                     </div>
                   </div>
                 </div>
@@ -119,13 +119,13 @@ const AucHistoryDetail = () => {
                       </div>
                       <div className="flex flex-col text-sm">
                         <div className="px-4 max-w-3xl  text-left">
-                          {data.product_name}
+                          {data?.product_name}
                         </div>
                         <div
                           style={{ color: "rgba(0,0,0,.54)" }}
                           className="px-4 mt-2 max-w-3xl text-left"
                         >
-                          Rank : {data.rank}
+                          Rank : {data?.rank}
                         </div>
                       </div>
                     </div>
@@ -149,16 +149,16 @@ const AucHistoryDetail = () => {
                     <div className="col-1 text-right mr-6">
                       <div className="border-b border-gray-200 "></div>
                       <div className="border-b border-gray-200  p-3">
-                        {data.reserve_price}đ
+                        {data?.reserve_price}đ
                       </div>
                       <div className="border-b border-gray-200 p-3">
-                        {data.final_price}đ
+                        {data?.final_price}đ
                       </div>
                       <div className="border-b border-gray-200 p-3">
-                        {data.shipping_fee}đ
+                        {data?.shipping_fee}đ
                       </div>
                       <div className="border-b border-gray-200 font-semibold text-base text-gray-600 p-4">
-                        {data.final_price + data.shipping_fee}đ
+                        {data?.final_price + data?.shipping_fee}đ
                       </div>
                     </div>
                   </div>
