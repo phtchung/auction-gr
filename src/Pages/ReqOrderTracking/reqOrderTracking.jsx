@@ -46,6 +46,7 @@ const ReqOrderTracking = () => {
         setStatus,
     } = useReqOrderTracking();
 
+    console.log(reqTrackingData)
     const [open, openchange] = useState(false);
     const [open1, openchange1] = useState(false);
     const [open2, openchange2] = useState(false);
@@ -214,7 +215,7 @@ const ReqOrderTracking = () => {
                             onClick={openPopup}
                             className="p-2 rounded bg-neutral-900  text-white border-gray-400 hover:bg-neutral-600 text-sm  font-medium focus:outline-0"
                         >
-                            Tạo yêu cầu
+                            Tạo yêu cầu đấu giá
                         </button>
 
                         <Dialog open={open} onClose={closepopup} fullWidth maxWidth="md">
@@ -225,9 +226,7 @@ const ReqOrderTracking = () => {
                   </span>
                                     <div
                                         onClick={closepopup}
-                                        className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
-                                    >
-
+                                        className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
                                     </div>
                                 </div>
 

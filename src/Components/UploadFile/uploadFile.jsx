@@ -74,8 +74,8 @@ const FileUpload = ({ onGetFormData ,length ,def}) => {
                 onPreview={handlePreview}
                 onChange={handleChange}
                 beforeUpload={beforeUpload}
-                defaultFileList={onGetFormData}
-
+                multiple={length !== 1}
+                maxCount={length}
             >
                 {fileList.length >= length ? null : uploadButton}
             </Upload>

@@ -53,7 +53,7 @@ const SaleHistory = () => {
                         Lịch Sử Bán
                     </div>
                     <div className="border-b border-neutral-300 "></div>
-                    <div className="bg-white p-3 m-7 h-28 text-sm gap-7 justify-around flex">
+                    <div className="bg-white p-3 m-7 border-gray-300 border h-28 text-sm gap-7 justify-around flex">
                         <div className="font-medium text-xs p-3 ">Tìm kiếm ngày :</div>
                         <div className="flex-col ">
                             <LocalizationProvider
@@ -100,7 +100,7 @@ const SaleHistory = () => {
                     </div>
                     {isSuccess && (
                         <>
-                            <div className="bg-white p-2 m-7 text-xs h-32">
+                            <div className="bg-white p-2 m-7 border-gray-300 border text-xs h-32">
                                 <table style={{width: "100%"}}>
                                     <thead>
                                     <tr
