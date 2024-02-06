@@ -30,7 +30,7 @@ export default function useSaleHistory() {
     console.log("item", item);
     const saleHis = item?.products.map((data) => {
       return {
-        productId: data?._id,
+        id: data?._id,
         product_name: data?.product_name,
         final_price: data?.final_price,
         request_id: data?.request_id,
@@ -39,6 +39,7 @@ export default function useSaleHistory() {
         completed_at: formatDateTime(
           new Date(data?.product_delivery?.completed_at),
         ),
+
       };
     });
 

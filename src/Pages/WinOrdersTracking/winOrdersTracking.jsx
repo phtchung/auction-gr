@@ -11,6 +11,7 @@ import AuctionTable from "../../Components/AuctionTable/auctionTable.jsx";
 import useWinOrdersTracking from "./useWinOrdersTracking.jsx";
 import {useState} from "react";
 import {CircularProgress} from "@mui/material";
+import CountdownTimer from "../../Components/Clock/countDownTime.jsx";
 
 const WinOrdersTracking = () => {
     const navigate = useNavigate();
@@ -39,10 +40,15 @@ const WinOrdersTracking = () => {
             <div className="wrapper">
                 <SideBar></SideBar>
                 <div className="home-right ">
-                    <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                        Quản Lý Đơn Thắng Đấu giá
+                    <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
+                        <div className="text-left text-xl font-bold ">
+                            Quản Lý Đơn Thắng Đấu Giá
+                        </div>
+                        <div className="  ">
+                            <CountdownTimer initialTimeInSeconds={20}/>
+                        </div>
                     </div>
-                    <div className="border-b border-neutral-700 "></div>
+                    <div className="border-b border-neutral-300 "></div>
                     <div className="flex items-center font-normal justify-center pt-10 flex-wrap  ">
                         {isSuccess && isScCount && (
                             <div className="flex justify-end">

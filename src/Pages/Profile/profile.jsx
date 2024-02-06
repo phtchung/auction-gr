@@ -43,7 +43,7 @@ const Profile = () => {
                     });
 
                     toast.success("Cập nhập thành công", {
-                        autoClose: 2000,
+                        autoClose: 1000,
                     });
                 },
             },
