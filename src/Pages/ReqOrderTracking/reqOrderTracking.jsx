@@ -25,11 +25,11 @@ import {
     Stack,
     TextField,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import {sendRequest} from "../../Services/requestService.jsx";
 import {toast} from "react-toastify";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
+import CountdownTimer from "../../Components/Clock/countDownTime.jsx";
 
 const ReqOrderTracking = () => {
     const {
@@ -131,10 +131,16 @@ const ReqOrderTracking = () => {
             <div className="wrapper">
                 <SideBar></SideBar>
                 <div className="home-right ">
-                    <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                        Quản Lý Đơn Bán
+                    <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
+                        <div className="text-left text-xl font-bold ">
+                            Quản Lý Đơn Bán
+                        </div>
+                        <div className="  ">
+                            <CountdownTimer initialTimeInSeconds={20}/>
+                        </div>
                     </div>
-                    <div className="border-b border-neutral-700 "></div>
+                    <div className="border-b border-neutral-300 "></div>
+
                     <div className="flex items-center font-normal justify-center pt-10 flex-wrap  "></div>
                     {isScCount && (
                         <div className="flex justify-around flex-wrap">
@@ -372,11 +378,12 @@ const ReqOrderTracking = () => {
                                         <FileUpload length={1} onGetFormData={handleSingleFileUpload}/>
                                     </div>
                                     <div className="text-sm font-semibold">
-                                        Các hình ảnh liên quan khác <small className="font-thin text-xs">[Định dạng* png/jpg, kích
+                                        Các hình ảnh liên quan khác <small className="font-thin text-xs">[Định dạng*
+                                        png/jpg, kích
                                         thước nhỏ hơn 2MB, tối đa 16 ảnh]</small>
                                     </div>
                                     <div>
-                                        <FileUpload  length={16} onGetFormData={handleFileUpload}/>
+                                        <FileUpload length={16} onGetFormData={handleFileUpload}/>
                                     </div>
                                     <div className="text-sm font-semibold">Mô tả sản phẩm
                                         <small

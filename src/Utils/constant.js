@@ -156,6 +156,27 @@ export const colDlvWait = [
   { id: "status", name: "Trạng thái đơn" },
 ];
 
+export const colReqHistory = [
+  { id: "id", name: "Mã yêu cầu" },
+  { id: "createdAt", name: "Ngày yêu cầu" },
+  { id: "product_name", name: "Tên sản phẩm" },
+  { id: "rank", name: "Chất lượng" },
+  { id: "status", name: "Trạng thái" },
+];
+
+export const colSaleHistory = [
+  { id: "request_id", name: "Mã yêu cầu" },
+  { id: "id", name: "Mã sản phẩm" },
+  { id: "product_name", name: "Tên sản phẩm" },
+  { id: "final_price", name: "Thành tiền" },
+  { id: "completed_at", name: "Ngày hoàn thành" },
+];
+
+export const pathReqHistory = "/reqHistory/reqHistoryDetail"
+
+export const pathSaleHistory = "/saleHistory/reqOrderDetail"
+
+
 export const pending = {
   value: "1",
   name: "Pending",
