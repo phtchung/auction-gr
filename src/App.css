@@ -40,3 +40,6 @@
 .read-the-docs {
   color: #888;
 }
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+  max-height: 300px!important;
+}
