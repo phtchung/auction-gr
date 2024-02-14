@@ -11,6 +11,7 @@ import AucHistoryDetail from "../Components/AuctionHistoryDetail/aucHistoryDetai
 import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
 import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
+import RequestTracking from "../Pages/Admin/RequestTracking/reqTracking.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
@@ -27,6 +28,8 @@ export const UserRoutes = [
   { path: "/auctionHistory/auction/:id", element: <AucHistoryDetail /> },
   { path: "/reqOrderTracking", element: <ReqOrderTracking /> },
   { path: "/reqOrderTracking/reqOrderDetail/:id", element: <ReqOrderDetail /> },
-
   { path: "/productBid", element: <ProductBidding /> },
+  { path: "/admin/reqTracking", element: <RequestTracking /> },
+
 ];
+
