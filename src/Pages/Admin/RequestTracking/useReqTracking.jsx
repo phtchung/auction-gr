@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
     adminProcessStatus, approvedColumns, biddingColumns,
-    colWinCancel,
     formatDateTime, newReqColumns, rejectColumns,
 } from "../../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
@@ -27,6 +26,8 @@ export default function useAdminRequestTracking() {
                 final_price: data?.final_price,
                 seller_name:data?.seller_id?.username,
                 phone: data?.seller_id?.phone,
+                start_time:formatDateTime(new Date(data?.start_time)),
+                finish_time:formatDateTime(new Date(data?.finish_time)),
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: data?.final_price + data?.shipping_fee,
                 completed_at: formatDateTime(
