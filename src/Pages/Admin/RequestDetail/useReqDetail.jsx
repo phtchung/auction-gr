@@ -24,6 +24,7 @@ export default function useAdminReqDetail() {
             category_name: data?.category_id?.name,
             victory_time: formatDateTime(new Date(data?.victory_time)),
             createdAt: formatDateTime(new Date(data?.createdAt)),
+            approved_at:formatDateTime(new Date(data?.updatedAt)),
             start_time: formatDateTime(new Date(data?.start_time)),
             finish_time: formatDateTime(new Date(data?.finish_time)),
             request_time: formatDateTime(new Date(data?.request_id?.createdAt)),

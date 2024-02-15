@@ -21,8 +21,6 @@ const ConfirmApproved = () => {
         setApproveData({...approveData, [key]: value});
     };
     const handleTreeSelect = (value, label) => {
-        // 'value' contains the selected value
-        // 'label' contains the display label of the selected node
         handleapproveData('category',value)
         handleapproveData('category_label',label)
     };
@@ -36,11 +34,8 @@ const ConfirmApproved = () => {
                 return;
             }
             const res = await sendApproveData({...approveData});
-            toast.success("Tạo phiên đấu giá thành công", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 500,
-            });
             handleOpen()
+            navigate("/admin/resultSuccess", { state: 2});
             setApproveData({rq_id:id});
         } catch (error) {
             toast.error(error?.response?.data?.message);
