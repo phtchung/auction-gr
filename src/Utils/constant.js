@@ -226,6 +226,22 @@ export const numberToString = (state) => {
     }
 };
 
+export const adminChangeStateToString = (state) => {
+    switch (state) {
+        case 1:
+            return "Mới";
+        case 2:
+            return "Đã Duyệt";
+        case 3:
+            return "Đang Đấu Giá";
+        case 11:
+            return "Hủy";
+        case 13:
+            return "Từ Chối";
+        default:
+            return "Yêu Cầu Mới";
+    }
+};
 export const statusToString = (state) => {
     switch (state) {
         case 4:
@@ -617,3 +633,11 @@ export const rejectColumns =
             },
         },
     ]
+
+export const treeSelectData = [
+    {
+        title: 'Light',
+        value: 'light',
+        children: [{title: 'Bamboo', value: 'bamboo'},{title: 'Bamboo1', value: '11'}]
+    },
+]

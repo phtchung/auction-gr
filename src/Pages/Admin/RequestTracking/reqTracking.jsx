@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {adminProcessStatus, tabDataAdmin} from "../../../Utils/constant.js";
+import {adminChangeStateToString, adminProcessStatus, tabDataAdmin} from "../../../Utils/constant.js";
 import Header from "../../../Components/Header/header.jsx";
 import SideBar from "../../../Components/SideBar/index.jsx";
 import CountdownTimer from "../../../Components/Clock/countDownTime.jsx";
@@ -97,7 +97,7 @@ const RequestTracking = () => {
                             <div className="border border-gray-300 mt-6">
                                 <div className="flex items-center justify-between  bg-white  p-2 text-base">
                                     <div className="text-left font-medium my-2 ml-3 ">
-                                        Danh sách yêu cầu đấu giá sản phẩm
+                                        Danh sách yêu cầu {adminChangeStateToString(status)}
                                     </div>
                                 </div>
 
@@ -129,8 +129,11 @@ const RequestTracking = () => {
                                         },
                                     })}
                                     muiTableBodyRowProps={({ row }) => ({
-                                        onClick: (event) => {
-                                            console.log( row.original.request_id);
+                                        onClick: () => {
+                                            console.log( row.original);
+                                            navigate(
+                                                `/admin/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
+                                            )
                                         },
                                     })}
 

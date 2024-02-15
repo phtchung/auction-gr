@@ -12,6 +12,8 @@ import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
 import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
 import RequestTracking from "../Pages/Admin/RequestTracking/reqTracking.jsx";
+import AdminRequestDetail from "../Pages/Admin/RequestDetail/requestDetail.jsx";
+import ConfirmApproved from "../Pages/Admin/ConfirmApprovedReq/confirmApproved.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
@@ -29,7 +31,10 @@ export const UserRoutes = [
   { path: "/reqOrderTracking", element: <ReqOrderTracking /> },
   { path: "/reqOrderTracking/reqOrderDetail/:id", element: <ReqOrderDetail /> },
   { path: "/productBid", element: <ProductBidding /> },
+
   { path: "/admin/reqTracking", element: <RequestTracking /> },
+  { path: "/admin/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
+  { path: "/admin/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
 
 ];
 

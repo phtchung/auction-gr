@@ -1,12 +1,12 @@
-import {numberToString} from "../../Utils/constant.js";
+import {adminChangeStateToString} from "../../../Utils/constant.js";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate} from "react-router-dom";
 import {Image} from 'antd';
 
-const RequestInfo = ({data}) => {
+const ProductInfor = ({data}) => {
     const navigate = useNavigate();
-    const stateStr = numberToString(data.status);
+    const stateStr = adminChangeStateToString(data.status);
     return (
         <>
             <div className="flex m-4 gap-2 items-center px-2 justify-between">
@@ -22,13 +22,13 @@ const RequestInfo = ({data}) => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                <div className="text-left text-base ">List - {stateStr} </div>
+                    <div className="text-left text-base ">Danh Sách {stateStr} </div>
                     <ArrowForwardIosOutlinedIcon
                         sx={{fontSize: 18}}
                         fontSize="small"
                         color="gray"
                     ></ArrowForwardIosOutlinedIcon>
-                    <div className="text-base">Request Detail</div>
+                    <div className="text-base">Chi tiết</div>
                 </div>
             </div>
             <div className="border-b border-gray-400  mx-5"></div>
@@ -108,9 +108,9 @@ const RequestInfo = ({data}) => {
                         </div>
                     </>
                 }
-                    <div className="grid grid-cols-6 text-left">
+                <div className="grid grid-cols-6 text-left">
                     <div> Các hình ảnh liên quan :</div>
-                    </div>
+                </div>
                 {
                     data.image_list &&
                     <>
@@ -131,9 +131,8 @@ const RequestInfo = ({data}) => {
                         </div>
                     </>
                 }
-
             </div>
         </>
     );
 };
-export default RequestInfo;
+export default ProductInfor;

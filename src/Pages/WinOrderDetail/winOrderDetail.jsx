@@ -7,7 +7,7 @@ import {Button} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {DialogContent, DialogTitle, Dialog, Stack} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import {convertWinStatus, processStatus, statusToString} from "../../Utils/constant.js";
+import {convertWinStatus, statusToString} from "../../Utils/constant.js";
 import useWinOrderDetail from "./useWinOrderDetail.jsx";
 import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
@@ -210,26 +210,22 @@ const WinOrderDetail = () => {
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Người nhận :</div>
                                         <div className="font-normal col-span-2">
-                                            {" "}
                                             {winDetailData.receiver}
                                         </div>
                                         <div> Phone Number :</div>
                                         <div className="font-normal col-span-2">
-                                            {" "}
                                             {winDetailData.phone_receiver}
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Địa chỉ :</div>
                                         <div className="font-normal col-span-5">
-                                            {" "}
                                             {winDetailData.address}
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Ghi chú :</div>
                                         <div className="font-normal col-span-5">
-                                            {" "}
                                             {winDetailData.note}
                                         </div>
                                     </div>
