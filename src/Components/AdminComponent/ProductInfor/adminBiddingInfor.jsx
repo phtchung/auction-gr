@@ -20,6 +20,7 @@ const AdminBiddingInfo = ({ data }) => {
                         <>
                             <div> Thời gian duyệt :</div>
                             <div className="font-normal  col-span-2">
+                                {data?.approved_at}
                             </div>
                         </>
                     }

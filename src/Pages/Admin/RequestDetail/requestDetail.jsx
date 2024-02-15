@@ -28,12 +28,8 @@ const AdminRequestDetail = () => {
     const handleReject = async () => {
         try {
             const res = await rejectRequest({...rejectData,reject_time:formatDateTime(new Date())})
-            toast.success("Từ chối yêu cầu thành công", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 500,
-            });
             handleOpen()
-            navigate('/admin/reqTracking')
+            navigate("/admin/resultSuccess", { state: 13});
 
         } catch (error) {
             toast.error(error?.response?.data?.message);
