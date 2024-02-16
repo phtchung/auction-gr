@@ -11,6 +11,7 @@ import {
     MaterialReactTable,
 } from 'material-react-table';
 import useAdminRequestTracking from "./useReqTracking.jsx";
+import {Button} from "@material-tailwind/react";
 
 const RequestTracking = () => {
     const navigate = useNavigate();
@@ -92,6 +93,15 @@ const RequestTracking = () => {
                         </>
                     )}
 
+                    <div className="flex m-6 gap-5 justify-end mr-10">
+
+                        <Button
+                            onClick={() => navigate('/admin/createRequest')}
+                            className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                            Đấu giá sản phẩm
+                        </Button>
+                    </div>
+
                     {isSuccess && (
                         <>
                             <div className="border border-gray-300 mt-6">
@@ -108,29 +118,29 @@ const RequestTracking = () => {
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
-                                    enableHiding = {false}
+                                    enableHiding={false}
                                     showColumnFilters={true}
                                     enableColumnActions={false}
 
-                                    muiTableHeadCellProps={({ column }) => ({
+                                    muiTableHeadCellProps={({column}) => ({
                                         sx: {
-                                            textAlign:'right',
+                                            textAlign: 'right',
                                             fontSize: '14px',
                                         },
                                     })}
-                                    muiTableBodyCellProps={({ row }) => ({
+                                    muiTableBodyCellProps={({row}) => ({
                                         sx: {
-                                            textAlign:'center',
-                                            textOverflow:'ellipsis',
-                                            overflow:'hidden !important',
-                                            whiteSpace:'nowrap',
+                                            textAlign: 'center',
+                                            textOverflow: 'ellipsis',
+                                            overflow: 'hidden !important',
+                                            whiteSpace: 'nowrap',
                                             fontSize: '14px',
-                                            cursor:'pointer'
+                                            cursor: 'pointer'
                                         },
                                     })}
-                                    muiTableBodyRowProps={({ row }) => ({
+                                    muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            console.log( row.original);
+                                            console.log(row.original);
                                             navigate(
                                                 `/admin/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
                                             )

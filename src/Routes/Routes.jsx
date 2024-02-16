@@ -16,6 +16,7 @@ import AdminRequestDetail from "../Pages/Admin/RequestDetail/requestDetail.jsx";
 import ConfirmApproved from "../Pages/Admin/ConfirmApprovedReq/confirmApproved.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
+import CreateProductAuction from "../Pages/Admin/CreateProductAuction/createProductAuction.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
@@ -40,6 +41,6 @@ export const UserRoutes = [
   { path: "/admin/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
   { path: "/admin/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
   { path: "/admin/resultSuccess", element: <ResultPage /> },
-
+  { path: "/admin/createRequest", element: <CreateProductAuction /> },
 ];
 

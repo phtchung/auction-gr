@@ -18,6 +18,9 @@ const ResultPage = () => {
         } else if (state === 13) {
             setTitle('Hủy bỏ yêu cầu đấu giá thành công');
             setSubTitle(`Yêu cầu  chưa đủ điều kiện tham gia đấu giá .`);
+        }else if(state === 200){
+            setTitle('Tạo phiên đấu giá cho sản phẩm thành công');
+            setSubTitle(`Sản phẩm sẽ sớm được đưa ra đấu giá .`);
         }
     }, [state]);
   return(
