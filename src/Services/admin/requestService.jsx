@@ -1,4 +1,5 @@
 import privateHttp from "../Http/privateHttp.config.js";
+import privateHttp1 from "../Http/privateHttp1.config.js";
 
 export const AdminGetReqCount = async () => {
     return privateHttp({
@@ -38,5 +39,14 @@ export const rejectRequest = async (rejectData) => {
         method: "POST",
         url: "/admin/rejectRequest",
         data: rejectData,
+    });
+};
+
+
+export const createProductAuction = async (productData) => {
+    return privateHttp1({
+        method: "POST",
+        url: "/admin/createProduct",
+        data: productData,
     });
 };
