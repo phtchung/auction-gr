@@ -10,10 +10,10 @@ import {rejectRequest} from "../../../Services/admin/requestService.jsx";
 import {toast} from "react-toastify";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {Input, Form } from 'antd';
+import {Input, Form,Spin } from 'antd';
 
 const AdminRequestDetail = () => {
-    const {reqData, isLoading, isSuccess} = useAdminReqDetail();
+    const {reqData, isLoading, isSuccess,isError} = useAdminReqDetail();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const {id} = useParams()
@@ -35,6 +35,17 @@ const AdminRequestDetail = () => {
             toast.error(error?.response?.data?.message);
         }
     };
+
+    if (isLoading) {
+        return (
+            <Spin  tip="Loading" size="large">
+
+            </Spin>
+       )
+    }
+    if(isError){
+        return navigate('/404')
+    }
     return (
         <>
             <Header/>
@@ -61,7 +72,7 @@ const AdminRequestDetail = () => {
                                         </Button>
 
                                         <Button
-                                            onClick={() => navigate(`/admin/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`)}
+                                            onClick={() => navigate(`/admin/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
                                             className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>

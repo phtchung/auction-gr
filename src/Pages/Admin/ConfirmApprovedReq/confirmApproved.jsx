@@ -2,7 +2,7 @@ import Header from "../../../Components/Header/header.jsx";
 import SideBar from "../../../Components/SideBar/index.jsx";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
-import {useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import { Select,Form,TreeSelect, DatePicker } from 'antd';
 import {Button} from "@material-tailwind/react";
 import {useState} from "react";
@@ -15,6 +15,7 @@ const { Option } = Select;
 const ConfirmApproved = () => {
     const navigate = useNavigate();
     const {id} = useParams()
+    const {state} = useLocation()
     const [approveData, setApproveData] = useState({rq_id:id});
     const [open, setOpen] = useState(false);
     const handleapproveData = (key, value) => {
@@ -24,6 +25,9 @@ const ConfirmApproved = () => {
         handleapproveData('category',value)
         handleapproveData('category_label',label)
     };
+    if(state !== 1){
+        navigate('/404')
+    }
     const handleSubmit = async () => {
         try {
             if (Object.keys(approveData).length < 5 ) {

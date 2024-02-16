@@ -14,13 +14,3 @@ const RequireAuth = ({ children }) => {
 
 export default RequireAuth;
 
-export const CheckLogin = ({ children }) => {
-  const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
-
-  const location = useLocation();
-
-  if (accessToken) {
-    return <Navigate to="/" state={{ from: location }} replace />;
-  }
-  return children;
-};
