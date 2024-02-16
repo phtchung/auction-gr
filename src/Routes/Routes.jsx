@@ -15,6 +15,7 @@ import RequestTracking from "../Pages/Admin/RequestTracking/reqTracking.jsx";
 import AdminRequestDetail from "../Pages/Admin/RequestDetail/requestDetail.jsx";
 import ConfirmApproved from "../Pages/Admin/ConfirmApprovedReq/confirmApproved.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
+import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
@@ -32,6 +33,8 @@ export const UserRoutes = [
   { path: "/reqOrderTracking", element: <ReqOrderTracking /> },
   { path: "/reqOrderTracking/reqOrderDetail/:id", element: <ReqOrderDetail /> },
   { path: "/productBid", element: <ProductBidding /> },
+  { path: "/404", element: <PageNotFound /> },
+
 
   { path: "/admin/reqTracking", element: <RequestTracking /> },
   { path: "/admin/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },

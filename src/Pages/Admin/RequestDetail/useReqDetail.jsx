@@ -39,7 +39,7 @@ export default function useAdminReqDetail() {
         return { detail };
     }, []);
 
-    const { data, isSuccess, isLoading } = useQuery({
+    const { data, isSuccess, isLoading,isError } = useQuery({
         queryKey: ["AdminGetReqDetail", id, status],
         queryFn: () => AdminGetReqDetail(id, status),
         staleTime: 20 * 1000,
@@ -51,5 +51,6 @@ export default function useAdminReqDetail() {
         reqData: data?.detail,
         isSuccess,
         isLoading,
+        isError
     };
 }
