@@ -7,7 +7,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import {AdminGetReqCount, AdminGetReqTracking} from "../../../Services/admin/requestService.jsx";
 
-export default function useAdminRequestTracking() {
+export default function useUserRequestTracking() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [status, setStatus] = useState(
@@ -56,7 +56,7 @@ export default function useAdminRequestTracking() {
         isLoading,
         refetch: refetch1,
     } = useQuery({
-        queryKey: ["adminGetRequestTracking", status],
+        queryKey: ["UserGetRequestTracking", status],
         queryFn: () => AdminGetReqTracking(status),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
@@ -70,7 +70,7 @@ export default function useAdminRequestTracking() {
         refetch,
 
     } = useQuery({
-        queryKey: ["adminGetRequestCount"],
+        queryKey: ["UserGetRequestCount"],
         queryFn: () => AdminGetReqCount(),
         staleTime: 20 * 1000,
     });

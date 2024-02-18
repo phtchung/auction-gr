@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 import FileUpload from "../../../Components/UploadFile/uploadFile.jsx";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {sendRequest} from "../../../Services/requestService.jsx";
 import {createProductAuction} from "../../../Services/admin/requestService.jsx";
 
 const {Option} = Select;

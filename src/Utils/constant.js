@@ -1,6 +1,3 @@
-import {useMemo} from "react";
-import {TableCell} from "@mui/material";
-
 export const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
@@ -100,7 +97,65 @@ export const tabDataAdmin = [
     {value: "3", name: "Bidding", top: "Bidding", color: "bg-indigo-800"},
     {value: "4", name: "Reject", top: "Reject", color: "bg-pink-900"},
     {value: "5", name: "Cancel", top: "Cancel", color: "bg-red-600"},
+];
 
+export const tabDataBiddingAdmin = [
+    {
+        value: "N",
+        name: "New Product",
+        top: "Up",
+        color: "bg-orange-400",
+    },
+    {
+        value: "B",
+        name: "Bidding",
+        top: "Bidding",
+        color: "bg-lime-500",
+    },
+    {
+        value: "S",
+        name: "Success",
+        top: "Success",
+        color: "bg-green-700",
+    },
+    {
+        value: "C",
+        name: "Confirm",
+        top: "Confirm",
+        color: "bg-fuchsia-700",
+    },
+
+    {
+        value: "D",
+        name: "Delivery start",
+        top: "Departure",
+        color: "bg-indigo-800",
+    },
+    {
+        value: "E",
+        name: "Completed",
+        top: "Completion",
+        color: "bg-emerald-800",
+    },
+    {value: "R", name: "Cancel", top: "Cancel", color: "bg-red-600"},
+    {
+        value: "G",
+        name: "Return",
+        top: "Return",
+        color: "bg-yellow-300",
+    },
+    {
+        value: "F",
+        name: "Failure ",
+        top: "Failure",
+        color: "bg-rose-900",
+    },
+    {
+        value: "N",
+        name: "New Product",
+        top: "Down",
+        color: "bg-orange-400",
+    },
 ];
 
 export const colFail = [
@@ -332,6 +387,25 @@ export function adminProcessStatus(status) {
         return 1;
     }
 }
+
+export function adminProductStatus(status) {
+    if (
+        status === 'N' ||
+        status === '-N' ||
+        status === 'B' ||
+        status === 'S' ||
+        status === 'C' ||
+        status === 'D' ||
+        status === 'E' ||
+        status === 'R' ||
+        status === 'G' ||
+        status === 'F'
+    ) {
+        return status;
+    } else {
+        return 'N';
+    }
+}
 export function reqConvertStatus(status) {
     if (
         status === 1 ||
@@ -483,7 +557,7 @@ export const approvedColumns =
         {
             accessorKey: 'request_id', //access nested data with dot notation
             header: 'Mã yêu cầu',
-            size: 170,
+            size: 160,
             muiTableHeadCellProps: {
                 align: 'center',
             },
@@ -523,7 +597,7 @@ export const approvedColumns =
         {
             accessorKey: 'start_time',
             header: 'Thời gian đấu giá',
-            size: 140,
+            size: 130,
             muiTableHeadCellProps: {
                 align: 'center',
             },

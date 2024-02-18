@@ -1,6 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {adminChangeStateToString, adminProcessStatus, tabDataAdmin} from "../../../Utils/constant.js";
+import {
+    adminChangeStateToString,
+     adminProductStatus,
+    tabDataBiddingAdmin
+} from "../../../Utils/constant.js";
 import Header from "../../../Components/Header/header.jsx";
 import SideBar from "../../../Components/SideBar/index.jsx";
 import CountdownTimer from "../../../Components/Clock/countDownTime.jsx";
@@ -10,10 +14,11 @@ import {CircularProgress} from "@mui/material";
 import {
     MaterialReactTable,
 } from 'material-react-table';
-import useAdminRequestTracking from "./useReqTracking.jsx";
 import {Button} from "@material-tailwind/react";
+import useAdminBiddingTracking from "./useAdminBiddingTracking.jsx";
 
-const RequestTracking = () => {
+
+const AdminBiddingTracking = () => {
     const navigate = useNavigate();
 
     const {
@@ -21,18 +26,18 @@ const RequestTracking = () => {
         isSuccess,
         data,
         isScCount,
-        adminReqCount,
+        adminBidCount,
         columns,
         status,
         setStatus,
-    } = useAdminRequestTracking();
+    } = useAdminBiddingTracking();
 
 
-    const [selectedTab, setSelectedTab] = useState(status);
+    const [selectedTab, setSelectedTab] = useState('N');
     const handelClick = (value) => {
-        setStatus(adminProcessStatus(value));
+        setStatus(adminProductStatus(value));
         setSelectedTab(value);
-        navigate(`/admin/reqTracking?status=${value}`);
+        navigate(`/admin/adminBidTracking?status=${value}`);
     };
     return (
         <>
@@ -42,7 +47,7 @@ const RequestTracking = () => {
                 <div className="home-right ">
                     <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
                         <div className="text-left text-xl font-bold ">
-                            Quản Lý Yêu Cầu Đấu Giá Sản Phẩm
+                            Quản lý sản phẩm đấu giá hệ thống
                         </div>
                         <div className="  ">
                             <CountdownTimer initialTimeInSeconds={20}/>
@@ -51,37 +56,68 @@ const RequestTracking = () => {
                     <div className="border-b border-neutral-300 "></div>
                     <div className="flex items-center font-normal justify-center pt-10 flex-wrap  ">
                         {isSuccess && isScCount && (
-                            <div className="flex justify-end">
+                            <div className="flex justify-center flex-wrap">
                                 <>
                                     <TabItem
-                                        data={tabDataAdmin[0]}
-                                        count={adminReqCount?.countNewReq}
-                                        onClick={() => handelClick(1)}
-                                        isSelected={selectedTab === 1}
+                                        data={tabDataBiddingAdmin[0]}
+                                        count={adminBidCount?.countNewProduct}
+                                        onClick={() => handelClick('N')}
+                                        isSelected={selectedTab === 'N'}
                                     ></TabItem>
                                     <TabItem
-                                        data={tabDataAdmin[1]}
-                                        count={adminReqCount?.countApproved}
-                                        onClick={() => handelClick(2)}
-                                        isSelected={selectedTab === 2}
+                                        data={tabDataBiddingAdmin[9]}
+                                        count={adminBidCount?.countNewProductMinus}
+                                        onClick={() => handelClick('-N')}
+                                        isSelected={selectedTab === '-N'}
                                     ></TabItem>
                                     <TabItem
-                                        data={tabDataAdmin[2]}
-                                        count={adminReqCount?.countBidding}
-                                        onClick={() => handelClick(3)}
-                                        isSelected={selectedTab === 3}
+                                        data={tabDataBiddingAdmin[1]}
+                                        count={adminBidCount?.countProductBid}
+                                        onClick={() => handelClick('B')}
+                                        isSelected={selectedTab === 'B'}
                                     ></TabItem>
                                     <TabItem
-                                        data={tabDataAdmin[3]}
-                                        count={adminReqCount?.countReject}
-                                        onClick={() => handelClick(13)}
-                                        isSelected={selectedTab === 13}
+                                        data={tabDataBiddingAdmin[2]}
+                                        count={adminBidCount?.countProductSuccess}
+                                        onClick={() => handelClick('S')}
+                                        isSelected={selectedTab === 'S'}
                                     ></TabItem>
                                     <TabItem
-                                        data={tabDataAdmin[4]}
-                                        count={adminReqCount?.countCancel}
-                                        onClick={() => handelClick(11)}
-                                        isSelected={selectedTab === 11}
+                                        data={tabDataBiddingAdmin[3]}
+                                        count={adminBidCount?.countProductConfirm}
+                                        onClick={() => handelClick('C')}
+                                        isSelected={selectedTab === 'C'}
+                                    ></TabItem>
+                                    <TabItem
+                                        data={tabDataBiddingAdmin[4]}
+                                        count={adminBidCount?.countProductDelivery}
+                                        onClick={() => handelClick('D')}
+                                        isSelected={selectedTab === 'D'}
+                                    ></TabItem>
+
+                                    <TabItem
+                                    data={tabDataBiddingAdmin[5]}
+                                    count={adminBidCount?.countProductCompleted}
+                                    onClick={() => handelClick('E')}
+                                    isSelected={selectedTab === 'E'}
+                                ></TabItem>
+                                    <TabItem
+                                        data={tabDataBiddingAdmin[6]}
+                                        count={adminBidCount?.countProductCancel}
+                                        onClick={() => handelClick('R')}
+                                        isSelected={selectedTab === 'R'}
+                                    ></TabItem>
+                                    <TabItem
+                                        data={tabDataBiddingAdmin[7]}
+                                        count={adminBidCount?.countProductReturn}
+                                        onClick={() => handelClick('G')}
+                                        isSelected={selectedTab === 'G'}
+                                    ></TabItem>
+                                    <TabItem
+                                        data={tabDataBiddingAdmin[8]}
+                                        count={adminBidCount?.countProductFailure}
+                                        onClick={() => handelClick('F')}
+                                        isSelected={selectedTab === 'F'}
                                     ></TabItem>
                                 </>
                             </div>
@@ -96,7 +132,7 @@ const RequestTracking = () => {
                     <div className="flex m-6 gap-5 justify-end mr-10">
 
                         <Button
-                            onClick={() => navigate('/admin/createRequest')}
+                            onClick={() => navigate('/admin/createProductAuction')}
                             className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                             Đấu giá sản phẩm
                         </Button>
@@ -113,6 +149,7 @@ const RequestTracking = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
+
                                     columns={columns}
                                     data={(data)}
                                     isloading={isLoading}
@@ -121,21 +158,29 @@ const RequestTracking = () => {
                                     enableHiding={false}
                                     showColumnFilters={true}
                                     enableColumnActions={false}
-
+                                    muiTablePaperProps={{
+                                        sx: {
+                                            margin:0,
+                                            padding:0,
+                                            maxWidth:'1065px'
+                                        },
+                                    }}
                                     muiTableHeadCellProps={({column}) => ({
                                         sx: {
                                             textAlign: 'right',
                                             fontSize: '14px',
                                         },
                                     })}
+
                                     muiTableBodyCellProps={({row}) => ({
                                         sx: {
                                             textAlign: 'center',
                                             textOverflow: 'ellipsis',
                                             overflow: 'hidden !important',
                                             whiteSpace: 'nowrap',
-                                            fontSize: '14px',
-                                            cursor: 'pointer'
+                                            fontSize: '13px',
+                                            cursor: 'pointer',
+                                            paddingX:'12px'
                                         },
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
@@ -146,7 +191,6 @@ const RequestTracking = () => {
                                             )
                                         },
                                     })}
-
                                 />
                             </div>
                         </>
@@ -156,4 +200,4 @@ const RequestTracking = () => {
         </>
     );
 }
-export default RequestTracking
+export default AdminBiddingTracking
