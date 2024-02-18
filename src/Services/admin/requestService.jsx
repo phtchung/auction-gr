@@ -8,12 +8,29 @@ export const AdminGetReqCount = async () => {
     });
 };
 
+export const AdminGetBiddingCount = async () => {
+    return privateHttp({
+        method: "GET",
+        url: `/admin/product/biddingCount`,
+    });
+};
+
 export const AdminGetReqTracking = async (status) => {
     return privateHttp({
         method: "POST",
         url: "/admin/product/reqList",
         data: {
             status: status,
+        },
+    });
+};
+
+export const AdminGetBiddingTracking = async (admin_status) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/product/bidList",
+        data: {
+            admin_status: admin_status,
         },
     });
 };

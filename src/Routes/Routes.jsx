@@ -11,12 +11,13 @@ import AucHistoryDetail from "../Components/AuctionHistoryDetail/aucHistoryDetai
 import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
 import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
-import RequestTracking from "../Pages/Admin/RequestTracking/reqTracking.jsx";
+import RequestTracking from "../Pages/Admin/UserRequestTracking/userReqTracking.jsx";
 import AdminRequestDetail from "../Pages/Admin/RequestDetail/requestDetail.jsx";
 import ConfirmApproved from "../Pages/Admin/ConfirmApprovedReq/confirmApproved.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
 import CreateProductAuction from "../Pages/Admin/CreateProductAuction/createProductAuction.jsx";
+import AdminBiddingTracking from "../Pages/Admin/AdminBiddingTracking/adminBiddingTracking.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
@@ -38,9 +39,10 @@ export const UserRoutes = [
 
 
   { path: "/admin/reqTracking", element: <RequestTracking /> },
+  { path: "/admin/adminBidTracking", element: <AdminBiddingTracking /> },
   { path: "/admin/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
   { path: "/admin/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
   { path: "/admin/resultSuccess", element: <ResultPage /> },
-  { path: "/admin/createRequest", element: <CreateProductAuction /> },
+  { path: "/admin/createProductAuction", element: <CreateProductAuction /> },
 ];
 
