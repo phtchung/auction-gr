@@ -29,13 +29,14 @@ export default function useWinOrdersTracking() {
         product_name: data?.product_name,
         rank: data?.rank,
         status: data?.status,
+        status_word:data?.status === 9 ? 'Trả hàng' : 'Hủy',
         createdAt: formatDateTime(new Date(data?.createdAt)),
         reserve_price: data?.reserve_price,
         final_price: data?.final_price,
         victory_time: formatDateTime(new Date(data?.victory_time)),
         total_price: data?.final_price + data?.shipping_fee,
-        completed_at: formatDateTime(
-          new Date(data?.product_delivery?.completed_at),
+        completed_time: formatDateTime(
+          new Date(data?.completed_time),
         ),
       };
     });

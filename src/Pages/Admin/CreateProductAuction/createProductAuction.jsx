@@ -75,8 +75,8 @@ const CreateProductAuction = () => {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 1000,
             });
-            handleOpen()
             navigate('/admin/resultSuccess',{state : 200})
+            handleOpen()
             setAdminAuctionData(null);
         } catch (error) {
             handleOpen()

@@ -30,6 +30,7 @@ export default function useReqOrderTracking() {
         finish_time:formatDateTime(new Date(data?.finish_time)),
         cancel_time:formatDateTime(new Date(data?.updatedAt)),
         victory_time: formatDateTime(new Date(data?.victory_time)),
+        reject_time: formatDateTime(new Date(data?.reject_time)),
         total_price: data?.final_price + data?.shipping_fee + " VND",
         completed_at: formatDateTime(
           new Date(data?.product_delivery?.completed_at),

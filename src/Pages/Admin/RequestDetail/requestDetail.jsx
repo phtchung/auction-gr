@@ -39,13 +39,13 @@ const AdminRequestDetail = () => {
     if (isLoading) {
         return (
             <Spin  tip="Loading" size="large">
-
             </Spin>
        )
     }
     if(isError){
         return navigate('/404')
     }
+
     return (
         <>
             <Header/>

@@ -26,11 +26,13 @@ export default function useReqOrderDetail() {
       createdAt: formatDateTime(new Date(data?.createdAt)),
       start_time: formatDateTime(new Date(data?.start_time)),
       finish_time: formatDateTime(new Date(data?.finish_time)),
-      request_time: formatDateTime(new Date(data?.request_id?.createdAt)),
+      request_time: formatDateTime(new Date(data?.request_time)),
       image_list:data?.image_list,
       main_image:data?.main_image,
       rank: data?.rank,
       status: data?.status,
+      reason:data?.reason,
+      reject_time: formatDateTime(new Date(data?.reject_time)),
       type_of_auction: data?.type_of_auction,
     };
     return { detail };

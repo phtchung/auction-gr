@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
-     adminProductStatus, approvedColumns, biddingColumns,
+    AdminBiddingTrackingColumns, AdminCancelTrackingColumns, AdminCompletedTrackingColumns, AdminFailureTrackingColumns,
+    AdminNewProductTrackingColumns,
+    adminProductStatus, AdminReturnTrackingColumns, AdminSuccessTrackingColumns, approvedColumns, biddingColumns,
     formatDateTime, newReqColumns, rejectColumns,
 } from "../../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
@@ -21,11 +23,12 @@ export default function useAdminBiddingTracking() {
     const parseData = useCallback((item) => {
         const adminBidData = item?.adminBiddingList?.map((data) => {
             return {
-                request_id : data?._id,
+                product_id : data?._id,
                 product_name: data?.product_name,
-                status: data?.status,
+                admin_status: data?.admin_status,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
                 reserve_price: data?.reserve_price,
+                type_of_auction:data?.type_of_auction,
                 sale_price:data?.sale_price,
                 final_price: data?.final_price,
                 seller_name:data?.seller_id?.username,
@@ -41,16 +44,19 @@ export default function useAdminBiddingTracking() {
         });
 
         const colTrackingData =
-            item.status === 1
-                ? newReqColumns
-                : item.status === 2
-                    ? approvedColumns
-                    : item.status === 3
-                        ? biddingColumns
-                        : item.status === 11
-                            ? rejectColumns
-                            : rejectColumns;
-
+            item.admin_status === 'N' || item.admin_status === '-N'
+                ? AdminNewProductTrackingColumns
+                : item.admin_status === 'B'
+                    ? AdminBiddingTrackingColumns
+                    : item.admin_status === 'S' || item.admin_status === 'C' || item.admin_status === 'D'
+                        ? AdminSuccessTrackingColumns
+                        : item.admin_status === 'E'
+                            ? AdminCompletedTrackingColumns
+                            : item.admin_status === 'R' ?
+                                AdminCancelTrackingColumns :
+                                item.admin_status === 'G' ?
+                                    AdminReturnTrackingColumns : AdminFailureTrackingColumns;
+        console.log(adminBidData , colTrackingData)
         return { adminBidData, colTrackingData };
     }, []);
 

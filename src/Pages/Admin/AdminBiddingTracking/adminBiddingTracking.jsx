@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import React, {useState} from "react";
 import {
-    adminChangeStateToString,
      adminProductStatus,
     tabDataBiddingAdmin
 } from "../../../Utils/constant.js";
@@ -33,7 +32,7 @@ const AdminBiddingTracking = () => {
     } = useAdminBiddingTracking();
 
 
-    const [selectedTab, setSelectedTab] = useState('N');
+    const [selectedTab, setSelectedTab] = useState(status);
     const handelClick = (value) => {
         setStatus(adminProductStatus(value));
         setSelectedTab(value);
@@ -142,9 +141,9 @@ const AdminBiddingTracking = () => {
                         <>
                             <div className="border border-gray-300 mt-6">
                                 <div className="flex items-center justify-between  bg-white  p-2 text-base">
-                                    <div className="text-left font-medium my-2 ml-3 ">
-                                        Danh sách yêu cầu {adminChangeStateToString(status)}
-                                    </div>
+                                    {/*<div className="text-left font-medium my-2 ml-3 ">*/}
+                                    {/*    Danh sách yêu cầu {adminChangeStateToString(status)}*/}
+                                    {/*</div>*/}
                                 </div>
 
                                 <div className="border-b-2 border-gray-300 "></div>
@@ -187,7 +186,7 @@ const AdminBiddingTracking = () => {
                                         onClick: () => {
                                             console.log(row.original);
                                             navigate(
-                                                `/admin/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
+                                                `/admin/reqTracking/requestDetail/${row.original.product_id}?status=${row.original.admin_status}`,
                                             )
                                         },
                                     })}
