@@ -46,7 +46,6 @@ const ReqOrderTracking = () => {
         setStatus,
     } = useReqOrderTracking();
 
-    console.log(reqTrackingData)
     const [open, openchange] = useState(false);
     const [open1, openchange1] = useState(false);
     const [open2, openchange2] = useState(false);

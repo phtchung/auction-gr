@@ -18,7 +18,7 @@ const ReqOrderDetail = () => {
                     {isSuccess && (
                         <>
                             <RequestInfo data={reqData}/>
-                            {reqData.status !== undefined && reqData.status !== 1 ? (
+                            {(reqData.status !== undefined && reqData.status !== 1 && reqData.status !== 13)? (
                                 <BiddingInfo data={reqData}/>
                             ) : (
                                 <></>
@@ -88,7 +88,6 @@ const ReqOrderDetail = () => {
                                         <div className="grid grid-cols-6 text-left">
                                             <div> Tác nhân :</div>
                                             <div className="font-normal  col-span-2">
-                                                {" "}
                                                 Quản trị viên
                                             </div>
                                         </div>
@@ -97,6 +96,38 @@ const ReqOrderDetail = () => {
                                             <div> Lí do :</div>
                                             <div className="font-normal  col-span-2">
                                                 Không phù hơp, chưa vượt qua kiểm duyệt
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            {reqData.status === 13 && (
+                                <>
+                                    <div className="flex justify-between m-2.5 items-center px-2">
+                                        <div className="text-left text-sm font-semibold ">
+                                            Lí do bị từ chối
+                                        </div>
+                                    </div>
+                                    <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
+
+                                        <div className="grid grid-cols-6 text-left">
+                                            <div> Thời gian từ chối :</div>
+                                            <div className="font-normal  col-span-2">
+                                                {reqData?.reject_time}
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-6 text-left">
+                                            <div> Từ chối bởi :</div>
+                                            <div className="font-normal  col-span-2">
+                                                Quản trị viên
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-6 text-left">
+                                            <div> Lí do :</div>
+                                            <div className="font-normal  col-span-2">
+                                                {reqData?.reason}
                                             </div>
                                         </div>
                                     </div>

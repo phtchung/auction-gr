@@ -37,7 +37,6 @@ const RequestInfo = ({data}) => {
                     Thông tin sản phẩm
                 </div>
                 <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4">
-                    {" "}
                     {stateStr}
                 </div>
             </div>
@@ -46,13 +45,11 @@ const RequestInfo = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Mã yêu cầu :</div>
                     <div className="font-normal  col-span-2">
-                        {" "}
                         {data?.request_id}
                     </div>
                     <di> Thời gian yêu cầu :</di>
                     <div className="font-normal col-span-2">
-                        {" "}
-                        {data?.status === 1 ? data?.createdAt : data?.request_time}
+                        {(data?.status === 1 || data?.status === 13) ? data?.createdAt : data?.request_time}
                     </div>
                 </div>
 
@@ -88,8 +85,6 @@ const RequestInfo = ({data}) => {
 
                 <div className="grid grid-cols-6 text-left">
                     <div> Hỉnh ảnh sản phẩm :</div>
-                    <div className="font-normal col-span-5">
-                    </div>
                 </div>
                 {data.main_image &&
                     <>

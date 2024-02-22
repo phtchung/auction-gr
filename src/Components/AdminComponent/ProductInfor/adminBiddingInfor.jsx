@@ -1,6 +1,7 @@
 import { formatDateTime } from "../../../Utils/constant.js";
 
 const AdminBiddingInfo = ({ data }) => {
+
     return (
         <>
             <div className="flex justify-between m-2.5 items-center px-2">
