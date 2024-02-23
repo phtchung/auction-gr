@@ -7,7 +7,7 @@ import { formatDateTime } from "../../Utils/constant.js";
 export default function useRequestHistory() {
   const currentDateTime = new Date();
   const [finish_time, setFinishTime] = useState(
-    new Date(currentDateTime.setHours(0, 0, 0, 0)).toISOString(),
+    new Date(currentDateTime.setHours(23, 59, 59, 59)).toISOString(),
   );
   const [start_time, setStartTime] = useState(() => {
     const sevenDaysAgo = new Date(currentDateTime);

@@ -35,6 +35,7 @@ export default function useWinOrderDetail() {
       address: data?.product_delivery?.address,
       note: data?.product_delivery?.note,
       status: data?.status,
+      completed_time: formatDateTime(new Date(data?.product_delivery?.completed_time)),
       type_of_auction: data?.type_of_auction,
       category_name: data?.category_id?.name,
     };

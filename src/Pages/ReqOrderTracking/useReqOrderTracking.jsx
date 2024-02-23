@@ -28,12 +28,12 @@ export default function useReqOrderTracking() {
         final_price: data?.final_price + "VND",
         start_time:formatDateTime(new Date(data?.start_time)),
         finish_time:formatDateTime(new Date(data?.finish_time)),
-        cancel_time:formatDateTime(new Date(data?.updatedAt)),
+        // cancel_time:formatDateTime(new Date(data?.updatedAt)),
         victory_time: formatDateTime(new Date(data?.victory_time)),
         reject_time: formatDateTime(new Date(data?.reject_time)),
         total_price: data?.final_price + data?.shipping_fee + " VND",
-        completed_at: formatDateTime(
-          new Date(data?.product_delivery?.completed_at),
+        completed_time: formatDateTime(
+          new Date(data?.product_delivery?.completed_time),
         ),
         shipping_fee:data?.shipping_fee,
         phone:data?.product_delivery?.phone,

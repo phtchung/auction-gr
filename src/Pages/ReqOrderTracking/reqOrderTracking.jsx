@@ -279,32 +279,7 @@ const ReqOrderTracking = () => {
                                             </Select>
                                         </FormControl>
                                     </div>
-                                    <FormControl
-                                        size="small"
-                                        variant="filled"
-                                        sx={{m: 1, maxWidth: 405}}
-                                    >
-                                        <InputLabel id="demo-simple-select-filled-label">
-                                            Danh mục *
-                                        </InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-filled-label"
-                                            id="demo-simple-select-filled"
-                                            defaultValue={
-                                                request?.category ? request?.category : null
-                                            }
-                                        >
-                                            {categories.map((item) => (
-                                                <MenuItem
-                                                    key={item.value}
-                                                    value={item.value}
-                                                    onClick={() => handleRequest("category", item.value)}
-                                                >
-                                                    {item.label}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </FormControl>
+
                                     <div className="text-sm font-semibold">
                                         Giá sản phẩm
                                         <small className="font-thin text-xs"> [Đơn vị : VND]</small>

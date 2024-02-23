@@ -267,7 +267,19 @@ const WinOrderDetail = () => {
                                         Thông tin giao hàng
                                     </div>
                                 </div>
+
                                 <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
+                                    {
+                                        winDetailData.status === 8 && <>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Thời gian nhận hàng :</div>
+                                                <div className="font-normal col-span-5">
+                                                    {winDetailData.completed_time}
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
+
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Người nhận :</div>
                                         <div className="font-normal col-span-2">
@@ -299,6 +311,8 @@ const WinOrderDetail = () => {
                                 </div>
                             </>
                         )}
+
+                    {/*điền tt giao hàng*/}
                     {isSuccess && winDetailData.status === 4 && (
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2 ">
@@ -384,7 +398,7 @@ const WinOrderDetail = () => {
                                     Gửi
                                 </Button>
                             </div>
-
+                            {/*xác nhận thông tin giao hàng*/}
                             <Dialog open={open} onClose={handleOpen} fullWidth maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
