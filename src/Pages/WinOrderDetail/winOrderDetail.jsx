@@ -308,6 +308,39 @@ const WinOrderDetail = () => {
                                             {convertWinStatus(winDetailData.status)}
                                         </div>
                                     </div>
+                                    {
+                                        winDetailData.status === 6 &&
+                                        <>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Thời gian xác nhận :</div>
+                                                <div className="font-normal col-span-2 ">
+                                                    {winDetailData?.confirm_time}
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
+                                    {
+                                        winDetailData.status === 7 &&
+                                        <>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Bắt đầu giao hàng :</div>
+                                                <div className="font-normal col-span-2 ">
+                                                    {winDetailData?.delivery_start_time}
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
+                                    {
+                                        winDetailData.status === 8 &&
+                                        <>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Thời gian nhận hàng :</div>
+                                                <div className="font-normal col-span-2 ">
+                                                    {winDetailData?.completed_time}
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
                                 </div>
                             </>
                         )}
@@ -316,7 +349,7 @@ const WinOrderDetail = () => {
                     {isSuccess && winDetailData.status === 4 && (
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2 ">
-                                <div className="text-left text-sm font-semibold ">
+                            <div className="text-left text-sm font-semibold ">
                                     Thông tin giao hàng
                                 </div>
                             </div>

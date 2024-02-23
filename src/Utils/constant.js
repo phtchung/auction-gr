@@ -488,7 +488,7 @@ export function convertWinStatus(status) {
         case 5:
             return "Chờ xác nhận";
         case 6:
-            return "Đã được xác nhận";
+            return "Đã được xác nhận bởi người bán";
         case 7:
             return "Đang giao hàng";
         case 8:
