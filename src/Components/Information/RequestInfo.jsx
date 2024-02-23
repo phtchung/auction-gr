@@ -65,7 +65,6 @@ const RequestInfo = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Giá khởi điểm :</div>
                     <div className="font-normal col-span-2">
-                        {" "}
                         {data?.reserve_price} VND
                     </div>
                     <div> Giá bán trực tiếp :</div>

@@ -31,6 +31,13 @@ const CountdownTimer = ({ initialTimeInSeconds }) => {
             queryClient.invalidateQueries({
                 queryKey: ["getReqTracking", status],
             });
+            queryClient.invalidateQueries({
+                queryKey: ["getWinCount"],
+            });
+            setStatus(reqConvertStatus(parseInt(searchParams.get("status"))))
+            queryClient.invalidateQueries({
+                queryKey: ["getWinTracking", status],
+            });
             setTimeInSeconds(initialTimeInSeconds);
         }
     }, [timeInSeconds, initialTimeInSeconds]);

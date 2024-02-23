@@ -254,29 +254,29 @@ export const pending = {
 export const numberToString = (state) => {
     switch (state) {
         case 1:
-            return "Pending";
+            return "Chờ duyệt";
         case 2:
-            return "Approved";
+            return "Đã duyệt";
         case 3:
-            return "Bidding";
+            return "Đang đấu giá";
         case 4:
-            return "Bidding";
+            return "Chờ thông tin giao hàng";
         case 5:
-            return "Success";
+            return "Đấu giá thành công";
         case 6:
-            return "Confirm";
+            return "Xác nhận";
         case 7:
-            return "Delivery start";
+            return "Giao hàng";
         case 8:
-            return "Completed";
+            return "Hoàn thành";
         case 10:
-            return "Failure";
+            return "Thất bại";
         case 11:
-            return "Cancel";
+            return "Hủy";
         case 13:
-            return "Reject";
+            return "Từ chối";
         default:
-            return "Pending";
+            return "Chờ duyệt";
     }
 };
 
@@ -299,23 +299,23 @@ export const adminChangeStateToString = (state) => {
 export const statusToString = (state) => {
     switch (state) {
         case 4:
-            return "Auction Winning";
+            return "Thắng đấu giá";
         case 5:
-            return "Delivery Wait";
+            return "Chờ xác nhận";
         case 6:
-            return "Delivery Wait";
+            return "Đã xác nhận";
         case 7:
-            return "Delivery Wait";
+            return "Đang giao hàng";
         case 567:
-            return "Delivery Wait";
+            return "Chờ giao hàng";
         case 8:
-            return "Completed";
+            return "Hoàn thành";
         case 9:
-            return "Return";
+            return "Trả hàng";
         case 11:
-            return "Cancel";
+            return "Hủy";
         default:
-            return "Auction Winning";
+            return "Thắng đấu giá";
     }
 };
 
@@ -488,9 +488,13 @@ export function convertWinStatus(status) {
         case 5:
             return "Chờ xác nhận";
         case 6:
-            return "Đã được xác nhận bởi người bán";
+            return "Đã được xác nhận";
         case 7:
             return "Đang giao hàng";
+        case 8:
+            return "Đã nhận hàng";
+        case 9:
+            return "Trả hàng";
         case 11 :
             return "Hủy thành công"
         default:

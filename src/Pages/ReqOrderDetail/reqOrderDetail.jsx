@@ -37,33 +37,29 @@ const ReqOrderDetail = () => {
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Người nhận :</div>
                                                 <div className="font-normal col-span-2">
-                                                    {" "}
-                                                    {reqData?.deliData?.receiver}
+                                                    {reqData?.deliData?.name}
                                                 </div>
                                                 <div> Phone Number :</div>
                                                 <div className="font-normal col-span-2">
-                                                    {" "}
-                                                    {reqData?.deliData?.phone_receiver}
+                                                    {reqData?.deliData?.phone}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Địa chỉ :</div>
                                                 <div className="font-normal col-span-5">
-                                                    {" "}
                                                     {reqData?.deliData?.address}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Ghi chú :</div>
                                                 <div className="font-normal col-span-5">
-                                                    {" "}
                                                     {reqData?.deliData?.note}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Trạng thái đơn hiện tại :</div>
                                                 <div className="font-normal col-span-2 text-amber-400">
-                                                    {convertWinStatus(reqData?.deliData?.status)}
+                                                    {convertWinStatus(reqData?.status)}
                                                 </div>
                                             </div>
                                         </div>

@@ -26,6 +26,8 @@ export default function useWinOrderDetail() {
       procedure_complete_time: formatDateTime(
         new Date(data?.procedure_complete_time),
       ),
+      image_list:data?.image_list,
+      main_image:data?.main_image,
       total_price: data?.final_price + data?.shipping_fee,
       rank: data?.rank,
       receiver: data?.product_delivery?.name,

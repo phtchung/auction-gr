@@ -13,6 +13,7 @@ import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
 import useWinOrdersTracking from "../WinOrdersTracking/useWinOrdersTracking.jsx";
 import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
+import {Image} from "antd";
 
 const WinOrderDetail = () => {
     const [open, setOpen] = useState(false);
@@ -79,13 +80,13 @@ const WinOrderDetail = () => {
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <div className="text-left text-lg ">List - {stateStr} </div>
+                            <div className="text-left text-lg ">Danh sách {stateStr} </div>
                             <ArrowForwardIosOutlinedIcon
                                 sx={{fontSize: 18}}
                                 fontSize="small"
                                 color="gray"
                             ></ArrowForwardIosOutlinedIcon>
-                            <div className="">{stateStr} Detail</div>
+                            <div className="">Chi tiết</div>
                         </div>
                     </div>
                     <div className="border-b border-gray-400  mx-5"></div>
@@ -94,7 +95,6 @@ const WinOrderDetail = () => {
                             Thông tin sản phẩm
                         </div>
                         <div className="text-base font-medium mr-10 bg-amber-300 p-1 px-4">
-                            {" "}
                             {stateStr}
                         </div>
                     </div>
@@ -136,7 +136,65 @@ const WinOrderDetail = () => {
                                     <div className="font-normal col-span-2">
                                         {winDetailData.reserve_price} VND
                                     </div>
+                                    <div> Giá bán trực tiếp :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData?.sale_price} VND</div>
                                 </div>
+
+                                <div className="grid grid-cols-6 text-left ">
+                                    <div> Step Price :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData?.step_price} VND</div>
+                                    <div> Phí vận chuyển :</div>
+                                    <div className="font-normal col-span-2"> {winDetailData?.shipping_fee} VND</div>
+                                </div>
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Mô tả sản phẩm :</div>
+                                    <div className="font-normal col-span-5"> {winDetailData?.description}</div>
+                                </div>
+
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Hỉnh ảnh sản phẩm :</div>
+                                </div>
+                                {winDetailData.main_image &&
+                                    <>
+                                        <div className="grid grid-cols-6 text-left mb-4">
+                                            <Image.PreviewGroup
+                                                preview={{
+                                                    onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                                                }}
+                                            >
+                                                <div className="font-normal col-span-1 mb-2">
+                                                    <Image height={150} width={150}
+                                                           src={winDetailData.main_image}/>
+                                                </div>
+
+                                            </Image.PreviewGroup>
+                                        </div>
+                                    </>
+                                }
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Các hình ảnh liên quan :</div>
+                                </div>
+                                {
+                                    winDetailData.image_list &&
+                                    <>
+                                        <div className="grid grid-cols-6 text-left mb-4">
+                                            <Image.PreviewGroup
+                                                preview={{
+                                                    onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                                                }}>
+                                                {winDetailData?.image_list.map((imageUrl, index) => (
+                                                    <>
+                                                        <div className="font-normal col-span-1 mb-2">
+                                                            <Image key={index} height={150} width={150}
+                                                                   src={imageUrl}/>
+                                                        </div>
+                                                    </>
+                                                ))}
+                                            </Image.PreviewGroup>
+                                        </div>
+                                    </>
+                                }
                             </div>
                         </>
                     )}
@@ -150,14 +208,19 @@ const WinOrderDetail = () => {
                             </div>
                             <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                                 <div className="grid grid-cols-6 text-left">
-                                    <div> Thời gian bắt đầu :</div>
+                                    <div> Hình thức :</div>
                                     <div className="font-normal  col-span-2">
                                         {" "}
+                                        {winDetailData?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Thời gian bắt đầu :</div>
+                                    <div className="font-normal  col-span-2">
                                         {winDetailData?.start_time}
                                     </div>
                                     <di> Thời gian kết thúc :</di>
                                     <div className=" col-span-2 font-normal">
-                                        {" "}
                                         {winDetailData?.finish_time}
                                     </div>
                                 </div>
@@ -177,12 +240,10 @@ const WinOrderDetail = () => {
                                 <div className="grid grid-cols-6 text-left">
                                     <div> Giá trúng thầu :</div>
                                     <div className="font-normal col-span-2">
-                                        {" "}
                                         {winDetailData?.final_price} VND
                                     </div>
                                     <div> Phí ship :</div>
                                     <div className="font-normal col-span-2">
-                                        {" "}
                                         {winDetailData?.shipping_fee} VND
                                     </div>
                                 </div>
@@ -212,7 +273,7 @@ const WinOrderDetail = () => {
                                         <div className="font-normal col-span-2">
                                             {winDetailData.receiver}
                                         </div>
-                                        <div> Phone Number :</div>
+                                        <div> Số điện thoại :</div>
                                         <div className="font-normal col-span-2">
                                             {winDetailData.phone_receiver}
                                         </div>
@@ -346,14 +407,12 @@ const WinOrderDetail = () => {
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Tên :</div>
                                                 <div className=" col-span-2">
-                                                    {" "}
                                                     {dlvInfor?.name || null}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Số điện thoại :</div>
                                                 <div className=" col-span-2">
-                                                    {" "}
                                                     {dlvInfor?.phone || null}
                                                 </div>
                                             </div>

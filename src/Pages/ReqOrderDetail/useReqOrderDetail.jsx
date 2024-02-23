@@ -27,6 +27,8 @@ export default function useReqOrderDetail() {
       start_time: formatDateTime(new Date(data?.start_time)),
       finish_time: formatDateTime(new Date(data?.finish_time)),
       request_time: formatDateTime(new Date(data?.request_time)),
+      return_time: formatDateTime(new Date(data?.return_time)),
+      completed_time: formatDateTime(new Date(data?.completed_time)),
       image_list:data?.image_list,
       main_image:data?.main_image,
       rank: data?.rank,
