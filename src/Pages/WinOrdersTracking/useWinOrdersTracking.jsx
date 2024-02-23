@@ -36,7 +36,7 @@ export default function useWinOrdersTracking() {
         victory_time: formatDateTime(new Date(data?.victory_time)),
         total_price: data?.final_price + data?.shipping_fee,
         completed_time: formatDateTime(
-          new Date(data?.completed_time),
+          new Date(data?.product_delivery?.completed_time),
         ),
       };
     });

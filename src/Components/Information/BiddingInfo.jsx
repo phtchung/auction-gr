@@ -12,9 +12,10 @@ const BiddingInfo = ({data}) => {
             <div className="grid grid-cols-6 text-left">
                 <div> Hình thức :</div>
                 <div className="font-normal  col-span-2">
-                    {" "}
                     {data?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}
                 </div>
+                <div> Thời gian duyệt :</div>
+                <div className="font-normal  col-span-2"> {data?.approved_time}</div>
             </div>
 
             <div className="grid grid-cols-6 text-left">
@@ -101,7 +102,7 @@ const BiddingInfo = ({data}) => {
                     <div className="grid grid-cols-6 text-left">
                         <div> Thời gian nhận hàng :</div>
                         <div className="font-normal col-span-2">
-                            {formatDateTime(data?.completed_time)}
+                            {formatDateTime(data?.deliData?.completed_time)}
                         </div>
                     </div>
                 </>}

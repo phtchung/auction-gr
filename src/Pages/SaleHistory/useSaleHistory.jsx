@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 export default function useSaleHistory() {
   const currentDateTime = new Date();
   const [finish_time, setFinishTime] = useState(
-    new Date(currentDateTime.setHours(0, 0, 0, 0)).toISOString(),
+    new Date(currentDateTime.setHours(23, 59, 59, 59)),
   );
   const [start_time, setStartTime] = useState(
     dayjs().subtract(7, "day").startOf("day"),
@@ -36,8 +36,8 @@ export default function useSaleHistory() {
         request_id: data?.request_id,
         shipping_fee: data?.shipping_fee,
         status: data?.status,
-        completed_at: formatDateTime(
-          new Date(data?.product_delivery?.completed_at),
+        completed_time: formatDateTime(
+          new Date(data?.product_delivery?.completed_time),
         ),
 
       };

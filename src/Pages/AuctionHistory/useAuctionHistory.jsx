@@ -12,7 +12,8 @@ export default function useAuctionHistory() {
         rank: data?.rank,
         reserve_price: data?.reserve_price,
         final_price: data?.final_price,
-        completed_at: data?.product_delivery?.completed_at,
+        completed_time: data?.product_delivery?.completed_time,
+        main_image:data?.main_image,
       };
     });
 

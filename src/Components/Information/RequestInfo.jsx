@@ -22,7 +22,7 @@ const RequestInfo = ({data}) => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                <div className="text-left text-base ">List - {stateStr} </div>
+                <div className="text-left text-base ">Danh sách - {stateStr} </div>
                     <ArrowForwardIosOutlinedIcon
                         sx={{fontSize: 18}}
                         fontSize="small"

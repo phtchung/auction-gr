@@ -16,7 +16,7 @@ import Header from "../../Components/Header/header.jsx";
 import {useState} from "react";
 import useSaleHistory from "./useSaleHistory.jsx";
 import TableDataHistory from "../../Components/TableDataHistory/TableDataHistory.jsx";
-import {colReqHistory, colSaleHistory, pathReqHistory, pathSaleHistory} from "../../Utils/constant.js";
+import {colSaleHistory, formatNumber, pathSaleHistory} from "../../Utils/constant.js";
 
 const SaleHistory = () => {
     const [filter, setFilter] = useState({});
@@ -127,9 +127,9 @@ const SaleHistory = () => {
                                     </tr>
                                     <tr style={{height: 40, fontSize: 12}}>
                                         <td className="text-xs"> Tổng tiền</td>
-                                        <td>{total?.total_price_sale}</td>
-                                        <td>{total?.total_price_completed}</td>
-                                        <td>{total?.total_price_cancel}</td>
+                                        <td>{formatNumber(total?.total_price_sale)}</td>
+                                        <td>{formatNumber(total?.total_price_completed)}</td>
+                                        <td>{formatNumber(total?.total_price_cancel)}</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -235,7 +235,7 @@ export const colSaleHistory = [
     {id: "id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
     {id: "final_price", name: "Thành tiền"},
-    {id: "completed_at", name: "Ngày hoàn thành"},
+    {id: "completed_time", name: "Ngày hoàn thành"},
 ];
 
 export const pathReqHistory = "/reqHistory/reqHistoryDetail"
