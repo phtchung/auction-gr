@@ -10,14 +10,12 @@ import {formatDateTime} from "../../Utils/constant.js";
 const AucHistoryDetail = () => {
     const navigate = useNavigate();
     const aucHistoryParams = useParams();
-    console.log(aucHistoryParams);
     const {isLoading, isSuccess, data} = useQuery({
         queryKey: ["getAucHistoryDetail"],
         queryFn: () => getAuctionHistoryDetail(aucHistoryParams.id),
         select: (data) => data.data,
         enabled: !!aucHistoryParams,
     });
-    console.log(data);
     const steps = [
         "Đấu giá thành công",
         "Xác nhận đơn hàng",
@@ -43,7 +41,7 @@ const AucHistoryDetail = () => {
                                     <div className="text-sm"> TRỞ LẠI</div>
                                 </div>
 
-                                <div className="text-right px-5 pt-3 pb-3 text-sm  text-red-700  bg-white">
+                                <div className="text-right px-5 pt-3 pb-3 text-sm  text-red-500  bg-white">
                                     ĐƠN HÀNG ĐÃ HOÀN THÀNH
                                 </div>
                             </div>
@@ -113,7 +111,11 @@ const AucHistoryDetail = () => {
                                         <div className="flex items-start mt-4">
                                             <div className=" w-24">
                                                 <img
-                                                    src="https://down-vn.img.susercontent.com/file/2618feef5924bb0b0c2eaa348a66ee8a_tn"
+                                                    style={{
+                                                        maxWidth: '96px', maxHeight: '96px',
+                                                        overflow: 'hidden', height: 'auto', width: '100%'
+                                                    }}
+                                                    src={data?.main_image}
                                                     alt=""
                                                 />
                                             </div>

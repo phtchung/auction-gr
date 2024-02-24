@@ -1,7 +1,6 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import "./home.css";
 import {
-    categories,
     numberToString,
     pending,
     rankItems,
@@ -30,6 +29,7 @@ import {sendRequest} from "../../Services/requestService.jsx";
 import {toast} from "react-toastify";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 import CountdownTimer from "../../Components/Clock/countDownTime.jsx";
+import {Spin} from "antd";
 
 const ReqOrderTracking = () => {
     const {
@@ -54,12 +54,10 @@ const ReqOrderTracking = () => {
     const requestCurrent = useRef(null);
     const handleRequest = (key, value) => {
         setRequest({...request, [key]: value});
-        console.log("req", request);
     };
 
     const handleFileUpload = (formData) => {
         handleRequest("files", formData)
-        console.log("Final FormData:", formData);
     };
     const handleSingleFileUpload = (formData) => {
         handleRequest("singlefile", formData)
@@ -82,7 +80,7 @@ const ReqOrderTracking = () => {
     const closePopup1 = () => {
         openchange1(false);
     };
-
+    const [loading,setLoading] = useState(false)
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState(status);
     const handelClick = (value) => {
@@ -105,20 +103,24 @@ const ReqOrderTracking = () => {
 
     const handleSendRequest = async () => {
         try {
+            setLoading(true)
             if (!request) {
                 toast.error("Chưa điền thông tin");
                 closePopup1(true);
                 return;
             }
             const res = await sendRequest({...request});
+
             toast.success("Gửi yêu cầu thành công", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 500,
             });
+            setLoading(false)
             refetch();
             refetch1();
             openchange1(false);
             openchange(false);
+
             setRequest(null);
         } catch (error) {
             toast.error(error?.response?.data?.message);
@@ -127,8 +129,11 @@ const ReqOrderTracking = () => {
 
     return (
         <>
+            <Spin spinning={loading} tip="Đang gửi yêu cầu" >
             <Header/>
+
             <div className="wrapper">
+
                 <SideBar></SideBar>
                 <div className="home-right ">
                     <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
@@ -480,7 +485,9 @@ const ReqOrderTracking = () => {
                         </>
                     )}
                 </div>
+
             </div>
+            </Spin>
         </>
     );
 };
