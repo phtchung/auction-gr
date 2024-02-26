@@ -11,9 +11,9 @@ import AucHistoryDetail from "../Components/AuctionHistoryDetail/aucHistoryDetai
 import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
 import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
-
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
+import ReturnProduct from "../Pages/ProductReturn/productReturn.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -24,6 +24,7 @@ export const UserRoutes = [
   { path: "/reqHistory/reqHistoryDetail/:id", element: <ReqHistoryDetail /> },
   { path: "/winOrderTracking", element: <WinOrdersTracking /> },
   { path: "/winOrderTracking/winOrderDetail/:id", element: <WinOrderDetail /> },
+  { path: "/winOrderTracking/winOrderDetail/return/:id", element: <ReturnProduct /> },
   { path: "/user/profile", element: <Profile /> },
   { path: "/saleHistory", element: <SaleHistory /> },
   { path: "/saleHistory/reqOrderDetail/:id", element: <ReqOrderDetail /> },

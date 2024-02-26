@@ -114,7 +114,7 @@ const UpdatePopup = ({state}) => {
                                 {state && state === 7 && (
                                     <>
                                         <button
-                                            onClick={() => updateState(9)}
+                                            onClick={() => navigate(`/winOrderTracking/winOrderDetail/return/${id}`,{ state: state})}
                                             className="bg-red-600 p-2 rounded
                                                  text-white hover:bg-red-400 border-none font-medium focus:outline-0"
                                         >

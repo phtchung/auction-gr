@@ -50,20 +50,11 @@ export const sendApproveData = async (approvedData) => {
     });
 };
 
-
-export const rejectRequest = async (rejectData) => {
+export const returnProductData = async (returnProductData) => {
     return privateHttp({
         method: "POST",
-        url: "/admin/rejectRequest",
-        data: rejectData,
+        url: "/user/returnProduct",
+        data: returnProductData,
     });
 };
 
-
-export const createProductAuction = async (productData) => {
-    return privateHttp1({
-        method: "POST",
-        url: "/admin/createProduct",
-        data: productData,
-    });
-};

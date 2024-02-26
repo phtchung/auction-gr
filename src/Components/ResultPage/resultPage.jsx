@@ -21,6 +21,9 @@ const ResultPage = () => {
         }else if(state === 200){
             setTitle('Tạo phiên đấu giá cho sản phẩm thành công');
             setSubTitle(`Sản phẩm sẽ sớm được đưa ra đấu giá .`);
+        }else if(state === 9 ){
+            setTitle('Tạo yêu cầu trả hàng thành công');
+            setSubTitle(`Yêu cầu hoàn trả hàng đã được gửi đến quản trị viên .`);
         }
     }, [state]);
   return(
