@@ -62,7 +62,6 @@ const WinOrderDetail = () => {
     };
     return (
         <>
-            {" "}
             <Header/>
             <div className="wrapper">
                 <SideBar/>
@@ -98,7 +97,7 @@ const WinOrderDetail = () => {
                             {stateStr}
                         </div>
                     </div>
-
+                    {/*Thông tin sp */}
                     {isSuccess && (
                         <>
                             <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
@@ -198,7 +197,7 @@ const WinOrderDetail = () => {
                             </div>
                         </>
                     )}
-
+                    {/*thông tin đấu giá*/}
                     {isSuccess && (
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
@@ -258,6 +257,7 @@ const WinOrderDetail = () => {
                         </>
                     )}
 
+                    {/*thông tin giao hàng*/}
                     {isSuccess &&
                         winDetailData.status !== 4 &&
                         winDetailData.status !== 11 && (

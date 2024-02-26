@@ -129,11 +129,10 @@ const ReqOrderTracking = () => {
 
     return (
         <>
-            <Spin spinning={loading} tip="Đang gửi yêu cầu" >
+            {/*<Spin spinning={loading} tip="Đang gửi yêu cầu" >*/}
             <Header/>
 
             <div className="wrapper">
-
                 <SideBar></SideBar>
                 <div className="home-right ">
                     <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
@@ -487,7 +486,7 @@ const ReqOrderTracking = () => {
                 </div>
 
             </div>
-            </Spin>
+            {/*</Spin>*/}
         </>
     );
 };
