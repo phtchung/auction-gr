@@ -73,6 +73,31 @@ const ReqOrderDetail = () => {
                             ) : (
                                 <></>
                             )}
+
+                            {isSuccess && reqData.status === 9 && (
+                                <>
+                                    <div className="flex justify-between m-2.5 items-center px-2">
+                                        <div className="text-left text-sm font-semibold ">
+                                            Yêu cầu trả hàng
+                                        </div>
+                                    </div>
+
+                                    <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
+                                        <div className="grid grid-cols-6 text-left">
+                                            <div> Thời gian yêu cầu :</div>
+                                            <div className="font-normal  col-span-2">
+                                                {reqData?.return_time}
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-6 text-left">
+                                            <div> Lí do :</div>
+                                            <div className="font-normal  col-span-2">Người dùng</div>
+                                        </div>
+
+                                    </div>
+                                </>
+                            )}
+
                             {reqData.status === 11 && (
                                 <>
                                     <div className="flex justify-between m-2.5 items-center px-2">
