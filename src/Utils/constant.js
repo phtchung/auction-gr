@@ -16,6 +16,15 @@ export const colAppr = [
     {id: "reserve_price", name: "Giá khởi điểm"},
     {id: "start_time", name: "Thời gian đấu giá"},
 ];
+export const colBidding = [
+    {id: "request_time", name: "Thời gian gửi"},
+    {id: "request_id", name: "Mã yêu cầu"},
+    {id: "product_name", name: "Tên sản phẩm"},
+    {id: "reserve_price", name: "Giá khởi điểm"},
+    {id: "start_time", name: "Thời gian đấu giá"},
+    {id: "status_string", name: "Trạng thái"},
+
+];
 export const colSuccess = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
@@ -73,7 +82,7 @@ export const tabData = [
         count: 2,
         color: "bg-emerald-800",
     },
-    {value: "9", name: "Cancel", top: "Cancel", count: 2, color: "bg-red-600"},
+    {value: "9", name: "Return", top: "Return", count: 2, color: "bg-red-600"},
     {
         value: "10",
         name: "Reject",
@@ -187,11 +196,12 @@ export const colCompletion = [
     {id: "total_price", name: "Tổng tiền"},
     {id: "completed_time", name: "Thời gian nhận"},
 ];
-export const colCancel = [
+export const colReturn = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
-    {id: "total_price", name: "Tổng tiền"},
-    {id: "cancel_time", name: "Thời gian hủy"},
+    {id: "final_price", name: "Giá trúng thầu"},
+    {id: "return_time", name: "Thời gian "},
+    {id: "status_string", name: "Trạng thái "},
 ];
 
 export const colReject = [
@@ -232,10 +242,10 @@ export const colReqHistory = [
 
 export const colSaleHistory = [
     {id: "request_id", name: "Mã yêu cầu"},
-    {id: "id", name: "Mã sản phẩm"},
+    {id: "request_time", name: "Thời gian yêu cầu"},
     {id: "product_name", name: "Tên sản phẩm"},
-    {id: "final_price", name: "Thành tiền"},
-    {id: "completed_time", name: "Ngày hoàn thành"},
+    {id: "updatedAt", name: "Thời gian"},
+    {id: "status_string", name: "Trạng thái"},
 ];
 
 export const pathReqHistory = "/reqHistory/reqHistoryDetail"
@@ -271,8 +281,8 @@ export const numberToString = (state) => {
             return "Hoàn thành";
         case 10:
             return "Thất bại";
-        case 11:
-            return "Hủy";
+        case 9:
+            return "Trả hàng";
         case 13:
             return "Từ chối";
         default:
@@ -325,8 +335,8 @@ export function convertStatusToData(status) {
             return colPending;
         case 2:
             return colAppr;
-        case 3:
-            return colAppr;
+        case 34:
+            return colBidding;
         case 5:
             return colSuccess;
         case 6:
@@ -335,10 +345,10 @@ export function convertStatusToData(status) {
             return colDlv;
         case 8:
             return colCompletion;
-        case 10:
+        case 1011:
             return colFail;
-        case 11:
-            return colCancel;
+        case 914:
+            return colReturn;
         case 13:
             return colReject;
         default:
@@ -415,7 +425,7 @@ export function reqConvertStatus(status) {
         status === 7 ||
         status === 8 ||
         status === 10 ||
-        status === 11 ||
+        status === 9 ||
         status === 13
     ) {
         return status;
@@ -713,137 +723,4 @@ export const rejectColumns =
         },
     ]
 
-export const treeSelectData = [
-    {
-        title: 'Light',
-        value: 'light',
-        children: [{title: 'Bamboo', value: 'bamboo'},{title: 'Bamboo1', value: '11'}]
-    },
-]
 
-export const AdminNewProductTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'reserve_price',header: 'Giá khởi điểm', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'sale_price', header: 'Giá bán', size: 100, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'start_time', header: 'Thời gian đấu giá', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-    ]
-
-export const AdminBiddingTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'type_of_auction', header: 'Hình thức', size: 120, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'reserve_price',header: 'Giá khởi điểm', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'sale_price', header: 'Giá bán', size: 100, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'start_time', header: 'Thời gian đấu giá', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-    ]
-
-export const AdminSuccessTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'type_of_auction', header: 'Hình thức', size: 120, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'final_price',header: 'Giá trúng thầu', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'phone', header: 'Số điện thoại', size: 100, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'victory_time', header: 'Thời gian thắng', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-    ]
-
-
-export const AdminCompletedTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'final_price',header: 'Giá trúng thầu', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'phone', header: 'Số điện thoại', size: 100, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'victory_time', header: 'Thời gian thắng', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-    ]
-
-export const AdminCancelTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'type_of_auction', header: 'Hình thức', size: 120, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-
-        {
-            accessorKey: 'start_time', header: 'Thời gian bắt đầu', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-    ]
-
-export const AdminReturnTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'type_of_auction', header: 'Hình thức', size: 120, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'final_price',header: 'Giá trúng thầu', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'phone', header: 'Số điện thoại', size: 100, muiTableHeadCellProps: {align: 'center',},
-        },
-
-    ]
-
-export const AdminFailureTrackingColumns =
-    [
-        {accessorKey: 'product_id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
-        {
-            accessorKey: 'type_of_auction', header: 'Hình thức', size: 120, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'reserve_price',header: 'Giá khởi điểm', size: 90, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'start_time', header: 'Thời gian bắt đầu', size: 140, muiTableHeadCellProps: {align: 'center',},
-        },
-
-    ]

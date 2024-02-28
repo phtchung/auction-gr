@@ -22,6 +22,7 @@ export default function useWinOrderDetail() {
       start_time: formatDateTime(new Date(data?.start_time)),
       finish_time: formatDateTime(new Date(data?.finish_time)),
       victory_time: formatDateTime(new Date(data?.victory_time)),
+      return_time: formatDateTime(new Date(data?.product_delivery?.return_time)),
       final_price: data?.final_price,
       procedure_complete_time: formatDateTime(
         new Date(data?.procedure_complete_time),

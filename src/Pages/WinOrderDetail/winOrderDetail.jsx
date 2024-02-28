@@ -506,26 +506,26 @@ const WinOrderDetail = () => {
                         <UpdatePopup state={winDetailData.status} />
                     ) }
 
-                    {isSuccess && winDetailData.status === 11 && (
+                    {isSuccess && winDetailData.status === 9 && (
                         <>
                             <div className="flex justify-between m-2.5 items-center px-2">
                                 <div className="text-left text-sm font-semibold ">
-                                    Lí do hủy
+                                    Yêu cầu trả hàng
                                 </div>
                             </div>
 
                             <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
                                 <div className="grid grid-cols-6 text-left">
-                                    <div> Tác nhân :</div>
+                                    <div> Thời gian yêu cầu :</div>
+                                    <div className="font-normal  col-span-2">
+                                        {winDetailData?.return_time}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-6 text-left">
+                                    <div> Lí do :</div>
                                     <div className="font-normal  col-span-2">Người dùng</div>
                                 </div>
 
-                                <div className="grid grid-cols-6 text-left">
-                                    <div> Lí do :</div>
-                                    <div className="font-normal  col-span-2">
-                                        Quá thời gian điền thông tin nhận hàng
-                                    </div>
-                                </div>
                             </div>
                         </>
                     )}

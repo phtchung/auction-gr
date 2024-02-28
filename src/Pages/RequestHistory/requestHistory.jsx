@@ -96,7 +96,6 @@ const RequestHistory = () => {
                                         style={{
                                             borderBottom: "1px solid #e5e7eb",
                                             height: 40,
-                                            fontSize: 12,
                                         }}
                                     >
                                         <th>Tổng số yêu cầu</th>

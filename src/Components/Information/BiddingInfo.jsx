@@ -107,15 +107,6 @@ const BiddingInfo = ({data}) => {
                     </div>
                 </>}
 
-                {data.status === 9 && <>
-                    <div className="grid grid-cols-6 text-left">
-                        <div> Thời gian trả hàng :</div>
-                        <div className="font-normal col-span-2">
-                            {formatDateTime(data?.deliData?.return_time)}
-                        </div>
-                    </div>
-                </>}
-
             </div>
         </>)}
     </>);

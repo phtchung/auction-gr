@@ -98,48 +98,42 @@ const SaleHistory = () => {
                             Search
                         </Button>
                     </div>
+
                     {isSuccess && (
-                        <>
-                            <div className="bg-white p-2 m-7 border-gray-300 border text-xs h-32">
-                                <table style={{width: "100%"}}>
-                                    <thead>
-                                    <tr
-                                        style={{borderBottom: "1px solid #e5e7eb", height: 40}}
-                                    >
-                                        <th>Tổng</th>
-                                        <th>Tổng đơn</th>
-                                        <th>Đã hoàn thành</th>
-                                        <th>Hủy</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="font-light">
-                                    <tr
-                                        style={{
-                                            height: 40,
-                                            fontSize: 12,
-                                            borderBottom: "1px solid #e5e7eb",
-                                        }}
-                                    >
-                                        <td> Số lượng</td>
-                                        <td>{total.total_sale}</td>
-                                        <td>{total.total_completed}</td>
-                                        <td>{total.total_cancel}</td>
-                                    </tr>
-                                    <tr style={{height: 40, fontSize: 12}}>
-                                        <td className="text-xs"> Tổng tiền</td>
-                                        <td>{formatNumber(total?.total_price_sale)}</td>
-                                        <td>{formatNumber(total?.total_price_completed)}</td>
-                                        <td>{formatNumber(total?.total_price_cancel)}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </>
+                    <>
+                        <div className="bg-white border-gray-300 border p-2 m-7 text-sm h-24">
+                            <table style={{width: "100%"}}>
+                                <thead>
+                                <tr
+                                    style={{
+                                        borderBottom: "1px solid #e5e7eb",
+                                        height: 40,
+                                    }}
+                                >
+                                    <th>Tổng</th>
+                                    <th>Tổng đơn</th>
+                                    <th>Hoàn thành</th>
+                                    <th>Thất bại</th>
+                                    <th>Trả hàng</th>
+                                </tr>
+                                </thead>
+                                <tbody className="font-light">
+                                <tr style={{height: 40, fontSize: 14}}>
+                                    <td> Số lượng</td>
+                                    <td>{total.total_sale}</td>
+                                    <td>{total.total_completed}</td>
+                                    <td>{total.total_failure}</td>
+                                    <td>{total.total_return}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
                     )}
 
                     {isSuccess && (
                         <>
-                            <div className="border border-gray-300 mt-6 mx-7">
+                        <div className="border border-gray-300 mt-6 mx-7">
                                 <TableDataHistory path={pathSaleHistory} cols={colSaleHistory}
                                                   rows={saleHistoryData}></TableDataHistory>
                             </div>

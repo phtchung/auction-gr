@@ -199,9 +199,9 @@ const ReqOrderTracking = () => {
                                 ></TabItem>
                                 <TabItem
                                     data={tabData[7]}
-                                    count={reqCount.count_calR}
-                                    onClick={() => handelClick(11)}
-                                    isSelected={selectedTab === 11}
+                                    count={reqCount.count_retR}
+                                    onClick={() => handelClick(9)}
+                                    isSelected={selectedTab === 9}
                                 ></TabItem>
                                 <TabItem
                                     data={tabData[8]}
