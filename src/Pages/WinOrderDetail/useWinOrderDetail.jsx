@@ -45,7 +45,7 @@ export default function useWinOrderDetail() {
     return { detail };
   }, []);
 
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading,isError } = useQuery({
     queryKey: ["getWinOrderDetail", id],
     queryFn: () => getWinOrderDetail(id),
     staleTime: 20 * 1000,
@@ -57,5 +57,6 @@ export default function useWinOrderDetail() {
     winDetailData: data?.detail,
     isSuccess,
     isLoading,
+    isError
   };
 }

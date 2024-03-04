@@ -8,13 +8,13 @@ import Header from "../../Components/Header/header.jsx";
 import SideBar from "../../Components/SideBar/index.jsx";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 import {toast} from "react-toastify";
-import {returnProductData} from "../../Services/admin/requestService.jsx";
+import {returnProductData} from "../../Services/requestService.jsx";
 
 const ReturnProduct = () => {
     const navigate = useNavigate();
     const {id} = useParams()
     const {state} = useLocation()
-    const [returnData, setreturnData] = useState({rq_id:id});
+    const [returnData, setreturnData] = useState({id:id});
     const handleReturnData = (key, value) => {
         setreturnData({...returnData, [key]: value});
     };
@@ -35,7 +35,7 @@ const ReturnProduct = () => {
             }
             const res = await returnProductData({...returnData});
             navigate("/resultSuccess", { state: 9});
-            setreturnData({rq_id:id});
+            setreturnData({id:id});
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }

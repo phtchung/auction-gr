@@ -24,3 +24,11 @@ export const sendRequest = async (request) => {
     data: request,
   });
 };
+
+export const returnProductData = async (returnProductData) => {
+  return privateHttp1({
+    method: "POST",
+    url: "/user/returnProduct",
+    data: returnProductData,
+  });
+};

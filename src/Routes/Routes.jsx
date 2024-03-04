@@ -34,7 +34,7 @@ export const UserRoutes = [
   { path: "/reqOrderTracking/reqOrderDetail/:id", element: <ReqOrderDetail /> },
   { path: "/productBid", element: <ProductBidding /> },
   { path: "/404", element: <PageNotFound /> },
-  { path: "/admin/resultSuccess", element: <ResultPage /> },
+  { path: "/resultSuccess", element: <ResultPage /> },
 
 ];
 
