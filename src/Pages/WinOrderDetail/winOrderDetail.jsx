@@ -13,13 +13,13 @@ import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
 import useWinOrdersTracking from "../WinOrdersTracking/useWinOrdersTracking.jsx";
 import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
-import {Image} from "antd";
+import {Image , Spin} from "antd";
 
 const WinOrderDetail = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
-    const {isLoading, isSuccess, winDetailData} = useWinOrderDetail();
+    const {isLoading, isSuccess, winDetailData,isError} = useWinOrderDetail();
     const {refetch, refetch1} = useWinOrdersTracking();
 
     const [dlvInfor, setDlvInfor] = useState(null);
@@ -60,6 +60,18 @@ const WinOrderDetail = () => {
             toast.error(error?.response?.data?.message);
         }
     };
+
+    if (isLoading) {
+        return (
+           <>
+                <Spin className="text-center mt-60"  tip="Loading" size="large"/>
+           </>
+
+        )
+    }
+    if(isError){
+        return navigate('/404')
+    }
     return (
         <>
             <Header/>

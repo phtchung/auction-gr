@@ -16,7 +16,7 @@ import Header from "../../Components/Header/header.jsx";
 import {useState} from "react";
 import useSaleHistory from "./useSaleHistory.jsx";
 import TableDataHistory from "../../Components/TableDataHistory/TableDataHistory.jsx";
-import {colSaleHistory, formatNumber, pathSaleHistory} from "../../Utils/constant.js";
+import {colSaleHistory, pathSaleHistory} from "../../Utils/constant.js";
 
 const SaleHistory = () => {
     const [filter, setFilter] = useState({});
