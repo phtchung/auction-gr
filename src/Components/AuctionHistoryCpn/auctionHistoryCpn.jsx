@@ -3,14 +3,18 @@ import {useNavigate} from "react-router-dom";
 import {formatDateTime} from "../../Utils/constant.js";
 
 const AuctionHistoryCpn = ({data}) => {
-    console.log(data);
 
     const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/auctionHistory" + `/auction/${data.id}`)
+        window.scrollTo(0, 0);
+    }
     return (
         <>
             <div
                 className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm cursor-pointer"
-                onClick={() => navigate("/auctionHistory" + `/auction/${data.id}`)}
+                onClick={handleNavigate}
             >
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
                     <div className="font-semibold pr-10">{data?.seller_name}</div>

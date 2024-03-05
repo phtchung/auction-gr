@@ -1,9 +1,7 @@
 .wrapper {
-  width: 1280px;
   margin-right: auto;
   margin-left: auto;
   display: flex;
-  margin-top: 80px;
 }
 
 .home-right {

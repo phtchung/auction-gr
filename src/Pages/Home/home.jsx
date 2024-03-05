@@ -1,11 +1,13 @@
-import Header from "../../Components/Header/header.jsx";
+import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 
 const Home = () => {
   return (
     <>
-      {" "}
-      <Header />
-      <div className="wrapper">This is home</div>
+        <MainLayOut>
+            <div >This is alooooooo home</div>
+        </MainLayOut>
+        {/*<Header />*/}
+
     </>
   );
 };
