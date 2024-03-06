@@ -66,3 +66,21 @@ input:focus{
 .change{
     transition: background-color 0.3s ease;
 }
+
+.overflow_css{
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.active_color{
+    color: #F27C08;
+}
+
+a a:hover{
+    color: black;
+}
+
+.ant-dropdown-open{
+
+}
