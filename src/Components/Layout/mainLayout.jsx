@@ -1,8 +1,10 @@
 import { LaptopOutlined, NotificationOutlined, UserOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import {Breadcrumb, Dropdown, Layout} from 'antd';
 import './layout.css'
 import '../../index.css'
-import { Input, Avatar } from 'antd';
+import { Input } from 'antd';
+import {NavLink, useNavigate} from "react-router-dom";
+import {useMemo} from "react";
 const { Search } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 const items1 = ['1', '2', '3'].map((key) => ({
@@ -23,10 +25,44 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
         }),
     };
 });
+const items = [
+    {
+        key: '1',
+        label: (
+            <NavLink  to="/user/profile">
+                Tài khoản cá nhân
+            </NavLink>
+        ),
+    },
+    {
+        key: '2',
+        label: (
+            <NavLink   to="/reqOrderTracking">
+                Đơn bán
+            </NavLink>
+        ),
+    },
+    {
+        key: '3',
+        label: (
+            <NavLink    to="/winOrderTracking">
+                Đơn mua
+            </NavLink>
+        ),
+    },
+    {
+        key: '4',
+        label: (
+            <NavLink    to="/winOrderTracking">
+               Đăng xuất
+            </NavLink>
+        ),
+    },
+];
 const MainLayOut = ({children}) => {
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
+    const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
+
+    const naviagate = useNavigate()
     return (
         <Layout >
             <Header
@@ -37,30 +73,42 @@ const MainLayOut = ({children}) => {
                     minHeight:'7rem',
                 }}
             >
-                <div className="flex font-sans font-normal justify-around items-center relative" style={{
+                <div className="flex font-normal justify-around items-center relative" style={{
                     maxWidth: 1280,
                     padding: '7px 20px',
                     top: 0,
                     height: '24px',
-                    margin: '4px auto',
+                    margin: '2px auto',
                     fontSize: '14px',
                     color:'white',
-                    lineHeight:18
-
+                    boxSizing: 'border-box',
+                    lineHeight:'20px'
                 }}>
-                    <div >Vận chuyển nhanh chóng</div>
-                    <div className="flex items-center  gap-1 ">
-                        <PhoneOutlined/>
-                        <span>Trung tâm hỗ trợ</span>
-                    </div>
-                    <div>Giá cả hợp lý</div>
+                        <span>Vận chuyển nhanh chóng</span>
+                        <div className="flex items-center  gap-1 ">
+                            <PhoneOutlined/>
+                            <span>Trung tâm Hỗ Trợ</span>
+                        </div>
+                        <div>Giá cả hợp lý</div>
+                    {
+                        !accessToken && <>
+                            <div className="flex gap-2 ">
+                                <div className="cursor-pointer border-r pr-2 border-r-slate-200">Đăng Ký</div>
+                                <div onClick={() => naviagate('/login')}
+                                     className="cursor-pointer">Đăng Nhập
+                                </div>
+                            </div>
+                        </>
+                    }
+
                 </div>
                 <header>
                     <div className="header_container">
-                        <div className="container items-center   flex flex-row ">
+                        <div className="container items-center  flex flex-row ">
 
-                                <div className="basis-2/12 h-full">
-                                    hello
+                            <div className="basis-2/12 h-full cursor-pointer"
+                                 onClick={() => naviagate('/')}>
+                                    Logo ở đây
                                 </div>
                                 <div className="basis-8/12 grow-0 h-full">
                                     <Search
@@ -74,24 +122,61 @@ const MainLayOut = ({children}) => {
                                     />
                                 </div>
                             <div className="basis-2/12 flex justify-around items-center h-full px-6 ">
-                                <div className="cursor-pointer h-full change ">
-                                    <img className=" p-2 rounded-md hover:bg-orange-500"
-                                         src="../../src/assets/auction.png" style={{width: "80%"}}
-                                         alt=""/>
-                                </div>
 
-                                <div className="cursor-pointer h-full change ">
-                                    <img className="p-2 rounded-md hover:bg-orange-500"
-                                         src="../../src/assets/notification-bell.png" style={{width: "80%"}}
-                                         alt=""/>
-                                </div>
+                                {
+                                    accessToken && <>
+                                        <div className="cursor-pointer h-full change " onClick={() => naviagate('/productBid')}>
+                                            <img className=" p-2 rounded-md hover:bg-orange-500"
+                                                 src="../../src/assets/auction.png" style={{width: "80%"}}
+                                                 alt=""/>
+                                        </div>
 
-                                <Avatar
-                                    style={{width:'30%'}}
-                                    className="cursor-pointer "
-                                    src="https://docs.material-tailwind.com/img/face-2.jpg"
-                                    size="large"
-                                />
+                                        <div className="cursor-pointer h-full change ">
+                                            <img className="p-2 rounded-md hover:bg-orange-500"
+                                                 src="../../src/assets/notification-bell.png" style={{width: "80%"}}
+                                                 alt=""/>
+                                        </div>
+                                        <Dropdown
+                                            overlayStyle={{marginTop: '-4px'}}
+                                            menu={{
+                                                items,
+                                                style: {marginTop: -15}
+                                            }}
+                                            placement="bottomRight"
+                                            arrow
+                                        >
+                                            <div className="cursor-pointer h-full change ">
+                                                <img className="p-2 pt-2 rounded-md hover:bg-orange-500"
+                                                     src="../../src/assets/burger-bar.png" style={{width: "80%"}}
+                                                     alt=""/>
+                                            </div>
+                                        </Dropdown>
+                                    </>
+                                }
+                                {
+                                    !accessToken && <>
+                                        <div className="cursor-pointer h-full change "
+                                        onClick={() => naviagate('/productBid')}>
+                                            <img className=" p-2 rounded-md hover:bg-orange-500"
+                                                 src="../../src/assets/auction.png" style={{width: "60%"}}
+                                                 alt=""/>
+                                        </div>
+
+                                        <div className="cursor-pointer h-full change ">
+                                            <img className="p-2 rounded-md hover:bg-orange-500"
+                                                 src="../../src/assets/notification-bell.png" style={{width: "60%"}}
+                                                 alt=""/>
+                                        </div>
+                                    </>
+                                }
+
+
+                                {/*<Avatar*/}
+                                {/*    style={{width: '30%'}}*/}
+                                {/*    className="cursor-pointer "*/}
+                                {/*    src="https://docs.material-tailwind.com/img/face-2.jpg"*/}
+                                {/*    size="large"*/}
+                                {/*/>*/}
                             </div>
                         </div>
                     </div>
@@ -100,9 +185,9 @@ const MainLayOut = ({children}) => {
             </Header>
             <Content
                 style={{
-                    marginTop:'7rem',
-                    padding:'0 36px',
-                    minHeight:'100vh'
+                    marginTop: '7rem',
+                    padding: '0 36px',
+
                 }}
                 className="container"
             >

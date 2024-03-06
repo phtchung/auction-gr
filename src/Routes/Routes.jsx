@@ -16,10 +16,13 @@ import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
 import ReturnProduct from "../Pages/ProductReturn/productReturn.jsx";
 
 
-export const NormalRoutes = [{ path: "/login", element: <Login /> }];
+export const NormalRoutes = [
+    { path: "/login", element: <Login /> },
+  { path: "/", element: <Home /> },
+];
 
 export const UserRoutes = [
-  { path: "/", element: <Home /> },
+
   { path: "/reqHistory", element: <RequestHistory /> },
   { path: "/reqHistory/reqHistoryDetail/:id", element: <ReqHistoryDetail /> },
   { path: "/winOrderTracking", element: <WinOrdersTracking /> },
