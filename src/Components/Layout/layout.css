@@ -14,13 +14,13 @@ header{
         right: 0;
         left: 0;
 }
-@media (min-width: 1200px)
-.container, .container-sm, .container-md, .container-lg, .container-xl {
+@media (min-width: 1280px)
+.container, .container-md, .container-lg, .container-xl {
     max-width: 1280px;
 }
 
 @media (min-width: 992px)
-.container, .container-sm, .container-md, .container-lg {
+.container  .container-sm, .container-md, .container-lg {
     max-width: 960px;
 }
 
@@ -73,6 +73,22 @@ input:focus{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/*.overflow_css_card{*/
+/*    width: 140px;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+.overflow_css_card {
+    width: 150px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Số dòng tối đa cần hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+}
 .active_color{
     color: #F27C08;
 }
@@ -81,6 +97,45 @@ a a:hover{
     color: black;
 }
 
-.ant-dropdown-open{
+:where(.css-dev-only-do-not-override-1b0bdye).ant-card-small >.ant-card-body{
+    padding: 0;
+    background-color: white;
+}
 
+:where(.css-dev-only-do-not-override-1b0bdye).ant-card .ant-card-body{
+    padding: 0;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-card .ant-card-cover img{
+    border-radius: 0;
+}
+
+.carousel-container{
+    width: 900px;
+}
+
+@media (min-width: 1280px)
+.carousel-container{
+    width: 900px;
+}
+
+
+@media (min-width: 992px)
+.carousel-container{
+    width: 680px;
+}
+
+
+@media (min-width: 768px)
+.carousel-container{
+    max-width: 464px;
+}
+
+@media (min-width: 576px)
+.carousel-container{
+    max-width: 300px;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-collapse-ghost >.ant-collapse-item >.ant-collapse-content >.ant-collapse-content-box {
+    padding:0;
 }
