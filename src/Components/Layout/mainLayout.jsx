@@ -7,10 +7,6 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {useMemo} from "react";
 const { Search } = Input;
 const { Header, Content, Footer, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
     const key = String(index + 1);
     return {
@@ -185,9 +181,9 @@ const MainLayOut = ({children}) => {
             </Header>
             <Content
                 style={{
-                    marginTop: '7rem',
+                    marginTop: '6.7rem',
                     padding: '0 36px',
-
+                    backgroundColor: '#f5f5f5'
                 }}
                 className="container"
             >

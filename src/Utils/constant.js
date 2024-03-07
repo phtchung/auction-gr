@@ -2,6 +2,9 @@ export const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
+export const formatMoney = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 export const colPending = [
     {id: "request_time", name: "Thời gian yêu cầu"},
     {id: "request_id", name: "Mã yêu cầu"},
@@ -723,4 +726,103 @@ export const rejectColumns =
         },
     ]
 
+function getItem(label, key, icon, children, type) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+        type,
+    };
+}
 
+export const categoriesItems = [
+    getItem('Điện tử', 'sub2', null, [
+        getItem('Máy tính', '5'),
+        getItem('Điện thoại', '6'),
+        getItem('Máy ảnh', '7'),
+        getItem('Linh kiện máy tính', '8'),
+        getItem('Ổ cứng', '13'),
+        getItem('Danh mục khác', '14'),
+    ]),
+    {
+        type: 'divider',
+    },
+    getItem('Đồng hồ', 'sub4', null, [
+        getItem('Đồng hồ nam', '9'),
+        getItem('Đồng hỗ nữ', '10'),
+        getItem('Đồng hồ Unisex', '11'),
+        getItem('Đồng hồ để bàn', '12'),
+    ]),
+    {
+        type: 'divider',
+    },
+    getItem('Nhà cửa đời sống', 'sub5', null, [
+        getItem('Dụng cụ nhà bếp', '15'),
+        getItem('Đồ gia dụng', '16'),
+        getItem('Dụng cụ sửa chữa', '17'),
+        getItem('Đồ trang trí', '18'),
+        getItem('Đồ nội thất', '19'),
+        getItem('Khác', '20'),
+    ]),
+    getItem('Thể thao', 'sub7', null, [
+        getItem('Dụng cụ thể thao', '21'),
+        getItem('Thời trang thể thao', '22'),
+        getItem('Thực phẩm thể thao', '23'),
+        getItem('Phụ kiện thể thao', '24'),
+        getItem('Khác', '25'),
+    ]),
+    getItem('Thời trang', 'sub8', null, [
+        getItem('Thời trang nữ', '26'),
+        getItem('Thời trang nam', '27'),
+        getItem('Thời trang trẻ em', '28'),
+        getItem('Thời trang nước ngoài', '29'),
+        getItem('Thời trang handmade', '30'),
+        getItem('Khác', '31'),
+    ]),
+    getItem('Phim, giải trí', 'sub9', null, [
+        getItem('DVD', '32'),
+        getItem('Đĩa CD', '33'),
+        getItem('Goods', '34'),
+        getItem('Băng video', '35'),
+        getItem('Khác', '36'),
+    ]),
+    getItem('Sức khỏe và làm đẹp', 'sub10', null, [
+        getItem('Mỹ phẩm', '37'),
+        getItem('Chăm sóc tóc', '38'),
+        getItem('Chăm sóc body', '39'),
+        getItem('Thực phẩm chức năng', '40'),
+        getItem('Dụng cụ Y tế', '41'),
+        getItem('Dụng cụ làm đẹp', '42'),
+        getItem('Khác', '43'),
+    ]),
+    getItem('Đồ trẻ em', 'sub11', null, [
+        getItem('Đồ chơi', '44'),
+        getItem('Đồ tắm', '45'),
+        getItem('Sản phẩm bảo vệ bé an toàn', '46'),
+        getItem('Tã, sản phẩm vệ sinh cho bé', '47'),
+        getItem('Quà lưu niệm', '48'),
+        getItem('Khác', '49'),
+    ]),
+    getItem('Sách và VPP', 'sub12', null, [
+        getItem('Phụ kiện các loại bàn', '50'),
+        getItem('Sách kinh doanh', '51'),
+        getItem('Văn học & Tiểu thuyết', '58'),
+        getItem('Văn phòng phẩm', '52'),
+        getItem('Sách thiếu nhi', '54'),
+        getItem('Sách tham khảo', '53'),
+        getItem('Truyện tranh', '55'),
+        getItem('Sách, truyện nước ngoài ', '56'),
+        getItem('Khác', '57'),
+    ]),
+    getItem('Phương tiện', 'sub13', null, [
+        getItem('Xe máy', '50'),
+        getItem('Linh kiện xe', '51'),
+        getItem('Phụ tùng xe ô tô', '52'),
+        getItem('Ô tô', '54'),
+        getItem('Xe đạp', '53'),
+        getItem('Khác', '57'),
+    ]),
+    getItem('Khác', 'sub14', null, [
+    ]),
+];
