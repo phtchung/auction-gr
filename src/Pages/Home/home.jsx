@@ -15,6 +15,7 @@ const Home = () => {
     const handleCollapseChange = (keys) => {
         setActiveKey(keys);
     };
+
     return (
         <>
             <MainLayOut>
@@ -22,7 +23,7 @@ const Home = () => {
                     <div>
                         {/*//chia 2 cột , 1 cột danhm muc , 1 sột sản phẩm */}
                         <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
-                            <div className=" md:basis-1/5 sm:basis-3/4 pt-5 "
+                            <div className=" md:basis-1/5 sm:basis-1/4 pt-5 "
                                  style={{backgroundColor: "white"}}>
                                 <div className="mb-1 text-base">Danh mục</div>
                                 <Menu
@@ -1357,20 +1358,12 @@ const Home = () => {
                                             },
                                         ]}
                                     />
-
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
             </MainLayOut>
-            {/*<Header />*/}
-
         </>
     );
 };
