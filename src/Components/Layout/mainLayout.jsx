@@ -5,6 +5,7 @@ import '../../index.css'
 import { Input } from 'antd';
 import {NavLink, useNavigate} from "react-router-dom";
 import {useMemo} from "react";
+import useProfile from "../../Pages/Profile/useProfile.jsx";
 const { Search } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
@@ -57,7 +58,7 @@ const items = [
 ];
 const MainLayOut = ({children}) => {
     const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
-
+    const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
     return (
         <Layout >
@@ -69,9 +70,9 @@ const MainLayOut = ({children}) => {
                     minHeight:'7rem',
                 }}
             >
-                <div className="flex font-normal justify-around items-center relative" style={{
+                <div className="flex font-normal justify-between mx-10 items-center relative" style={{
                     maxWidth: 1280,
-                    padding: '7px 20px',
+                    padding: '7px 40px',
                     top: 0,
                     height: '24px',
                     margin: '2px auto',
@@ -81,7 +82,7 @@ const MainLayOut = ({children}) => {
                     lineHeight:'20px'
                 }}>
                         <span>Vận chuyển nhanh chóng</span>
-                        <div className="flex items-center  gap-1 ">
+                        <div className="flex items-center   gap-1 ">
                             <PhoneOutlined/>
                             <span>Trung tâm Hỗ Trợ</span>
                         </div>
@@ -93,6 +94,14 @@ const MainLayOut = ({children}) => {
                                 <div onClick={() => naviagate('/login')}
                                      className="cursor-pointer">Đăng Nhập
                                 </div>
+                            </div>
+                        </>
+                    }
+                    {
+                        accessToken && <>
+                            <div className="flex items-center gap-0.5  justify-start ">
+                                <UserOutlined />
+                                <div className="cursor-pointer text-left overflow_css">{userData?.username}</div>
                             </div>
                         </>
                     }

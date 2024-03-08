@@ -14,11 +14,14 @@ import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
 import ReturnProduct from "../Pages/ProductReturn/productReturn.jsx";
+import CategoriesFilter from "../Pages/CategoriesFilter/categoriesFilter.jsx";
 
 
 export const NormalRoutes = [
     { path: "/login", element: <Login /> },
   { path: "/", element: <Home /> },
+  { path:"/categories/:id", element: <CategoriesFilter /> }
+
 ];
 
 export const UserRoutes = [

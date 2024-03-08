@@ -799,8 +799,8 @@ export const categoriesItems = [
     getItem('Đồ trẻ em', 'sub11', null, [
         getItem('Đồ chơi', '44'),
         getItem('Đồ tắm', '45'),
-        getItem('Sản phẩm bảo vệ bé an toàn', '46'),
-        getItem('Tã, sản phẩm vệ sinh cho bé', '47'),
+        getItem('Sản phẩm bảo vệ bé', '46'),
+        getItem('Tã, sản phẩm vệ sinh', '47'),
         getItem('Quà lưu niệm', '48'),
         getItem('Khác', '49'),
     ]),

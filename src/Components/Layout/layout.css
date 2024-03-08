@@ -9,7 +9,7 @@ header{
 }
 .header{
         position: fixed;
-        z-index: 8;
+        z-index: 800;
         top: 0;
         right: 0;
         left: 0;
@@ -138,4 +138,29 @@ a a:hover{
 
 :where(.css-dev-only-do-not-override-1b0bdye).ant-collapse-ghost >.ant-collapse-item >.ant-collapse-content >.ant-collapse-content-box {
     padding:0;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-select-single .ant-select-selector {
+    border-radius: 0;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-checkbox .ant-checkbox-inner{
+    border-radius: 0;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #F27C08;
+    border-color: #F27C08;
+}
+:where(.css-dev-only-do-not-override-1b0bdye).ant-checkbox-checked .ant-checkbox-inner :hover {
+    background-color: #F27C08;
+    border-color: #F27C08;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-input {
+    border-radius: 0;
+}
+
+:where(.css-dev-only-do-not-override-1b0bdye).ant-pagination .ant-pagination-item{
+    border-radius: 0;
 }
