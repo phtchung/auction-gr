@@ -73,6 +73,13 @@ input:focus{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.overflow_css_w_158{
+    width: 158px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /*.overflow_css_card{*/
 /*    width: 140px;*/
 /*    white-space: nowrap;*/
