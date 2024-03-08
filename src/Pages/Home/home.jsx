@@ -6,7 +6,9 @@ import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import Carousel from "react-multi-carousel";
 import CountDownDesSmall from "../../Components/Clock/countDownDesSmall.jsx";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 const Home = () => {
+    const navigate = useNavigate()
     const onClick = (e) => {
         console.log('click ', e);
     };
@@ -15,6 +17,10 @@ const Home = () => {
     const handleCollapseChange = (keys) => {
         setActiveKey(keys);
     };
+    const handleNavigateSellerHome = () => {
+        navigate('/seller/ptchung')
+        window.scrollTo(0, 0);
+    }
 
     return (
         <>
@@ -1148,34 +1154,6 @@ const Home = () => {
                                                 </div>
                                             </Card>
                                         </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
                                     </div>
 
 
@@ -1198,34 +1176,7 @@ const Home = () => {
                                     </div>
 
                                     <div className="flex flex-wrap ">
-                                        <div className="md:basis-1/5 p-2">
-                                            <Card
-                                                hoverable
-                                                style={{
-                                                    width: 209,
-                                                }}
-                                                actions={[
-                                                    <div className="flex gap-1 justify-center">
-                                                        <span>4.5</span>
-                                                        <StarFilled className="text-yellow-500"/>
-
-                                                    </div>,
-                                                    <div>287 <span className="text-xs">đơn hàng</span></div>,
-                                                ]}
-                                            >
-                                                <div className="flex flex-row p-2 pb-2 items-center gap-2">
-                                                    <Avatar size="large"
-                                                            src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>
-                                                    <div
-                                                        className="overflow_css text-neutral-700 text-base font-sans"> Phạm
-                                                        Thành Chunng hàng nnnnnnnnnnn
-                                                    </div>
-                                                </div>
-                                            </Card>
-
-
-                                        </div>
-                                        <div className="md:basis-1/5 p-2">
+                                        <div className="md:basis-1/5 p-2" onClick={handleNavigateSellerHome}>
                                             <Card
                                                 hoverable
                                                 style={{
@@ -1308,56 +1259,56 @@ const Home = () => {
                                         </div>
 
                                     </div>
-                                    <Collapse
-                                        accordion
-                                        bordered={false}
-                                        size="small"
-                                        destroyInactivePanel={true}
-                                        style={{padding:0}}
-                                        expandIcon={({ isActive }) => (
-                                            <span className={`custom-icon  text-right ${isActive ? '-z-50' : ''}`}>
-                                                {isActive ? '' : <div>Show more</div>}
-                                            </span>
-                                        )}
-                                        ghost
-                                        activeKey={activeKey}
-                                        onChange={handleCollapseChange}
-                                        items={[
-                                            {
-                                                key: '1',
-                                                 children: <p>
-                                                    <div className="-mt-10 md:basis-1/5 p-2">
-                                                        <Card
-                                                            hoverable
-                                                            style={{
-                                                                width: 209,
-                                                            }}
-                                                            actions={[
-                                                                <div className="flex gap-1 justify-center">
-                                                                    <span>4.5</span>
-                                                                    <StarFilled className="text-yellow-500"/>
+                                    {/*collapse xem thêm nma chưa đc */}
+                                    {/*<Collapse*/}
+                                    {/*    accordion*/}
+                                    {/*    bordered={false}*/}
+                                    {/*    size="small"*/}
+                                    {/*    destroyInactivePanel={true}*/}
+                                    {/*    style={{padding:0}}*/}
+                                    {/*    expandIcon={({ isActive }) => (*/}
+                                    {/*        <span className={`custom-icon  text-right ${isActive ? '-z-50' : ''}`}>*/}
+                                    {/*            {isActive ? '' : <div>Show more</div>}*/}
+                                    {/*        </span>*/}
+                                    {/*    )}*/}
+                                    {/*    ghost*/}
+                                    {/*    activeKey={activeKey}*/}
+                                    {/*    onChange={handleCollapseChange}*/}
+                                    {/*    items={[*/}
+                                    {/*        {*/}
+                                    {/*            key: '1',*/}
+                                    {/*             children: <p>*/}
+                                    {/*                <div className="-mt-10 md:basis-1/5 p-2">*/}
+                                    {/*                    <Card*/}
+                                    {/*                        hoverable*/}
+                                    {/*                        style={{*/}
+                                    {/*                            width: 209,*/}
+                                    {/*                        }}*/}
+                                    {/*                        actions={[*/}
+                                    {/*                            <div className="flex gap-1 justify-center">*/}
+                                    {/*                                <span>4.5</span>*/}
+                                    {/*                                <StarFilled className="text-yellow-500"/>*/}
 
-                                                                </div>,
-                                                                <div>287 <span className="text-xs">đơn hàng</span>
-                                                                </div>,
-                                                            ]}
-                                                        >
-                                                            <div className="flex flex-row p-2 pb-2 items-center gap-2">
-                                                                <Avatar size="large"
-                                                                        src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>
-                                                                <div
-                                                                    className="overflow_css text-neutral-700 text-base font-sans"> Phạm
-                                                                    Thành Chunng hàng nnnnnnnnnnn
-                                                                </div>
-                                                            </div>
-                                                        </Card>
+                                    {/*                            </div>,*/}
+                                    {/*                            <div>287 <span className="text-xs">đơn hàng</span>*/}
+                                    {/*                            </div>,*/}
+                                    {/*                        ]}*/}
+                                    {/*                    >*/}
+                                    {/*                        <div className="flex flex-row p-2 pb-2 items-center gap-2">*/}
+                                    {/*                            <Avatar size="large"*/}
+                                    {/*                                    src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>*/}
+                                    {/*                            <div*/}
+                                    {/*                                className="overflow_css text-neutral-700 text-base font-sans"> Phạm*/}
+                                    {/*                                Thành Chunng hàng nnnnnnnnnnn*/}
+                                    {/*                            </div>*/}
+                                    {/*                        </div>*/}
+                                    {/*                    </Card>*/}
 
-
-                                                    </div>
-                                                </p>,
-                                            },
-                                        ]}
-                                    />
+                                    {/*                </div>*/}
+                                    {/*            </p>,*/}
+                                    {/*        },*/}
+                                    {/*    ]}*/}
+                                    {/*/>*/}
                                 </div>
                             </div>
                         </div>
