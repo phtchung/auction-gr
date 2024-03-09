@@ -16,13 +16,15 @@ import PageNotFound from "../Components/PageNotFound/pageNotFound.jsx";
 import ReturnProduct from "../Pages/ProductReturn/productReturn.jsx";
 import CategoriesFilter from "../Pages/CategoriesFilter/categoriesFilter.jsx";
 import SellerHome from "../Pages/Seller/sellerHome.jsx";
+import ProductDetail from "../Pages/ProductDetail/productDetail.jsx";
 
 
 export const NormalRoutes = [
     { path: "/login", element: <Login /> },
   { path: "/", element: <Home /> },
   { path:"/categories/:id", element: <CategoriesFilter /> },
-  { path:"/seller/:name", element: <SellerHome /> }
+  { path:"/seller/:name", element: <SellerHome /> },
+  { path:"/auction/item/:id", element: <ProductDetail /> }
 
 ];
 

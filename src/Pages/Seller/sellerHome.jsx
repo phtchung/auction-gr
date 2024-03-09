@@ -41,7 +41,7 @@ const SellerHome = () => {
 
                       <div className=" md:basis-1/5 sm:basis-1/4 ">
                           <div style={{backgroundColor: "white"}} className="pt-1 mb-5">
-                              <div className="flex flex-row p-2 pb-1 items-center gap-2">
+                              <div className="flex flex-row p-3 pb-1 items-center gap-2">
                                   <Avatar size="large"
                                           src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
                                   <div
@@ -220,11 +220,23 @@ const SellerHome = () => {
                                               </div>
                                               <div className="flex flex-row items-center gap-1 overflow_css">
                                                   <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Hiện
                                                       tại :
                                                   </div>
                                                   <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
+                                                      className="text-red-700 mb-1 font-semibold hover:text-red-500 "
+                                                      style={{fontSize: 16}}> {formatMoney(273000)} đ
+                                                  </div>
+                                              </div>
+                                              <div className="flex flex-row items-center gap-1 overflow_css">
+                                                  <div
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Vận chuyển:
+                                                  </div>
+                                                  <div
+                                                      className=" mb-0.5  "
+                                                      style={{fontSize: 12}}> {formatMoney(27000)} đ
                                                   </div>
                                               </div>
                                               <div className="flex flex-row items-center gap-5 pb-0.5">
@@ -265,11 +277,23 @@ const SellerHome = () => {
                                               </div>
                                               <div className="flex flex-row items-center gap-1 overflow_css">
                                                   <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Hiện
                                                       tại :
                                                   </div>
                                                   <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
+                                                      className="text-red-700 mb-1 font-semibold hover:text-red-500 "
+                                                      style={{fontSize: 16}}> {formatMoney(273000)} đ
+                                                  </div>
+                                              </div>
+                                              <div className="flex flex-row items-center gap-1 overflow_css">
+                                                  <div
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Vận chuyển:
+                                                  </div>
+                                                  <div
+                                                      className=" mb-0.5  "
+                                                      style={{fontSize: 12}}> {formatMoney(27000)} đ
                                                   </div>
                                               </div>
                                               <div className="flex flex-row items-center gap-5 pb-0.5">
@@ -310,146 +334,23 @@ const SellerHome = () => {
                                               </div>
                                               <div className="flex flex-row items-center gap-1 overflow_css">
                                                   <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Hiện
                                                       tại :
                                                   </div>
                                                   <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
+                                                      className="text-red-700 mb-1 font-semibold hover:text-red-500 "
+                                                      style={{fontSize: 16}}> {formatMoney(273000)} đ
                                                   </div>
-                                              </div>
-                                              <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><img
-                                                          src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                          alt=""/></div>
-                                                      <span>2</span>
-                                                  </div>
-
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><ClockCircleOutlined/></div>
-                                                      <span>3 ngày </span>
-                                                  </div>
-
-                                              </div>
-                                          </div>
-                                      </Card>
-                                  </div>
-                                  <div className="md:basis-1/5  p-2">
-                                      <Card
-                                          size="small"
-                                          hoverable
-                                          bordered={false}
-                                          style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                          cover={<img alt="example" style={{
-                                              width: '100%',
-                                              height: '163.84px',
-                                              backgroundSize: 'cover',
-                                              backgroundRepeat: 'no-repeat',
-                                          }}
-                                                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                      >
-                                          <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                              <div
-                                                  className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                  Phạm Nguyễn
                                               </div>
                                               <div className="flex flex-row items-center gap-1 overflow_css">
                                                   <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                      tại :
+                                                      className="text-neutral-500 hover:text-neutral-700 "
+                                                      style={{fontSize: 12}}>Vận chuyển:
                                                   </div>
                                                   <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                  </div>
-                                              </div>
-                                              <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><img
-                                                          src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                          alt=""/></div>
-                                                      <span>2</span>
-                                                  </div>
-
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><ClockCircleOutlined/></div>
-                                                      <span>3 ngày </span>
-                                                  </div>
-
-                                              </div>
-                                          </div>
-                                      </Card>
-                                  </div>
-                                  <div className="md:basis-1/5  p-2">
-                                      <Card
-                                          size="small"
-                                          hoverable
-                                          bordered={false}
-                                          style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                          cover={<img alt="example" style={{
-                                              width: '100%',
-                                              height: '163.84px',
-                                              backgroundSize: 'cover',
-                                              backgroundRepeat: 'no-repeat',
-                                          }}
-                                                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                      >
-                                          <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                              <div
-                                                  className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                  Phạm Nguyễn
-                                              </div>
-                                              <div className="flex flex-row items-center gap-1 overflow_css">
-                                                  <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                      tại :
-                                                  </div>
-                                                  <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                  </div>
-                                              </div>
-                                              <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><img
-                                                          src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                          alt=""/></div>
-                                                      <span>2</span>
-                                                  </div>
-
-                                                  <div className="flex flex-row items-center gap-1 ">
-                                                      <div><ClockCircleOutlined/></div>
-                                                      <span>3 ngày </span>
-                                                  </div>
-
-                                              </div>
-                                          </div>
-                                      </Card>
-                                  </div>
-                                  <div className="md:basis-1/5  p-2">
-                                      <Card
-                                          size="small"
-                                          hoverable
-                                          bordered={false}
-                                          style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                          cover={<img alt="example" style={{
-                                              width: '100%',
-                                              height: '163.84px',
-                                              backgroundSize: 'cover',
-                                              backgroundRepeat: 'no-repeat',
-                                          }}
-                                                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                      >
-                                          <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                              <div
-                                                  className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                  Phạm Nguyễn
-                                              </div>
-                                              <div className="flex flex-row items-center gap-1 overflow_css">
-                                                  <div
-                                                      className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                      tại :
-                                                  </div>
-                                                  <div
-                                                      className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
+                                                      className=" mb-0.5  "
+                                                      style={{fontSize: 12}}> {formatMoney(27000)} đ
                                                   </div>
                                               </div>
                                               <div className="flex flex-row items-center gap-5 pb-0.5">

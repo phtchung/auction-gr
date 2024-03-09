@@ -94,7 +94,6 @@ input:focus{
     -webkit-line-clamp: 2; /* Số dòng tối đa cần hiển thị */
     -webkit-box-orient: vertical;
     overflow: hidden;
-
 }
 .active_color{
     color: #F27C08;
@@ -119,6 +118,10 @@ a a:hover{
 
 .carousel-container{
     width: 900px;
+}
+
+.carousel-container-categories{
+    width: 650px;
 }
 
 @media (min-width: 1280px)
@@ -170,4 +173,8 @@ a a:hover{
 
 :where(.css-dev-only-do-not-override-1b0bdye).ant-pagination .ant-pagination-item{
     border-radius: 0;
+}
+
+.react-multiple-carousel__arrow{
+    z-index: 0!important;
 }
