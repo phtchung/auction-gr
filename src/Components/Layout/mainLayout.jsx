@@ -61,7 +61,7 @@ const MainLayOut = ({children}) => {
     const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
     return (
-        <Layout >
+        <Layout>
             <Header
                 className="header"
                 style={{

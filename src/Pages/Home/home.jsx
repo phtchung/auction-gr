@@ -1,5 +1,5 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Menu, Card, Avatar, Collapse} from 'antd'
+import {Menu, Card, Avatar} from 'antd'
 import {ClockCircleOutlined,StarFilled  } from '@ant-design/icons';
 import {categoriesItems, formatMoney} from "../../Utils/constant.js";
 import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
@@ -12,11 +12,7 @@ const Home = () => {
     const onClick = (e) => {
         console.log('click ', e);
     };
-    const [activeKey, setActiveKey] = useState([]);
 
-    const handleCollapseChange = (keys) => {
-        setActiveKey(keys);
-    };
     const handleNavigateSellerHome = () => {
         navigate('/seller/ptchung')
         window.scrollTo(0, 0);
@@ -24,7 +20,7 @@ const Home = () => {
 
     return (
         <>
-            <MainLayOut>
+            <MainLayOut style={{zIndex:10000}}>
                 <div className="md:container">
                     <div>
                         {/*//chia 2 cột , 1 cột danhm muc , 1 sột sản phẩm */}
@@ -60,7 +56,7 @@ const Home = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <CountDownTitleBig hours={1} minutes={30} seconds={0}></CountDownTitleBig>
+                                            <CountDownTitleBig hours={12} minutes={30} seconds={0} backgroundColor={'bg-red-400'}></CountDownTitleBig>
                                         </div>
                                     </div>
 
@@ -132,7 +128,7 @@ const Home = () => {
                                             >
                                                 <div className="flex flex-col text-left py-1 px-1">
                                                     <div
-                                                        className="overflow_css_card text-base font-sans  leading-6 hover:text-orange-300 ">Chung Phạm Nguyễn
+                                                        className="overflow_css_card text-base font-sans  hover:text-orange-300" style={{lineHeight:'1.3rem'}}>Chung Phạm Nguyễn
                                                     </div>
                                                     <div className="flex flex-row items-center gap-1 overflow_css">
                                                         <div
