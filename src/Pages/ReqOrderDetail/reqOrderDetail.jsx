@@ -52,12 +52,6 @@ const ReqOrderDetail = () => {
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-6 text-left">
-                                                    <div> Ghi chú :</div>
-                                                    <div className="font-normal col-span-5">
-                                                        {reqData?.deliData?.note}
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-6 text-left">
                                                     <div> Trạng thái đơn hiện tại :</div>
                                                     <div className="font-normal col-span-2 text-amber-400">
                                                         {convertWinStatus(reqData?.status)}
@@ -75,7 +69,7 @@ const ReqOrderDetail = () => {
                                     <></>
                                 )}
 
-                                {isSuccess && reqData.status === 9 && (
+                                {isSuccess && (reqData.status === 9 || reqData.status === 14) && (
                                     <>
                                         <div className="flex justify-between m-2.5 items-center px-2">
                                             <div className="text-left text-sm font-semibold ">
@@ -93,7 +87,11 @@ const ReqOrderDetail = () => {
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Lí do :</div>
-                                                <div className="font-normal  col-span-2">Người dùng</div>
+                                                <div className="font-normal  col-span-2">{reqData?.return_reason}</div>
+                                            </div>
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Ảnh minh chứng :</div>
+                                                <div className="font-normal  col-span-2">{reqData?.return_reason}</div>
                                             </div>
 
                                         </div>
@@ -103,7 +101,7 @@ const ReqOrderDetail = () => {
                                 {reqData.status === 11 && (
                                     <>
                                         <div className="flex justify-between m-2.5 items-center px-2">
-                                            <div className="text-left text-base font-medium ">
+                                        <div className="text-left text-base font-medium ">
                                                 Lí do hủy
                                             </div>
                                         </div>

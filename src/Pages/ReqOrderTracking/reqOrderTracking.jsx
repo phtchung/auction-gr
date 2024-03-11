@@ -1,6 +1,8 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import "./home.css";
 import {
+    canReturn,
+    isUsed,
     numberToString,
     pending,
     rankItems,
@@ -223,9 +225,9 @@ const ReqOrderTracking = () => {
                             <Dialog open={open} onClose={closepopup} fullWidth maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
-                  <span className="font-semibold text-base">
-                    Tạo yêu cầu đấu giá
-                  </span>
+                                  <span className="font-semibold text-base">
+                                    Tạo yêu cầu đấu giá
+                                  </span>
                                         <div
                                             onClick={closepopup}
                                             className="bg-black rounded cursor-pointer text-base text-white hover:bg-neutral-600 border-none font-medium focus:outline-0">
@@ -238,6 +240,7 @@ const ReqOrderTracking = () => {
                                     <Stack spacing={2} margin={1}>
                                         <div className="text-sm font-semibold">
                                             Thông tin sản phẩm
+                                            <small className="font-thin text-xs"> [Thương hiệu sản phẩm nếu không có thì bỏ trống]</small>
                                         </div>
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField
@@ -258,7 +261,7 @@ const ReqOrderTracking = () => {
                                             <FormControl
                                                 size="small"
                                                 variant="filled"
-                                                sx={{minWidth: 200}}
+                                                sx={{minWidth: 190}}
                                             >
                                                 <InputLabel id="demo-simple-select-filled-label">
                                                     Chất lượng *
@@ -281,6 +284,92 @@ const ReqOrderTracking = () => {
                                                     ))}
                                                 </Select>
                                             </FormControl>
+                                        </div>
+                                        <div className="flex justify-between items-center gap-6">
+                                            <TextField
+                                                id="filled-basic"
+                                                fullWidth
+                                                sx={{minWidth: 185}}
+                                                color="info"
+                                                defaultValue={
+                                                    request?.brand ? request?.brand : null
+                                                }
+                                                onChange={(e) =>
+                                                    handleRequest("brand", e.target.value)
+                                                }
+                                                label="Thương hiệu"
+                                                size="small"
+                                                variant="filled"
+                                            />
+
+                                            <FormControl
+                                                size="small"
+                                                variant="filled"
+                                                sx={{minWidth: 185}}
+                                            >
+                                                <InputLabel id="demo-simple-select-filled-label">
+                                                    Tình trạng
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-filled-label"
+                                                    id="demo-simple-select-filled"
+                                                    defaultValue={
+                                                        requestCurrent?.current?.is_used ? requestCurrent?.current?.is_used : null
+                                                    }
+                                                >
+                                                    {isUsed.map((item) => (
+                                                        <MenuItem
+                                                            key={item.value}
+                                                            value={item.value}
+                                                            onClick={() => handleRequest("is_used", item.value)}
+                                                        >
+                                                            {item.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                            <FormControl
+                                                size="small"
+                                                variant="filled"
+                                                sx={{minWidth: 185}}
+                                            >
+                                                <InputLabel id="demo-simple-select-filled-label">
+                                                    Trả hàng ?
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-filled-label"
+                                                    id="demo-simple-select-filled"
+                                                    defaultValue={
+                                                        requestCurrent?.current?.can_return ? requestCurrent?.current?.can_return : null
+                                                    }
+                                                >
+                                                    {canReturn.map((item) => (
+                                                        <MenuItem
+                                                            key={item.value}
+                                                            value={item.value}
+                                                            onClick={() => handleRequest("can_return", item.value)}
+                                                        >
+                                                            {item.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+
+                                            <TextField
+                                                id="filled-basic"
+                                                fullWidth
+                                                sx={{minWidth: 185}}
+                                                color="info"
+                                                defaultValue={
+                                                    request?.delivery_from ? request?.delivery_from : null
+                                                }
+                                                onChange={(e) =>
+                                                    handleRequest("delivery_from", e.target.value)
+                                                }
+                                                label="Nơi gửi hàng"
+                                                size="small"
+                                                variant="filled"
+                                            />
                                         </div>
 
                                         <div className="text-sm font-semibold">
@@ -328,7 +417,7 @@ const ReqOrderTracking = () => {
                                                 onChange={(e) =>
                                                     handleRequest("step_price", e.target.value)
                                                 }
-                                                label="Step Price *"
+                                                label="Bước giá *"
                                                 variant="filled"
                                             />
                                             <TextField
@@ -362,6 +451,7 @@ const ReqOrderTracking = () => {
                                         <div>
                                             <FileUpload length={16} onGetFormData={handleFileUpload}/>
                                         </div>
+
                                         <div className="text-sm font-semibold">Mô tả sản phẩm
                                             <small
                                                 className="font-thin text-xs"> [Nêu rõ đặc điểm của sản phẩm]

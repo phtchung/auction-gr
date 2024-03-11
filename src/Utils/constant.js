@@ -285,9 +285,13 @@ export const numberToString = (state) => {
         case 10:
             return "Thất bại";
         case 9:
-            return "Trả hàng";
+            return "Yêu cầu trả hàng";
         case 13:
             return "Từ chối";
+        case 14:
+            return "Duyệt trả hàng";
+        case 15:
+            return "Từ chối trả hàng";
         default:
             return "Chờ duyệt";
     }
@@ -324,9 +328,11 @@ export const statusToString = (state) => {
         case 8:
             return "Hoàn thành";
         case 9:
-            return "Trả hàng";
+            return "Yêu cầu trả hàng";
         case 11:
             return "Hủy";
+        case 14:
+            return "Trả hàng thành công";
         default:
             return "Thắng đấu giá";
     }
@@ -444,6 +450,15 @@ export const rankItems = [
     {value: "C", label: "C"},
     {value: "D", label: "D"},
 ];
+export const isUsed = [
+    {value: "1", label: "Đã sử dụng"},
+    {value: "0", label: "Chưa sử dụng"},
+];
+
+export const canReturn = [
+    {value: "1", label: "Có thể trả"},
+    {value: "0", label: "Không thể trả"},
+];
 
 export const categories = [
     {value: "6590eeb91a599365d4b68951", label: "Điện tử"},
@@ -507,14 +522,30 @@ export function convertWinStatus(status) {
         case 8:
             return "Đã nhận hàng";
         case 9:
-            return "Trả hàng";
+            return "Yêu cầu trả hàng";
         case 11 :
             return "Hủy thành công"
+        case 14 :
+            return "Trả hàng thành công"
         default:
             return " ";
     }
 }
 
+export function convertCanReturn(status) {
+    switch (status) {
+        case 'Có thể':
+            return 1;
+        case 'Không':
+            return 0;
+        case 1:
+            return "Có thể";
+        case 0:
+            return "Không";
+        default:
+            return " ";
+    }
+}
 
 export const newReqColumns =
     [

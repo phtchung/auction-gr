@@ -61,6 +61,14 @@ const RequestInfo = ({data}) => {
                     <div> Chất lượng :</div>
                     <div className="font-normal col-span-2"> {data?.rank}</div>
                 </div>
+                <div className="grid grid-cols-6 text-left">
+                    <div> Thương hiệu :</div>
+                    <div className="font-normal col-span-2">
+                        {data?.brand}
+                    </div>
+                    <div> Tình trạng :</div>
+                    <div className="font-normal col-span-2"> {data?.is_used} </div>
+                </div>
 
                 <div className="grid grid-cols-6 text-left">
                     <div> Giá khởi điểm :</div>
@@ -75,6 +83,14 @@ const RequestInfo = ({data}) => {
                     <div className="font-normal col-span-2"> {data?.step_price} VND</div>
                     <div> Phí vận chuyển :</div>
                     <div className="font-normal col-span-2"> {data?.shipping_fee} VND</div>
+                </div>
+                <div className="grid grid-cols-6 text-left">
+                    <div> Trả hàng :</div>
+                    <div className="font-normal col-span-2">
+                        {data?.can_return}
+                    </div>
+                    <div> Nơi gửi hàng :</div>
+                    <div className="font-normal col-span-2"> {data?.delivery_from} </div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">
@@ -102,9 +118,9 @@ const RequestInfo = ({data}) => {
                         </div>
                     </>
                 }
-                    <div className="grid grid-cols-6 text-left">
+                <div className="grid grid-cols-6 text-left">
                     <div> Các hình ảnh liên quan :</div>
-                    </div>
+                </div>
                 {
                     data.image_list &&
                     <>
