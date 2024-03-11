@@ -22,14 +22,13 @@ export default function useWinOrdersTracking() {
   );
 
   const parseData = useCallback((item) => {
-    console.log("item", item);
     const winTrackingData = item?.winOrderList?.map((data) => {
       return {
         product_id: data?._id,
         product_name: data?.product_name,
         rank: data?.rank,
         status: data?.status,
-        status_word:data?.status === 9 ? 'Trả hàng' : 'Hủy',
+        status_word:data?.status === 9 ? 'Yêu cầu trả hàng' : 'Trả hàng thành công',
         createdAt: formatDateTime(new Date(data?.createdAt)),
         reserve_price: data?.reserve_price,
         final_price: data?.final_price,

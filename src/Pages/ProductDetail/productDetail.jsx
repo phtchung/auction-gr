@@ -1,17 +1,23 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import  Carousel from "react-multi-carousel";
-import {Avatar, Breadcrumb, Card} from "antd";
+import {Avatar, Breadcrumb,Form, Card, Input} from "antd";
 import {formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import {ClockCircleOutlined, StarFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import CountDownDesSmall from "../../Components/Clock/countDownDesSmall.jsx";
-
-
+import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
+import {useState} from "react";
+import {Button} from "@material-tailwind/react";
 
 const ProductDetail = () => {
     const targetDate = '2024-03-13T14:45:00';
     const navigate = useNavigate()
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
+
+    const [open1, setOpen1] = useState(false);
+    const handleOpen1 = () => setOpen1(!open1);
   return(
       <>
           <MainLayOut>
@@ -220,7 +226,7 @@ const ProductDetail = () => {
                                           <div className="flex flex-col text-left py-1 px-1">
                                               <div
                                                   className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                  hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
+                                                  hoa xxxxxxxxxxxdsssssxxxxx d
                                               </div>
                                               <div className="flex flex-row items-center gap-1 overflow_css">
                                                   <div className="text-neutral-500 text-xs">Hiện tại :</div>
@@ -335,14 +341,14 @@ const ProductDetail = () => {
                                       <span className="text-sm text-blue-800">2 lượt đấu giá</span>
                                   </div>
 
-                                  <div className="flex flex-row items-center gap-1 ">
-                                      <div><img
-                                          style={{width: 24, height: 24}}
-                                          src="https://s.yimg.jp/images/auc/pc/item/image/1.0.2/icon_time.svg"
-                                          alt=""/>
-                                      </div>
-                                      <span className="text-lg">3 ngày </span>
-                                  </div>
+                                  {/*<div className="flex flex-row items-center gap-1 ">*/}
+                                  {/*    <div><img*/}
+                                  {/*        style={{width: 24, height: 24}}*/}
+                                  {/*        src="https://s.yimg.jp/images/auc/pc/item/image/1.0.2/icon_time.svg"*/}
+                                  {/*        alt=""/>*/}
+                                  {/*    </div>*/}
+                                  {/*    <span className="text-lg">3 ngày </span>*/}
+                                  {/*</div>*/}
                                   <div className="flex flex-row items-center text-xs px-1 bg-amber-100 gap-1 ">
 
                                       <span className="">Kết thúc : 2023/03/13 21:45:00</span>
@@ -351,13 +357,15 @@ const ProductDetail = () => {
                               </div>
                               <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
                                   <button type="button"
+                                          onClick={handleOpen}
                                           className="text-xl hover:border-amber-600 hover:bg-amber-100 focus:outline-none  p-2.5 font-semibold  text-white rounded border-amber-500 cursor-pointer"
                                           style={{backgroundColor: '#e8680e', width: '100%'}}
                                   >
                                       Đấu Giá
                                   </button>
                                   <button
-                                      className="text-xl p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
+                                      onClick={handleOpen1}
+                                      className="text-xl overflow_css_w_158 p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
                                       style={{backgroundColor: '#c74200', width: '100%'}}>
                                       Mua Trực Tiếp
                                   </button>
@@ -368,6 +376,96 @@ const ProductDetail = () => {
                               </div>
 
                           </div>
+                          {/*Dialog đấu giá */}
+                          <Dialog  open={open} onClose={handleOpen}  maxWidth="sm" >
+                              <DialogTitle>
+                                  <div className="flex items-center font_fml justify-center">
+                                    <span className="font-medium text-base">
+                                         Đấu giá
+                                    </span>
+                                  </div>
+                                  <div className="border-b mt-2  border-gray-300"></div>
+                              </DialogTitle>
+                              <DialogContent>
+                                  <Stack spacing={2} margin={1}>
+                                      <div
+                                          className="items-center font-medium text-base gap-6 my-7 mx-8 px-1 space-y-6 ">
+                                          <div className="flex gap-8 text-sm items-center">
+                                              <div className="">Giá đấu thầu tối thiểu</div>
+                                              <span className="text-red-400">{formatMoney(380000)} VNĐ</span>
+                                          </div>
+
+                                          <div className="flex flex-row items-center ">
+                                              <Form.Item
+                                                  name='final_price'
+                                                  label='Giá đấu thầu mới'
+                                                  rules={[
+                                                      {
+                                                          type: 'number',
+                                                          message: 'The input is not valid Number!',
+                                                      },
+                                                      {
+                                                          required: true,
+                                                          message: 'Chỉ có thể điền số!',
+                                                      }
+                                                  ]}
+                                              >
+                                                  <Input rootClassName='hover:border-orange-500'  suffix="VNĐ" />
+                                              </Form.Item>
+
+                                          </div>
+                                      </div>
+                                      <div className="flex m-6 gap-5  mr-10">
+                                          <Button
+                                              onClick={handleOpen}
+                                              className="p-2 px-6 py-2 w-full right-0 bg-white rounded text-orange-500 border-orange-500 hover:bg-zinc-50  text-base hover:border-orange-500  font-medium focus:outline-0">
+                                              Hủy
+                                          </Button>
+
+                                          <Button
+                                              className="p-2 px-6 py-2 w-full right-0 bg-orange-500 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-600  font-semibold focus:outline-0">
+                                              Trả giá
+                                          </Button>
+                                      </div>
+                                  </Stack>
+                              </DialogContent>
+                          </Dialog>
+
+                          {/*dialog mua trực tiếp */}
+                          <Dialog  open={open1} onClose={handleOpen1}  maxWidth="sm" >
+                              <DialogTitle>
+                                  <div className="flex items-center justify-center">
+                                    <span className="font-medium font_fml text-base">
+                                        Mua trực tiếp sản phẩm
+                                    </span>
+                                  </div>
+                                  <div className="border-b mt-2  border-gray-300"></div>
+                              </DialogTitle>
+                              <DialogContent>
+                                  <Stack spacing={2} margin={1} minWidth={350}>
+                                      <div
+                                          className="items-center  font-medium text-base gap-6 my-4 mx-8 px-1 space-y-6 ">
+                                          <div className="flex gap-8 items-center">
+                                              <div className="">Giá bán trực tiếp</div>
+                                              <span className="text-red-400">{formatMoney(380000)} VNĐ</span>
+                                          </div>
+
+                                      </div>
+                                      <div className="flex m-6 gap-5  mr-10">
+                                          <Button
+                                              onClick={handleOpen1}
+                                              className="p-2 px-6 py-2 w-full right-0 bg-white rounded text-orange-700 border-orange-700 hover:bg-zinc-50  text-base hover:border-orange-700 font_fml  font-medium focus:outline-0">
+                                              Hủy
+                                          </Button>
+
+                                          <Button
+                                              className="p-2 px-6 py-2 w-full right-0 bg-orange-700 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-700 font_fml font-medium focus:outline-0">
+                                              Mua trực tiếp
+                                          </Button>
+                                      </div>
+                                  </Stack>
+                              </DialogContent>
+                          </Dialog>
                           {/*người dùng */}
                           <div style={{backgroundColor: "white"}}
                                className="pt-1 pb-1  mb-5 text-neutral-700 font-sans text-left">
@@ -422,40 +520,40 @@ const ProductDetail = () => {
                               </div>
                               <div className="0 gap-4 px-4 p-3 pb-2 font-sans text-neutral-600">
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Danh mục</div>
-                                      <div className="basis-2/3">Đồ chơi</div>
+                                      <div className="basis-2/5 font-medium">Danh mục</div>
+                                      <div className="basis-3/5">Đồ chơi</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Thương hiệu</div>
-                                      <div className="basis-2/3">Không</div>
+                                      <div className="basis-2/5 font-medium">Thương hiệu</div>
+                                      <div className="basis-3/5">Không</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Trạng thái</div>
-                                      <div className="basis-2/3">Chưa sử dụng</div>
+                                      <div className="basis-2/5 font-medium">Trạng thái</div>
+                                      <div className="basis-3/5">Chưa sử dụng</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Số lượng</div>
-                                      <div className="basis-2/3">1</div>
+                                      <div className="basis-2/5 font-medium">Số lượng</div>
+                                      <div className="basis-3/5">1</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Trả lại</div>
-                                      <div className="basis-2/3">Không thể trả hàng</div>
+                                      <div className="basis-2/5 font-medium">Trả lại</div>
+                                      <div className="basis-3/5">Không thể trả hàng</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Giá khởi điểm</div>
-                                      <div className="basis-2/3">{formatMoney(190000)} VNĐ</div>
+                                      <div className="basis-2/5 font-medium">Giá khởi điểm</div>
+                                      <div className="basis-3/5">{formatMoney(190000)} VNĐ</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Giá bán trực tiếp</div>
-                                      <div className="basis-2/3">{formatMoney(4000000)} VNĐ</div>
+                                      <div className="basis-2/5 font-medium">Giá bán trực tiếp</div>
+                                      <div className="basis-3/5">{formatMoney(4000000)} VNĐ</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Thời gian bắt đầu</div>
-                                      <div className="basis-2/3">2023/09/04 15:43:00</div>
+                                      <div className="basis-2/5 font-medium">Thời gian bắt đầu</div>
+                                      <div className="basis-3/5">2023/09/04 15:43:00</div>
                                   </div>
                                   <div className="flex-row flex gap-3 mb-3">
-                                      <div className="basis-1/3 font-medium">Thời gian bắt đầu</div>
-                                      <div className="basis-2/3">2023/09/09 15:43:00</div>
+                                      <div className="basis-2/5 font-medium">Thời gian bắt đầu</div>
+                                      <div className="basis-3/5">2023/09/09 15:43:00</div>
                                   </div>
 
                               </div>

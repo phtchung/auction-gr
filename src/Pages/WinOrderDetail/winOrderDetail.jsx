@@ -2,7 +2,6 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {useNavigate} from "react-router-dom";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
-import Header from "../../Components/Header/header.jsx";
 import {Button} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {DialogContent, DialogTitle, Dialog, Stack} from "@mui/material";
@@ -88,11 +87,11 @@ const WinOrderDetail = () => {
                                     sx={{fontSize: 20}}
                                     color="rgb(212,212,212)"
                                 ></ArrowBackIosOutlinedIcon>
-                                <div className="text-sm"> TRỞ LẠI</div>
+                                <div className="text-base"> Trở lại</div>
                             </div>
 
-                            <div className="flex items-center gap-2">
-                                <div className="text-left text-lg ">Danh sách {stateStr} </div>
+                            <div className="flex items-center text-base gap-2">
+                                <div className="text-left  ">Danh sách {stateStr} </div>
                                 <ArrowForwardIosOutlinedIcon
                                     sx={{fontSize: 18}}
                                     fontSize="small"
@@ -117,46 +116,62 @@ const WinOrderDetail = () => {
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Người bán :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData.name}
+                                            {winDetailData?.name}
                                         </div>
                                         <div> Số điện thoại :</div>
                                         <div className="font-normal col-span-2">
-                                            {" "}
-                                            {winDetailData.phone}
+                                            {winDetailData?.phone}
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Tên sản phẩm :</div>
                                         <div className="font-normal  col-span-5">
-                                            {winDetailData.product_name}
+                                            {winDetailData?.product_name}
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Danh mục :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData.category_name}
+                                            {winDetailData?.category_name}
                                         </div>
                                         <div> Chất lượng :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData.rank}
+                                            {winDetailData?.rank}
                                         </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-6 text-left">
+                                        <div> Thương hiệu :</div>
+                                        <div className="font-normal col-span-2">
+                                            {winDetailData?.brand}
+                                        </div>
+                                        <div> Tình trạng :</div>
+                                        <div className="font-normal col-span-2"> {winDetailData?.is_used} </div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Giá khởi điểm :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData.reserve_price} VND
+                                            {winDetailData?.reserve_price} VND
                                         </div>
                                         <div> Giá bán trực tiếp :</div>
                                         <div className="font-normal col-span-2"> {winDetailData?.sale_price} VND</div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left ">
-                                        <div> Step Price :</div>
+                                        <div> Bước giá :</div>
                                         <div className="font-normal col-span-2"> {winDetailData?.step_price} VND</div>
                                         <div> Phí vận chuyển :</div>
                                         <div className="font-normal col-span-2"> {winDetailData?.shipping_fee} VND</div>
+                                    </div>
+                                    <div className="grid grid-cols-6 text-left">
+                                        <div> Trả hàng :</div>
+                                        <div className="font-normal col-span-2">
+                                            {winDetailData?.can_return}
+                                        </div>
+                                        <div> Nơi gửi hàng :</div>
+                                        <div className="font-normal col-span-2"> {winDetailData?.delivery_from} </div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left">
@@ -215,14 +230,13 @@ const WinOrderDetail = () => {
                             <>
                                 <div className="flex justify-between m-2.5 items-center px-2">
                                     <div className="text-left text-sm font-semibold ">
-                                        Thông tin đấu giá{" "}
+                                    Thông tin đấu giá
                                     </div>
                                 </div>
                                 <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Hình thức :</div>
                                         <div className="font-normal  col-span-2">
-                                            {" "}
                                             {winDetailData?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}
                                         </div>
                                     </div>
@@ -239,12 +253,10 @@ const WinOrderDetail = () => {
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Thời gian thắng :</div>
                                         <div className="font-normal  col-span-2">
-                                            {" "}
                                             {winDetailData?.victory_time}
                                         </div>
-                                        <di> Hạn hoàn thành thủ tục :</di>
+                                        <di> Hoàn thành thủ tục :</di>
                                         <div className=" col-span-2 font-bold">
-                                            {" "}
                                             {winDetailData?.procedure_complete_time}
                                         </div>
                                     </div>
@@ -307,12 +319,6 @@ const WinOrderDetail = () => {
                                             <div> Địa chỉ :</div>
                                             <div className="font-normal col-span-5">
                                                 {winDetailData.address}
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Ghi chú :</div>
-                                            <div className="font-normal col-span-5">
-                                                {winDetailData.note}
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-6 text-left">
@@ -407,19 +413,7 @@ const WinOrderDetail = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-6 items-center text-left">
-                                        <div> Ghi chú :</div>
-                                        <div className="font-normal col-span-2">
-                                            <input
-                                                type="text"
-                                                name="note"
-                                                id="note"
-                                                placeholder="Ghi chú"
-                                                onChange={(e) => handleDlvInfor("note", e.target.value)}
-                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
+
                                     <div className="grid grid-cols-6 text-left items-center">
                                         <div> Hình thức thanh toán :</div>
                                         <div className="font-normal col-span-2">
@@ -445,12 +439,12 @@ const WinOrderDetail = () => {
                                     </Button>
                                 </div>
                                 {/*xác nhận thông tin giao hàng*/}
-                                <Dialog open={open} onClose={handleOpen} fullWidth maxWidth="md">
+                                <Dialog open={open} onClose={handleOpen}  maxWidth="md">
                                     <DialogTitle>
                                         <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm">
-                      Xác nhận thông tin giao hàng
-                    </span>
+                                            <span className="font-semibold text-sm">
+                                              Xác nhận thông tin giao hàng
+                                            </span>
                                             <div
                                                 onClick={handleOpen}
                                                 className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
@@ -461,36 +455,30 @@ const WinOrderDetail = () => {
                                         <div className="border-b mt-2  border-gray-300"></div>
                                     </DialogTitle>
                                     <DialogContent>
-                                        <Stack spacing={2} margin={1}>
+                                        <Stack spacing={2} margin={1} minWidth={500}>
                                             <div
                                                 className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-                                                <div className="grid grid-cols-6 text-left">
-                                                    <div> Tên :</div>
-                                                    <div className=" col-span-2">
+                                                <div className="grid grid-cols-12 text-left">
+                                                    <div className="col-span-3"> Tên :</div>
+                                                    <div className=" col-span-9">
                                                         {dlvInfor?.name || null}
                                                     </div>
                                                 </div>
-                                                <div className="grid grid-cols-6 text-left">
-                                                    <div> Số điện thoại :</div>
-                                                    <div className=" col-span-2">
+                                                <div className="grid grid-cols-12 text-left">
+                                                    <div className="col-span-3"> Số điện thoại :</div>
+                                                    <div className=" col-span-9">
                                                         {dlvInfor?.phone || null}
                                                     </div>
                                                 </div>
-                                                <div className="grid grid-cols-6 text-left">
-                                                    <div> Địa chỉ :</div>
-                                                    <div className=" col-span-5">
+                                                <div className="grid grid-cols-12 text-left">
+                                                    <div className="col-span-3"> Địa chỉ :</div>
+                                                    <div className=" col-span-9">
                                                         {dlvInfor?.address || null}
                                                     </div>
                                                 </div>
-                                                <div className="grid grid-cols-6 text-left">
-                                                    <div> Ghi chú :</div>
-                                                    <div className=" col-span-5">
-                                                        {dlvInfor?.note || null}
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-6 text-left">
-                                                    <div> Thanh toán :</div>
-                                                    <div className=" col-span-2"> Tiền mặt</div>
+                                                <div className="grid grid-cols-12 text-left">
+                                                    <div className="col-span-3"> Thanh toán :</div>
+                                                    <div className=" col-span-9"> Tiền mặt</div>
                                                 </div>
                                             </div>
                                             <div className="flex gap-4 justify-end my-2">
@@ -516,7 +504,7 @@ const WinOrderDetail = () => {
                         )}
 
                         {isSuccess && winDetailData.status === 7 && (
-                            <UpdatePopup state={winDetailData.status}/>
+                            <UpdatePopup state={winDetailData.status} canReturn={winDetailData?.can_return}/>
                         )}
 
                         {isSuccess && winDetailData.status === 9 && (
@@ -536,7 +524,15 @@ const WinOrderDetail = () => {
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Lí do :</div>
-                                        <div className="font-normal  col-span-2">Người dùng</div>
+                                        <div className="font-normal  col-span-2">
+                                            {winDetailData?.return_reason}
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-6 text-left">
+                                        <div> Ảnh minh chứng :</div>
+                                        <div className="font-normal  col-span-2">
+                                           đang trống
+                                        </div>
                                     </div>
 
                                 </div>

@@ -72,7 +72,7 @@ const MainLayOut = ({children}) => {
             >
                 <div className="flex font-normal justify-between mx-10 items-center relative" style={{
                     maxWidth: 1280,
-                    padding: '7px 40px',
+                    padding: '7px 70px',
                     top: 0,
                     height: '24px',
                     margin: '2px auto',

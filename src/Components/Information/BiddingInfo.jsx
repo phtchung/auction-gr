@@ -64,7 +64,7 @@ const BiddingInfo = ({data}) => {
                 }
             </>)}
         </div>
-        {(data?.status === 7 || data?.status === 8 || data?.status === 9) && (<>
+        {(data?.status === 7 || data?.status === 8 || data?.status === 9 || data?.status === 14 || data?.status === 15) && (<>
             <div className="flex justify-between m-2.5 items-center px-2">
                 <div className="text-left text-sm font-semibold ">
                     Thông tin vận chuyển
@@ -85,10 +85,6 @@ const BiddingInfo = ({data}) => {
                     <div> Địa chỉ nhận hàng :</div>
                     <div className="font-normal col-span-2">
                         {data?.deliData?.address}
-                    </div>
-                    <div> Ghi chú :</div>
-                    <div className="font-normal col-span-2">
-                        {data.deliData?.note}
                     </div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
