@@ -3,6 +3,7 @@ export const formatNumber = (number) => {
 };
 
 export const formatMoney = (number) => {
+    number = parseInt(number)
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 export const colPending = [
@@ -857,3 +858,21 @@ export const categoriesItems = [
     getItem('Khác', 'sub14', null, [
     ]),
 ];
+
+export function daysRemaining(inputDateString) {
+    const targetDate = new Date(inputDateString);
+
+    const currentDate = new Date();
+
+    // Tính toán chênh lệch thời gian
+    const timeDifference = targetDate.getTime() - currentDate.getTime();
+
+    if (timeDifference <  86400000) {
+        const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60));
+
+        return `${hoursRemaining} giờ`;
+    }
+
+    const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return `${daysRemaining} ngày`;
+}

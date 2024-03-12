@@ -63,3 +63,10 @@ export const getReqDetail = async (reqId) => {
     url: `/product/req/${reqId}`,
   });
 };
+
+export const getAuctionProductDetail = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/item/${Id}`,
+  });
+};
