@@ -29,9 +29,6 @@ const ProductBidding = () => {
                                     onChange={onChange}
                                     placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
                                     className="pr-30 pl-5"
-                                    containerProps={{
-                                        className: "min-w-0",
-                                    }}
                                 />
                                 <Button
                                     size="sm"

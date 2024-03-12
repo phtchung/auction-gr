@@ -86,7 +86,7 @@ const MainLayOut = ({children}) => {
                             <PhoneOutlined/>
                             <span>Trung tâm Hỗ Trợ</span>
                         </div>
-                        <div>Giá cả hợp lý</div>
+                        <div>Blog</div>
                     {
                         !accessToken && <>
                             <div className="flex gap-2 ">

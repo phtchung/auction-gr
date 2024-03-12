@@ -17,6 +17,7 @@ export default function useProductBidding() {
         finish_time: formatDateTime(new Date(data?.finish_time)),
         seller_name: data?.seller_id?.name,
         avr_rating: data?.seller_id?.average_rating,
+        main_image:data?.main_image,
       };
     });
 
