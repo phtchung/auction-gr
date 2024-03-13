@@ -28,7 +28,7 @@ export default function useWinOrdersTracking() {
         product_name: data?.product_name,
         rank: data?.rank,
         status: data?.status,
-        status_word:data?.status === 9 ? 'Yêu cầu trả hàng' : 'Trả hàng thành công',
+        status_word:data?.status === 9 ? 'Yêu cầu trả hàng' : data?.status === 14 ? 'Trả hàng thành công' : 'Từ chối trả hàng',
         createdAt: formatDateTime(new Date(data?.createdAt)),
         reserve_price: data?.reserve_price,
         final_price: data?.final_price,

@@ -53,11 +53,11 @@ const BiddingInfo = ({data}) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Người trúng thầu :</div>
                                 <div className="font-normal col-span-2">
-                                    {data?.deliData?.name}
+                                    {data?.seller_name}
                                 </div>
                                 <div> Số điện thoại :</div>
                                 <div className="font-normal col-span-2">
-                                    {data?.deliData?.phone}
+                                    {data?.seller_phonne}
                                 </div>
                             </div>
                         </>

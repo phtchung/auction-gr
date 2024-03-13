@@ -13,7 +13,7 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ToastContainer/>
+            <ToastContainer style={{fontSize:13}}/>
             <BrowserRouter>
                 <Routes>
                     {NormalRoutes.map((route, index) => (

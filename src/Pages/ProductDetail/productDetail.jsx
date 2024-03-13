@@ -17,13 +17,24 @@ import {sendAuctionData, sendBuyData} from "../../Services/biddingService.jsx";
 const ProductDetail = () => {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
+    const handleOpen = () => {
+        if (localStorage.getItem("accessToken")) {
+            setOpen(!open);
+        } else {
+            window.location.href = '/login';
+        }
+    };
     const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf} = useAuctionProductDetail()
     const [open1, setOpen1] = useState(false);
     const {id} = useParams()
     const [auctionData,setAuctionData] = useState({productId:id})
-    const handleOpen1 = () => setOpen1(!open1);
-
+    const handleOpen1 = () => {
+        if (localStorage.getItem("accessToken")) {
+            setOpen1(!open1);
+        } else {
+            window.location.href = '/login';
+        }
+    };
     const handleAuctionData = (key, value) => {
         setAuctionData({...auctionData, [key]: value});
     };
@@ -36,14 +47,12 @@ const ProductDetail = () => {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 500,
           });
-          setOpen()
-          navigate('/')
+          setOpen1()
+          navigate("/resultSuccess", { state: 100});
           setAuctionData({productId:id})
       }catch (error) {
           toast.error(error?.response?.data?.message);
-          refetch()
-          rf()
-          setOpen()
+          setOpen1()
       }
     }
     const handleAuction = async () => {
@@ -64,7 +73,9 @@ const ProductDetail = () => {
             setOpen()
             setAuctionData({productId:id})
         }catch (error) {
-            toast.error(error?.response?.data?.message);
+            toast.error(error?.response?.data?.message,{
+                position: "top-right",
+            });
             refetch()
             rf()
             setOpen()
@@ -396,15 +407,17 @@ const ProductDetail = () => {
                                 <div className="md:basis-2/5 sm:basis-1/3">
                                     {/*thông tinn đấu giá*/}
                                     <div
-                                        className="flex flex-col bg-white text-neutral-700 font-sans text-left pt-3 p-3 mb-4">
-                                        <div style={{fontWeight: 600}}
-                                             className="text-lg    ">{auctionProductData?.product_name}
+                                        className="flex flex-col bg-white  text-neutral-700 font-sans text-left pt-3 p-3 mb-4">
+                                        <div style={{fontWeight: 600}} className="flex items-center" >
+                                            <span className="text-lg    ">
+                                                {auctionProductData?.product_name}
+                                            </span>
                                             {
                                                 auctionProductData?.is_used_interger === 0 && <>
-                                                    <Tag className="mx-2" color="red">{auctionProductData?.is_used}</Tag>
+                                                    <Tag className="ml-2" color="red">{auctionProductData?.is_used}</Tag>
                                                 </>
                                             }
-                                            <Tag className="mr-2" color="volcano">{auctionProductData?.rank}</Tag>
+                                            <Tag className="ml-2" color="volcano">{auctionProductData?.rank}</Tag>
 
                                         </div>
                                         <div className="flex flex-grow gap-3 items-end mt-4">
@@ -417,6 +430,12 @@ const ProductDetail = () => {
                                             <div className="text-sm mb-0.5 text-neutral-500">Giá trực tiếp</div>
                                             <div
                                                 className="text-2xl font-semibold text-neutral-900">{formatMoney(auctionProductData?.sale_price)} VNĐ
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-grow gap-3 items-end ">
+                                            <div className="text-sm mb-0.5 text-neutral-500">Bước giá</div>
+                                            <div
+                                                className="mt-1 text-neutral-600 text-base">{formatMoney(auctionProductData?.step_price)} VNĐ
                                             </div>
                                         </div>
                                         <div className="flex flex-grow gap-3 items-end mt-1 mb-4">
@@ -434,14 +453,16 @@ const ProductDetail = () => {
                                                 <span className="text-sm text-blue-800">{bidCount} lượt đấu giá</span>
                                             </div>
 
-                                            <div className="flex flex-row items-center text-xs px-1 bg-amber-100 gap-1 ">
+                                            <div
+                                                className="flex flex-row items-center text-xs px-1 bg-amber-100 gap-1 ">
 
                                                 <span className="">Kết thúc : {auctionProductData?.finish_time}</span>
                                             </div>
 
                                         </div>
                                         <div>
-                                            <Tag className="mx-2 mt-3" color="red">{auctionProductData?.type_of_auction}</Tag>
+                                            <Tag className="mx-2 mt-3"
+                                                 color="red">{auctionProductData?.type_of_auction}</Tag>
                                         </div>
 
                                         <div className="mt-5 mb-6 flex gap-1 flex-row items-center">

@@ -41,10 +41,12 @@ const UpdatePopup = ({state,canReturn}) => {
                 navigate(`/winOrderTracking?status=${value}`);
                 refetch();
                 refetch1();
+                window.scrollTo(0,0)
             }else {
                 navigate(`/reqOrderTracking?status=${value}`);
                 refetch2();
                 refetch3()
+                window.scrollTo(0,0)
             }
 
         } catch (error) {
@@ -80,7 +82,7 @@ const UpdatePopup = ({state,canReturn}) => {
                         <div className="border-b-2 mt-2  border-gray-300"></div>
                     </DialogTitle>
                     <DialogContent>
-                        <Stack spacing={2} margin={1} minWidth={300}>
+                        <Stack spacing={2} margin={1} minWidth={420}>
                             <div className="flex gap-4 justify-end mt-1  text-sm ">
                                 {state && (state === 5) && (
                                     <>

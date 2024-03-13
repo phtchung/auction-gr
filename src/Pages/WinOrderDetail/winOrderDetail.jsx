@@ -27,7 +27,6 @@ const WinOrderDetail = () => {
 
     const stateStr =
         isSuccess && (statusToString(winDetailData.status));
-
     useEffect(() => {
         if (isSuccess) {
             setDlvInfor({
@@ -507,7 +506,7 @@ const WinOrderDetail = () => {
                             <UpdatePopup state={winDetailData.status} canReturn={winDetailData?.can_return}/>
                         )}
 
-                        {isSuccess && winDetailData.status === 9 && (
+                        {isSuccess && (winDetailData.status === 9 ||winDetailData.status === 14 || winDetailData.status === 15) && (
                             <>
                                 <div className="flex justify-between m-2.5 items-center px-2">
                                     <div className="text-left text-sm font-semibold ">
@@ -530,9 +529,26 @@ const WinOrderDetail = () => {
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Ảnh minh chứng :</div>
-                                        <div className="font-normal  col-span-2">
-                                           đang trống
-                                        </div>
+                                        {
+                                            winDetailData.return_image &&
+                                            <>
+                                                <div className="grid grid-cols-6 text-left mb-4">
+                                                    <Image.PreviewGroup
+                                                        preview={{
+                                                            onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                                                        }}>
+                                                        {winDetailData?.return_image.map((imageUrl, index) => (
+                                                            <>
+                                                                <div className="font-normal col-span-1 mb-2">
+                                                                    <Image key={index} height={150} width={150}
+                                                                           src={imageUrl}/>
+                                                                </div>
+                                                            </>
+                                                        ))}
+                                                    </Image.PreviewGroup>
+                                                </div>
+                                            </>
+                                        }
                                     </div>
 
                                 </div>
