@@ -3,6 +3,7 @@ import {  Result } from 'antd';
 import {Button} from "@material-tailwind/react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import MainLayOut from "../Layout/mainLayout.jsx";
 const ResultPage = () => {
     const navigate = useNavigate()
     const {state} = useLocation()
@@ -24,10 +25,14 @@ const ResultPage = () => {
         }else if(state === 9 ){
             setTitle('Tạo yêu cầu trả hàng thành công');
             setSubTitle(`Yêu cầu hoàn trả hàng đã được gửi đến quản trị viên .`);
+        }else if(state === 100 ){
+            setTitle('Mua sản phẩm thành công');
+            setSubTitle(`Hãy điền thông tin để nhận hàng sớm nhất nhé!.`);
         }
     }, [state]);
   return(
       <>
+          <MainLayOut>
           <Result
               status="success"
               title={title}
@@ -41,6 +46,7 @@ const ResultPage = () => {
 
               ]}
           />
+          </MainLayOut>
       </>
   )
 }

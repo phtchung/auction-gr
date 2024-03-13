@@ -5,6 +5,7 @@ import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
 import useReqOrderDetail from "./useReqOrderDetail.jsx";
 import {convertWinStatus} from "../../Utils/constant.js";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import {Image} from "antd";
 
 const ReqOrderDetail = () => {
     const {reqData, isLoading, isSuccess} = useReqOrderDetail();
@@ -69,7 +70,7 @@ const ReqOrderDetail = () => {
                                     <></>
                                 )}
 
-                                {isSuccess && (reqData.status === 9 || reqData.status === 14) && (
+                                {isSuccess && (reqData.status === 9 || reqData.status === 14 || reqData.status === 15) && (
                                     <>
                                         <div className="flex justify-between m-2.5 items-center px-2">
                                             <div className="text-left text-sm font-semibold ">
@@ -91,7 +92,26 @@ const ReqOrderDetail = () => {
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Ảnh minh chứng :</div>
-                                                <div className="font-normal  col-span-2">{reqData?.return_reason}</div>
+                                                {
+                                                    reqData.return_image &&
+                                                    <>
+                                                        <div className="grid grid-cols-6 text-left mb-4">
+                                                            <Image.PreviewGroup
+                                                                preview={{
+                                                                    onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                                                                }}>
+                                                                {reqData?.return_image.map((imageUrl, index) => (
+                                                                    <>
+                                                                        <div className="font-normal col-span-1 mb-2">
+                                                                            <Image key={index} height={150} width={150}
+                                                                                   src={imageUrl}/>
+                                                                        </div>
+                                                                    </>
+                                                                ))}
+                                                            </Image.PreviewGroup>
+                                                        </div>
+                                                    </>
+                                                }
                                             </div>
 
                                         </div>

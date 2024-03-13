@@ -192,7 +192,8 @@ const MainLayOut = ({children}) => {
                 style={{
                     marginTop: '6.7rem',
                     padding: '0 36px',
-                    backgroundColor: '#f5f5f5'
+                    backgroundColor: '#f5f5f5',
+                    minHeight:'40rem'
                 }}
                 className="container"
             >

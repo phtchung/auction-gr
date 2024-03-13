@@ -32,6 +32,7 @@ export default function useWinOrderDetail() {
       total_price: data?.final_price + data?.shipping_fee,
       rank: data?.rank,
       return_reason:data?.product_delivery?.return_reason,
+      return_image:data?.product_delivery?.return_image_list,
       receiver: data?.product_delivery?.name,
       phone_receiver: data?.product_delivery?.phone,
       address: data?.product_delivery?.address,

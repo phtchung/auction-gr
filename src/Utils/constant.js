@@ -334,6 +334,8 @@ export const statusToString = (state) => {
             return "Hủy";
         case 14:
             return "Trả hàng thành công";
+        case 15:
+            return "Từ chối trả hàng";
         default:
             return "Thắng đấu giá";
     }
@@ -528,6 +530,8 @@ export function convertWinStatus(status) {
             return "Hủy thành công"
         case 14 :
             return "Trả hàng thành công"
+        case 15 :
+            return "Từ chối trả hàng"
         default:
             return " ";
     }
