@@ -1,4 +1,5 @@
 import privateHttp from "./Http/privateHttp.config.js";
+import publicHttp from "./Http/publicHttp.config.js";
 
 export const getBiddingList = async () => {
   return privateHttp({
@@ -34,5 +35,21 @@ export const getSellerHomeData = async (seller) => {
   return privateHttp({
     method: "GET",
     url: `/auction/seller/${seller}`,
+  });
+};
+
+
+export const getBlogs = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/articles`,
+  });
+};
+
+export const FinishAuction = async (auctionData) => {
+  return publicHttp({
+    method: "POST",
+    url: "/auction/finish",
+    data: auctionData,
   });
 };

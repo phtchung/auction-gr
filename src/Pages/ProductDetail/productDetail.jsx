@@ -164,7 +164,6 @@ const ProductDetail = () => {
                                                     tương tự
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <Carousel
@@ -176,10 +175,8 @@ const ProductDetail = () => {
                                             dotListClass=""
                                             draggable
                                             focusOnSelect={false}
-
                                             keyBoardControl
                                             minimumTouchDrag={30}
-
                                             pauseOnHover
                                             renderArrowsWhenDisabled={false}
                                             renderButtonGroupOutside={false}
@@ -191,7 +188,6 @@ const ProductDetail = () => {
                                                         min: 1024
                                                     },
                                                     items: 2.61,
-
                                                 },
                                                 mobile: {
                                                     breakpoint: {
@@ -199,7 +195,6 @@ const ProductDetail = () => {
                                                         min: 0
                                                     },
                                                     items: 2,
-
                                                 },
                                                 tablet: {
                                                     breakpoint: {
@@ -481,7 +476,7 @@ const ProductDetail = () => {
                                             </button>
                                         </div>
                                         <div className="text-center mb-2">
-                                            <CountDownFullDate
+                                            <CountDownFullDate id={auctionProductData?.product_id}
                                                 targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
                                         </div>
 
