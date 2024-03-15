@@ -381,6 +381,15 @@ export const formatDateTime = (inputDateString) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
+export const formatDateTime1 = (inputDateString) => {
+    const inputDate = new Date(inputDateString);
+    const formatDateComponent = (component) => String(component).padStart(2, "0");
+    const year = formatDateComponent(inputDate.getFullYear());
+    const month = formatDateComponent(inputDate.getMonth() + 1);
+    const day = formatDateComponent(inputDate.getDate());
+
+    return `${year}-${month}-${day}`;
+};
 export function processStatus(status) {
     if (
         status === 567 ||

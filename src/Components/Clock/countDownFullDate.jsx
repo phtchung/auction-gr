@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
+import {FinishAuction} from "../../Services/biddingService.jsx";
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
-const CountDownFullDate = ({ targetDate }) => {
-    const calculateTimeRemaining = () => {
+const CountDownFullDate = ({ targetDate,id }) => {
+
+    const [auctionData,setAuctionData] = useState({productId:id})
+    const navigate = useNavigate()
+
+    const calculateTimeRemaining =  () => {
         const now = new Date();
         const target = new Date(targetDate);
         const timeDifference = target - now;
 
-        if (timeDifference <= 0) {
-            // Handle when the countdown reaches or goes past the target date
-            return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        }
+            if (timeDifference <= 0) {
+                // Handle when the countdown reaches or goes past the target date
+                FinishAuction({...auctionData})
+                    .then(res => {
+                        navigate("/resultSuccess", { state: 99 });
+                        setAuctionData({ productId: id });
+                    })
+            }
 
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -22,7 +33,7 @@ const CountDownFullDate = ({ targetDate }) => {
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const interval = setInterval( () => {
             setCurrentTime(calculateTimeRemaining);
         }, 1000);
 

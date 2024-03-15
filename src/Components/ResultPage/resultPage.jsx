@@ -28,6 +28,9 @@ const ResultPage = () => {
         }else if(state === 100 ){
             setTitle('Mua sản phẩm thành công');
             setSubTitle(`Hãy điền thông tin để nhận hàng sớm nhất nhé!.`);
+        }else if(state === 99 ){
+            setTitle('Phiên đấu giá đã kết thúc ');
+            setSubTitle(`Cám ơn bạn đã quan tâm sản phẩm!.`);
         }
     }, [state]);
   return(

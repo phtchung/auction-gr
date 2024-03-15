@@ -17,6 +17,7 @@ import ReturnProduct from "../Pages/ProductReturn/productReturn.jsx";
 import CategoriesFilter from "../Pages/CategoriesFilter/categoriesFilter.jsx";
 import SellerHome from "../Pages/Seller/sellerHome.jsx";
 import ProductDetail from "../Pages/ProductDetail/productDetail.jsx";
+import Blog from "../Pages/Blog/blog.jsx";
 
 
 export const NormalRoutes = [
@@ -24,7 +25,8 @@ export const NormalRoutes = [
   { path: "/", element: <Home /> },
   { path:"/categories/:id", element: <CategoriesFilter /> },
   { path:"/seller/:name", element: <SellerHome /> },
-  { path:"/auction/item/:id", element: <ProductDetail /> }
+  { path:"/auction/item/:id", element: <ProductDetail /> },
+  { path:"/articles/news", element: <Blog /> }
 
 ];
 
