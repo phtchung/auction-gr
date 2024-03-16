@@ -1,11 +1,16 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import {Card} from "antd";
 import useBlog from "./useBlog.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 const Blog = () => {
     const {blogs, isLoading , isSuccess} = useBlog()
-    console.log(blogs)
+    const navigate = useNavigate()
+    const handleNavigate = (id) => {
+        navigate(`/articles/news/${id}`)
+        window.scroll(0,0)
+    }
   return(
       <>
           <MainLayOut>
@@ -16,6 +21,7 @@ const Blog = () => {
                               <>
                                   <div key={index} className="md:basis-1/5  ">
                                       <Card
+                                          onClick={() => handleNavigate(blog.blog_id)}
                                           size="small"
                                           hoverable
                                           bordered={false}

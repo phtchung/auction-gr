@@ -53,3 +53,10 @@ export const FinishAuction = async (auctionData) => {
     data: auctionData,
   });
 };
+
+export const getBlogDetail = async (Id) => {
+  return publicHttp({
+    method: "GET",
+    url: `/articles/${Id}`,
+  });
+};

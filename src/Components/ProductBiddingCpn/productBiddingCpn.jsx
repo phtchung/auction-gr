@@ -3,7 +3,7 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import {useNavigate} from "react-router-dom";
 
 const ProductBiddingCpn = ({data}) => {
-    console.log(data);
+
     const navigate = useNavigate()
     const handleNavigate = () => {
        navigate(`/auction/item/${data.product_id}`)

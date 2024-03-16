@@ -70,23 +70,24 @@ const MainLayOut = ({children}) => {
                     minHeight:'7rem',
                 }}
             >
-                <div className="flex font-normal justify-between mx-10 items-center relative" style={{
+                <div className="flex font-normal justify-between mx-10 items-center relative font_fml" style={{
                     maxWidth: 1280,
                     padding: '7px 70px',
                     top: 0,
                     height: '24px',
                     margin: '2px auto',
-                    fontSize: '14px',
+                    fontSize: '13px',
                     color:'white',
                     boxSizing: 'border-box',
                     lineHeight:'20px'
+
                 }}>
                         <span>Vận chuyển nhanh chóng</span>
                         <div className="flex items-center   gap-1 ">
                             <PhoneOutlined/>
                             <span>Trung tâm Hỗ Trợ</span>
                         </div>
-                        <div>Blog</div>
+                        <div className="cursor-pointer hover:text-black" onClick={() => naviagate('/articles/news')}>Blog</div>
                     {
                         !accessToken && <>
                             <div className="flex gap-2 ">
