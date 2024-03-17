@@ -33,17 +33,18 @@ const ProductBiddingCpn = ({data}) => {
                         </button>
                     </div>
                 </div>
-                <div className="flex pb-3 py-4 items-center   border-b border-b-gray-150">
+                <div className="flex pb-3 py-4 items-center justify-between
+                  border-b border-b-gray-150">
                     <div className="flex items-start">
                         <div className="">
                             <img style={{
-                              width: '100%',
-                              height: '6rem',
-                              backgroundSize: 'cover',
-                              backgroundRepeat: 'no-repeat'
+                                width: '100%',
+                                height: '6rem',
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat'
                             }}
-                                src={data?.main_image}
-                                alt=""
+                                 src={data?.main_image}
+                                 alt=""
                             />
                         </div>
                         <div className="flex flex-col">
@@ -58,27 +59,29 @@ const ProductBiddingCpn = ({data}) => {
                             </div>
                         </div>
                     </div>
-                    <div className=" text-base ml-auto px-5">
-                        Giá khởi điểm{" "}
-                        <span className="font-semibold">{data?.reserve_price} đ</span>
-                    </div>
-                </div>
-                <div
-                    className="py-4 flex items-center "
-                    style={{backgroundColor: "#fffefb"}}
-                >
-                    <div
-                        className="flex items-center "
-                        style={{color: "rgba(0,0,0,.54)"}}
-                    >
-                        <div>Người trả giá cao nhất : {data?.bidder}</div>
+                    <div className="flex flex-col text-left gap-2">
+                        <div className=" text-base opacity-70 ml-auto px-5">
+                            Giá khởi điểm :
+                            <span className="font-medium"> {data?.reserve_price} đ</span>
+                        </div>
+                        <div className="flex ml-auto items-center opacity-90 gap-2 px-6">
+                            <div className="text-base">Giá hiện tại :</div>
+                            <div className="text-orange-600 font-semibold text-xl">{data?.bid_price} đ</div>
+                        </div>
                     </div>
 
-                    <div className="flex ml-auto items-center gap-2 px-6">
-                        <div className="text-base">Giá hiện tại :</div>
-                        <div className="font-semibold text-2xl">{data?.bid_price} đ</div>
-                    </div>
                 </div>
+                {/*<div*/}
+                {/*    className="py-4 flex items-center "*/}
+                {/*    style={{backgroundColor: "#fffefb"}}*/}
+                {/*>*/}
+                {/*    <div*/}
+                {/*        className="flex items-center "*/}
+                {/*        style={{color: "rgba(0,0,0,.54)"}}*/}
+                {/*    >*/}
+                {/*        <div>Người trả giá cao nhất : {data?.bidder}</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </>
     );
