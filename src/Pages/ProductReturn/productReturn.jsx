@@ -4,7 +4,6 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 import { Form, Input} from 'antd';
 import {Button} from "@material-tailwind/react";
 import {useState} from "react";
-import Header from "../../Components/Header/header.jsx";
 import SideBar from "../../Components/SideBar/index.jsx";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 import {toast} from "react-toastify";

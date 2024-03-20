@@ -11,7 +11,7 @@ const ProductBiddingCpn = ({data}) => {
     }
     return (
         <>
-            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm ">
+            <div className=" px-6  mb-3 shadow-inner bg-white  text-sm ">
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
                     <div className="font-semibold pr-10">{data?.seller_name}</div>
                     <div className="">{data?.avr_rating}</div>
@@ -33,7 +33,7 @@ const ProductBiddingCpn = ({data}) => {
                         </button>
                     </div>
                 </div>
-                <div className="flex pb-3 py-4 items-center justify-between
+                <div className="flex pb-3 pt-4 items-center justify-between
                   border-b border-b-gray-150">
                     <div className="flex items-start">
                         <div className="">
@@ -69,7 +69,6 @@ const ProductBiddingCpn = ({data}) => {
                             <div className="text-orange-600 font-semibold text-xl">{data?.bid_price} đ</div>
                         </div>
                     </div>
-
                 </div>
                 {/*<div*/}
                 {/*    className="py-4 flex items-center "*/}

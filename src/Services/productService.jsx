@@ -1,4 +1,5 @@
 import privateHttp from "./http/privateHttp.config";
+import privateHttp1 from "./Http/privateHttp1.config.js";
 
 export const getAuctionHistory = async ({ status = "" }) => {
   return privateHttp({
@@ -68,5 +69,13 @@ export const getAuctionProductDetail = async (Id) => {
   return privateHttp({
     method: "GET",
     url: `/auction/item/${Id}`,
+  });
+};
+
+export const reviewProduct = async (reviewData) => {
+  return privateHttp1({
+    method: "POST",
+    url: "/user/reviewProduct",
+    data: reviewData,
   });
 };

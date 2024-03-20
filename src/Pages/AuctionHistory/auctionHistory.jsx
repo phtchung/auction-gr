@@ -8,7 +8,6 @@ import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 const AuctionHistory = () => {
     const [search, setSearch] = useState("");
     const {aucHistoryData, isLoading, isSuccess} = useAuctionHistory();
-    console.log(aucHistoryData);
     const onChange = ({target}) => setSearch(target.value);
     return (
         <>
