@@ -390,6 +390,22 @@ export const formatDateTime1 = (inputDateString) => {
 
     return `${year}-${month}-${day}`;
 };
+
+export function isDateGreaterThanToday(date) {
+
+    var dateParts = date.split("-");
+    var year = parseInt(dateParts[0]);
+    var month = parseInt(dateParts[1]) - 1; // Months are 0-indexed
+    var day = parseInt(dateParts[2]);
+    var givenDate = new Date(year, month, day);
+
+    // Get the current date
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate comparison
+
+    // Compare the dates
+    return givenDate > currentDate;
+}
 export function processStatus(status) {
     if (
         status === 567 ||

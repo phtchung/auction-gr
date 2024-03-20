@@ -104,6 +104,15 @@ input:focus{
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.overflow_css_card_740 {
+    width: 740px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Số dòng tối đa cần hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 .active_color{
     color: #F27C08;
 }
