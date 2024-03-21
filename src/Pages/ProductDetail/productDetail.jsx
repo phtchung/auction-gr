@@ -1,6 +1,6 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
-import {Avatar, Breadcrumb, Form, Card, Input, Spin, Tag} from "antd";
+import {Avatar, Breadcrumb, Form, Card, Input, Spin, Tag, Popover} from "antd";
 import {formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import {ClockCircleOutlined, StarFilled} from "@ant-design/icons";
@@ -13,7 +13,15 @@ import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
 import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
 import {toast} from "react-toastify";
 import {sendAuctionData, sendBuyData} from "../../Services/biddingService.jsx";
-
+import {
+    FacebookIcon,
+    TwitterShareButton,
+    FacebookMessengerShareButton,
+    FacebookMessengerIcon,
+    TelegramIcon,
+    FacebookShareButton,
+    XIcon, TelegramShareButton,
+} from "react-share";
 const ProductDetail = () => {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
@@ -125,21 +133,28 @@ const ProductDetail = () => {
                                     <div id="slider" className="flexslider">
                                         <ul className="slides">
                                             <li>
-                                                <img src={auctionProductData?.main_image}/>
+                                                <img style={{
+                                                    width: '100%',
+                                                    height: '27.5rem',
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat'
+                                                }}
+                                                    src={auctionProductData?.main_image}
+                                                     alt={`Image`}/>
                                             </li>
                                         </ul>
                                     </div>
                                     <div id="carousel" className="flexslider mt-4 mb-4 flex flex-row gap-3">
                                         {
                                             auctionProductData?.image_list.map((image, index) => (
-                                                <div className="basis-1/6">
+                                                <div key={index} style={{width:'14%'}}>
                                                     <img style={{
                                                         width: '100%',
-                                                        height: '6.7rem',
+                                                        height: '4.7rem',
                                                         backgroundSize: 'cover',
                                                         backgroundRepeat: 'no-repeat'
                                                     }}
-                                                         key={index} src={image} alt={`Image ${index}`}/>
+                                                          src={image} alt={`Image ${index}`}/>
                                                 </div>
                                             ))
                                         }
@@ -403,17 +418,58 @@ const ProductDetail = () => {
                                     {/*thông tinn đấu giá*/}
                                     <div
                                         className="flex flex-col bg-white  text-neutral-700 font-sans text-left pt-3 p-3 mb-4">
-                                        <div style={{fontWeight: 600}} className="flex items-center" >
-                                            <span className="text-lg    ">
+                                        <div style={{fontWeight: 600}} className="flex items-center justify-between" >
+                                            <div className="flex items-center">
+                                                <span className="text-2xl    ">
                                                 {auctionProductData?.product_name}
-                                            </span>
-                                            {
-                                                auctionProductData?.is_used_interger === 0 && <>
-                                                    <Tag className="ml-2" color="red">{auctionProductData?.is_used}</Tag>
-                                                </>
-                                            }
-                                            <Tag className="ml-2" color="volcano">{auctionProductData?.rank}</Tag>
+                                                 </span>
+                                                {
+                                                    auctionProductData?.is_used_interger === 0 && <>
+                                                        <Tag className="ml-2"
+                                                             color="red">{auctionProductData?.is_used}</Tag>
+                                                    </>
+                                                }
+                                                <Tag className="ml-2" color="volcano">{auctionProductData?.rank}</Tag>
+                                            </div>
 
+                                            <Popover content={
+                                                <div className="flex items-center gap-3 py-2 px-3">
+                                                    <span>Chia sẻ :</span>
+                                                    <FacebookShareButton
+                                                        url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                        quote={'Dummy text!'}
+                                                    >
+                                                        <FacebookIcon size={28} round />
+                                                    </FacebookShareButton>
+                                                    <TwitterShareButton
+                                                        url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                        quote={'Dummy text!'}
+                                                    >
+                                                        <XIcon size={28} round={true} />
+                                                    </TwitterShareButton>
+                                                    <TelegramShareButton
+                                                        url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                        quote={'Dummy text!'}
+                                                    >
+                                                        <TelegramIcon size={28} round />
+                                                    </TelegramShareButton>
+                                                    <FacebookMessengerShareButton
+                                                        url={'https://janbox.com/vi/yahoo-auction/item/n1127985920'}
+                                                        appId={'https://www.facebook.com/hoangthuydung.11'}
+                                                    >
+                                                        <FacebookMessengerIcon size={28} round />
+                                                    </FacebookMessengerShareButton>
+                                                </div>
+
+                                            } placement="bottomRight" trigger="click">
+                                                <div>
+                                                    <img
+                                                        src="../../src/assets/share.png"
+                                                        style={{maxWidth: "70%", cursor: 'pointer'}}
+                                                        alt=""
+                                                    />
+                                                </div>
+                                            </Popover>
                                         </div>
                                         <div className="flex flex-grow gap-3 items-end mt-4">
                                             <div className="text-sm mb-0.5 text-neutral-500">Hiện tại</div>

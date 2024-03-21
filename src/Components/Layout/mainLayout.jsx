@@ -68,6 +68,7 @@ const MainLayOut = ({children}) => {
                     alignItems: 'center',
                    backgroundColor:'orange',
                     minHeight:'7rem',
+                    zIndex:'100!important'
                 }}
             >
                 <div className="flex font-normal justify-between mx-10 items-center relative font_fml" style={{

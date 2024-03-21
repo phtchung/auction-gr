@@ -67,7 +67,7 @@ const BiddingInfo = ({data}) => {
         {(data?.status === 7 || data?.status === 8 || data?.status === 9 || data?.status === 14 || data?.status === 15) && (<>
             <div className="flex justify-between m-2.5 items-center px-2">
                 <div className="text-left text-sm font-semibold ">
-                    Thông tin vận chuyển
+                    Thông tin giao hàng
                 </div>
             </div>
             <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
@@ -82,12 +82,16 @@ const BiddingInfo = ({data}) => {
                     </div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
-                    <div> Địa chỉ nhận hàng :</div>
+                    <div> Địa chỉ :</div>
                     <div className="font-normal col-span-2">
                         {data?.deliData?.address}
                     </div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
+                    <div> Thanh toán :</div>
+                    <div className="font-normal col-span-2 ">
+                        {data?.deliData?.payment_method}
+                    </div>
                     <div> Trạng thái đơn hàng :</div>
                     <div className="font-normal col-span-2 text-orange-300">
                         {numberToString(data?.status)}
