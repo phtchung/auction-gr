@@ -41,7 +41,7 @@ const ReqOrderDetail = () => {
                                                     <div className="font-normal col-span-2">
                                                         {reqData?.deliData?.name}
                                                     </div>
-                                                    <div> Phone Number :</div>
+                                                    <div> Số điện thoại :</div>
                                                     <div className="font-normal col-span-2">
                                                         {reqData?.deliData?.phone}
                                                     </div>
@@ -53,6 +53,10 @@ const ReqOrderDetail = () => {
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-6 text-left">
+                                                    <div> Thanh toán :</div>
+                                                    <div className="font-normal col-span-2 ">
+                                                        {reqData?.deliData?.payment_method}
+                                                    </div>
                                                     <div> Trạng thái đơn hiện tại :</div>
                                                     <div className="font-normal col-span-2 text-amber-400">
                                                         {convertWinStatus(reqData?.status)}

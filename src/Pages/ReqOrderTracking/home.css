@@ -68,3 +68,6 @@ button:focus {
   font-size: 14px!important;
 
 }
+:where(.css-dev-only-do-not-override-1b0bdye).ant-popover .ant-popover-content{
+  z-index: 0!important;
+}
