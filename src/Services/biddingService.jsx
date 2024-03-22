@@ -60,3 +60,32 @@ export const getBlogDetail = async (Id) => {
     url: `/articles/${Id}`,
   });
 };
+
+
+export const getProductPrepareEnd = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/auction/prepareToEnd`,
+  });
+};
+
+export const getProductBidding1k = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/auction/product1k`,
+  });
+};
+
+export const getProductRare = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/auction/productRare`,
+  });
+};
+
+export const getTopSeller = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/auction/topSeller`,
+  });
+};
