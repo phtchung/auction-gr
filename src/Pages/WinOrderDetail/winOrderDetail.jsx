@@ -12,8 +12,9 @@ import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
 import useWinOrdersTracking from "../WinOrdersTracking/useWinOrdersTracking.jsx";
 import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
-import {Image , Spin} from "antd";
+import {Image, Radio, Spin} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import {StarFilled} from "@ant-design/icons";
 
 const WinOrderDetail = () => {
     const [open, setOpen] = useState(false);
@@ -32,12 +33,12 @@ const WinOrderDetail = () => {
             setDlvInfor({
                 ...dlvInfor,
                 product_id: winDetailData?.product_id,
-                payment_method: "Tiền mặt",
             });
         }
     }, [isSuccess, winDetailData]);
     const handleDlvInfor = (key, value) => {
         setDlvInfor({...dlvInfor, [key]: value});
+        console.log(dlvInfor)
     };
 
     const handleSendDlvInfor = async () => {
@@ -47,14 +48,9 @@ const WinOrderDetail = () => {
                 return;
             }
             const res = await sendDeliveryInfor({...dlvInfor});
-            toast.success("Gửi yêu cầu thành công", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 500,
-            });
-            refetch();
-            refetch1();
             setOpen(false);
-            navigate("/winOrderTracking?status=567");
+            console.log(res)
+            window.location.href = res.data.payUrl;
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }
@@ -65,7 +61,6 @@ const WinOrderDetail = () => {
            <>
                 <Spin className="text-center mt-60"  tip="Loading" size="large"/>
            </>
-
         )
     }
     if(isError){
@@ -414,17 +409,41 @@ const WinOrderDetail = () => {
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left items-center">
-                                        <div> Hình thức thanh toán :</div>
-                                        <div className="font-normal col-span-2">
-                                            <input
-                                                type="text"
-                                                name="method"
-                                                id="method"
-                                                disabled
-                                                value="Tiền mặt"
-                                                className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
-                                            />
+                                        <div>Hình thức thanh toán :</div>
+                                        <div className="flex flex-col item-center ">
+                                            <Radio.Group className="flex flex-col gap-y-1" onChange={(e) =>
+                                                handleDlvInfor("payment_method", e.target.value)}>
+                                            <Radio value={0}>
+                                                <div className="flex-row gap-2 mt-0.5 items-center flex ">
+                                                    <img src="https://minio.thecoffeehouse.com/image/tchmobileapp/1000_photo_2021-04-06_11-17-08.jpg" style={{maxWidth: "25%"}} alt=""/>
+                                                    Tiền mặt
+                                                </div>
+                                            </Radio>
+                                            <Radio value={1}>
+                                                <div className="flex-row mt-0.5 gap-2 items-center flex ">
+                                                    <img src="https://minio.thecoffeehouse.com/image/tchmobileapp/386_ic_momo@3x.png" style={{maxWidth: "25%"}} alt=""/>
+                                                    Momo
+                                                </div>
+                                            </Radio>
+                                            <Radio value={2}>
+                                                <div className="flex-row gap-2 mt-0.5 items-center flex ">
+                                                    <img src="https://minio.thecoffeehouse.com/image/tchmobileapp/388_ic_zalo@3x.png" style={{maxWidth: "25%"}} alt=""/>
+                                                    Zalopay
+                                                </div>
+                                            </Radio>
+                                            </Radio.Group>
                                         </div>
+
+                                        {/*<div className="font-normal col-span-2">*/}
+                                        {/*    <input*/}
+                                        {/*        type="text"*/}
+                                        {/*        name="method"*/}
+                                        {/*        id="method"*/}
+                                        {/*        disabled*/}
+                                        {/*        value="Tiền mặt"*/}
+                                        {/*        className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
                                     </div>
                                 </div>
                                 <div className="flex gap-2 mb-6">
@@ -438,7 +457,7 @@ const WinOrderDetail = () => {
                                     </Button>
                                 </div>
                                 {/*xác nhận thông tin giao hàng*/}
-                                <Dialog open={open} onClose={handleOpen}  maxWidth="md">
+                                <Dialog open={open} onClose={handleOpen} maxWidth="md">
                                     <DialogTitle>
                                         <div className="flex items-center justify-between">
                                             <span className="font-semibold text-sm">
@@ -477,7 +496,8 @@ const WinOrderDetail = () => {
                                                 </div>
                                                 <div className="grid grid-cols-12 text-left">
                                                     <div className="col-span-3"> Thanh toán :</div>
-                                                    <div className=" col-span-9"> Tiền mặt</div>
+                                                    {dlvInfor?.payment_method === 0 ? 'Tiền mặt' : dlvInfor?.payment_method === 1 ? 'Momo' : 'Zalopay' || null}
+                                                    <div className=" col-span-9">  </div>
                                                 </div>
                                             </div>
                                             <div className="flex gap-4 justify-end my-2">
@@ -550,14 +570,12 @@ const WinOrderDetail = () => {
                                             </>
                                         }
                                     </div>
-
                                 </div>
                             </>
                         )}
                     </div>
                 </div>
             </MainLayOut>
-
         </>
     );
 };

@@ -9,13 +9,14 @@ export default function useProfile() {
   const parseData = useCallback((data) => {
     const user = {
       id: data._id,
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      point: data.point,
-      username: data.username,
-      birthday: data.date_of_birth,
-      gender: data.gender,
+      name: data?.name,
+      email: data?.email,
+      phone: data?.phone,
+      point: data?.point,
+      username: data?.username,
+      birthday: data?.date_of_birth,
+      gender: data?.gender,
+      avatar:data?.avatar
     };
     return { user };
   }, []);
