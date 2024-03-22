@@ -1,20 +1,28 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Menu, Card, Avatar} from 'antd'
-import {ClockCircleOutlined,StarFilled  } from '@ant-design/icons';
+import {Menu, Card} from 'antd'
 import {categoriesItems, formatMoney} from "../../Utils/constant.js";
 import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import Carousel from "react-multi-carousel";
-import CountDownDesSmall from "../../Components/Clock/countDownDesSmall.jsx";
-import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import useHome from "./useHome.jsx";
+import CardNormal from "../../Components/Card/cardNormal.jsx";
+import CardSeller from "../../Components/Card/cardSeller.jsx";
+import CardPreEnd from "../../Components/Card/cardPreEnd.jsx";
 const Home = () => {
     const navigate = useNavigate()
     const onClick = (e) => {
         console.log('click ', e);
     };
+    const {productRare , products1k , productsPreEnd , topSeller , isRareSc ,
+        isTopLd , isRareLd , is1dSc, isSuccess ,
+        isLoading , isTopSc , is1dLd} = useHome()
 
-    const handleNavigateSellerHome = () => {
-        navigate('/seller/ptchung')
+    const handleNavigateSellerHome = (username) => {
+        navigate(`/seller/${username}`)
+        window.scrollTo(0, 0);
+    }
+    const handleNavigateAuction = (username) => {
+        navigate(`/auction/item/${username}`)
         window.scrollTo(0, 0);
     }
 
@@ -69,10 +77,8 @@ const Home = () => {
                                         dotListClass=""
                                         draggable
                                         focusOnSelect={false}
-
                                         keyBoardControl
                                         minimumTouchDrag={50}
-
                                         pauseOnHover
                                         renderArrowsWhenDisabled={false}
                                         renderButtonGroupOutside={false}
@@ -84,7 +90,6 @@ const Home = () => {
                                                     min: 1024
                                                 },
                                                 items: 4,
-
                                             },
                                             mobile: {
                                                 breakpoint: {
@@ -92,7 +97,6 @@ const Home = () => {
                                                     min: 0
                                                 },
                                                 items: 1,
-
                                             },
                                             tablet: {
                                                 breakpoint: {
@@ -142,131 +146,6 @@ const Home = () => {
                                                 </div>
                                             </Card>
                                         </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 hover:text-orange-300 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div
-                                                            className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                            tại :
-                                                        </div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 hover:text-orange-300 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div
-                                                            className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                            tại :
-                                                        </div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 hover:text-orange-300 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div
-                                                            className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                            tại :
-                                                        </div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 hover:text-orange-300 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div
-                                                            className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                            tại :
-                                                        </div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-
                                     </Carousel>
                                 </div>
                                 {/*sắp kết thúc*/}
@@ -282,7 +161,6 @@ const Home = () => {
                                             <div className="text-left text-lg font-semibold text-gray-900 ">SẮP KẾT THÚC
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <Carousel
@@ -294,10 +172,8 @@ const Home = () => {
                                         dotListClass=""
                                         draggable
                                         focusOnSelect={false}
-
                                         keyBoardControl
                                         minimumTouchDrag={50}
-
                                         pauseOnHover
                                         renderArrowsWhenDisabled={false}
                                         renderButtonGroupOutside={false}
@@ -309,7 +185,6 @@ const Home = () => {
                                                     min: 1024
                                                 },
                                                 items: 4,
-
                                             },
                                             mobile: {
                                                 breakpoint: {
@@ -317,7 +192,6 @@ const Home = () => {
                                                     min: 0
                                                 },
                                                 items: 1,
-
                                             },
                                             tablet: {
                                                 breakpoint: {
@@ -337,187 +211,13 @@ const Home = () => {
                                         slidesToSlide={4}
                                         swipeable
                                     >
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                     className="flex justify-center  gap-1 item-center">
-                                                    <ClockCircleOutlined className="text-white "/>
-
-                                                    <CountDownDesSmall hours={4} minutes={10}
-                                                                       seconds={0}></CountDownDesSmall>
-
+                                        {
+                                            isSuccess && productsPreEnd && productsPreEnd.map((product, index) => (
+                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index} className="md:basis-1/5 p-2 ">
+                                                    <CardPreEnd data={product}/>
                                                 </div>
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                     className="flex justify-center  gap-1 item-center">
-                                                    <ClockCircleOutlined className="text-white "/>
-
-                                                    <CountDownDesSmall hours={2} minutes={50}
-                                                                       seconds={0}></CountDownDesSmall>
-
-                                                </div>
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                     className="flex justify-center  gap-1 item-center">
-                                                    <ClockCircleOutlined className="text-white "/>
-
-                                                    <CountDownDesSmall hours={2} minutes={50}
-                                                                       seconds={0}></CountDownDesSmall>
-
-                                                </div>
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                     className="flex justify-center  gap-1 item-center">
-                                                    <ClockCircleOutlined className="text-white "/>
-
-                                                    <CountDownDesSmall hours={2} minutes={50}
-                                                                       seconds={0}></CountDownDesSmall>
-
-                                                </div>
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                     className="flex justify-center  gap-1 item-center">
-                                                    <ClockCircleOutlined className="text-white "/>
-
-                                                    <CountDownDesSmall hours={4} minutes={10}
-                                                                       seconds={0}></CountDownDesSmall>
-
-                                                </div>
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-
+                                            ))
+                                        }
                                     </Carousel>
                                 </div>
                                 {/*giá rẻ */}
@@ -530,326 +230,20 @@ const Home = () => {
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM GIÁ
-                                                HỜI
+                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM DƯỚI 1K
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div className="flex flex-wrap">
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
+                                        {
+                                            is1dSc && products1k && products1k.map((product, index) => (
+                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index} className="md:basis-1/5 p-1.5 py-3 ">
+                                                    <CardNormal data={product}/>
                                                 </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
+                                            ))
+                                        }
                                     </div>
-
-
                                 </div>
 
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
@@ -865,294 +259,17 @@ const Home = () => {
                                                 HIẾM / SIÊU HIẾM / GIÁ CAO
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div className="flex flex-wrap">
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
+                                        {
+                                            isRareSc && productRare && productRare.map((product, index) => (
+                                                    <div onClick={() => handleNavigateAuction(product.product_id)} key={index} className="md:basis-1/5 p-1.5 py-3 ">
+                                                        <CardNormal data={product}/>
                                                     </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 overflow_css">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
-                                        <div className="md:basis-1/5  p-2">
-                                            <Card
-                                                size="small"
-                                                hoverable
-                                                bordered={false}
-                                                style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                cover={<img alt="example" style={{
-                                                    width: '100%',
-                                                    height: '163.84px',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                            >
-                                                <div className="flex flex-col text-left py-1 px-1">
-                                                    <div
-                                                        className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                        hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                    </div>
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                        <div
-                                                            className="text-red-700 text-sm font-semibold"> {formatMoney(273000)} đ
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Card>
-                                        </div>
+                                            ))
+                                        }
                                     </div>
-
-
                                 </div>
 
                                 {/* người bán nổi bật*/}
@@ -1165,94 +282,20 @@ const Home = () => {
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">NGƯỜI BÁN NỔI BẬT
+                                            <div className="text-left text-lg font-semibold text-gray-900 ">NGƯỜI BÁN
+                                                NỔI BẬT
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div className="flex flex-wrap ">
-                                        <div className="md:basis-1/5 p-2" onClick={handleNavigateSellerHome}>
-                                            <Card
-                                                hoverable
-                                                style={{
-                                                    width: 209,
-                                                }}
-                                                actions={[
-                                                    <div className="flex gap-1 justify-center">
-                                                        <span>4.5</span>
-                                                        <StarFilled className="text-yellow-500"/>
-
-                                                    </div>,
-                                                    <div>287 <span className="text-xs">đơn hàng</span></div>,
-                                                ]}
-                                            >
-                                                <div className="flex flex-row p-2 pb-2 items-center gap-2">
-                                                    <Avatar size="large"
-                                                            src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>
-                                                    <div
-                                                        className="overflow_css text-neutral-700 text-base font-sans"> Phạm
-                                                        Thành Chunng hàng nnnnnnnnnnn
-                                                    </div>
+                                        {
+                                            isTopSc && topSeller  && topSeller.map((seller, index) => (
+                                                <div onClick={() => handleNavigateSellerHome(seller.username)} key={index} className="md:basis-1/5 p-2.5 py-3 ">
+                                                    <CardSeller data={seller}/>
                                                 </div>
-                                            </Card>
-
-
-                                        </div>
-                                        <div className="md:basis-1/5 p-2">
-                                            <Card
-                                                hoverable
-                                                style={{
-                                                    width: 209,
-                                                }}
-                                                actions={[
-                                                    <div className="flex gap-1 justify-center">
-                                                        <span>4.5</span>
-                                                        <StarFilled className="text-yellow-500"/>
-
-                                                    </div>,
-                                                    <div>287 <span className="text-xs">đơn hàng</span></div>,
-                                                ]}
-                                            >
-                                                <div className="flex flex-row p-2 pb-2 items-center gap-2">
-                                                    <Avatar size="large"
-                                                            src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>
-                                                    <div
-                                                        className="overflow_css text-neutral-700 text-base font-sans"> Phạm
-                                                        Thành Chunng hàng nnnnnnnnnnn
-                                                    </div>
-                                                </div>
-                                            </Card>
-
-
-                                        </div>
-                                        <div className="md:basis-1/5 p-2">
-                                            <Card
-                                                hoverable
-                                                style={{
-                                                    width: 209,
-                                                }}
-                                                actions={[
-                                                    <div className="flex gap-1 justify-center">
-                                                        <span>4.5</span>
-                                                        <StarFilled className="text-yellow-500"/>
-
-                                                    </div>,
-                                                    <div>287 <span className="text-xs">đơn hàng</span></div>,
-                                                ]}
-                                            >
-                                                <div className="flex flex-row p-2 pb-2 items-center gap-2">
-                                                    <Avatar size="large"
-                                                            src="https://api.dicebear.com/7.x/miniavs/svg?seed=2"/>
-                                                    <div
-                                                        className="overflow_css text-neutral-700 text-base font-sans"> Phạm
-                                                        Thành Chunng hàng nnnnnnnnnnn
-                                                    </div>
-                                                </div>
-                                            </Card>
-
-
-                                        </div>
+                                            ))
+                                        }
 
                                     </div>
                                     {/*collapse xem thêm nma chưa đc */}

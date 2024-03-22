@@ -3,7 +3,6 @@ import {ClockCircleOutlined} from "@ant-design/icons";
 import {Card} from "antd";
 
 const CardItem4Line = ({data}) => {
-    console.log(data)
   return(
       <>
           <Card

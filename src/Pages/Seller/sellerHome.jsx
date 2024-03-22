@@ -196,7 +196,7 @@ const SellerHome = () => {
                                         <div className="flex flex-wrap">
                                             {
                                                 products.map((product, index) => (
-                                                    <div key={index} className="md:basis-1/5  p-2">
+                                                    <div key={index} className="md:basis-1/5 p-2">
                                                         <CardItem4Line data={product}/>
                                                     </div>
                                                 ))
