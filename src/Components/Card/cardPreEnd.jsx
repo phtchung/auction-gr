@@ -12,14 +12,14 @@ const CardPreEnd = ({data}) => {
                 bordered={false}
                 style={{width: '100%', borderRadius: 0, minHeight: 236}}
                 cover={<img alt="example" style={{
-                    width: '98%',
+                    width: '100%',
                     height: '10rem',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                 }}
                             src={data.main_image}/>}
             >
-                <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
+                <div style={{backgroundColor: 'rgb(248,194,5)'}}
                      className="flex justify-center  gap-1 item-center">
                     <ClockCircleOutlined className="text-white "/>
 

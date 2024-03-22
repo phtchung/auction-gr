@@ -14,13 +14,7 @@ import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
 import {toast} from "react-toastify";
 import {sendAuctionData, sendBuyData} from "../../Services/biddingService.jsx";
 import {
-    FacebookIcon,
-    TwitterShareButton,
-    FacebookMessengerShareButton,
-    FacebookMessengerIcon,
-    TelegramIcon,
-    FacebookShareButton,
-    XIcon, TelegramShareButton,
+    FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
 const ProductDetail = () => {
     const navigate = useNavigate()
@@ -88,8 +82,6 @@ const ProductDetail = () => {
             rf()
             setOpen()
         }
-
-
     }
 
     if (isError) {
@@ -108,7 +100,7 @@ const ProductDetail = () => {
                         <Breadcrumb
                             items={[
                                 {
-                                    title: 'Home',
+                                    title: <a href="/">Home</a>,
                                 },
                                 {
                                     title: <a href="">Application Center</a>,
@@ -418,19 +410,10 @@ const ProductDetail = () => {
                                     {/*thông tinn đấu giá*/}
                                     <div
                                         className="flex flex-col bg-white  text-neutral-700 font-sans text-left pt-3 p-3 mb-4">
-                                        <div style={{fontWeight: 600}} className="flex items-center justify-between" >
-                                            <div className="flex items-center">
-                                                <span className="text-2xl    ">
+                                        <div style={{fontWeight: 600}} className="flex pr-6 relative" >
+                                            <span className="text-2xl    ">
                                                 {auctionProductData?.product_name}
-                                                 </span>
-                                                {
-                                                    auctionProductData?.is_used_interger === 0 && <>
-                                                        <Tag className="ml-2"
-                                                             color="red">{auctionProductData?.is_used}</Tag>
-                                                    </>
-                                                }
-                                                <Tag className="ml-2" color="volcano">{auctionProductData?.rank}</Tag>
-                                            </div>
+                                            </span>
 
                                             <Popover content={
                                                 <div className="flex items-center gap-3 py-2 px-3">
@@ -462,10 +445,10 @@ const ProductDetail = () => {
                                                 </div>
 
                                             } placement="bottomRight" trigger="click">
-                                                <div>
+                                                <div className="mt-2 absolute right-0">
                                                     <img
                                                         src="../../src/assets/share.png"
-                                                        style={{maxWidth: "70%", cursor: 'pointer'}}
+                                                        style={{width: "24px", cursor: 'pointer'}}
                                                         alt=""
                                                     />
                                                 </div>
@@ -514,6 +497,14 @@ const ProductDetail = () => {
                                         <div>
                                             <Tag className="mx-2 mt-3"
                                                  color="red">{auctionProductData?.type_of_auction}</Tag>
+                                            <Tag className="" color="volcano">{auctionProductData?.rank}</Tag>
+                                            {
+                                                auctionProductData?.is_used_interger === 0 && <>
+                                                    <Tag className="mr-2"
+                                                         color="red">{auctionProductData?.is_used}</Tag>
+                                                </>
+                                            }
+
                                         </div>
 
                                         <div className="mt-5 mb-6 flex gap-1 flex-row items-center">

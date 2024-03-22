@@ -5,17 +5,23 @@ import {StarFilled} from "@ant-design/icons";
 import {useState} from "react";
 import useSellerHome from "./useSellerHome.jsx";
 import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
+import {useNavigate} from "react-router-dom";
 
 const SellerHome = () => {
     const {isError, isLoading, isSuccess, sellerHomeData, products, refetch} = useSellerHome()
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
+    const navigate = useNavigate()
     const [current, setCurrent] = useState(3);
     const onChangePagination = (page) => {
         console.log(page);
         setCurrent(page);
     };
+    const handleNavigateAuction = (id) => {
+        navigate(`/auction/item/${id}`)
+        window.scrollTo(0, 0);
+    }
     const onChange = (checkedValues) => {
         console.log('checked = ', checkedValues);
     };
@@ -24,23 +30,21 @@ const SellerHome = () => {
             <MainLayOut>
                 <div className="md:container">
 
-                    <div className="px-3 mx-2 mt-2">
-                        <Breadcrumb
-                            items={[
-                                {
-                                    title: 'Home',
-                                },
-                                {
-                                    title: <a href="">Application Center</a>,
-                                },
-                                {
-                                    title: 'Seller Name',
-                                },
-                            ]}
-                        />
-                    </div>
+
                     {
                         isSuccess && <>
+                            <div className="px-3  mx-2 mt-2">
+                                <Breadcrumb
+                                    items={[
+                                        {
+                                            title: <a className="text-base" href="/">Trang chủ</a>,
+                                        },
+                                        {
+                                            title: <a className="text-base" href="">{sellerHomeData.seller_user_name}</a>,
+                                        },
+                                    ]}
+                                />
+                            </div>
                             <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
                                 {/*cột menu danh mục và filter */}
                                 <div className=" md:basis-1/5 sm:basis-1/4 ">
@@ -121,7 +125,6 @@ const SellerHome = () => {
                                                     placeholder="Đến" onChange={onChange}/>
 
                                             </div>
-
                                         </div>
                                     </div>
                                     <div>
@@ -140,6 +143,8 @@ const SellerHome = () => {
                                         <div
                                             className="flex flex-grow items-center justify-end border-b border-b-neutral-200 px-2 pb-2">
                                             <Select
+                                                listHeight={350}
+                                                dropdownClassStyle={{zIndex: -1}}
                                                 defaultValue="Sắp xếp"
                                                 style={{
                                                     width: 160,
@@ -196,12 +201,12 @@ const SellerHome = () => {
                                         <div className="flex flex-wrap">
                                             {
                                                 products.map((product, index) => (
-                                                    <div key={index} className="md:basis-1/5 p-2">
+                                                    <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                         key={index} className="md:basis-1/5 p-2">
                                                         <CardItem4Line data={product}/>
                                                     </div>
                                                 ))
                                             }
-
                                         </div>
                                     </div>
                                     <Pagination current={current} showSizeChanger={false} onChange={onChangePagination}

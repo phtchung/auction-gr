@@ -10,7 +10,7 @@ const CardNormal = ({data}) => {
                 bordered={false}
                 style={{width: '100%', borderRadius: 0, minHeight: 236}}
                 cover={<img alt="example" style={{
-                    width: '98%',
+                    width: '100%',
                     height: '10rem',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',

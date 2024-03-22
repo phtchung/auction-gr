@@ -21,8 +21,8 @@ const Home = () => {
         navigate(`/seller/${username}`)
         window.scrollTo(0, 0);
     }
-    const handleNavigateAuction = (username) => {
-        navigate(`/auction/item/${username}`)
+    const handleNavigateAuction = (id) => {
+        navigate(`/auction/item/${id}`)
         window.scrollTo(0, 0);
     }
 
@@ -222,17 +222,23 @@ const Home = () => {
                                 </div>
                                 {/*giá rẻ */}
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
-                                    <div className="flex flex-grow items-center justify-between p-2">
+                                    <div className="flex flex-grow  justify-between p-2">
                                         <div className="flex gap-2 items-center mb-2 ">
-                                        <span className="relative flex h-3 w-3">
-                                            <span
-                                                className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
-                                            <span
-                                                className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                                        </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM DƯỚI 1K
-                                            </div>
+                                            <span className="relative flex h-3 w-3">
+                                                <span
+                                                    className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
+                                                <span
+                                                    className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                            </span>
+                                                <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM DƯỚI 1K</div>
                                         </div>
+                                        {
+                                            products1k && products1k.length > 9 && <>
+                                                <div className="text-base cursor-pointer view_all">
+                                                    <span>Xem tất cả  →</span>
+                                                </div>
+                                            </>
+                                        }
                                     </div>
 
                                     <div className="flex flex-wrap">
@@ -259,6 +265,14 @@ const Home = () => {
                                                 HIẾM / SIÊU HIẾM / GIÁ CAO
                                             </div>
                                         </div>
+                                        {
+                                            productRare && productRare.length > 9 && <>
+                                                <div className="text-base cursor-pointer view_all">
+                                                    <span>Xem tất cả  →</span>
+                                                </div>
+                                            </>
+                                        }
+
                                     </div>
 
                                     <div className="flex flex-wrap">
@@ -276,12 +290,6 @@ const Home = () => {
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
                                     <div className="flex flex-grow items-center justify-between p-2">
                                         <div className="flex gap-2 items-center mb-2 ">
-                                        <span className="relative flex h-3 w-3">
-                                            <span
-                                                className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
-                                            <span
-                                                className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                                        </span>
                                             <div className="text-left text-lg font-semibold text-gray-900 ">NGƯỜI BÁN
                                                 NỔI BẬT
                                             </div>
