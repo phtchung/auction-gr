@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import USER from "../../services/userService";
+import USER from "../../Services/userService.jsx";
+
 
 export default function useProfile() {
   const token = useMemo(() => localStorage.getItem("accessToken"), []);
