@@ -1,8 +1,9 @@
 import axios from "axios";
 import { baseUrl } from "./baseUrl.jsx";
-import token from "../../utils/token";
+
 
 import { toast } from "react-toastify";
+import token from "../../Utils/token.js";
 
 
 const privateHttp1 = axios.create({
