@@ -1,7 +1,5 @@
 import axios from "axios";
 import { baseUrl } from "./baseUrl.jsx";
-
-
 import { toast } from "react-toastify";
 import token from "../../Utils/token.js";
 
