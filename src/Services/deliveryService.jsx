@@ -1,4 +1,4 @@
-import privateHttp from "./Http/privateHttp.config.js";
+import privateHttp from "./Http/privateHttp.config.jsx";
 
 export const sendDeliveryInfor = async (dlvInfor) => {
   return privateHttp({

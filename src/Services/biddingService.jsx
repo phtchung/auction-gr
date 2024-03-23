@@ -1,5 +1,5 @@
-import privateHttp from "./Http/privateHttp.config.js";
-import publicHttp from "./Http/publicHttp.config.js";
+import privateHttp from "./Http/privateHttp.config.jsx";
+import publicHttp from "./Http/publicHttp.config.jsx";
 
 export const getBiddingList = async () => {
   return privateHttp({
