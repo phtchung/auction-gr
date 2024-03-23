@@ -1,5 +1,5 @@
-import publicHttp from "./http/publicHttp.config";
-import privateHttp from "./http/privateHttp.config";
+import publicHttp from "./Http/publicHttp.config.jsx";
+import privateHttp from "./Http/privateHttp.config.jsx";
 
 export const updateUserInfo = async (data) => {
   return privateHttp({

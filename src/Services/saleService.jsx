@@ -1,4 +1,4 @@
-import privateHttp from "./http/privateHttp.config";
+import privateHttp from "./Http/privateHttp.config.jsx";
 
 export const getSaleHistory = async (params) => {
   return privateHttp({

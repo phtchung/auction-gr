@@ -1,9 +1,9 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Menu, Card} from 'antd'
+import {Menu, Card,Popover} from 'antd'
 import {categoriesItems, formatMoney} from "../../Utils/constant.js";
 import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import Carousel from "react-multi-carousel";
-import {useNavigate} from "react-router-dom";
+import {useNavigate , Link} from "react-router-dom";
 import useHome from "./useHome.jsx";
 import CardNormal from "../../Components/Card/cardNormal.jsx";
 import CardSeller from "../../Components/Card/cardSeller.jsx";
@@ -12,6 +12,9 @@ const Home = () => {
     const navigate = useNavigate()
     const onClick = (e) => {
         console.log('click ', e);
+    };
+    const handleNavigateCate = (e) => {
+        navigate(`/categories/${e[0]}`)
     };
     const {productRare , products1k , productsPreEnd , topSeller , isRareSc ,
         isTopLd , isRareLd , is1dSc, isSuccess ,
@@ -38,6 +41,7 @@ const Home = () => {
                                 <div className="mb-1 text-base">Danh mục</div>
                                 <Menu
                                     onClick={onClick}
+                                    onOpenChange={handleNavigateCate}
                                     style={{
                                         width: '100%',
                                         textAlign: 'left',
@@ -45,7 +49,9 @@ const Home = () => {
                                     }}
                                     mode="inline"
                                     items={categoriesItems}
-                                />
+                                >
+
+                            </Menu>
                             </div>
                             {/*cột hiển thị các sản phẩm*/}
                             <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">

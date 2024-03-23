@@ -1,4 +1,4 @@
-import privateHttp from "./Http/privateHttp.config.js";
+import privateHttp from "./Http/privateHttp.config.jsx";
 
 export const updateStatus = async ( newState) => {
     return privateHttp({

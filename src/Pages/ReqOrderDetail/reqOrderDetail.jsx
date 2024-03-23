@@ -66,7 +66,6 @@ const ReqOrderDetail = () => {
                                         </>
                                     )}
 
-
                                 {reqData.status !== undefined &&
                                 [5, 6].includes(reqData?.status) ? (
                                     <UpdatePopup state={reqData.status}/>

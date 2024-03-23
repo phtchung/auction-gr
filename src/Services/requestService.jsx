@@ -1,6 +1,6 @@
 
-import privateHttp1 from "./Http/privateHttp1.config.js";
-import privateHttp from "./Http/privateHttp.config.js";
+import privateHttp1 from "./Http/privateHttp1.config.jsx";
+import privateHttp from "./Http/privateHttp.config.jsx";
 
 export const getRequestHistory = async (params) => {
   return privateHttp({

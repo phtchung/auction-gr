@@ -22,44 +22,50 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
         }),
     };
 });
-const items = [
-    {
-        key: '1',
-        label: (
-            <NavLink  to="/user/profile">
-                Tài khoản cá nhân
-            </NavLink>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <NavLink   to="/reqOrderTracking">
-                Đơn bán
-            </NavLink>
-        ),
-    },
-    {
-        key: '3',
-        label: (
-            <NavLink    to="/winOrderTracking">
-                Đơn mua
-            </NavLink>
-        ),
-    },
-    {
-        key: '4',
-        label: (
-            <NavLink    to="/winOrderTracking">
-               Đăng xuất
-            </NavLink>
-        ),
-    },
-];
+
 const MainLayOut = ({children}) => {
+
     const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
     const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
+    const handleNavi = (url) => {
+        naviagate(`/${url}`)
+        window.scrollTo(0,0)
+    }
+    const items = [
+        {
+            key: '1',
+            label: (
+                <div onClick={() => handleNavi('user/profile')} >
+                    Tài khoản cá nhân
+                </div>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <div onClick={() => handleNavi('reqOrderTracking')}   >
+                    Đơn bán
+                </div>
+            ),
+        },
+        {
+            key: '3',
+            label: (
+                <div  onClick={() => handleNavi('winOrderTracking')} >
+                    Đơn mua
+                </div>
+            ),
+        },
+        {
+            key: '4',
+            label: (
+                <div >
+                    Đăng xuất
+                </div>
+            ),
+        },
+    ];
     return (
         <Layout>
             <Header

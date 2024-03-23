@@ -798,7 +798,7 @@ function getItem(label, key, icon, children, type) {
 }
 
 export const categoriesItems = [
-    getItem('Điện tử', 'sub2', null, [
+    getItem('Điện tử', 'dien-tu', null, [
         getItem('Máy tính', '5'),
         getItem('Điện thoại', '6'),
         getItem('Máy ảnh', '7'),

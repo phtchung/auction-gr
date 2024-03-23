@@ -1,5 +1,5 @@
-import privateHttp from "./http/privateHttp.config";
-import privateHttp1 from "./Http/privateHttp1.config.js";
+import privateHttp from "./Http/privateHttp.config.jsx";
+import privateHttp1 from "./Http/privateHttp1.config.jsx";
 
 export const getAuctionHistory = async ({ status = "" }) => {
   return privateHttp({
