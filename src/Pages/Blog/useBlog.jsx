@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {
-    formatDateTime, formatDateTime1,
+import {formatDateTime1,
 } from "../../Utils/constant.js";
 import {getBlogs} from "../../Services/biddingService.jsx";
 export default function useBlog() {

@@ -37,6 +37,11 @@ const ProductDetail = () => {
             window.location.href = '/login';
         }
     };
+
+    const handleNavigate = (url) => {
+        navigate(`/categories/${url}`)
+        window.scrollTo(0,0)
+    }
     const handleAuctionData = (key, value) => {
         setAuctionData({...auctionData, [key]: value});
     };
@@ -96,21 +101,24 @@ const ProductDetail = () => {
             <MainLayOut>
                 <div className="md:container">
 
-                    <div className="px-3 mx-2 mt-2">
-                        <Breadcrumb
-                            items={[
-                                {
-                                    title: <a href="/">Home</a>,
-                                },
-                                {
-                                    title: <a href="">Application Center</a>,
-                                },
-                                {
-                                    title: 'Tên danh mục sản phẩm cối cùngg',
-                                },
-                            ]}
-                        />
-                    </div>
+                    {isSuccess && <>
+                        <div className="px-3 mx-2 mt-2">
+                            <Breadcrumb
+                                items={[
+                                    {
+                                        title: <a href="/">Trang chủ</a>,
+                                    },
+                                    {
+                                        title: <span className="cursor-pointer" onClick={() => handleNavigate(auctionProductData.parent._id)}>{auctionProductData?.parent?.name}</span>
+                                    },
+                                    {
+                                        title: <a href="">{auctionProductData?.category_name}</a>
+                                    },
+                                ]}
+                            />
+                        </div>
+                    </>}
+
                     {isLoading &&
                         <>
                             <Spin className="text-center mt-60" tip="Loading" size="large">
@@ -683,7 +691,7 @@ const ProductDetail = () => {
                                         <div className="0 gap-4 px-4 p-3 pb-2 font-sans text-neutral-600">
                                             <div className="flex-row flex gap-3 mb-3">
                                                 <div className="basis-2/5 font-medium">Danh mục</div>
-                                                <div className="basis-3/5">Đồ chơi</div>
+                                                <div className="basis-3/5">{auctionProductData?.parent?.name} - {auctionProductData?.category_name}</div>
                                             </div>
                                             <div className="flex-row flex gap-3 mb-3">
                                                 <div className="basis-2/5 font-medium">Thương hiệu</div>
@@ -727,10 +735,7 @@ const ProductDetail = () => {
                             </div>
                         </>
                     }
-
-
                 </div>
-
             </MainLayOut>
         </>
     )
