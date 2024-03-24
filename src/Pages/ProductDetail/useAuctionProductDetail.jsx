@@ -38,11 +38,12 @@ export default function useAuctionProductDetail() {
             is_used:data?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng',
             is_used_interger:data?.is_used ,
             min_auction_price : data.final_price  ? data.final_price + data?.step_price : data?.reserve_price + data?.step_price,
-            brand:data?.brand,
+            brand:data.brand ? data.brand : 'Không',
             can_return:data?.can_return === 0 ? 'Không' : 'Có thể',
             delivery_from:data?.delivery_from,
             type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
             category_name: data?.category_id?.name,
+            parent : data?.parent,
         };
         return { detail };
     }, []);

@@ -89,3 +89,17 @@ export const getTopSeller = async () => {
     url: `/auction/topSeller`,
   });
 };
+
+export const getCategories = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/categories`,
+  });
+};
+
+export const getCategoryDetail = async (Id) => {
+  return publicHttp({
+    method: "GET",
+    url: `/category/${Id}`,
+  });
+};

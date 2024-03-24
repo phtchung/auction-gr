@@ -1,21 +1,28 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Menu, Card,Popover} from 'antd'
-import {categoriesItems, formatMoney} from "../../Utils/constant.js";
+import { Card} from 'antd'
+import {formatMoney} from "../../Utils/constant.js";
+import {DownOutlined , UpOutlined} from "@ant-design/icons";
 import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import Carousel from "react-multi-carousel";
-import {useNavigate , Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import useHome from "./useHome.jsx";
 import CardNormal from "../../Components/Card/cardNormal.jsx";
 import CardSeller from "../../Components/Card/cardSeller.jsx";
 import CardPreEnd from "../../Components/Card/cardPreEnd.jsx";
+import useCategories from "./useCategories.jsx";
+import {useState} from "react";
 const Home = () => {
     const navigate = useNavigate()
-    const onClick = (e) => {
-        console.log('click ', e);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+    const toggleCategory = (category) => {
+        setSelectedCategory(selectedCategory === category ? null : category);
     };
-    const handleNavigateCate = (e) => {
-        navigate(`/categories/${e[0]}`)
+    const handleNavigateCate = (url) => {
+        navigate(`/categories/${url}`)
+        window.scrollTo(0,0)
     };
+    const {categories , isSuccess : sc , isLoading : ld} = useCategories()
     const {productRare , products1k , productsPreEnd , topSeller , isRareSc ,
         isTopLd , isRareLd , is1dSc, isSuccess ,
         isLoading , isTopSc , is1dLd} = useHome()
@@ -36,22 +43,50 @@ const Home = () => {
                     <div>
                         {/*//chia 2 cột , 1 cột danhm muc , 1 sột sản phẩm */}
                         <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
-                            <div className=" md:basis-1/5 sm:basis-1/4 pt-5 "
+                            <div className=" md:basis-1/5 sm:basis-1/4  "
                                  style={{backgroundColor: "white"}}>
-                                <div className="mb-1 text-base">Danh mục</div>
-                                <Menu
-                                    onClick={onClick}
-                                    onOpenChange={handleNavigateCate}
-                                    style={{
-                                        width: '100%',
-                                        textAlign: 'left',
-                                        backgroundColor: 'white'
-                                    }}
-                                    mode="inline"
-                                    items={categoriesItems}
-                                >
+                                {isSuccess &&
+                                    <div className="mb-1 pt-4 font-semibold text-lg">Danh mục</div>
+                                }
 
-                            </Menu>
+                                {
+                                    categories && categories.map((category, index) => (
+                                        <>
+                                            <div key={index} className={`${selectedCategory === category.name ? 'bg-orange-200' : ''} border-b border-neutral-100 pl-5 hover:bg-neutral-200 relative  cursor-pointer flex items-center justify-between`}>
+                                                <div onClick={() => handleNavigateCate(category.category_id)}
+                                                    className={`text-base cursor-pointer leading-10 text-neutral-700 `}>
+                                                    {category.name}
+                                                </div>
+                                                <div className="py-2 px-4" onClick={() => toggleCategory(category.name)}>
+                                                    {selectedCategory === category.name ? <UpOutlined style={{fontSize:12}}/> : <DownOutlined style={{fontSize:12}} />}
+                                                </div>
+                                            </div>
+                                            {selectedCategory === category.name && (
+                                                category.children.map((child,index) => (
+                                                    <div key={index} className=" slide-down cursor-pointer text-left px-5  bg-white">
+                                                        <div className="hover:text-orange-500 border-b border-neutral-100 leading-8 text-sm">
+                                                            {child.name}
+                                                        </div>
+                                                    </div>
+                                                ))
+
+                                            )}
+                                        </>
+                                    ))
+                                }
+
+                                {/*<Menu*/}
+                                {/*    onClick={onClick}*/}
+                                {/*    onOpenChange={handleNavigateCate}*/}
+                                {/*    style={{*/}
+                                {/*        width: '100%',*/}
+                                {/*        textAlign: 'left',*/}
+                                {/*        backgroundColor: 'white'*/}
+                                {/*    }}*/}
+                                {/*    mode="inline"*/}
+                                {/*    items={categoriesItems}*/}
+                                {/*>*/}
+                                {/*</Menu>*/}
                             </div>
                             {/*cột hiển thị các sản phẩm*/}
                             <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">
