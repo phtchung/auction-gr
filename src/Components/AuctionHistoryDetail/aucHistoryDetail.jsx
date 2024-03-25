@@ -5,7 +5,7 @@ import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate, useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import {getAuctionHistoryDetail} from "../../Services/productService.jsx";
-import {formatDateTime} from "../../Utils/constant.js";
+import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 import MainLayOut from "../Layout/mainLayout.jsx";
 
 const AucHistoryDetail = () => {
@@ -154,17 +154,17 @@ const AucHistoryDetail = () => {
                                             <div className="col-1 text-right mr-6">
                                                 <div className="border-b border-gray-200 "></div>
                                                 <div className="border-b border-gray-200  p-3">
-                                                    {data?.reserve_price}đ
+                                                    {formatMoney(data?.reserve_price)}đ
                                                 </div>
                                                 <div className="border-b border-gray-200 p-3">
-                                                    {data?.final_price}đ
+                                                    {formatMoney(data?.final_price)}đ
                                                 </div>
                                                 <div className="border-b border-gray-200 p-3">
-                                                    {data?.shipping_fee}đ
+                                                    {formatMoney(data?.shipping_fee)}đ
                                                 </div>
                                                 <div
                                                     className="border-b border-gray-200 font-semibold text-base text-gray-600 p-4">
-                                                    {data?.final_price + data?.shipping_fee}đ
+                                                    {formatMoney(data?.final_price + data?.shipping_fee)}đ
                                                 </div>
                                             </div>
                                         </div>

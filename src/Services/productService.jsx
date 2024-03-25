@@ -79,3 +79,10 @@ export const reviewProduct = async (reviewData) => {
     data: reviewData,
   });
 };
+
+export const getRelatedProduct = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/relatedItem/${Id}`,
+  });
+};

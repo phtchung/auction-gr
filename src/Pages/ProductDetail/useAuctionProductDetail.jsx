@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { formatDateTime } from "../../Utils/constant.js";
-import {getAuctionProductDetail} from "../../Services/productService.jsx";
+import {formatDateTime, formatNumber} from "../../Utils/constant.js";
+import {getAuctionProductDetail, getRelatedProduct} from "../../Services/productService.jsx";
 import {getProductBiddingCount} from "../../Services/biddingService.jsx";
 
 export default function useAuctionProductDetail() {
@@ -48,6 +48,23 @@ export default function useAuctionProductDetail() {
         return { detail };
     }, []);
 
+    const parseData1 = useCallback((item) => {
+        const product = item?.map((data) => {
+            return {
+                product_id: data?._id,
+                product_name: data?.product_name,
+                reserve_price: data?.reserve_price,
+                final_price: data.final_price ? data?.final_price : data?.reserve_price,
+                finish_time: formatDateTime(new Date(data?.finish_time)),
+                countdownTime: data?.finish_time,
+                main_image:data?.main_image,
+            };
+        });
+
+        return { product };
+    }, []);
+
+
     const { data, isSuccess, isLoading,isError,refetch } = useQuery({
         queryKey: ["getAuctionProductDetail", id],
         queryFn: () => getAuctionProductDetail(id),
@@ -62,7 +79,18 @@ export default function useAuctionProductDetail() {
         staleTime: 20 * 1000,
         enabled: !!id,
     });
+
+    const { data : relatedProducts, isSuccess : sc, isLoading : ld,isError : err} = useQuery({
+        queryKey: ["getRelatedProduct", id],
+        queryFn: () => getRelatedProduct(id),
+        staleTime: 20 * 1000,
+        select: (data) => parseData1(data.data),
+        enabled: !!id,
+    });
+
     return {
+        ralatedPro : relatedProducts?.product,
+        sc,ld,err,
         auctionProductData: data?.detail,
         isSuccess,
         isLoading,
