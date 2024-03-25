@@ -16,6 +16,7 @@ import {sendAuctionData, sendBuyData} from "../../Services/biddingService.jsx";
 import {
     FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
+import CardNormal from "../../Components/Card/cardNormal.jsx";
 const ProductDetail = () => {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
@@ -26,7 +27,11 @@ const ProductDetail = () => {
             window.location.href = '/login';
         }
     };
-    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf} = useAuctionProductDetail()
+    const handleNavigateAuction = (id) => {
+        navigate(`/auction/item/${id}`)
+        window.scrollTo(0, 0);
+    }
+    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro} = useAuctionProductDetail()
     const [open1, setOpen1] = useState(false);
     const {id} = useParams()
     const [auctionData,setAuctionData] = useState({productId:id})
@@ -181,236 +186,69 @@ const ProductDetail = () => {
                                             </div>
                                         </div>
 
-                                        <Carousel
-                                            additionalTransfrom={0}
-                                            arrows
-                                            autoPlaySpeed={3000}
-                                            className=""
-                                            containerClass="carousel-container-categories"
-                                            dotListClass=""
-                                            draggable
-                                            focusOnSelect={false}
-                                            keyBoardControl
-                                            minimumTouchDrag={30}
-                                            pauseOnHover
-                                            renderArrowsWhenDisabled={false}
-                                            renderButtonGroupOutside={false}
-                                            renderDotsOutside={false}
-                                            responsive={{
-                                                desktop: {
-                                                    breakpoint: {
-                                                        max: 3000,
-                                                        min: 1024
-                                                    },
-                                                    items: 2.61,
-                                                },
-                                                mobile: {
-                                                    breakpoint: {
-                                                        max: 464,
-                                                        min: 0
-                                                    },
-                                                    items: 2,
-                                                },
-                                                tablet: {
-                                                    breakpoint: {
-                                                        max: 1024,
-                                                        min: 464
-                                                    },
-                                                    items: 2,
-                                                }
-                                            }}
-                                            rewind
-                                            centerMode={true}
-                                            rewindWithAnimation={false}
-                                            rtl={false}
-                                            shouldResetAutoplay
-                                            showDots={false}
-                                            sliderClass=""
-                                            slidesToSlide={3}
-                                            swipeable
-                                        >
-                                            <div className="md:basis-1/5  p-2">
-                                                <Card
-                                                    size="small"
-                                                    hoverable
-                                                    bordered={false}
-                                                    style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                    cover={<img alt="example" style={{
-                                                        width: '100%',
-                                                        height: '163.84px',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat',
+                                        {
+                                            ralatedPro &&
+                                            <>
+                                                <Carousel
+                                                    additionalTransfrom={0}
+                                                    arrows
+                                                    autoPlaySpeed={3000}
+                                                    className=""
+                                                    containerClass="carousel-container-categories"
+                                                    dotListClass=""
+                                                    draggable
+                                                    focusOnSelect={false}
+                                                    keyBoardControl
+                                                    minimumTouchDrag={30}
+                                                    pauseOnHover
+                                                    renderArrowsWhenDisabled={false}
+                                                    renderButtonGroupOutside={false}
+                                                    renderDotsOutside={false}
+                                                    responsive={{
+                                                        desktop: {
+                                                            breakpoint: {
+                                                                max: 3000,
+                                                                min: 1024
+                                                            },
+                                                            items: 2.61,
+                                                        },
+                                                        mobile: {
+                                                            breakpoint: {
+                                                                max: 464,
+                                                                min: 0
+                                                            },
+                                                            items: 2,
+                                                        },
+                                                        tablet: {
+                                                            breakpoint: {
+                                                                max: 1024,
+                                                                min: 464
+                                                            },
+                                                            items: 2,
+                                                        }
                                                     }}
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                                                    rewind
+                                                    centerMode={true}
+                                                    rewindWithAnimation={false}
+                                                    rtl={false}
+                                                    shouldResetAutoplay
+                                                    showDots={false}
+                                                    sliderClass=""
+                                                    slidesToSlide={3}
+                                                    swipeable
                                                 >
-                                                    <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                         className="flex justify-center  gap-1 item-center">
-                                                        <ClockCircleOutlined className="text-white "/>
-
-                                                        <CountDownDesSmall hours={4} minutes={10}
-                                                                           seconds={0}></CountDownDesSmall>
-
-                                                    </div>
-                                                    <div className="flex flex-col text-left py-1 px-1">
-                                                        <div
-                                                            className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                            hoa xxxxxxxxxxxxxxx
-                                                        </div>
-                                                        <div className="flex flex-row items-center gap-1 overflow_css">
-                                                            <div className="text-neutral-500 text-xs">Hiện tại :</div>
+                                                    {
+                                                        ralatedPro.map((product,index) => (
                                                             <div
-                                                                className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
+                                                                onClick={() => handleNavigateAuction(product.product_id)}
+                                                                key={index} className="md:basis-1/5 p-2 ">
+                                                                <CardNormal data={product}/>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </div>
-                                            <div className="md:basis-1/5  p-2">
-                                                <Card
-                                                    size="small"
-                                                    hoverable
-                                                    bordered={false}
-                                                    style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                    cover={<img alt="example" style={{
-                                                        width: '100%',
-                                                        height: '163.84px',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat',
-                                                    }}
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                                >
-                                                    <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                         className="flex justify-center  gap-1 item-center">
-                                                        <ClockCircleOutlined className="text-white "/>
-
-                                                        <CountDownDesSmall hours={2} minutes={50}
-                                                                           seconds={0}></CountDownDesSmall>
-
-                                                    </div>
-                                                    <div className="flex flex-col text-left py-1 px-1">
-                                                        <div
-                                                            className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                            hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                        </div>
-                                                        <div className="flex flex-row items-center gap-1 overflow_css">
-                                                            <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                            <div
-                                                                className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </div>
-                                            <div className="md:basis-1/5  p-2">
-                                                <Card
-                                                    size="small"
-                                                    hoverable
-                                                    bordered={false}
-                                                    style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                    cover={<img alt="example" style={{
-                                                        width: '100%',
-                                                        height: '163.84px',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat',
-                                                    }}
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                                >
-                                                    <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                         className="flex justify-center  gap-1 item-center">
-                                                        <ClockCircleOutlined className="text-white "/>
-
-                                                        <CountDownDesSmall hours={2} minutes={50}
-                                                                           seconds={0}></CountDownDesSmall>
-
-                                                    </div>
-                                                    <div className="flex flex-col text-left py-1 px-1">
-                                                        <div
-                                                            className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                            hoa xxxxxxxxxxxdsssssxxxxx d
-                                                        </div>
-                                                        <div className="flex flex-row items-center gap-1 overflow_css">
-                                                            <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                            <div
-                                                                className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </div>
-                                            <div className="md:basis-1/5  p-2">
-                                                <Card
-                                                    size="small"
-                                                    hoverable
-                                                    bordered={false}
-                                                    style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                    cover={<img alt="example" style={{
-                                                        width: '100%',
-                                                        height: '163.84px',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat',
-                                                    }}
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                                >
-                                                    <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                         className="flex justify-center  gap-1 item-center">
-                                                        <ClockCircleOutlined className="text-white "/>
-
-                                                        <CountDownDesSmall hours={2} minutes={50}
-                                                                           seconds={0}></CountDownDesSmall>
-
-                                                    </div>
-                                                    <div className="flex flex-col text-left py-1 px-1">
-                                                        <div
-                                                            className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                            hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                        </div>
-                                                        <div className="flex flex-row items-center gap-1 overflow_css">
-                                                            <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                            <div
-                                                                className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </div>
-                                            <div className="md:basis-1/5  p-2">
-                                                <Card
-                                                    size="small"
-                                                    hoverable
-                                                    bordered={false}
-                                                    style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                                    cover={<img alt="example" style={{
-                                                        width: '100%',
-                                                        height: '163.84px',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat',
-                                                    }}
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                                >
-                                                    <div style={{backgroundColor: 'rgb(255, 165, 0)'}}
-                                                         className="flex justify-center  gap-1 item-center">
-                                                        <ClockCircleOutlined className="text-white "/>
-
-                                                        <CountDownDesSmall hours={4} minutes={10}
-                                                                           seconds={0}></CountDownDesSmall>
-
-                                                    </div>
-                                                    <div className="flex flex-col text-left py-1 px-1">
-                                                        <div
-                                                            className="overflow_css_card text-base font-medium mb-1 leading-5">lala
-                                                            hoa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdsssssxxxxx d
-                                                        </div>
-                                                        <div className="flex flex-row items-center gap-1 overflow_css">
-                                                            <div className="text-neutral-500 text-xs">Hiện tại :</div>
-                                                            <div
-                                                                className="text-red-700 text-sm font-semibold "> {formatMoney(273000)} đ
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            </div>
-
-                                        </Carousel>
+                                                        ))
+                                                    }
+                                                </Carousel>
+                                            </>
+                                        }
                                     </div>
                                 </div>
 
@@ -621,13 +459,13 @@ const ProductDetail = () => {
                                                 <div className="flex m-6 gap-5  mr-10">
                                                     <Button
                                                         onClick={handleOpen1}
-                                                        className="p-2 px-6 py-2 w-full right-0 bg-white rounded text-orange-700 border-orange-700 hover:bg-zinc-50  text-base hover:border-orange-700 font_fml  font-medium focus:outline-0">
+                                                        className="p-2 px-5 py-2 w-full right-0 bg-white rounded text-orange-700 border-orange-700 hover:bg-zinc-50  text-base hover:border-orange-700   font-medium focus:outline-0">
                                                         Hủy
                                                     </Button>
 
                                                     <Button
                                                         onClick={handleBuyProduct}
-                                                        className="p-2 px-6 py-2 w-full right-0 bg-orange-700 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-700 font_fml font-medium focus:outline-0">
+                                                        className="p-2 px-2 py-2 w-full right-0 bg-orange-700 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-700  font-medium focus:outline-0">
                                                         Mua trực tiếp
                                                     </Button>
                                                 </div>

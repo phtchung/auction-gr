@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAuctionHistory } from "../../Services/productService.jsx";
-import {formatDateTime1} from "../../Utils/constant.js";
+import {formatDateTime1, formatMoney} from "../../Utils/constant.js";
 
 export default function useAuctionHistory() {
   const parseData = useCallback((item) => {
@@ -11,8 +11,8 @@ export default function useAuctionHistory() {
         seller_name: data?.seller_id?.name,
         product_name: data?.product_name,
         rank: data?.rank,
-        reserve_price: data?.reserve_price,
-        final_price: data?.final_price,
+        reserve_price:formatMoney( data?.reserve_price),
+        final_price:formatMoney( data?.final_price),
         completed_time: data?.product_delivery?.completed_time,
         main_image:data?.main_image,
         is_review:data?.is_review,

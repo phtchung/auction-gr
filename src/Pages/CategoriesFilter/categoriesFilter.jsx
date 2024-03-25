@@ -1,12 +1,14 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Card, Select, Checkbox, Pagination, Breadcrumb, Radio, Input} from "antd";
-import {formatMoney} from "../../Utils/constant.js";
-import {ClockCircleOutlined, StarFilled} from '@ant-design/icons';
+import { Select, Checkbox, Pagination, Breadcrumb, Radio, Input} from "antd";
+import { StarFilled} from '@ant-design/icons';
 import {useState} from "react";
 import useCategoryDetail from "./useCategoryDetail.jsx";
+import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
+import {useNavigate} from "react-router-dom";
 
 const CategoriesFilter = () => {
-    const {isSucces, isLoading, category} = useCategoryDetail()
+    const navigate = useNavigate()
+    const {isSucces, isLoading, category , products, isSc} = useCategoryDetail()
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
@@ -15,6 +17,10 @@ const CategoriesFilter = () => {
         console.log(page);
         setCurrent(page);
     };
+    const handleNavigateAuction = (id) => {
+        navigate(`/auction/item/${id}`)
+        window.scrollTo(0, 0);
+    }
     const onChange = (checkedValues) => {
         console.log('checked = ', checkedValues);
     };
@@ -204,285 +210,23 @@ const CategoriesFilter = () => {
                                     />
                                 </div>
 
+
+
                                 <div className="flex flex-wrap">
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
+                                    {
+                                        products && products.map((product,index) => (
+                                            <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                 key={index} className="md:basis-1/5 p-2">
+                                                <CardItem4Line data={product}/>
                                             </div>
-                                        </Card>
-                                    </div>
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-                                    <div className="md:basis-1/5  p-2">
-                                        <Card
-                                            size="small"
-                                            hoverable
-                                            bordered={false}
-                                            style={{width: '100%', borderRadius: 0, minHeight: 236}}
-                                            cover={<img alt="example" style={{
-                                                width: '100%',
-                                                height: '163.84px',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}
-                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                                        >
-                                            <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
-                                                <div
-                                                    className="overflow_css text-sm font-sans leading-6 hover:text-orange-300 ">Chung
-                                                    Phạm Nguyễn
-                                                </div>
-                                                <div className="flex flex-row items-center gap-1 overflow_css">
-                                                    <div
-                                                        className="text-neutral-500 hover:text-neutral-700 text-xs">Hiện
-                                                        tại :
-                                                    </div>
-                                                    <div
-                                                        className="text-red-700 text-base mb-0.5 font-semibold hover:text-red-500 "> {formatMoney(273000)} đ
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row items-center gap-5 pb-0.5">
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><img
-                                                            src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
-                                                            alt=""/></div>
-                                                        <span>2</span>
-                                                    </div>
-
-                                                    <div className="flex flex-row items-center gap-1 ">
-                                                        <div><ClockCircleOutlined/></div>
-                                                        <span>3 ngày </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-
+                                        ))
+                                    }
 
                                 </div>
 
-
                             </div>
                             <Pagination current={current} showSizeChanger={false} onChange={onChangePagination}
-                                        total={100}/>
+                                        total={50}/>
                         </div>
                     </div>
 

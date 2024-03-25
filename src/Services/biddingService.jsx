@@ -103,3 +103,11 @@ export const getCategoryDetail = async (Id) => {
     url: `/category/${Id}`,
   });
 };
+
+export const getProductsByCategory = async (data) => {
+  return publicHttp({
+    method: "POST",
+    url: `/home/category/${data.id}`,
+    data
+  });
+};

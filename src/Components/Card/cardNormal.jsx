@@ -2,6 +2,7 @@ import { formatMoney} from "../../Utils/constant.js";
 import {Card} from "antd";
 
 const CardNormal = ({data}) => {
+    console.log(data)
     return(
         <>
             <Card
