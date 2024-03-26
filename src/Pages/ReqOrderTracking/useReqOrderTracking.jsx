@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   convertStatusToData,
-  formatDateTime,
+  formatDateTime, formatMoney,
   reqConvertStatus,
 } from "../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
@@ -23,9 +23,9 @@ export default function useReqOrderTracking() {
         rank: data?.rank,
         status: data?.status,
         request_time: formatDateTime(new Date(data?.createdAt)),
-        reserve_price: data?.reserve_price + " VND",
-        sale_price: data?.sale_price + " VND",
-        final_price: data?.final_price + " VND",
+        reserve_price: formatMoney(data?.reserve_price) + " VND",
+        sale_price: formatMoney(data?.sale_price) + " VND",
+        final_price: formatMoney(data?.final_price) + " VND",
         status_string:data?.status === 3 ? 'Đang đấu giá' : data?.status === 4 ? 'Chờ thông tin giao hàng' : data?.status === 9 ? 'Yêu cầu trả hàng ' : data?.status === 14 ? 'Duyệt yêu cầu trả hàng' : 'Từ chối yêu cầu trả hàng',
         start_time:formatDateTime(new Date(data?.start_time)),
         finish_time:formatDateTime(new Date(data?.finish_time)),
@@ -33,7 +33,7 @@ export default function useReqOrderTracking() {
         // cancel_time:formatDateTime(new Date(data?.updatedAt)),
         victory_time: formatDateTime(new Date(data?.victory_time)),
         reject_time: formatDateTime(new Date(data?.reject_time)),
-        total_price: data?.final_price + data?.shipping_fee + " VND",
+        total_price: formatMoney(data?.final_price + data?.shipping_fee) + " VND",
         completed_time: formatDateTime(
           new Date(data?.product_delivery?.completed_time),
         ),

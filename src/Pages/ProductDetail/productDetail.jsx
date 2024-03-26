@@ -1,11 +1,10 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
-import {Avatar, Breadcrumb, Form, Card, Input, Spin, Tag, Popover} from "antd";
+import {Avatar, Breadcrumb, Form, Input, Spin, Tag, Popover} from "antd";
 import {formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
-import {ClockCircleOutlined, StarFilled} from "@ant-design/icons";
+import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
-import CountDownDesSmall from "../../Components/Clock/countDownDesSmall.jsx";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {useState} from "react";
 import {Button} from "@material-tailwind/react";

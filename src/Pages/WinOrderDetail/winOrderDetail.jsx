@@ -6,7 +6,7 @@ import {Button} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {DialogContent, DialogTitle, Dialog, Stack} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import {convertWinStatus, statusToString} from "../../Utils/constant.js";
+import {convertWinStatus, formatMoney, statusToString} from "../../Utils/constant.js";
 import useWinOrderDetail from "./useWinOrderDetail.jsx";
 import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
@@ -147,17 +147,17 @@ const WinOrderDetail = () => {
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Giá khởi điểm :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData?.reserve_price} VND
+                                            {formatMoney(winDetailData?.reserve_price)} VND
                                         </div>
                                         <div> Giá bán trực tiếp :</div>
-                                        <div className="font-normal col-span-2"> {winDetailData?.sale_price} VND</div>
+                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.sale_price)} VND</div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left ">
                                         <div> Bước giá :</div>
-                                        <div className="font-normal col-span-2"> {winDetailData?.step_price} VND</div>
+                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.step_price)} VND</div>
                                         <div> Phí vận chuyển :</div>
-                                        <div className="font-normal col-span-2"> {winDetailData?.shipping_fee} VND</div>
+                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.shipping_fee)} VND</div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Trả hàng :</div>
@@ -258,18 +258,18 @@ const WinOrderDetail = () => {
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Giá trúng thầu :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData?.final_price} VND
+                                            {formatMoney(winDetailData?.final_price)} VND
                                         </div>
                                         <div> Phí ship :</div>
                                         <div className="font-normal col-span-2">
-                                            {winDetailData?.shipping_fee} VND
+                                            {formatMoney(winDetailData?.shipping_fee)} VND
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left font-medium">
                                         <div> Tổng tiền :</div>
                                         <div className="font-normal col-span-2">
-                                            <strong>{winDetailData?.total_price} VND</strong>
+                                            <strong>{formatMoney(winDetailData?.total_price)} VND</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -434,16 +434,6 @@ const WinOrderDetail = () => {
                                             </Radio.Group>
                                         </div>
 
-                                        {/*<div className="font-normal col-span-2">*/}
-                                        {/*    <input*/}
-                                        {/*        type="text"*/}
-                                        {/*        name="method"*/}
-                                        {/*        id="method"*/}
-                                        {/*        disabled*/}
-                                        {/*        value="Tiền mặt"*/}
-                                        {/*        className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"*/}
-                                        {/*    />*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                                 <div className="flex gap-2 mb-6">
