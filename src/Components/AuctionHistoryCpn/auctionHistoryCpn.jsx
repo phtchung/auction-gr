@@ -37,6 +37,7 @@ const AuctionHistoryCpn = ({data}) => {
             handleOpen()
             toast.success('Đánh giá thành công')
             setReviewData({product_id:data.id});
+            navigate('/auctionHistory')
         } catch (error) {
             toast.error(error?.response?.data?.message);
             handleOpen()
