@@ -11,7 +11,6 @@ const CountDownFullDate = ({ targetDate,id }) => {
         const now = new Date();
         const target = new Date(targetDate);
         const timeDifference = target - now;
-
             if (timeDifference <= -1) {
                 // Handle when the countdown reaches or goes past the target date
                 FinishAuction({...auctionData})
