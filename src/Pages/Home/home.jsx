@@ -74,7 +74,6 @@ const Home = () => {
                                         </>
                                     ))
                                 }
-
                                 {/*<Menu*/}
                                 {/*    onClick={onClick}*/}
                                 {/*    onOpenChange={handleNavigateCate}*/}
