@@ -19,7 +19,6 @@ function App() {
         eventSource.addEventListener('newBlog', function(event) {
             console.log(event)
             const newBlogData = JSON.parse(event.data);
-            // Xử lý dữ liệu blog mới ở đây
             console.log('New blog created:', newBlogData);
             toast(`blog ten la vua duoc tao`  )
         });
@@ -28,7 +27,6 @@ function App() {
         eventSource.addEventListener(`approveProduct_${userId}`, function(event) {
             const data = JSON.parse(event.data);
             console.log(data)
-            // Xử lý dữ liệu blog mới ở đây
             toast(`yêu cầu của b vuừa được phê duyệt`  )
         });
 
@@ -36,7 +34,6 @@ function App() {
         eventSource.addEventListener(`auctionSuccess_${userId}`, function(event) {
             const data = JSON.parse(event.data);
             console.log(data)
-            // Xử lý dữ liệu blog mới ở đây
             toast(`${data.content}` )
         });
 
@@ -44,7 +41,6 @@ function App() {
         eventSource.addEventListener(`buySuccess_${userId}`, function(event) {
             const data = JSON.parse(event.data);
             console.log(data)
-            // Xử lý dữ liệu blog mới ở đây
             toast(`${data.content}` )
         });
 
@@ -52,7 +48,63 @@ function App() {
         eventSource.addEventListener(`updateStatus_${userId}`, function(event) {
             const data = JSON.parse(event.data);
             console.log(data)
-            // Xử lý dữ liệu blog mới ở đây
+            toast(`${data.content}` )
+        });
+
+        //notify khi người bán gửi request yêu cầu đấu giá
+        eventSource.addEventListener(`sendRequest_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+
+        //notify từ chối yêu cầu người dùng từ quản trị viên
+        eventSource.addEventListener(`rejectProduct_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify yêu cầu trả đơn hàng của ngưởi thắng đấu giá
+        eventSource.addEventListener(`returnProductWinner_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify nhận được yêu cầu trả hàng của ng bán
+        eventSource.addEventListener(`returnProductSeller_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify thông báo được duyệt yêu cầu trả hàng cho ng thắng
+        eventSource.addEventListener(`acceptReturnWinner_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify nhận được yêu cầu trả hàng của ng bán
+        eventSource.addEventListener(`returnProductSeller_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify thông báo từ chối yêu cầu trả hàng cho ng thắng
+        eventSource.addEventListener(`denyReturnWinner_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
+            toast(`${data.content}` )
+        });
+
+        //notify thông báo sp bị từ chối trả lại
+        eventSource.addEventListener(`denyReturnSeller_${userId}`, function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data)
             toast(`${data.content}` )
         });
 
@@ -60,8 +112,6 @@ function App() {
         eventSource.addEventListener(`notification-${userId}`, function(event) {
             console.log(event)
             const newBlogData = JSON.parse(event.data);
-            // Xử lý dữ liệu blog mới ở đây
-            console.log('New blog created:', newBlogData);
             toast(`blog ten la vua ${newBlogData.title} duoc tao`  )
         });
 
