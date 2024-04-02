@@ -6,7 +6,6 @@ import {
 import TabItem from "../../Components/TabItem/TabItem.jsx";
 import SideBar from "../../Components/SideBar/index.jsx";
 import {useNavigate} from "react-router-dom";
-import Header from "../../Components/Header/header.jsx";
 import AuctionTable from "../../Components/AuctionTable/auctionTable.jsx";
 import useWinOrdersTracking from "./useWinOrdersTracking.jsx";
 import {useState} from "react";

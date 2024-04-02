@@ -107,22 +107,19 @@ const WinOrderDetail = () => {
                         {isSuccess && (
                             <>
                                 <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
+
+                                    <div className="grid grid-cols-6 text-left">
+                                        <div> Tên sản phẩm :</div>
+                                        <div className="font-semibold text-base  col-span-5">
+                                            {winDetailData?.product_name}
+                                        </div>
+                                    </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Người bán :</div>
                                         <div className="font-normal col-span-2">
                                             {winDetailData?.name}
                                         </div>
-                                        <div> Số điện thoại :</div>
-                                        <div className="font-normal col-span-2">
-                                            {winDetailData?.phone}
-                                        </div>
-                                    </div>
 
-                                    <div className="grid grid-cols-6 text-left">
-                                        <div> Tên sản phẩm :</div>
-                                        <div className="font-normal  col-span-5">
-                                            {winDetailData?.product_name}
-                                        </div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Danh mục :</div>
@@ -150,14 +147,20 @@ const WinOrderDetail = () => {
                                             {formatMoney(winDetailData?.reserve_price)} VND
                                         </div>
                                         <div> Giá bán trực tiếp :</div>
-                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.sale_price)} VND</div>
+                                        <div
+                                            className="font-normal col-span-2"> {formatMoney(winDetailData?.sale_price)} VND
+                                        </div>
                                     </div>
 
                                     <div className="grid grid-cols-6 text-left ">
                                         <div> Bước giá :</div>
-                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.step_price)} VND</div>
+                                        <div
+                                            className="font-normal col-span-2"> {formatMoney(winDetailData?.step_price)} VND
+                                        </div>
                                         <div> Phí vận chuyển :</div>
-                                        <div className="font-normal col-span-2"> {formatMoney(winDetailData?.shipping_fee)} VND</div>
+                                        <div
+                                            className="font-normal col-span-2"> {formatMoney(winDetailData?.shipping_fee)} VND
+                                        </div>
                                     </div>
                                     <div className="grid grid-cols-6 text-left">
                                         <div> Trả hàng :</div>
