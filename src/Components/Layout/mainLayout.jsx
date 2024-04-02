@@ -1,33 +1,26 @@
-import { LaptopOutlined, NotificationOutlined, UserOutlined, PhoneOutlined } from '@ant-design/icons';
+import {UserOutlined, PhoneOutlined } from '@ant-design/icons';
 import {Breadcrumb, Dropdown, Layout} from 'antd';
 import './layout.css'
 import '../../index.css'
 import { Input } from 'antd';
 import {NavLink, useNavigate} from "react-router-dom";
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import useProfile from "../../Pages/Profile/useProfile.jsx";
 const { Search } = Input;
 const { Header, Content, Footer, Sider } = Layout;
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-    const key = String(index + 1);
-    return {
-        key: `sub${key}`,
-        label: `subnav ${key}`,
-        children: new Array(4).fill(null).map((_, j) => {
-            const subKey = index * 4 + j + 1;
-            return {
-                key: subKey,
-                label: `option${subKey}`,
-            };
-        }),
-    };
-});
+
 
 const MainLayOut = ({children}) => {
 
     const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
     const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
+    const [open , setOpen] = useState(false)
+
+    const handleNotify = () => {
+        console.log(open)
+      setOpen(!open)
+    }
     const handleNavi = (url) => {
         naviagate(`/${url}`)
         window.scrollTo(0,0)
@@ -134,21 +127,59 @@ const MainLayOut = ({children}) => {
                                         }}
                                     />
                                 </div>
-                            <div className="basis-2/12 flex justify-around items-center h-full px-6 ">
-
+                            <div className="basis-2/12 flex relative justify-around items-center h-full px-6 ">
                                 {
                                     accessToken && <>
-                                        <div className="cursor-pointer h-full change " onClick={() => naviagate('/productBid')}>
+                                        <div className="cursor-pointer h-full change "
+                                             onClick={() => naviagate('/productBid')}>
                                             <img className=" p-2 rounded-md hover:bg-orange-500"
                                                  src="../../src/assets/auction.png" style={{width: "80%"}}
                                                  alt=""/>
                                         </div>
 
-                                        <div className="cursor-pointer h-full change ">
+
+                                        <div  onClick={() => handleNotify()} className="cursor-pointer h-full change " style={{position: 'relative',animation:'fadein .4s'}}>
                                             <img className="p-2 rounded-md hover:bg-orange-500"
                                                  src="../../src/assets/notification-bell.png" style={{width: "80%"}}
                                                  alt=""/>
+                                            <div className="counter">
+                                                2
+                                            </div>
+                                            {
+                                                open && <>
+                                                    <div className="notifications ">
+                                                        <header
+                                                            className="p-4 h-14 text-base leading-6  text-left font-semibold"
+                                                            style={{borderBottom: '1px solid #f3f0f2'}}>Thông báo
+                                                        </header>
+                                                        <div className="px-4 py-3 text-left hover:text-orange-500 leading-6"
+                                                             style={{borderBottom: '1px solid #f4f5f5'}}>
+                                                            <div className=" font-semibold  mb-1"> Title liuke bai bieet
+                                                            </div>
+                                                            <div className=" mb-2 leading-5">heello like bai viet
+                                                                heello like bai viet heell o like bai viet
+                                                            </div>
+                                                            <div
+                                                                className="text-xs hover:text-neutral-700 text-neutral-700 opacity-80">6/3/2012
+                                                            </div>
+                                                        </div>
+                                                        <div className="px-4 py-3 text-left hover:text-orange-500 leading-6"
+                                                             style={{borderBottom: '1px solid #f4f5f5'}}>
+                                                            <div className=" font-semibold  mb-1"> Title liuke bai bieet
+                                                            </div>
+                                                            <div className=" mb-2 leading-4">heello like bai viet
+                                                                heello like bai viet
+                                                            </div>
+                                                            <div
+                                                                className="text-xs hover:text-neutral-700 text-neutral-700 opacity-80">6/3/2012
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            }
                                         </div>
+
+
                                         <Dropdown
                                             overlayStyle={{marginTop: '-4px'}}
                                             menu={{
@@ -169,7 +200,7 @@ const MainLayOut = ({children}) => {
                                 {
                                     !accessToken && <>
                                         <div className="cursor-pointer h-full change "
-                                        onClick={() => naviagate('/productBid')}>
+                                             onClick={() => naviagate('/productBid')}>
                                             <img className=" p-2 rounded-md hover:bg-orange-500"
                                                  src="../../src/assets/auction.png" style={{width: "60%"}}
                                                  alt=""/>
@@ -201,7 +232,7 @@ const MainLayOut = ({children}) => {
                     marginTop: '6.7rem',
                     padding: '0 36px',
                     backgroundColor: '#f5f5f5',
-                    minHeight:'40rem'
+                    minHeight: '40rem'
                 }}
                 className="container"
             >

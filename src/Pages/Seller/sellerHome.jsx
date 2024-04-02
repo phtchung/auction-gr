@@ -29,8 +29,6 @@ const SellerHome = () => {
         <>
             <MainLayOut>
                 <div className="md:container">
-
-
                     {
                         isSuccess && <>
                             <div className="px-3  mx-2 mt-2">
@@ -123,7 +121,6 @@ const SellerHome = () => {
                                                 <Input
                                                     className="border p-2 h-9 border-amber-500  focus:border-amber-500 outline-none hover:border-amber-500"
                                                     placeholder="Đến" onChange={onChange}/>
-
                                             </div>
                                         </div>
                                     </div>

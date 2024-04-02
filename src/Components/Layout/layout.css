@@ -204,3 +204,32 @@ a a:hover{
 .react-multiple-carousel__arrow{
     z-index: 0!important;
 }
+
+.counter{
+    width: 22px;
+    height: 22px;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    padding: 4px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+.notifications{
+    width: 300px;
+    right: 11px;
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    color: black;
+    max-height: 42.4vh;
+    overflow: auto;
+    display: block;
+    border: 1px solid #f3f0f2;
+}

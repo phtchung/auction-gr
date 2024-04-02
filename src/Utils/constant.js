@@ -191,7 +191,6 @@ export const colDlv = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
     {id: "total_price", name: "Tổng tiền"},
-    {id: "phone", name: "Số điện thoại"},
     {id: "address", name: "Địa chỉ"},
 ];
 export const colCompletion = [

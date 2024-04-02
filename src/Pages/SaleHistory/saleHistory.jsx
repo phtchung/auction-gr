@@ -20,8 +20,6 @@ const SaleHistory = () => {
         queryString,
         setQueryString,
     } = useSaleHistory();
-
-
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
     };

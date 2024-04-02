@@ -12,7 +12,6 @@ export default function useWinOrderDetail() {
       product_id: data?._id,
       product_name: data?.product_name,
       name: data?.seller_id.name,
-      phone: data?.seller_id.phone,
       description: data?.description,
       step_price: data?.step_price,
       shipping_fee: data?.shipping_fee,
