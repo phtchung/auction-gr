@@ -8,7 +8,6 @@ const ResultPage = () => {
     const navigate = useNavigate()
     const {state} = useLocation()
 
-    console.log(state)
     const [title, setTitle] = useState('');
     const [subTitle, setSubTitle] = useState('');
     useEffect(() => {

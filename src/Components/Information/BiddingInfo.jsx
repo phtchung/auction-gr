@@ -55,10 +55,6 @@ const BiddingInfo = ({data}) => {
                                 <div className="font-normal col-span-2">
                                     {data?.seller_name}
                                 </div>
-                                <div> Số điện thoại :</div>
-                                <div className="font-normal col-span-2">
-                                    {data?.seller_phonne}
-                                </div>
                             </div>
                         </>
                 }
