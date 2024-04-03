@@ -380,6 +380,17 @@ export const formatDateTime = (inputDateString) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
+export function emphasizeTextAfterHash(str) {
+    var words = str.split(' ');
+    var emphasizedWords = words.map(function(word) {
+        if (word.startsWith('#')) {
+            return '<strong>' + word.substring(1) + '</strong>';
+        }
+        return word;
+    });
+    return emphasizedWords.join(' ');
+}
+
 export const formatDateTime1 = (inputDateString) => {
     const inputDate = new Date(inputDateString);
     const formatDateComponent = (component) => String(component).padStart(2, "0");

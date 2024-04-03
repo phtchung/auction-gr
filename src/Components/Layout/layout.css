@@ -219,17 +219,17 @@ a a:hover{
     padding: 4px;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 24px;
 }
 .notifications{
-    width: 300px;
-    right: 11px;
+    width: 22rem;
+    right: 24px;
     position: absolute;
-    top: 50px;
+    top: 56px;
     background-color: white;
     color: black;
     max-height: 42.4vh;
     overflow: auto;
     display: block;
-    border: 1px solid #f3f0f2;
+    border: 2px solid #f3f1f1;
 }
