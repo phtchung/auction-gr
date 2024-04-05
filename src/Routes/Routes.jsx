@@ -19,6 +19,8 @@ import SellerHome from "../Pages/Seller/sellerHome.jsx";
 import ProductDetail from "../Pages/ProductDetail/productDetail.jsx";
 import Blog from "../Pages/Blog/blog.jsx";
 import BlogDetail from "../Pages/Blog/blogDetail.jsx";
+import ProductOnlineDetail from "../Pages/AuctionOnlineDetail/productOnlineDetail.jsx";
+import AuctionOnline from "../Pages/AuctionOnline/auctionOnline.jsx";
 
 
 export const NormalRoutes = [
@@ -27,6 +29,7 @@ export const NormalRoutes = [
   { path:"/categories/:id", element: <CategoriesFilter /> },
   { path:"/seller/:name", element: <SellerHome /> },
   { path:"/auction/item/:id", element: <ProductDetail /> },
+  { path:"/auction/online/item/:id", element: <ProductOnlineDetail /> },
   { path:"/articles/news", element: <Blog /> },
   { path:"/articles/news/:id", element: <BlogDetail /> }
 
@@ -49,6 +52,7 @@ export const UserRoutes = [
   { path: "/productBid", element: <ProductBidding /> },
   { path: "/404", element: <PageNotFound /> },
   { path: "/resultSuccess", element: <ResultPage /> },
+  { path: "/bidding/:id", element: <AuctionOnline /> },
 
 ];
 

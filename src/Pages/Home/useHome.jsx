@@ -6,7 +6,7 @@ import {
 import {
     getProductBidding1k,
     getProductPrepareEnd,
-    getProductRare, getTopSeller
+    getProductRare, getStandOutProducts, getTopSeller
 } from "../../Services/biddingService.jsx";
 
 export default function useHome() {
@@ -71,7 +71,18 @@ export default function useHome() {
         select: (data) => parseData1(data.data),
     });
 
+    const {data: standOutProducts, isSuccess: isStandOutSc, isLoading: isStandOutLd} = useQuery({
+        queryKey: ["getStandOutProducts"],
+        queryFn: () => getStandOutProducts(),
+        staleTime: 20 * 1000,
+        select: (data) => parseData(data.data),
+    });
+
+
     return {
+        standOut : standOutProducts?.biddingData,
+        isStandOutSc,
+        isStandOutLd,
         productsPreEnd: data?.biddingData,
         isSuccess,
         isLoading,

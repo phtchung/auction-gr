@@ -83,6 +83,12 @@ export const getProductRare = async () => {
   });
 };
 
+export const getStandOutProducts = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/auction/standOut`,
+  });
+};
 export const getTopSeller = async () => {
   return publicHttp({
     method: "GET",

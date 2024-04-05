@@ -42,21 +42,21 @@ const CountDownFullDate = ({ targetDate,id }) => {
         <>
             <div className="text-2xl font-semibold justify-center flex-row flex" style={{minWidth: 200}}>
                 <div className="flex flex-col gap-3">
-                    <span className="bg-orange-300 p-1 mr-1 px-2.5 inline-block rounded-md" style={{width: 45}}>
+                    <span className="bg-orange-400  p-1 mr-1 px-2.5 inline-block rounded-md" style={{width: 45}}>
                 {currentTime.days < 10 ? `0${currentTime.days}` : currentTime.days}
                     </span>
                     <span className="text-sm">ngày</span>
                 </div>
                 :
                 <div className="flex flex-col gap-3">
-                   <span className="bg-orange-300 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                   <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.hours < 10 ? `0${currentTime.hours}` : currentTime.hours}
             </span>
                     <span className="text-sm">giờ</span>
                 </div>
                 :
                 <div className="flex flex-col gap-3">
-                    <span className="bg-orange-300 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                    <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.minutes < 10 ? `0${currentTime.minutes}` : currentTime.minutes}
                     </span>
                     <span className="text-sm">phút</span>
@@ -64,7 +64,7 @@ const CountDownFullDate = ({ targetDate,id }) => {
 
                 :
                 <div className="flex flex-col gap-3">
-                    <span className="bg-orange-300 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                    <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.seconds < 10 ? `0${currentTime.seconds}` : currentTime.seconds}
             </span>
                     <span className="text-sm">giây</span>
