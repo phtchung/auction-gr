@@ -380,6 +380,71 @@ export const formatDateTime = (inputDateString) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
+export const formatDateTimeMiliSecond = (inputDateString) => {
+    const inputDate = new Date(inputDateString);
+    const formatDateComponent = (component) => String(component).padStart(2, "0");
+    const year = formatDateComponent(inputDate.getFullYear());
+    const month = formatDateComponent(inputDate.getMonth() + 1);
+    const day = formatDateComponent(inputDate.getDate());
+    const hours = formatDateComponent(inputDate.getHours());
+    const minutes = formatDateComponent(inputDate.getMinutes());
+    const seconds = formatDateComponent(inputDate.getSeconds());
+    const miliseconds = formatDateComponent(inputDate.getMilliseconds());
+
+    return `${day}-${month}-${year} - ${hours}:${minutes}:${seconds}:${miliseconds}`;
+};
+
+ export function readMoney(amount) {
+    const ones = ['', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
+    const teens = ['', 'mười', 'mười một', 'mười hai', 'mười ba', 'mười bốn', 'mười lăm', 'mười sáu', 'mười bảy', 'mười tám', 'mười chín'];
+    const tens = ['', 'mười', 'hai mươi', 'ba mươi', 'bốn mươi', 'năm mươi', 'sáu mươi', 'bảy mươi', 'tám mươi', 'chín mươi'];
+    const scales = ['', 'nghìn', 'triệu', 'tỷ'];
+
+    function convertBlock(number) {
+        let block = '';
+
+        const hundred = Math.floor(number / 100);
+        const remainder = number % 100;
+
+        if (hundred > 0) {
+            block += ones[hundred] + ' trăm';
+            if (remainder > 0) {
+                block += ' ';
+            }
+        }
+
+        if (remainder < 10) {
+            block += ones[remainder];
+        } else if (remainder < 20) {
+            block += teens[remainder - 10];
+        } else {
+            const ten = Math.floor(remainder / 10);
+            const one = remainder % 10;
+            block += tens[ten];
+            if (one > 0) {
+                block += ' ' + ones[one];
+            }
+        }
+
+        return block;
+    }
+
+    let words = '';
+    let blockIndex = 0;
+
+    do {
+        const block = amount % 1000;
+        if (block !== 0) {
+            const blockWords = convertBlock(block) + ' ' + scales[blockIndex];
+            words = blockWords + (words ? ' ' + words : '');
+        }
+        amount = Math.floor(amount / 1000);
+        blockIndex++;
+    } while (amount > 0);
+
+    return words;
+}
+
 export function emphasizeTextAfterHash(str) {
     var words = str.split(' ');
     var emphasizedWords = words.map(function(word) {

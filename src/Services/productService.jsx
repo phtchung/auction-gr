@@ -86,3 +86,18 @@ export const getRelatedProduct = async (Id) => {
     url: `/auction/relatedItem/${Id}`,
   });
 };
+
+
+export const getTopBidListOnlineAuction = async (productId) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/topBidList/${productId}`,
+  });
+};
+
+export const getFullBidListOnlineAuction = async (productId) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/fullBidList/${productId}`,
+  });
+};

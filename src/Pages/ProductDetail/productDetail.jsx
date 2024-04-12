@@ -8,6 +8,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {useState} from "react";
 import {Button} from "@material-tailwind/react";
+import {Modal} from 'antd';
 import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
 import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
 import {toast} from "react-toastify";
@@ -16,7 +17,9 @@ import {
     FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
 import CardNormal from "../../Components/Card/cardNormal.jsx";
+import useAuctionOnline from "../AuctionOnline/useAuctionOnline.jsx";
 const ProductDetail = () => {
+    const [state , setState] = useState(null)
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -31,6 +34,7 @@ const ProductDetail = () => {
         window.scrollTo(0, 0);
     }
     const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro} = useAuctionProductDetail()
+    const {fullBidListData, isSc :isScFullBid , isLd : isLdFullBid} = useAuctionOnline(state)
     const [open1, setOpen1] = useState(false);
     const {id} = useParams()
     const [auctionData,setAuctionData] = useState({productId:id})
@@ -92,6 +96,28 @@ const ProductDetail = () => {
             setOpen()
         }
     }
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleCancel = () => {
+        setState(null)
+        setIsModalOpen(false);
+    };
+    const getFullBidList = () => {
+        setState(1)
+        showModal()
+    }
+    const modalStyles = {
+        header:{
+            textAlign:'center',
+            fontWeight:700,
+        },
+        content: {
+            boxShadow: 'inset 0 0 5px #999',
+            borderRadius:0,
+        },
+    };
 
     if (isError) {
         return <>
@@ -329,7 +355,7 @@ const ProductDetail = () => {
                                                     style={{width: 24, height: 24}}
                                                     src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
                                                     alt=""/></div>
-                                                <span className="text-sm text-blue-800">{bidCount} lượt đấu giá</span>
+                                                <span onClick={getFullBidList} className="text-sm cursor-pointer text-blue-800">{bidCount} lượt đấu giá</span>
                                             </div>
 
                                             <div
@@ -349,7 +375,6 @@ const ProductDetail = () => {
                                                          color="red">{auctionProductData?.is_used}</Tag>
                                                 </>
                                             }
-
                                         </div>
 
                                         <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
@@ -371,8 +396,49 @@ const ProductDetail = () => {
                                             <CountDownFullDate id={auctionProductData?.product_id}
                                                 targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
                                         </div>
-
                                     </div>
+
+                                    {/*Dialog xem full ds đấu giá */}
+                                    <Modal styles={modalStyles} title="Diễn biến các lệnh trả giá" className="overflow-auto text-black "
+                                           style={{maxHeight: '500px'}}
+                                           footer={null} centered open={isModalOpen}
+                                           
+                                           onCancel={handleCancel}>
+                                        {
+                                            isScFullBid ?
+                                                fullBidListData.length !== 0 ?
+                                                    fullBidListData.map((bid, index) => (
+                                                        <>
+                                                            <div key={index}
+                                                                 className="flex justify-between my-2.5 items-center ">
+                                                                <div style={{fontWeight: 600}}
+                                                                     className="flex flex-col  relative">
+                                                                    <h1 className='text-base shadow-black'>
+                                                                        {bid.bid_price} đ
+                                                                    </h1>
+                                                                    <span className="text-xs text-gray-200 "
+                                                                    >
+                                                                      {bid.bid_time}
+                                                                </span>
+                                                                </div>
+                                                                <div className="px-6 text-base">
+                                                                    {bid.username}
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    ))
+                                                    :
+                                                    <>
+                                                        <div className="text-center font-medium my-14">Không có dữ liệu</div>
+                                                    </>
+                                                :
+                                                <>
+                                                    <Spin className="text-center " tip="Loading" size="default">
+                                                    </Spin>
+                                                </>
+                                        }
+                                    </Modal>
+
                                     {/*Dialog đấu giá */}
                                     <Dialog open={open} onClose={handleOpen} maxWidth="sm">
                                         <DialogTitle>
