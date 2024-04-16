@@ -72,10 +72,6 @@ button:focus {
   z-index: 0!important;
 }
 
-:where(.css-dev-only-do-not-override-1b0bdye).ant-modal .ant-modal-title{
-  color: white;
-  font-weight: 700;
-}
 .view_all{
   display: block;
   float: right;

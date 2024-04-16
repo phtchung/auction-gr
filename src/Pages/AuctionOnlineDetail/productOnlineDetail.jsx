@@ -8,8 +8,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
 import useAuctionProductDetail from "../ProductDetail/useAuctionProductDetail.jsx";
 import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
-import {toast} from "react-toastify";
-import { sendBuyData} from "../../Services/biddingService.jsx";
 import {
     FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
@@ -21,13 +19,12 @@ const ProductOnlineDetail = () => {
         navigate(`/auction/item/${id}`)
         window.scrollTo(0, 0);
     }
-    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro} = useAuctionProductDetail()
-    const [open1, setOpen1] = useState(false);
+    const {isError, isLoading, isSuccess, auctionProductData,isSc,ralatedPro} = useAuctionProductDetail()
     const {id} = useParams()
-    const [auctionData,setAuctionData] = useState({productId:id})
-    const handleOpen1 = () => {
+
+    const handleNavigateToOnlineAuction = (url) => {
         if (localStorage.getItem("accessToken")) {
-            setOpen1(!open1);
+            navigate(`/bidding/${url}`)
         } else {
             window.location.href = '/login';
         }
@@ -36,26 +33,6 @@ const ProductOnlineDetail = () => {
     const handleNavigate = (url) => {
         navigate(`/categories/${url}`)
         window.scrollTo(0,0)
-    }
-    const handleAuctionData = (key, value) => {
-        setAuctionData({...auctionData, [key]: value});
-    };
-
-    const handleBuyProduct = async () => {
-      try{
-          const res = await sendBuyData({...auctionData,final_price:auctionProductData?.sale_price});
-
-          toast.success("Trả giá  thành công", {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 500,
-          });
-          setOpen1()
-          navigate("/resultSuccess", { state: 100});
-          setAuctionData({productId:id})
-      }catch (error) {
-          toast.error(error?.response?.data?.message);
-          setOpen1()
-      }
     }
 
     if (isError) {
@@ -279,7 +256,7 @@ const ProductOnlineDetail = () => {
 
                                         <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
                                             <button
-                                                onClick={handleOpen1}
+                                                onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id)}
                                                 className="text-xl overflow_css_w_158 p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
                                                 style={{backgroundColor: '#ee002a', width: '100%'}}>
                                                 Đấu giá trực tuyến

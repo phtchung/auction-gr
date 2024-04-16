@@ -16,6 +16,15 @@ export const sendAuctionData = async (auctionData) => {
   });
 };
 
+export const sendAuctionDataOnline = async (auctionData) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/online/bid",
+    data: auctionData,
+  });
+};
+
+
 export const getProductBiddingCount = async (productId) => {
   return privateHttp({
     method: "GET",
