@@ -1,7 +1,7 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
 import {Avatar, Breadcrumb, Form, Input, Spin, Tag, Popover} from "antd";
-import {formatMoney} from "../../Utils/constant.js";
+import {formatDateTimeMiliSecond, formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
@@ -109,6 +109,7 @@ const ProductDetail = () => {
         showModal()
     }
     const modalStyles = {
+
         header:{
             textAlign:'center',
             fontWeight:700,
@@ -399,10 +400,9 @@ const ProductDetail = () => {
                                     </div>
 
                                     {/*Dialog xem full ds đấu giá */}
-                                    <Modal styles={modalStyles} title="Diễn biến các lệnh trả giá" className="overflow-auto text-black "
-                                           style={{maxHeight: '500px'}}
+                                    <Modal styles={modalStyles} title="Diễn biến các lệnh trả giá" className=" text-black "
                                            footer={null} centered open={isModalOpen}
-                                           
+                                           bodyStyle={{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px' }}
                                            onCancel={handleCancel}>
                                         {
                                             isScFullBid ?
@@ -414,14 +414,14 @@ const ProductDetail = () => {
                                                                 <div style={{fontWeight: 600}}
                                                                      className="flex flex-col  relative">
                                                                     <h1 className='text-base shadow-black'>
-                                                                        {bid.bid_price} đ
+                                                                        {formatMoney(bid.bid_price)} đ
                                                                     </h1>
-                                                                    <span className="text-xs text-gray-200 "
+                                                                    <span className="text-xs " style={{color:'rgb(156 157 160)'}}
                                                                     >
-                                                                      {bid.bid_time}
+                                                                      {formatDateTimeMiliSecond(bid.bid_time)}
                                                                 </span>
                                                                 </div>
-                                                                <div className="px-6 text-base">
+                                                                <div className="px-6 text-base font-medium " style={{color:'rgb(81 81 81)'}}>
                                                                     {bid.username}
                                                                 </div>
                                                             </div>

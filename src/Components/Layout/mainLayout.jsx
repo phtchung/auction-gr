@@ -380,13 +380,12 @@ const MainLayOut = ({children}) => {
 
 
                                         <Dropdown
-                                            overlayStyle={{marginTop: '-4px'}}
+
                                             menu={{
                                                 items,
-                                                style: {marginTop: -15}
+                                                style: {marginTop: '-6px',marginRight:20}
                                             }}
                                             placement="bottomRight"
-                                            arrow
                                         >
                                             <div className="cursor-pointer h-full change ">
                                                 <img className="p-2 pt-2 rounded-md hover:bg-orange-500"

@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {getFullBidListOnlineAuction, getTopBidListOnlineAuction} from "../../Services/productService.jsx";
-import { formatDateTimeMiliSecond, formatMoney} from "../../Utils/constant.js";
 import {useParams} from "react-router-dom";
 
 export default function useAuctionOnline(state) {
@@ -11,9 +10,9 @@ export default function useAuctionOnline(state) {
         const list = item?.list?.map((data) => {
             return {
                 id: data?._id,
-                bid_price:formatMoney( data?.bid_price),
+                bid_price:data?.bid_price,
                 username:data?.username,
-                bid_time:formatDateTimeMiliSecond(data?.bid_time),
+                bid_time:data?.bid_time,
             };
         });
         const product = item?.product
