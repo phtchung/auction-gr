@@ -2,10 +2,14 @@ import {useCallback} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {useParams} from "react-router-dom";
 import {formatDateTime} from "../../Utils/constant.js";
-import {getSellerHomeData} from "../../Services/biddingService.jsx";
+import { getProductsFilterSellerHome, getSellerHomeData} from "../../Services/biddingService.jsx";
+import useQueryString from "../../Hooks/useQueryString.js";
 
 export default function useSellerHome() {
     const {name} = useParams();
+
+    const { queryString, setQueryString } = useQueryString();
+
     const parseData = useCallback((data) => {
 
         const userData = {
@@ -13,11 +17,16 @@ export default function useSellerHome() {
             seller_name: data?.user?.name,
             average_rating: data?.user?.average_rating,
             product_done_count: data?.user?.product_done_count,
-            point: data?.user?.point,
             rate_count: data?.user?.rate_count,
         };
+        const total_product = data?.total_product
 
-        const products = data?.products?.map((data) => {
+        return {userData , total_product};
+    }, []);
+
+    const parseData1 = useCallback((item) => {
+
+        const products = item?.products?.map((data) => {
             return {
                 product_id: data?._id,
                 product_name: data?.product_name,
@@ -32,8 +41,16 @@ export default function useSellerHome() {
                 bidCount:data?.count,
             };
         });
-        return {userData, products};
+
+        const pagination = {
+            page: item?.currentPage,
+            totalPage: item?.totalPage,
+            total:item?.total,
+        };
+
+        return {pagination, products };
     }, []);
+
 
     const {data, isSuccess, isLoading, isError, refetch} = useQuery({
         queryKey: ["getSellerHomeData", name],
@@ -43,13 +60,34 @@ export default function useSellerHome() {
         enabled: !!name,
     });
 
+    const { data : data1, isSuccess : isSc, isLoading : isLd } = useQuery({
+        queryKey: ["getProductsFilterSellerHome", name,queryString],
+        queryFn: () => getProductsFilterSellerHome(name,queryString),
+        staleTime: 20 * 1000,
+        select: (data) => parseData1(data.data),
+        enabled: !!name,
+    });
+
+    const handlePageChange = useCallback(
+        (e, value) => {
+            setQueryString({ ...queryString, page: value });
+            window.scrollTo(0, 0);
+        },
+        [queryString, setQueryString],
+    );
 
     return {
         sellerHomeData: data?.userData,
-        products: data?.products,
+        products: data1?.products,
+        total_product:data?.total_product,
         isSuccess,
         isLoading,
+        isLd,isSc,
         isError,
         refetch,
+        totalPage: data1?.pagination?.totalPage,
+        total:data1?.pagination?.total,
+        queryString, setQueryString,handlePageChange,
+        currentPage : data1?.pagination?.page,
     };
 }

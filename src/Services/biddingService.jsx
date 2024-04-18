@@ -41,9 +41,17 @@ export const sendBuyData = async (auctionData) => {
 };
 
 export const getSellerHomeData = async (seller) => {
-  return privateHttp({
+  return publicHttp({
     method: "GET",
     url: `/auction/seller/${seller}`,
+  });
+};
+
+export const getProductsFilterSellerHome = async (name,params) => {
+  return publicHttp({
+    method: "GET",
+    url: `/home/seller/${name}`,
+    params
   });
 };
 
@@ -119,10 +127,10 @@ export const getCategoryDetail = async (Id) => {
   });
 };
 
-export const getProductsByCategory = async (data) => {
+export const getProductsByCategory = async (id,params) => {
   return publicHttp({
-    method: "POST",
-    url: `/home/category/${data.id}`,
-    data
+    method: "GET",
+    url: `/home/category/${id}`,
+    params
   });
 };
