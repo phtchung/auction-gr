@@ -15,7 +15,7 @@ const Blog = () => {
       <>
           <MainLayOut>
               <div className="md:container">
-                  <div className="flex flex-row gap-4 m-3 flex-wrap justify-start px-20 items-center mt-8">
+                  <div className="grid md:grid-cols-4 gap-4 sm:grid-cols-2 mx-6 mt-8">
                       {
                           blogs && blogs.map((blog, index) => (
                               <>
