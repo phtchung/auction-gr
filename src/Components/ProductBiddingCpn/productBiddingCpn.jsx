@@ -1,6 +1,7 @@
 import StarIcon from "@mui/icons-material/Star";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import {useNavigate} from "react-router-dom";
+import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 
 const ProductBiddingCpn = ({data}) => {
 
@@ -11,20 +12,20 @@ const ProductBiddingCpn = ({data}) => {
     }
     return (
         <>
-            <div className=" px-6  mb-3 shadow-inner bg-white  text-sm ">
+            <div className=" px-6  shadow-inner bg-white  text-sm ">
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
-                    <div className="font-semibold pr-10">{data?.seller_name}</div>
-                    <div className="">{data?.avr_rating}</div>
+                    <div className="font-semibold pr-10">{data?.seller_id?.name}</div>
+                    <div className="">{data?.seller_id?.average_rating}</div>
                     <StarIcon
                         fontSize="small"
                         sx={{color: "rgb(245 158 11)", width: 14, height: 14}}
                     ></StarIcon>
 
                     <div className="flex items-center gap-6 ml-auto">
-                        <div className="leading-10 ">{data?.start_time}</div>
+                        <div className="leading-10 ">{formatDateTime(data?.start_time)}</div>
                         <NotificationsActiveIcon></NotificationsActiveIcon>
                         <div className="leading-10 pr-4 border-r border-gray-200">
-                            {data?.finish_time}
+                            {formatDateTime(data?.finish_time)}
                         </div>
                         <button
                             onClick={handleNavigate}
@@ -33,12 +34,11 @@ const ProductBiddingCpn = ({data}) => {
                         </button>
                     </div>
                 </div>
-                <div className="flex pb-3 pt-4 items-center justify-between
-                  border-b border-b-gray-150">
-                    <div className="flex items-start">
+                <div className="grid md:grid-cols-4 gap-3 pb-3 pt-4 items-center justify-between border-b border-b-gray-150">
+                    <div className="flex col-span-3 items-start">
                         <div className="">
                             <img style={{
-                                width: '100%',
+                                width: '6rem',
                                 height: '6rem',
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat'
@@ -60,13 +60,12 @@ const ProductBiddingCpn = ({data}) => {
                         </div>
                     </div>
                     <div className="flex flex-col text-left gap-2">
-                        <div className=" text-base opacity-70 ml-auto px-5">
-                            Giá khởi điểm :
-                            <span className="font-medium"> {data?.reserve_price} đ</span>
+                        <div className=" text-sm opacity-70 ml-auto px-5">
+                            <span className="font-medium"> ₫{formatMoney(data?.reserve_price)} </span>
                         </div>
                         <div className="flex ml-auto items-center opacity-90 gap-2 px-6">
-                            <div className="text-base">Giá hiện tại :</div>
-                            <div className="text-orange-600 font-semibold text-xl">{data?.bid_price} đ</div>
+                            <div className="text-sm">Hiện tại :</div>
+                            <div className="text-orange-600 font-semibold text-lg">₫{formatMoney(data?.bid_price)}</div>
                         </div>
                     </div>
                 </div>

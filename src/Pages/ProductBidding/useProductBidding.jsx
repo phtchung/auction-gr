@@ -1,10 +1,11 @@
 import {useCallback} from "react";
-import {useQuery} from "@tanstack/react-query";
+import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
 import {formatDateTime, formatNumber} from "../../Utils/constant.js";
 import {getBiddingList} from "../../Services/biddingService.jsx";
 
 export default function useProductBidding() {
     const parseData = useCallback((item) => {
+
         const biddingList = item?.map((data) => {
             return {
                 product_id: data?._id,
@@ -26,20 +27,28 @@ export default function useProductBidding() {
 
     const {
         data,
+        isError,
         isSuccess,
+        fetchNextPage,
+        isFetchingNextPage,
         isLoading,
-        refetch: refetch1,
-    } = useQuery({
+    } = useInfiniteQuery({
         queryKey: ["getBiddingList"],
-        queryFn: () => getBiddingList(),
-        staleTime: 20 * 1000,
-        select: (data) => parseData(data.data),
+        queryFn:  getBiddingList,
+        initialPageParam: 0,
+        getNextPageParam: (lastPage) => {
+            return lastPage.data.nextPage
+        } ,
     });
 
+    console.log(data)
+
     return {
-        biddingList: data?.biddingList,
+        data,
         isSuccess,
         isLoading,
-        refetch1,
+        isError,
+        fetchNextPage,
+        isFetchingNextPage
     };
 }
