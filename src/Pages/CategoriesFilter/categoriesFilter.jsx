@@ -11,6 +11,8 @@ const CategoriesFilter = () => {
     const navigate = useNavigate()
     const [price,setPrice] = useState({})
     const {isSucces, isLoading, category , products, isSc,total,isLd,currentPage,totalPage,setQueryString,queryString,handlePageChange} = useCategoryDetail()
+    const [minPrice,setMinPrice] = useState(null)
+    const [maxPrice,setMaxPrice] = useState(null)
 
     const handleFilter =  (key,value) => {
         setQueryString({...queryString,[key]:value,page:1})
@@ -24,7 +26,21 @@ const CategoriesFilter = () => {
         const reg = /^-?\d*(\.\d*)?$/;
         if (reg.test(value) || value === '' || value === '-') {
             setPrice({...price,[key]: value})
+            if(key === 'minPrice'){
+                setMinPrice(value)
+            }else setMaxPrice(value)
         }
+    }
+    const handleRmPrice = () => {
+        delete queryString.minPrice
+        delete queryString.maxPrice
+        setMaxPrice(null)
+        setMinPrice(null)
+        setQueryString(queryString)
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }
     const handleNavigateAuction = (id) => {
         navigate(`/auction/item/${id}`)
@@ -34,7 +50,21 @@ const CategoriesFilter = () => {
         });
     }
     const handlePrice = () => {
-        setQueryString({...queryString,...price,page:1})
+        if(minPrice === '' && maxPrice === ''){
+            delete queryString.minPrice
+            delete queryString.maxPrice
+            setQueryString(queryString)
+        }else if(minPrice === ''){
+            delete price.minPrice
+            delete queryString.minPrice
+            setQueryString({...queryString, ...price, page: 1})
+        }else if(maxPrice === ''){
+            delete price.maxPrice
+            delete queryString.maxPrice
+            setQueryString({...queryString, ...price, page: 1})
+        } else {
+            setQueryString({...queryString, ...price, page: 1})
+        }
         window.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -42,6 +72,8 @@ const CategoriesFilter = () => {
     }
     const handleRemove = () => {
         setQueryString({page:1})
+        setMinPrice(null)
+        setMaxPrice(null)
         window.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -119,7 +151,6 @@ const CategoriesFilter = () => {
                                     nâng cao
                                 </div>
 
-
                                 <Checkbox.Group value={queryString.advance}
                                                 onChange={(value) => handleFilter('advance', value)}
                                                 className="flex flex-col justify-center gap-y-1">
@@ -127,7 +158,6 @@ const CategoriesFilter = () => {
                                     <Checkbox value="4">Kết thúc sau 1 giờ</Checkbox>
                                     <Checkbox value="5">Sản phẩm mới đấu giá </Checkbox>
                                 </Checkbox.Group>
-
                             </div>
 
                             <div style={{backgroundColor: "white"}} className="p-5 pt-3 mb-5 ">
@@ -167,7 +197,7 @@ const CategoriesFilter = () => {
                                     </div>
                                     {
                                         (queryString?.minPrice || queryString?.maxPrice) &&
-                                        <div className="text-yellow-500 underline cursor-pointer font-semibold text-sm">Xóa</div>
+                                        <div onClick={handleRmPrice} className="text-yellow-500 underline cursor-pointer font-semibold text-sm">Xóa</div>
                                     }
 
                                 </div>
@@ -176,14 +206,14 @@ const CategoriesFilter = () => {
                                     <div className="flex flex-grow gap-2 mt-2 items-center justify-between">
                                         <Input className="border focus:border-amber-500 p-2 h-9 border-amber-500"
                                                placeholder="Từ"
-                                               defaultValue={queryString.minPrice ? parseInt(queryString.minPrice) : ''}
+                                               value = {minPrice}
                                                type="number"
                                                onChange ={(e) => handleInput('minPrice', e.target.value)}/>
                                         <span>-</span>
                                         <Input className="border p-2 h-9 border-amber-500 hover:border-amber-500"
                                                placeholder="Đến"
                                                type="number"
-                                               defaultValue={parseInt(queryString.maxPrice)}
+                                               value = {maxPrice}
                                                onChange={(e) => handleInput('maxPrice', e.target.value)}/>
                                     </div>
                                     <div>
@@ -192,7 +222,6 @@ const CategoriesFilter = () => {
                                             Theo giá hiện tại
                                         </div>
                                     </div>
-
                                 </div>
 
                                 {/*<div className="flex flex-col mt-4 justify-center gap-y-1">*/}

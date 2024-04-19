@@ -1,7 +1,7 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import {Avatar, Breadcrumb, Checkbox, Input, Select, Spin} from "antd";
 import {StarFilled} from "@ant-design/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import useSellerHome from "./useSellerHome.jsx";
 import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
 import {useNavigate} from "react-router-dom";
@@ -10,6 +10,8 @@ import {Pagination} from "@mui/material";
 const SellerHome = () => {
     const navigate = useNavigate()
     const [price, setPrice] = useState({})
+    const [minPrice,setMinPrice] = useState(null)
+    const [maxPrice,setMaxPrice] = useState(null)
     const {
         isError,
         isLoading,
@@ -25,7 +27,6 @@ const SellerHome = () => {
         total,
         setQueryString,
         products,
-        refetch
     } = useSellerHome()
 
     const handleFilter = (key, value) => {
@@ -40,22 +41,57 @@ const SellerHome = () => {
         const reg = /^-?\d*(\.\d*)?$/;
         if (reg.test(value) || value === '' || value === '-') {
             setPrice({...price, [key]: value})
+            if(key === 'minPrice'){
+                setMinPrice(value)
+            }else setMaxPrice(value)
         }
     }
     const handlePrice = () => {
-        setQueryString({...queryString, ...price, page: 1})
+        if(minPrice === '' && maxPrice === ''){
+            delete queryString.minPrice
+            delete queryString.maxPrice
+            setQueryString(queryString)
+        }else if(minPrice === ''){
+            delete price.minPrice
+            delete queryString.minPrice
+            setQueryString({...queryString, ...price, page: 1})
+        }else if(maxPrice === ''){
+            delete price.maxPrice
+            delete queryString.maxPrice
+            setQueryString({...queryString, ...price, page: 1})
+        } else {
+            setQueryString({...queryString, ...price, page: 1})
+        }
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
     }
     const handleRemove = () => {
-        setQueryString({page: 1})
+        setQueryString({page:1})
+        setMinPrice(null)
+        setMaxPrice(null)
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
     }
+    const handleRmPrice = () => {
+        delete queryString.minPrice
+        delete queryString.maxPrice
+        setMaxPrice(null)
+        setMinPrice(null)
+        setQueryString(queryString)
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+    useEffect(() => {
+        setMinPrice(queryString.minPrice)
+        setMaxPrice(queryString.maxPrice)
+
+    }, []);
 
     const handleNavigateAuction = (id) => {
         navigate(`/auction/item/${id}`)
@@ -153,7 +189,7 @@ const SellerHome = () => {
                                             </div>
                                             {
                                                 (queryString?.minPrice || queryString?.maxPrice) &&
-                                                <div
+                                                <div onClick={handleRmPrice}
                                                     className="text-yellow-500 underline cursor-pointer font-semibold text-sm">Xóa</div>
                                             }
                                         </div>
@@ -163,7 +199,7 @@ const SellerHome = () => {
                                                 <Input
                                                     className="border focus:border-amber-500 p-2 h-9 border-amber-500"
                                                     placeholder="Từ"
-                                                    defaultValue={queryString.minPrice ? parseInt(queryString.minPrice) : ''}
+                                                    value = { minPrice }
                                                     type="number"
                                                     onChange={(e) => handleInput('minPrice', e.target.value)}/>
                                                 <span>-</span>
@@ -171,7 +207,7 @@ const SellerHome = () => {
                                                     className="border p-2 h-9 border-amber-500 hover:border-amber-500"
                                                     placeholder="Đến"
                                                     type="number"
-                                                    defaultValue={parseInt(queryString.maxPrice)}
+                                                    value = {maxPrice}
                                                     onChange={(e) => handleInput('maxPrice', e.target.value)}/>
                                             </div>
                                             <div>
