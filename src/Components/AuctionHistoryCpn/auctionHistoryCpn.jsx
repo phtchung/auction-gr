@@ -47,7 +47,7 @@ const AuctionHistoryCpn = ({data}) => {
 
     return (
         <>
-            <div className=" px-6 py-3 mb-3 shadow-inner bg-white  text-sm ">
+            <div className=" px-6 py-3 shadow-inner bg-white  text-sm ">
                 <div onClick={handleNavigate} className="flex cursor-pointer pb-2 pt-2 items-center border-b border-b-gray-150">
                     <div className="font-semibold pr-10">{data?.seller_name}</div>
                     <div className="mr-1 mb-0.5">4.5 </div>
@@ -83,13 +83,14 @@ const AuctionHistoryCpn = ({data}) => {
                         </div>
                     </div>
                 </div>
-                <div onClick={handleNavigate} className="flex pb-3 py-4 items-center cursor-pointer  border-b border-b-gray-150">
-                    <div className="flex items-start">
+                <div onClick={handleNavigate} className="grid md:grid-cols-4  py-4 items-center cursor-pointer  border-b border-b-gray-150">
+                    <div className="flex items-start col-span-3">
                         <div className=" w-24">
                             <img
                                 style={{
-                                    maxWidth: '96px', maxHeight: '96px',
-                                    overflow: 'hidden', height: 'auto', width: '100%'
+                                    width: '96px', height: '96px',
+                                    overflow: 'hidden', backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
                                 }}
                                 src={data?.main_image}
                                 alt=""
@@ -109,7 +110,7 @@ const AuctionHistoryCpn = ({data}) => {
                     </div>
 
                     <div className=" text-base ml-auto px-5">
-                       <span className="text-black text-sm">Giá khởi điểm </span> {data?.reserve_price}đ
+                       <span className="text-black font-medium text-base">₫{data?.reserve_price}</span>
                     </div>
                 </div>
                 <div
@@ -133,8 +134,8 @@ const AuctionHistoryCpn = ({data}) => {
                     }
 
                     <div className="flex ml-auto items-center gap-2 px-6">
-                        <div className="">Giá trúng thầu :</div>
-                        <div className="text-red-500 text-2xl">{data?.final_price}đ</div>
+                        <div className="text-base">Giá trúng thầu :</div>
+                        <div className="text-red-500 text-2xl money">₫{data?.final_price}</div>
                     </div>
                 </div>
                 {/* dialog đánh giá */}

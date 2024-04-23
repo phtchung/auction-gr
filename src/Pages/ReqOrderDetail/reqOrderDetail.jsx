@@ -121,31 +121,31 @@ const ReqOrderDetail = () => {
                                     </>
                                 )}
 
-                                {reqData.status === 11 && (
-                                    <>
-                                        <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-base font-medium ">
-                                                Lí do hủy
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                                            <div className="grid grid-cols-6 text-left">
-                                                <div> Tác nhân :</div>
-                                                <div className="font-normal  col-span-2">
-                                                    Quản trị viên
-                                                </div>
-                                            </div>
+                                {/*{reqData.status === 11 && (*/}
+                                {/*    <>*/}
+                                {/*        <div className="flex justify-between m-2.5 items-center px-2">*/}
+                                {/*        <div className="text-left text-base font-medium ">*/}
+                                {/*                Lí do hủy*/}
+                                {/*            </div>*/}
+                                {/*        </div>*/}
+                                {/*        <div*/}
+                                {/*            className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">*/}
+                                {/*            <div className="grid grid-cols-6 text-left">*/}
+                                {/*                <div> Tác nhân :</div>*/}
+                                {/*                <div className="font-normal  col-span-2">*/}
+                                {/*                    Quản trị viên*/}
+                                {/*                </div>*/}
+                                {/*            </div>*/}
 
-                                            <div className="grid grid-cols-6 text-left">
-                                                <div> Lí do :</div>
-                                                <div className="font-normal  col-span-2">
-                                                    Không phù hơp, chưa vượt qua kiểm duyệt
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
+                                {/*            <div className="grid grid-cols-6 text-left">*/}
+                                {/*                <div> Lí do :</div>*/}
+                                {/*                <div className="font-normal  col-span-2">*/}
+                                {/*                    Không phù hơp, chưa vượt qua kiểm duyệt*/}
+                                {/*                </div>*/}
+                                {/*            </div>*/}
+                                {/*        </div>*/}
+                                {/*    </>*/}
+                                {/*)}*/}
 
                                 {reqData.status === 13 && (
                                     <>

@@ -27,9 +27,7 @@ const AuctionHistory = () => {
                                 onChange={onChange}
                                 placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
                                 className="pr-30 pl-5"
-                                containerProps={{
-                                    className: "min-w-0",
-                                }}
+
                             />
                             <Button
                                 size="sm"
@@ -42,9 +40,16 @@ const AuctionHistory = () => {
                         </div>
 
                         {isSuccess &&
-                            aucHistoryData.map((data) => (
-                                <AuctionHistoryCpn key={data.id} data={data}/>
-                            ))}
+                            <>
+                                <div className="flex flex-col gap-3">
+                                    {
+                                        aucHistoryData.map((data) => (
+                                            <AuctionHistoryCpn key={data.id} data={data}/>
+                                        ))
+                                    }
+                                </div>
+                            </>
+                        }
                     </div>
                 </div>
             </MainLayOut>

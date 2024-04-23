@@ -1,10 +1,14 @@
 import privateHttp from "./Http/privateHttp.config.jsx";
 import publicHttp from "./Http/publicHttp.config.jsx";
 
-export const getBiddingList = async ({pageParam}) => {
+export const getBiddingList = async (pageParam,keyword) => {
+  let url = `/bidding?page=${pageParam}`;
+  if (keyword !== undefined) {
+    url += `&keyword=${keyword}`;
+  }
   return privateHttp({
     method: "GET",
-    url: `/bidding?page=${pageParam}`,
+    url: url,
   });
 };
 
