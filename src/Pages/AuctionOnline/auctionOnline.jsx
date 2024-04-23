@@ -1,4 +1,4 @@
-import {Breadcrumb, Spin, Tag} from "antd";
+import {Breadcrumb, Spin} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import useAuctionOnline from "./useAuctionOnline.jsx";
@@ -12,9 +12,8 @@ import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import {CheckCircleOutlined} from '@ant-design/icons';
 
-const socket  = io('http://localhost:8088',{
 
-})
+
 
 const AuctionOnline = () => {
 
@@ -39,12 +38,16 @@ const AuctionOnline = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        socket.on(`auction-${id}`,(newData) =>{
+        const socket  = io(`http://localhost:8088/auction/${id}`)
+        socket.on(`auction`,(newData) =>{
             setTopBidDataRealtime(newData.topBidList)
             setHighestDataRealtime(newData.highest_price)
         })
 
-    }, []);
+        socket.on('connect_error',(message) =>{
+            console.log(message)
+        })
+    }, [id]);
 
     const handleOnlineBidding =  async (new_price) => {
         try{
