@@ -284,6 +284,8 @@ export const numberToString = (state) => {
             return "Hoàn thành";
         case 10:
             return "Thất bại";
+        case 11:
+            return "Thất bại";
         case 9:
             return "Yêu cầu trả hàng";
         case 13:
