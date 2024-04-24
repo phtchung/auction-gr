@@ -1,14 +1,16 @@
 import {Card, Button, Typography, Input} from "@material-tailwind/react";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
+import { useEffect, useMemo, useState} from "react";
 import USER from "../../Services/userService.jsx";
 import {toast} from "react-toastify";
+import {useAuthContext} from "../Context/AuthContext.jsx";
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { currentUser, setCurrentUser } = useAuthContext();
 
     const handleMailChange = (event) => {
         setEmail(event.target.value);
@@ -27,6 +29,11 @@ const Login = () => {
                 password: password,
             });
 
+            if(res.data){
+                console.log(res.data)
+                localStorage.setItem("data", JSON.stringify(res.data));
+                setCurrentUser(res.data)
+            }
             const accessToken = res?.data?.accessToken;
             if (accessToken) {
                 localStorage.setItem("accessToken", accessToken);
@@ -36,19 +43,12 @@ const Login = () => {
                 localStorage.setItem("id", id);
             }
             toast.success("Login success");
-            navigate("/");
+
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }
     };
 
-    const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
-
-    useEffect(() => {
-        if (accessToken) {
-            navigate("/");
-        }
-    }, [navigate, accessToken]);
     return (
         <>
             <Card color="white" className="p-6" shadow={false} style={{position:'absolute',top:'20%',left:'41%'}}>
