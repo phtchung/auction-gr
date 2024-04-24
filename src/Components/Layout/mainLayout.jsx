@@ -10,13 +10,15 @@ import {toast} from "react-toastify";
 import useNotify from "./useNotify.jsx";
 import {useQueryClient} from "@tanstack/react-query";
 import { emphasizeTextAfterHash} from "../../Utils/constant.js";
+import useLogout from "../../Hooks/useLogout.js";
+import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 const {Search} = Input;
 const {Header, Content, Footer, Sider} = Layout;
 
 
 const MainLayOut = ({children}) => {
+    const { currentUser, setCurrentUser } = useAuthContext();
     const {isLd, isSc,setStatus, total, notifications} = useNotify()
-    const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
     const userId = useMemo(() => localStorage.getItem("id"), []);
     const queryClient = useQueryClient();
 
@@ -174,6 +176,7 @@ const MainLayOut = ({children}) => {
     const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
     const [open, setOpen] = useState(false)
+    const {loading , logout} = useLogout()
 
     const handleNotify = async () => {
         if (open === false) {
@@ -231,7 +234,7 @@ const MainLayOut = ({children}) => {
         {
             key: '4',
             label: (
-                <div>
+                <div onClick={logout} >
                     Đăng xuất
                 </div>
             ),
@@ -268,7 +271,7 @@ const MainLayOut = ({children}) => {
                     <div className="cursor-pointer hover:text-black" onClick={() => naviagate('/articles/news')}>Blog
                     </div>
                     {
-                        !accessToken && <>
+                        !currentUser && <>
                             <div className="flex gap-2 ">
                                 <div className="cursor-pointer border-r pr-2 border-r-slate-200">Đăng Ký</div>
                                 <div onClick={() => naviagate('/login')}
@@ -278,7 +281,7 @@ const MainLayOut = ({children}) => {
                         </>
                     }
                     {
-                        accessToken && <>
+                        currentUser && <>
                             <div className="flex items-center gap-0.5  justify-start ">
                                 <UserOutlined/>
                                 <div className="cursor-pointer text-left overflow_css">{userData?.username}</div>
@@ -308,7 +311,7 @@ const MainLayOut = ({children}) => {
                             </div>
                             <div className=" flex relative justify-around items-center  px-6 ">
                                 {
-                                    accessToken && <>
+                                    currentUser && <>
                                         <div className="cursor-pointer h-full change "
                                              onClick={() => naviagate('/productBid')}>
                                             <img className=" p-2 rounded-md hover:bg-orange-500"
@@ -380,7 +383,6 @@ const MainLayOut = ({children}) => {
 
 
                                         <Dropdown
-
                                             menu={{
                                                 items,
                                                 style: {marginTop: '-6px',marginRight:20}
@@ -396,7 +398,7 @@ const MainLayOut = ({children}) => {
                                     </>
                                 }
                                 {
-                                    !accessToken && <>
+                                    !currentUser && <>
                                         <div className="cursor-pointer h-full change "
                                              onClick={() => naviagate('/productBid')}>
                                             <img className=" p-2 rounded-md hover:bg-orange-500"
@@ -412,7 +414,6 @@ const MainLayOut = ({children}) => {
                                     </>
                                 }
 
-
                                 {/*<Avatar*/}
                                 {/*    style={{width: '30%'}}*/}
                                 {/*    className="cursor-pointer "*/}
@@ -423,7 +424,6 @@ const MainLayOut = ({children}) => {
                         </div>
                     </div>
                 </header>
-
             </Header>
             <Content
                 style={{
@@ -434,15 +434,7 @@ const MainLayOut = ({children}) => {
                 }}
                 className="container"
             >
-                {/*<Breadcrumb*/}
-                {/*    style={{*/}
-                {/*        margin: '16px 0',*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*    <Breadcrumb.Item>Home</Breadcrumb.Item>*/}
-                {/*    <Breadcrumb.Item>List</Breadcrumb.Item>*/}
-                {/*    <Breadcrumb.Item>App</Breadcrumb.Item>*/}
-                {/*</Breadcrumb>*/}
+
                 <Layout
                     style={{
                         padding: '24px 0',

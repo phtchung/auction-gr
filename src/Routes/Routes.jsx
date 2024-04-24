@@ -24,7 +24,6 @@ import AuctionOnline from "../Pages/AuctionOnline/auctionOnline.jsx";
 
 
 export const NormalRoutes = [
-    { path: "/login", element: <Login /> },
   { path: "/", element: <Home /> },
   { path:"/categories/:id", element: <CategoriesFilter /> },
   { path:"/seller/:name", element: <SellerHome /> },

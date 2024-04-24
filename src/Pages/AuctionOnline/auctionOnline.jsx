@@ -11,17 +11,15 @@ import {toast} from "react-toastify";
 import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import {CheckCircleOutlined} from '@ant-design/icons';
-
-
-
+import {useAuthContext} from "../Context/AuthContext.jsx";
 
 const AuctionOnline = () => {
-
     const { id } = useParams();
     const [auctionData,setAuctionData] = useState({productId:id})
     const [state, setState] = useState(null)
     const [topBidDataRealtime, setTopBidDataRealtime] = useState([])
     const [highestDataRealtime, setHighestDataRealtime] = useState(null)
+    const { currentUser, setCurrentUser } = useAuthContext();
 
     const {
         isLoading,
@@ -38,16 +36,26 @@ const AuctionOnline = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        const socket  = io(`http://localhost:8088/auction/${id}`)
-        socket.on(`auction`,(newData) =>{
-            setTopBidDataRealtime(newData.topBidList)
-            setHighestDataRealtime(newData.highest_price)
-        })
+        if (currentUser) {
+            console.log(currentUser.id)
+            const socket = io(`http://localhost:8088/auction/${id}`, {
+                query: {
+                    userId: currentUser.id,
+                },
+            });
+            socket.on(`auction`,(newData) =>{
+                setTopBidDataRealtime(newData.topBidList)
+                setHighestDataRealtime(newData.highest_price)
+            })
 
-        socket.on('connect_error',(message) =>{
-            console.log(message)
-        })
-    }, [id]);
+            socket.on('connect_error',(message) =>{
+                console.log(message)
+            })
+
+            return () => socket.close();
+        }
+
+    }, [currentUser,id]);
 
     const handleOnlineBidding =  async (new_price) => {
         try{

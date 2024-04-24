@@ -1,12 +1,11 @@
 import { useLocation, Navigate } from "react-router-dom";
-import { useMemo } from "react";
+import {useAuthContext} from "./AuthContext.jsx";
 
 const RequireAuth = ({ children }) => {
-  const accessToken = useMemo(() => localStorage.getItem("accessToken"), []);
-
+  const {currentUser}  = useAuthContext()
   const location = useLocation();
 
-  if (!accessToken) {
+  if (!currentUser) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
   return children;
