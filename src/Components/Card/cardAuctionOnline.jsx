@@ -1,15 +1,18 @@
 
 import {Card} from "antd";
 import {useNavigate} from "react-router-dom";
+import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 
 const CardAuctionOnline = ({data}) => {
     const navigate = useNavigate()
+    const {selectedAuction , setSelectedAuction  } = useAuctionOnlineTracking()
     const handleDetail = (id) => {
         navigate(`/auction/online/item/${id}`)
         window.scrollTo(0, 0);
     }
     const handleBiddingOnline = (id) => {
         navigate(`/bidding/${id}`)
+        setSelectedAuction(id)
         window.scrollTo(0, 0);
     }
     return(

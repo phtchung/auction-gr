@@ -6,20 +6,24 @@ import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
 import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
-import { io } from 'socket.io-client'
 import {toast} from "react-toastify";
 import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import {CheckCircleOutlined} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
+import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
+import useListenBidding from "../../Hooks/useListenBidding.js";
 
 const AuctionOnline = () => {
     const { id } = useParams();
+    const {selectedAuction,setSelectedAuction  , setBidList ,  setHighestPrice } = useAuctionOnlineTracking()
     const [auctionData,setAuctionData] = useState({productId:id})
     const [state, setState] = useState(null)
-    const [topBidDataRealtime, setTopBidDataRealtime] = useState([])
-    const [highestDataRealtime, setHighestDataRealtime] = useState(null)
-    const { currentUser, setCurrentUser } = useAuthContext();
+    const { currentUser } = useAuthContext();
+    useListenBidding()
+    useEffect(() => {
+        setSelectedAuction(id)
+    }, [id]);
 
     const {
         isLoading,
@@ -28,46 +32,24 @@ const AuctionOnline = () => {
         isSc,
         isLd,
         productData,
-        highestPriceData,
-        topBidListData,
+        highestPrice,
+        bidList,
         isError
     } = useAuctionOnline(state)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        if (currentUser) {
-            console.log(currentUser.id)
-            const socket = io(`http://localhost:8088/auction/${id}`, {
-                query: {
-                    userId: currentUser.id,
-                },
-            });
-            socket.on(`auction`,(newData) =>{
-                setTopBidDataRealtime(newData.topBidList)
-                setHighestDataRealtime(newData.highest_price)
-            })
-
-            socket.on('connect_error',(message) =>{
-                console.log(message)
-            })
-
-            return () => socket.close();
-        }
-
-    }, [currentUser,id]);
-
     const handleOnlineBidding =  async (new_price) => {
         try{
             const res = await sendAuctionDataOnline({...auctionData,final_price:new_price});
             setAuctionData({productId:id})
+            const data = res.data.new_bid
         }catch (error) {
             toast.error(error?.response?.data?.message,{
                 position: "top-right",
             });
         }
     }
-
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -80,9 +62,6 @@ const AuctionOnline = () => {
         showModal()
     }
 
-    let topBidDataListUpdate = topBidDataRealtime.length ? topBidDataRealtime : topBidListData
-    let highestDataUpdate = highestDataRealtime ? highestDataRealtime : highestPriceData
-
     if (isError) {
         return <>
             <MainLayOut>
@@ -91,6 +70,7 @@ const AuctionOnline = () => {
         </>
     }
     const modalStyles = {
+        body:{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px'},
         header:{
             backgroundColor:'#fdb45b',
             textAlign:'center',
@@ -107,7 +87,6 @@ const AuctionOnline = () => {
         <>
             <MainLayOut>
                 <div className="md:container">
-
                     {
                         <div className="px-3 mx-2 mt-2">
                             <Breadcrumb
@@ -122,8 +101,12 @@ const AuctionOnline = () => {
 
                     {isLoading ?
                         <>
-                            <Spin className="text-center mt-60" tip="Loading" size="large">
+                            <Spin tip="Loading" className="text-center mt-60" >
+                                <div className="content"  style={{
+                                    borderRadius: 4
+                                }}/>
                             </Spin>
+
                         </> :
                         <>
                             <div className="flex flex-row items-start gap-6 p-5 m-2 mt-4 "
@@ -166,11 +149,10 @@ const AuctionOnline = () => {
                                                 </div>
 
                                                 {
-                                                    topBidDataListUpdate && topBidDataListUpdate.length !== 0 ?
-                                                        topBidDataListUpdate.map((bid, index) => (
+                                                    bidList && bidList.length !== 0 ?
+                                                        bidList.slice(0, 3).map((bid, index) => (
                                                             <>
-                                                                <div key={index}
-                                                                     className="flex justify-between items-center ">
+                                                                <div key={index} className="flex justify-between items-center ">
                                                                     <div style={{fontWeight: 600}}
                                                                          className=" px-6 p-1.5 flex flex-col  relative">
                                                                         <span className="flex gap-3">
@@ -179,7 +161,7 @@ const AuctionOnline = () => {
                                                                             {formatMoney(bid.bid_price)} Đ
                                                                             </h1>
                                                                             {
-                                                                                bid.username === 'chungpt194493' &&
+                                                                                bid.username === currentUser.username &&
                                                                                 <CheckCircleOutlined style={{color: "green"}}/>
                                                                             }
                                                                         </span>
@@ -201,7 +183,6 @@ const AuctionOnline = () => {
                                                                 dữ liệu</h5>
                                                         </>
                                                 }
-
                                             </div>
 
                                             <div
@@ -214,17 +195,17 @@ const AuctionOnline = () => {
                                                Giá hiện tại
                                             </span>
                                                     <span className="text-base font-semibold    ">
-                                              {formatMoney(highestDataUpdate)} Đ
+                                              {formatMoney(highestPrice)} Đ
                                             </span>
                                                 </div>
                                                 <div className=" justify-between items-center ">
 
-                                                    <div onClick={() => handleOnlineBidding(highestDataUpdate + productData.step_price)} className="p-3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-8 mt-3 mb-3 font-semibold text-lg">
+                                                    <div onClick={() => handleOnlineBidding(highestPrice + productData.step_price)} className="p-3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-8 mt-3 mb-3 font-semibold text-lg">
                                                         <span>Trả giá <span
-                                                            className='font-bold'> {formatMoney(highestDataUpdate + productData.step_price)} đ</span> </span>
+                                                            className='font-bold'> {formatMoney(highestPrice + productData.step_price)} đ</span> </span>
                                                     </div>
                                                     <div
-                                                        className="text-xs capitalize text-center m-3">{readMoney(highestDataUpdate + productData.step_price)} Đồng
+                                                        className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
                                                     </div>
                                                 </div>
                                             </div>
@@ -233,7 +214,6 @@ const AuctionOnline = () => {
                                 }
 
                                 <Modal styles={modalStyles} title="Diễn biến các lệnh trả giá" className="overflow-auto text-white"
-                                       bodyStyle={{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px' }}
                                        footer={null} centered open={isModalOpen}
                                        onCancel={handleCancel}>
                                     {
@@ -265,7 +245,10 @@ const AuctionOnline = () => {
                                                 </>
                                             :
                                             <>
-                                                <Spin className="text-center " tip="Loading" size="default">
+                                                <Spin tip="Loading" className="text-center mt-60" >
+                                                    <div className="content"  style={{
+                                                        borderRadius: 4
+                                                    }}/>
                                                 </Spin>
                                             </>
                                     }
