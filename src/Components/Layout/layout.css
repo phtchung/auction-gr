@@ -74,6 +74,12 @@ input:focus{
     text-overflow: ellipsis;
 }
 
+.overflow_css_w_120{
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .overflow_css_w_158{
     width: 158px;
     white-space: nowrap;
@@ -232,4 +238,23 @@ a a:hover{
     overflow: auto;
     display: block;
     border: 2px solid #f3f1f1;
+}
+
+.message-send{
+    justify-content: flex-end;
+    display: flex;
+    margin-bottom: 8px;
+    margin-left: auto;
+    max-width: 80%;
+}
+.message-receive{
+    display: flex;
+    margin-bottom: 8px;
+    max-width: 80%;
+}
+.bg-send{
+    background-color: #d7f7ef;
+}
+.bg-receive{
+    background-color: #fafafa;
 }

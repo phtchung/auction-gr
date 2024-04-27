@@ -35,5 +35,23 @@ export const SocketContextProvider = ({children}) => {
         }
     }, [currentUser, selectedAuction]);
 
+    useEffect(() => {
+        if (currentUser) {
+            const socket = io('http://localhost:8088', {
+                    query: {
+                        userId: currentUser.id,
+                    },
+                });
+                setSocket(socket);
+
+                return () => socket.close();
+            } else {
+                if (socket) {
+                    socket.close();
+                    setSocket(null);
+                }
+            }
+    }, [currentUser]);
+
     return <SocketContext.Provider value={{socket}}>{children}</SocketContext.Provider>;
 };
