@@ -5,7 +5,7 @@ import {getFullMessages} from "../../Services/messageService.jsx";
 
 const useGetMessages = () => {
     const [loading, setLoading] = useState(false);
-    const { messages, setMessages, selectedConversation } = useConversation();
+    const { messages, setMessages, selectedConversation,listConversation,setListConversation } = useConversation();
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
@@ -17,7 +17,14 @@ const useGetMessages = () => {
                 if (data.error) {
                     throw new Error(data.error);
                 }
+                listConversation.map(item => {
+                    if (item._id.toString() === selectedConversation._id) {
+                        item.unReadM = 0
+                    }
+                    return item
+                });
                 setMessages(data);
+                setListConversation(listConversation)
             } catch (error) {
                 toast.error(error.message);
             } finally {
@@ -27,7 +34,7 @@ const useGetMessages = () => {
         };
 
         if (selectedConversation?._id) getMessages();
-    }, [selectedConversation?._id, setMessages]);
+    }, [selectedConversation?._id, setMessages,setListConversation]);
 
     return { messagesData : messages , loadingMessages : loading , success };
 };

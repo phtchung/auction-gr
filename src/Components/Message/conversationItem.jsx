@@ -27,14 +27,19 @@ const ConversationItem = ({conversation}) => {
                           {conversation?.username}
                       </p>
                       <p className="text-xs text-gray-700">
-                          {formatDateTimeChat(conversation.lastM.createdAt)}
-
+                          {formatDateTimeChat(conversation?.lastM?.createdAt)}
                       </p>
                   </div>
-                  <p className="text-gray-500 text-left text-sm overflow_css_w_158">
-                      {conversation.lastM.message}
-                      {/*{selectedConversation && messages ? messages[messages.length-1].message : ''}*/}
-                  </p>
+                  <div className="flex justify-between items-center overflow-hidden">
+                      <p className="text-gray-500 text-left text-sm overflow_css_w_158">
+                          {conversation?.lastM?.message}
+                      </p>
+                      {conversation.unReadM > 0 &&
+                          <p className="bg-red-500 rounded-full text-xs w-4 h-4 text-white justify-center ">
+                              {conversation.unReadM}
+                          </p>
+                      }
+                  </div>
               </div>
           </div>
       </>

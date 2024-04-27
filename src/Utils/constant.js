@@ -469,6 +469,8 @@ export const formatDateTime1 = (inputDateString) => {
 };
 
 export const formatDateTimeChat = (inputDateString) => {
+    if(!inputDateString)
+        return ''
     const inputDate = new Date(inputDateString);
     const formatDateComponent = (component) => String(component).padStart(2, "0");
     const day = formatDateComponent(inputDate.getDate());

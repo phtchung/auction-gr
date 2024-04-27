@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {getUsersChatSideBar} from "../../Services/messageService.jsx";
+import useConversation from "../../zustand/useConversation.js";
 
 const useGetConversations = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [conversations, setConversations] = useState([]);
-
+    const {listConversation , setListConversation } = useConversation()
     useEffect(() => {
         const getConversations = async () => {
             setLoading(true);
@@ -15,7 +15,7 @@ const useGetConversations = () => {
                 if (data.error) {
                     throw new Error(data.error);
                 }
-                setConversations(data);
+                setListConversation(data);
             } catch (error) {
                 console.log('a')
             } finally {
@@ -27,6 +27,6 @@ const useGetConversations = () => {
         getConversations();
     }, []);
 
-    return {success, loading, conversations };
+    return {success, loading, conversations : listConversation };
 };
 export default useGetConversations;
