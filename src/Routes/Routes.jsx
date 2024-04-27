@@ -8,7 +8,6 @@ import AuctionHistory from "../Pages/AuctionHistory/auctionHistory.jsx";
 import RequestHistory from "../Pages/RequestHistory/requestHistory.jsx";
 import SaleHistory from "../Pages/SaleHistory/saleHistory.jsx";
 import AucHistoryDetail from "../Components/AuctionHistoryDetail/aucHistoryDetail.jsx";
-import Login from "../Pages/Login/login.jsx";
 import Home from "../Pages/Home/home.jsx";
 import ReqHistoryDetail from "../Pages/ReqHistoryDetail/reqHistoryDetail.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
@@ -21,6 +20,7 @@ import Blog from "../Pages/Blog/blog.jsx";
 import BlogDetail from "../Pages/Blog/blogDetail.jsx";
 import ProductOnlineDetail from "../Pages/AuctionOnlineDetail/productOnlineDetail.jsx";
 import AuctionOnline from "../Pages/AuctionOnline/auctionOnline.jsx";
+import MessageContainer from "../Components/Message/messageContainer.jsx";
 
 
 export const NormalRoutes = [
@@ -35,7 +35,7 @@ export const NormalRoutes = [
 ];
 
 export const UserRoutes = [
-
+  { path: "/mess", element: <MessageContainer /> },
   { path: "/reqHistory", element: <RequestHistory /> },
   { path: "/reqHistory/reqHistoryDetail/:id", element: <ReqHistoryDetail /> },
   { path: "/winOrderTracking", element: <WinOrdersTracking /> },

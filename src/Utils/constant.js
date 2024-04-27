@@ -468,6 +468,16 @@ export const formatDateTime1 = (inputDateString) => {
     return `${year}-${month}-${day}`;
 };
 
+export const formatDateTimeChat = (inputDateString) => {
+    const inputDate = new Date(inputDateString);
+    const formatDateComponent = (component) => String(component).padStart(2, "0");
+    const day = formatDateComponent(inputDate.getDate());
+    const hours = formatDateComponent(inputDate.getHours());
+    const minutes = formatDateComponent(inputDate.getMinutes());
+    return `${hours}:${minutes}`;
+
+};
+
 export function isDateGreaterThanToday(date) {
 
     var dateParts = date.split("-");

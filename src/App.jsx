@@ -8,7 +8,7 @@ import RequireAuth from "./Pages/Context/RequireAuth.jsx";
 import 'react-multi-carousel/lib/styles.css';
 import {useAuthContext} from "./Pages/Context/AuthContext.jsx";
 import Login from "./Pages/Login/login.jsx";
-
+import SignUp from "./Pages/SignUp/signUp.jsx";
 
 function App() {
     const queryClient = new QueryClient();
@@ -19,7 +19,8 @@ function App() {
             <ToastContainer style={{fontSize:13}}/>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/login' element={currentUser ? <Navigate to="/" /> : <Login />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/login' element={currentUser?.accessToken ? <Navigate to="/" /> : <Login />} />
                     {NormalRoutes.map((route, index) => (
                         <Route key={index} path={route.path} element={route.element}/>
                     ))}
