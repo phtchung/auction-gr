@@ -5,15 +5,16 @@ import {toast} from "react-toastify";
 import {sendMessage} from "../../Services/messageService.jsx";
 import useGetMessages from "./useGetMessages.jsx";
 import useListenMessage from "../../Hooks/useListenMessage.js";
+import {Avatar} from "antd";
+import {UserOutlined} from "@ant-design/icons";
 
 const Messages = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const {messages, setMessages, selectedConversation, setSelectedConversation} = useConversation();
+    const {messages, setMessages, selectedConversation, setSelectedConversation , listConversation,setListConversation} = useConversation();
     useListenMessage()
     const {messagesData, loadingMessages, success} = useGetMessages();
     const lastMessageRef = useRef();
-
     useEffect(() => {
         setTimeout(() => {
             lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -28,7 +29,14 @@ const Messages = () => {
             const data = res.data
             if (data.error) throw new Error(data.error);
 
+             listConversation.map(item => {
+                    if (item._id.toString() === data.receiverId.toString()) {
+                        item.lastM = data
+                    }
+                    return item
+            });
             setMessages([...messages, data]);
+            setListConversation(listConversation)
         } catch (error) {
             toast.error(error?.response?.data?.message, {
                 position: "top-right",
@@ -54,8 +62,13 @@ const Messages = () => {
                                     <div className="p-1.5 bg-grey-lighter flex flex-row justify-between items-center">
                                         <div className="flex gap-2 items-center">
                                             <div>
-                                                <img className="w-6 h-6 rounded-full"
-                                                     src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"/>
+                                                {
+                                                    selectedConversation.avatar ?
+                                                        <img className="w-6 h-6 rounded-full" alt='avatar'
+                                                             src={selectedConversation.avatar}/>
+                                                        :
+                                                        <Avatar size='small' style={{width:24,height:24 }} icon={<UserOutlined/>}/>
+                                                }
                                             </div>
                                             <div>
                                                 <p className="text-grey-darkest text-sm">
