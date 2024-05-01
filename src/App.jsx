@@ -19,7 +19,7 @@ function App() {
             <ToastContainer style={{fontSize:13}}/>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/signup' element={currentUser?.accessToken ? <Navigate to="/" /> : <SignUp />} />
                     <Route path='/login' element={currentUser?.accessToken ? <Navigate to="/" /> : <Login />} />
                     {NormalRoutes.map((route, index) => (
                         <Route key={index} path={route.path} element={route.element}/>

@@ -31,7 +31,7 @@ const ConversationItem = ({conversation}) => {
                       </p>
                   </div>
                   <div className="flex justify-between items-center overflow-hidden">
-                      <p className="text-gray-500 text-left text-sm overflow_css_w_158">
+                      <p className="text-gray-500 text-left text-sm overflow_css_w_120">
                           {conversation?.lastM?.message}
                       </p>
                       {conversation.unReadM > 0 &&

@@ -4,188 +4,188 @@ import './layout.css'
 import '../../index.css'
 import {Input} from 'antd';
 import {useNavigate} from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
-import useProfile from "../../Pages/Profile/useProfile.jsx";
+import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import useNotify from "./useNotify.jsx";
 import {useQueryClient} from "@tanstack/react-query";
 import { emphasizeTextAfterHash} from "../../Utils/constant.js";
 import useLogout from "../../Hooks/useLogout.js";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
+import MessageContainer from "../Message/messageContainer.jsx";
+import useConversation from "../../zustand/useConversation.js";
 const {Search} = Input;
-const {Header, Content, Footer, Sider} = Layout;
+const {Header, Content, Footer} = Layout;
 
 
 const MainLayOut = ({children}) => {
-    const { currentUser, setCurrentUser } = useAuthContext();
+    const { currentUser } = useAuthContext();
     const {isLd, isSc,setStatus, total, notifications} = useNotify()
-    const userId = useMemo(() => localStorage.getItem("id"), []);
     const queryClient = useQueryClient();
-
-    useEffect(() => {
-        const eventSource = new EventSource('http://localhost:8088/events');
-
-        // có blog được tạo
-        eventSource.addEventListener('newBlog', function (event) {
-            const newBlogData = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        // yêu câầu request được phee duyệt
-        eventSource.addEventListener(`approveProduct_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            console.log(data)
-            if (data) {
-                setStatus(0)
-                queryClient.invalidateQueries({
-                    queryKey: ["getCountNotify", userId],
-                });
-            }
-        });
-
-        // thoog báo đấu giá thành coonng cho người bán
-        eventSource.addEventListener(`auctionSuccess_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            console.log(data)
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        // tb cho người thaắng đấu giá
-        eventSource.addEventListener(`buySuccess_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-
-        });
-
-        //tb update status đơn hanngf
-        eventSource.addEventListener(`updateStatus_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            console.log(data)
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify khi người bán gửi request yêu cầu đấu giá
-        eventSource.addEventListener(`sendRequest_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            if (data) {
-                setStatus(0)
-                queryClient.invalidateQueries({
-                    queryKey: ["getCountNotify", userId],
-                });
-            }
-        });
-
-        //notify từ chối yêu cầu người dùng từ quản trị viên
-        eventSource.addEventListener(`rejectProduct_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            if (data) {
-                setStatus(0)
-                queryClient.invalidateQueries({
-                    queryKey: ["getCountNotify", userId],
-                });
-            }
-        });
-
-        //notify yêu cầu trả đơn hàng của ngưởi thắng đấu giá
-        eventSource.addEventListener(`returnProductWinner_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            console.log(data)
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify nhận được yêu cầu trả hàng của ng bán
-        eventSource.addEventListener(`returnProductSeller_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify thông báo được accept yc trả hàng cho ng bán
-        eventSource.addEventListener(`acceptReturnSeller_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify thông báo được duyệt yêu cầu trả hàng cho ng thắng
-        eventSource.addEventListener(`acceptReturnWinner_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify nhận được yêu cầu trả hàng của ng bán
-        eventSource.addEventListener(`returnProductSeller_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify thông báo từ chối yêu cầu trả hàng cho ng thắng
-        eventSource.addEventListener(`denyReturnWinner_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        //notify thông báo sp bị từ chối trả lại
-        eventSource.addEventListener(`denyReturnSeller_${userId}`, function (event) {
-            const data = JSON.parse(event.data);
-            setStatus(0)
-            queryClient.invalidateQueries({
-                queryKey: ["getCountNotify", userId],
-            });
-        });
-
-        // này là nghe 1 s kiện riêng cho từng user , user nào thì nhét vào là được
-        eventSource.addEventListener(`notification-${userId}`, function (event) {
-            console.log(event)
-            const newBlogData = JSON.parse(event.data);
-            toast(`blog ten la vua ${newBlogData.title} duoc tao`)
-        });
-
-        return () => {
-            eventSource.close();
-        };
-    }, []);
-    const {userData, isSuccess, isLoading} = useProfile();
     const naviagate = useNavigate()
     const [open, setOpen] = useState(false)
     const {loading , logout} = useLogout()
+    const { openChat, setOpenChat , unReadCount } = useConversation();
+
+    useEffect(() => {
+        if(currentUser){
+            const eventSource = new EventSource('http://localhost:8088/events');
+
+            // có blog được tạo
+            eventSource.addEventListener('newBlog', function (event) {
+                const newBlogData = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            // yêu câầu request được phee duyệt
+            eventSource.addEventListener(`approveProduct_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                if (data) {
+                    setStatus(0)
+                    queryClient.invalidateQueries({
+                        queryKey: ["getCountNotify", currentUser.id],
+                    });
+                }
+            });
+
+            // thoog báo đấu giá thành coonng cho người bán
+            eventSource.addEventListener(`auctionSuccess_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            // tb cho người thaắng đấu giá
+            eventSource.addEventListener(`buySuccess_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+
+            });
+
+            //tb update status đơn hanngf
+            eventSource.addEventListener(`updateStatus_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                console.log(data)
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify khi người bán gửi request yêu cầu đấu giá
+            eventSource.addEventListener(`sendRequest_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                if (data) {
+                    setStatus(0)
+                    queryClient.invalidateQueries({
+                        queryKey: ["getCountNotify", currentUser.id],
+                    });
+                }
+            });
+
+            //notify từ chối yêu cầu người dùng từ quản trị viên
+            eventSource.addEventListener(`rejectProduct_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                if (data) {
+                    setStatus(0)
+                    queryClient.invalidateQueries({
+                        queryKey: ["getCountNotify", currentUser.id],
+                    });
+                }
+            });
+
+            //notify yêu cầu trả đơn hàng của ngưởi thắng đấu giá
+            eventSource.addEventListener(`returnProductWinner_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                console.log(data)
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify nhận được yêu cầu trả hàng của ng bán
+            eventSource.addEventListener(`returnProductSeller_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify thông báo được accept yc trả hàng cho ng bán
+            eventSource.addEventListener(`acceptReturnSeller_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify thông báo được duyệt yêu cầu trả hàng cho ng thắng
+            eventSource.addEventListener(`acceptReturnWinner_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify nhận được yêu cầu trả hàng của ng bán
+            eventSource.addEventListener(`returnProductSeller_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify thông báo từ chối yêu cầu trả hàng cho ng thắng
+            eventSource.addEventListener(`denyReturnWinner_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            //notify thông báo sp bị từ chối trả lại
+            eventSource.addEventListener(`denyReturnSeller_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                setStatus(0)
+                queryClient.invalidateQueries({
+                    queryKey: ["getCountNotify", currentUser.id],
+                });
+            });
+
+            // này là nghe 1 s kiện riêng cho từng user , user nào thì nhét vào là được
+            eventSource.addEventListener(`notification-${currentUser.id}`, function (event) {
+                console.log(event)
+                const newBlogData = JSON.parse(event.data);
+                toast(`blog ten la vua ${newBlogData.title} duoc tao`)
+            });
+
+            return () => {
+                eventSource.close();
+            };
+        }
+    }, [currentUser]);
+
 
     const handleNotify = async () => {
         if (open === false) {
             try {
                 queryClient.invalidateQueries({
-                    queryKey: ["getNotify", userId],
+                    queryKey: ["getNotify", currentUser.id],
                 });
             } catch (error) {
-                console.log(error)
                 toast.error(error?.response?.data?.message);
             }
         }
@@ -273,7 +273,8 @@ const MainLayOut = ({children}) => {
                     {
                         !currentUser && <>
                             <div className="flex gap-2 ">
-                                <div className="cursor-pointer border-r pr-2 border-r-slate-200">Đăng Ký</div>
+                                <div onClick={() => naviagate('/signup')}
+                                     className="cursor-pointer border-r pr-2 border-r-slate-200">Đăng Ký</div>
                                 <div onClick={() => naviagate('/login')}
                                      className="cursor-pointer">Đăng Nhập
                                 </div>
@@ -284,7 +285,7 @@ const MainLayOut = ({children}) => {
                         currentUser && <>
                             <div className="flex items-center gap-0.5  justify-start ">
                                 <UserOutlined/>
-                                <div className="cursor-pointer text-left overflow_css">{userData?.username}</div>
+                                <div className="cursor-pointer text-left overflow_css">{currentUser?.username}</div>
                             </div>
                         </>
                     }
@@ -461,6 +462,46 @@ const MainLayOut = ({children}) => {
                     >
                         {children}
                     </Content>
+                    {
+                        currentUser &&
+                        <>
+                            <div style={{ display: !openChat ? 'block' : 'none' }}>
+                                <div onClick={() => setOpenChat(true)}
+                                    className="fixed bottom-2 right-3 px-3 py-3 cursor-pointer bg-orange-500 rounded shadow-md">
+                                    <div className="flex gap-2 items-center">
+                                        <svg className="w-6 h-6 text-white fill-current"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20">
+                                            <path
+                                                d="M18 6.07a1 1 0 01.993.883L19 7.07v10.365a1 1 0 01-1.64.768l-1.6-1.333H6.42a1 1
+                                         0 01-.98-.8l-.016-.117-.149-1.783h9.292a1.8 1.8 0 001.776-1.508l.018-.154.494-6.438H18zm-2.78-4.5a1
+                                         1 0 011 1l-.003.077-.746 9.7a1 1 0 01-.997.923H4.24l-1.6 1.333a1 1 0 01-.5.222l-.14.01a1 1 0 01-.993-.883L1
+                                         13.835V2.57a1 1 0 011-1h13.22zm-4.638 5.082c-.223.222-.53.397-.903.526A4.61 4.61 0 018.2 7.42a4.61 4.61 0
+                                         01-1.48-.242c-.372-.129-.68-.304-.902-.526a.45.45 0 00-.636.636c.329.33.753.571 1.246.74A5.448 5.448 0 008.2
+                                         8.32c.51 0 1.126-.068 1.772-.291.493-.17.917-.412 1.246-.74a.45.45 0 00-.636-.637z"></path>
+                                        </svg>
+                                        <p className="text-white font-medium text-lg">Chat</p>
+                                    </div>
+                                    {
+                                        unReadCount > 99 ? (
+                                            <div className="absolute border border-s-gray-100 rounded-2xl text-white text-xs h-4.5 overflow-hidden py-0.5 px-1.5 bg-orange-500 -right-1 box-border -top-2 cursor-pointer">
+                                                99+
+                                            </div>
+                                        ) : unReadCount > 0 ? (
+                                            <div className="absolute border border-s-gray-100 rounded-2xl text-white text-xs h-4.5 overflow-hidden py-0.5 px-1.5 bg-orange-500 -right-1 box-border -top-2 cursor-pointer">
+                                                {unReadCount}
+                                            </div>
+                                        ) : (
+                                            <></>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                            <div style={{display: openChat ? 'block' : 'none'}}>
+                                <MessageContainer></MessageContainer>
+                            </div>
+                        </>
+                    }
                 </Layout>
             </Content>
             <Footer

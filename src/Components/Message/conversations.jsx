@@ -28,7 +28,7 @@ const Conversations = () => {
                         <div className="border-r  flex flex-col"
                              style={{maxHeight: '29.3rem', height: '29.3rem'}}>
                             {/*// <!-- Search -->*/}
-                            <div className="py-2 px-2 bg-grey-lightest">
+                            <div className="py-2 px-2 " style={{backgroundColor:'#f3f3f3'}}>
                                 <input type="text"
                                        value={filter}
                                        onChange={handleFilterChange}
@@ -41,18 +41,16 @@ const Conversations = () => {
                                 {
                                     success && filteredConversations.length > 0 ?
                                         (filteredConversations.map((conversation, index) => (
-                                                <>
                                                     <ConversationItem
                                                         key={index}
                                                         conversation={conversation}
                                                     ></ConversationItem>
 
-                                                </>
                                             )
                                         ))
                                         :
                                         <>
-                                            <p className="top-1/2 left-6 text-base  -translate-y-0.5 absolute">Không tìm
+                                            <p className="top-1/2 left-6 text-base overflow-auto  -translate-y-0.5 absolute" >Không tìm
                                                 thấy người dùng</p>
                                         </>
                                 }
