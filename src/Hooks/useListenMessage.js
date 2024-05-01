@@ -3,16 +3,21 @@ import {useSocketContext} from "../Pages/Context/SocketContext.jsx";
 import useConversation from "../zustand/useConversation.js";
 
 const useListenMessage = () => {
-    const { socket } = useSocketContext();
-    const { messages, setMessages , listConversation, setListConversation, selectedConversation } = useConversation();
+    const { socket1 } = useSocketContext();
+    const { messages, setMessages , listConversation, setListConversation, selectedConversation,unReadCount,setUnreadCount } = useConversation();
 
     useEffect(() => {
-        socket?.on("newMessage", (newMessage) => {
+        socket1?.on("newMessage", (newMessage) => {
             newMessage.shouldShake = true;
-
-            if(selectedConversation._id.toString() === newMessage.senderId.toString()){
+            console.log('',newMessage)
+            if(selectedConversation._id.toString() === newMessage.senderId.toString() ){
                 setMessages([...messages, newMessage]);
             }
+
+            // const isNewConversation  = listConversation.some(conversation => conversation._id === newMessage.lastM.senderId);
+            // if(!isNewConversation){
+            //     setListConversation([...listConversation,])
+            // }
             listConversation.map(item => {
                 if (item._id.toString() === newMessage.senderId.toString()) {
                     item.lastM = newMessage
@@ -24,9 +29,14 @@ const useListenMessage = () => {
                 }
                 return item
             });
+            listConversation.sort((a, b) => {
+                return new Date(b.lastM.createdAt) - new Date(a.lastM.createdAt);
+            });
+            setUnreadCount(unReadCount + newMessage.unReadM)
             setListConversation(listConversation)
+
         });
-        return () => socket?.off("newMessage");
-    }, [socket, setMessages, messages,setListConversation,listConversation]);
+        return () => socket1?.off("newMessage");
+    }, [socket1, setMessages, messages,setListConversation,listConversation]);
 };
 export default useListenMessage;

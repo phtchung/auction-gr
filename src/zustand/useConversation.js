@@ -7,7 +7,10 @@ const useConversation = create((set) => ({
     setMessages: (messages) => set({ messages }),
     listConversation : [],
     setListConversation: (listConversation) => set({ listConversation }),
-
+    openChat:false,
+    setOpenChat: (openChat) => set({ openChat }),
+    unReadCount:0,
+    setUnreadCount : (unReadCount) => set({ unReadCount }),
 }));
 
 export default useConversation;

@@ -22,10 +22,10 @@ const Messages = () => {
     }, [messagesData]);
 
     const handleSubmit = async () => {
-        if (!message) return;
+        if (!message || messages ==='') return;
         setLoading(true);
         try {
-            const res = await sendMessage({message}, selectedConversation._id);
+            const res = await sendMessage({message,username :selectedConversation.username }, selectedConversation._id);
             const data = res.data
             if (data.error) throw new Error(data.error);
 
@@ -36,6 +36,9 @@ const Messages = () => {
                     return item
             });
             setMessages([...messages, data]);
+            listConversation.sort((a, b) => {
+                return new Date(b.lastM.createdAt) - new Date(a.lastM.createdAt);
+            });
             setListConversation(listConversation)
         } catch (error) {
             toast.error(error?.response?.data?.message, {
@@ -54,14 +57,26 @@ const Messages = () => {
                 {/*// <!-- Header Message  -->*/}
                 {
                     loadingMessages ?
-                        <span className="animate-spin"></span>
+
+                        <div className='flex space-x-2 justify-center items-center flex-col gap-2 bg-white h-screen dark:invert'>
+                            <div className="flex gap-1">
+                                <div
+                                    className='h-1.5 w-1.5 bg-orange-500 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                                <div
+                                    className='h-1.5 w-1.5 bg-orange-500 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                                <div className='h-1.5 w-1.5 bg-orange-500 rounded-full animate-bounce'></div>
+                            </div>
+
+                            <span className=' text-black text-xs font-normal'>Đang tải...</span>
+                        </div>
                         :
                         <>
                             {
                                 success && <>
-                                    <div className="p-1.5 bg-grey-lighter flex flex-row justify-between items-center">
+                                    <div className="p-1.5  flex flex-row justify-between items-center"
+                                         style={{backgroundColor: '#f2f2f2'}}>
                                         <div className="flex gap-2 items-center">
-                                            <div>
+                                        <div>
                                                 {
                                                     selectedConversation.avatar ?
                                                         <img className="w-6 h-6 rounded-full" alt='avatar'

@@ -12,6 +12,7 @@ export const useSocketContext = () => {
 
 export const SocketContextProvider = ({children}) => {
     const [socket, setSocket] = useState(null);
+    const [socket1, setSocket1] = useState(null);
     const {currentUser} = useAuthContext();
     const {selectedAuction} = useAuctionOnlineTracking()
 
@@ -37,21 +38,21 @@ export const SocketContextProvider = ({children}) => {
 
     useEffect(() => {
         if (currentUser) {
-            const socket = io('http://localhost:8088', {
+            const socket1 = io('http://localhost:8088', {
                     query: {
                         userId: currentUser.id,
                     },
                 });
-                setSocket(socket);
+                setSocket1(socket1);
 
-                return () => socket.close();
+                return () => socket1.close();
             } else {
-                if (socket) {
-                    socket.close();
-                    setSocket(null);
+                if (socket1) {
+                    socket1.close();
+                    setSocket1(null);
                 }
             }
     }, [currentUser]);
 
-    return <SocketContext.Provider value={{socket}}>{children}</SocketContext.Provider>;
+    return <SocketContext.Provider value={{socket , socket1}}>{children}</SocketContext.Provider>;
 };

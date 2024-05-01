@@ -3,12 +3,16 @@ import useConversation from "../../zustand/useConversation.js";
 import Conversations from "./conversations.jsx";
 
 const MessageContainer = () => {
-    const { selectedConversation, setSelectedConversation } = useConversation();
+    const { selectedConversation, setSelectedConversation, openChat, setOpenChat } = useConversation();
+
+    const handleClose = () => {
+        setOpenChat(false)
+    }
     return (
         <>
             <div className="fixed bottom-0 right-2 z-50 ">
                 <div className="relative mt-48" style={{width:680}} >
-                    <div className="py-6 ">
+                    <div className=" ">
                         <div className=" border right-0 border-grey rounded  " style={{height: '32.5rem'}}>
 
                             {/*// <!-- Header -->*/}
@@ -18,7 +22,7 @@ const MessageContainer = () => {
                                 </div>
 
                                 <div className="flex">
-                                    <div className="cursor-pointer ">
+                                    <div className="cursor-pointer " onClick={handleClose}>
                                         <svg width="24px" viewBox="0 0 24 24" height="24"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -52,8 +56,8 @@ export default MessageContainer
 
 const NoChatSelected = () => {
     return (
-        <div className='flex items-center justify-center '>
-            <div className='relative  ml-20  text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
+        <div className='flex items-center justify-center w-full' style={{backgroundColor:'#f3f3f3'}}>
+            <div className='relative  ml-20  text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2' >
                 <svg width="280" height="180" className="" viewBox="0 0 301 180" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M4.5 162C4.5 160.895 5.39543 160 6.5 160H282.5C283.605 160 284.5 160.895 284.5 162C284.5 163.105 283.605 164 282.5 164H6.5C5.39543 164 4.5 163.105 4.5 162Z"

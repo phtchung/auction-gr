@@ -5,7 +5,7 @@ import useConversation from "../../zustand/useConversation.js";
 const useGetConversations = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const {listConversation , setListConversation } = useConversation()
+    const {listConversation , setListConversation, openChat , setOpenChat,unReadCount,setUnreadCount } = useConversation()
     useEffect(() => {
         const getConversations = async () => {
             setLoading(true);
@@ -15,7 +15,15 @@ const useGetConversations = () => {
                 if (data.error) {
                     throw new Error(data.error);
                 }
+                data.sort((a, b) => {
+                    return new Date(b.lastM.createdAt) - new Date(a.lastM.createdAt);
+                });
                 setListConversation(data);
+                let unRCount = 0
+                data.map((conver) => {
+                    unRCount  +=  conver.unReadM
+                })
+                setUnreadCount(unRCount)
             } catch (error) {
                 console.log('a')
             } finally {
@@ -24,8 +32,8 @@ const useGetConversations = () => {
             }
         };
 
-        getConversations();
-    }, []);
+         getConversations();
+    }, [openChat,setListConversation,setUnreadCount]);
 
     return {success, loading, conversations : listConversation };
 };

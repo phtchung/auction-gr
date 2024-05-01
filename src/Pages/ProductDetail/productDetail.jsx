@@ -6,7 +6,7 @@ import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "@material-tailwind/react";
 import {Modal} from 'antd';
 import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
@@ -18,10 +18,12 @@ import {
 } from "react-share";
 import CardNormal from "../../Components/Card/cardNormal.jsx";
 import useAuctionOnline from "../AuctionOnline/useAuctionOnline.jsx";
+import useConversation from "../../zustand/useConversation.js";
 const ProductDetail = () => {
     const [state , setState] = useState(null)
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
+    const {setOpenChat,selectedConversation,messages,setMessages,setSelectedConversation } = useConversation()
     const handleOpen = () => {
         if (localStorage.getItem("accessToken")) {
             setOpen(!open);
@@ -53,6 +55,13 @@ const ProductDetail = () => {
     const handleAuctionData = (key, value) => {
         setAuctionData({...auctionData, [key]: value});
     };
+
+    const handleStartChat = (seller) => {
+        console.log(seller)
+        setSelectedConversation(seller)
+        setOpenChat(true)
+
+    }
 
     const handleBuyProduct = async () => {
       try{
@@ -96,6 +105,8 @@ const ProductDetail = () => {
             setOpen()
         }
     }
+
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
@@ -537,19 +548,46 @@ const ProductDetail = () => {
                                             </Stack>
                                         </DialogContent>
                                     </Dialog>
+
                                     {/*người dùng */}
                                     <div style={{backgroundColor: "white"}}
-                                         className="pt-1 pb-1  mb-5 text-neutral-700 font-sans text-left">
-                                        <div className="flex flex-row p-3 pb-1 items-center gap-2">
-                                            <Avatar size="large"
-                                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
-                                            <div
-                                                className=" text-neutral-700 text-base font-sans"> {auctionProductData?.seller_name}
+                                         className="pt-1 pb-1   mb-5 text-neutral-700 font-sans text-left">
+                                        <div className="flex flex-row p-3 pb-1 justify-between items-center">
+                                            <div className="flex flex-row  items-center gap-2">
+                                                <Avatar size="large"
+                                                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
+                                                <div
+                                                    className=" text-neutral-700 text-base font-sans"> {auctionProductData?.seller_name}
+                                                </div>
+                                            </div>
+
+                                            <div onClick={() => handleStartChat(auctionProductData?.seller)}
+                                                className=" px-4 py-1.5 cursor-pointer border outline-0 border-orange-500 rounded shadow-md"
+                                                style={{backgroundColor: 'rgba(255,87,34,.1)'}}>
+                                                <div className="flex flex-row gap-2 items-center">
+                                                    <svg className="w-5 h-5 text-white fill-orange-500"
+                                                         style={{color: '#ee4d2d'}}
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M18 6.07a1 1 0 01.993.883L19 7.07v10.365a1 1 0 01-1.64.768l-1.6-1.333H6.42a1 1
+                                         0 01-.98-.8l-.016-.117-.149-1.783h9.292a1.8 1.8 0 001.776-1.508l.018-.154.494-6.438H18zm-2.78-4.5a1
+                                         1 0 011 1l-.003.077-.746 9.7a1 1 0 01-.997.923H4.24l-1.6 1.333a1 1 0 01-.5.222l-.14.01a1 1 0 01-.993-.883L1
+                                         13.835V2.57a1 1 0 011-1h13.22zm-4.638 5.082c-.223.222-.53.397-.903.526A4.61 4.61 0 018.2 7.42a4.61 4.61 0
+                                         01-1.48-.242c-.372-.129-.68-.304-.902-.526a.45.45 0 00-.636.636c.329.33.753.571 1.246.74A5.448 5.448 0 008.2
+                                         8.32c.51 0 1.126-.068 1.772-.291.493-.17.917-.412 1.246-.74a.45.45 0 00-.636-.637z"></path>
+                                                    </svg>
+                                                    <p className="text-orange-500 font-medium text-base">Chat</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row justify-center 0 gap-4 px-4 p-3 pb-2 items-center">
+
+
+                                        <div
+                                            className="flex flex-row justify-center 0 gap-4 px-4 p-3 pb-2 items-center">
                                             <div className="flex-col gap-1">
-                                                <span className="font-medium">{auctionProductData?.average_rating} </span>
+                                                <span
+                                                    className="font-medium">{auctionProductData?.average_rating} </span>
                                                 <StarFilled className="text-yellow-500"/>
                                             </div>
                                             <div
@@ -565,13 +603,14 @@ const ProductDetail = () => {
                                                 <span> đơn hàng </span>
                                             </div>
                                             <div className="flex-col  flex items-center gap-1 pr-5 ">
-                                                <span className="font-medium">{auctionProductData?.point}  </span>
-                                                <span> điểm </span>
+                                                <span className="font-medium"> đang fix </span>
+                                                <span> theo dõi </span>
                                             </div>
                                         </div>
                                         <div className="flex flex-row  0 gap-1 px-4 p-3 pb-2 items-center">
-                                            <img src="https://s.yimg.jp/images/auc/pc/item/image/1.0.2/icon_delivery.svg"
-                                                 alt=""/>
+                                            <img
+                                                src="https://s.yimg.jp/images/auc/pc/item/image/1.0.2/icon_delivery.svg"
+                                                alt=""/>
                                             Nơi gửi hàng : {auctionProductData?.delivery_from}
                                         </div>
                                         <div

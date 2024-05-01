@@ -25,14 +25,16 @@ const USER = {
       url: "/user/me",
     }),
 
-  register: async ({ email, password, name }) => {
+  register: async ({ email, password,username, name,phone}) => {
     let result = await publicHttp({
       method: "POST",
-      url: "/auth/register",
+      url: "/auth/signup",
       data: {
         email: email,
         password: password,
         name: name,
+        phone : phone,
+        username
       },
     });
     return result;
