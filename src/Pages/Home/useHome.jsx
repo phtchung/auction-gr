@@ -34,7 +34,7 @@ export default function useHome() {
                 user_id: data?._id,
                 username: data?.username,
                 name: data?.name ,
-                average_rating : data?.average_rating,
+                average_rating : data?.average_rating.toFixed(2),
                 product_done_count : data?.product_done_count,
                 avatar: data?.avatar
             };

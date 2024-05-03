@@ -15,7 +15,7 @@ export default function useSellerHome() {
         const userData = {
             seller_user_name: data?.user?.username,
             seller_name: data?.user?.name,
-            average_rating: data?.user?.average_rating,
+            average_rating: data?.user?.average_rating.toFixed(2),
             product_done_count: data?.user?.product_done_count,
             rate_count: data?.user?.rate_count,
         };

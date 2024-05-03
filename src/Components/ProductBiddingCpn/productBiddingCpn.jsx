@@ -15,7 +15,7 @@ const ProductBiddingCpn = ({data}) => {
             <div className=" px-6  shadow-inner bg-white  text-sm ">
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
                     <div className="font-semibold pr-10">{data?.seller_id?.name}</div>
-                    <div className="">{data?.seller_id?.average_rating}</div>
+                    <div className="">{data?.seller_id?.average_rating.toFixed(2)}</div>
                     <StarIcon
                         fontSize="small"
                         sx={{color: "rgb(245 158 11)", width: 14, height: 14}}

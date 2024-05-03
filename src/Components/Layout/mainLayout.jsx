@@ -299,25 +299,39 @@ const MainLayOut = ({children}) => {
                                  onClick={() => naviagate('/')}>
                                 Logo ở đây
                             </div>
-                            <div className="basis-8/12 grow-0 h-full">
-                                <Search
-                                    placeholder="Tìm kiếm"
-                                    allowClear
-                                    size="large"
-                                    style={{
-                                        width: "100%",
-                                        height: '48px'
-                                    }}
-                                />
+
+                            <div className="basis-7/12 grow-0 h-full">
+                                <form className="">
+                                    <label htmlFor="default-search"
+                                           className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                    <div className="relative">
+                                        <div
+                                            className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      strokeWidth="2"
+                                                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                            </svg>
+                                        </div>
+                                        <input type="search" id="default-search"
+                                               className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
+                                               placeholder="Tìm kiếm..." required/>
+                                        <button type="submit"
+                                                className="text-white absolute end-2.5 bottom-2 bg-orange-500 hover:bg-orange-600 focus:ring-1 hover:border-orange-500 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Search
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            <div className=" flex relative justify-around items-center  px-6 ">
+                            <div className=" flex relative justify-around items-center basis-3/12  px-6 ">
                                 {
                                     currentUser && <>
-                                        <div className="cursor-pointer h-full change "
+                                        <div className="cursor-pointer absolute h-full change "
                                              onClick={() => naviagate('/productBid')}>
                                             <img className=" p-2 rounded-md hover:bg-orange-500"
-                                                 src ="https://storage.googleapis.com/auction_gr/1712158718386658d8d59ded725a37cb8924eauction.png"
-                                                 // src="../../src/assets/auction.png"
+                                                 src="https://storage.googleapis.com/auction_gr/1712158718386658d8d59ded725a37cb8924eauction.png"
+                                                // src="../../src/assets/auction.png"
                                                  style={{width: "68%"}}
                                                  alt=""/>
                                         </div>
@@ -333,11 +347,11 @@ const MainLayOut = ({children}) => {
                                             </span>
 
                                             {
-                                                notifications  && <>
+                                                notifications && <>
                                                     {
                                                         total > 0 &&
                                                         <>
-                                                            <div className="counter">
+                                                        <div className="counter">
                                                                 {total}
                                                             </div>
                                                         </>
@@ -386,13 +400,14 @@ const MainLayOut = ({children}) => {
                                         <Dropdown
                                             menu={{
                                                 items,
-                                                style: {marginTop: '-6px',marginRight:20}
+                                                style: {marginTop: '-6px', marginRight: 20}
                                             }}
                                             placement="bottomRight"
                                         >
                                             <div className="cursor-pointer h-full change ">
                                                 <img className="p-2 pt-2 rounded-md hover:bg-orange-500"
-                                                     src="https://storage.googleapis.com/auction_gr/1712158719115658d8d59ded725a37cb8924eburger-bar.png" style={{width: "68%"}}
+                                                     src="https://storage.googleapis.com/auction_gr/1712158719115658d8d59ded725a37cb8924eburger-bar.png"
+                                                     style={{width: "68%"}}
                                                      alt=""/>
                                             </div>
                                         </Dropdown>
