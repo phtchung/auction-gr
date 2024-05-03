@@ -1,6 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
 import {useNavigate} from "react-router-dom";
-import {formatDateTime, isDateGreaterThanToday} from "../../Utils/constant.js";
+import { formatDateTime, isDateGreaterThanToday} from "../../Utils/constant.js";
 import {Tooltip} from "antd";
 import { Form, Input} from "antd";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
@@ -93,7 +93,7 @@ const AuctionHistoryCpn = ({data}) => {
                                     backgroundRepeat: 'no-repeat'
                                 }}
                                 src={data?.main_image}
-                                alt=""
+                                alt="image"
                             />
                         </div>
                         <div className="flex flex-col">
@@ -128,7 +128,7 @@ const AuctionHistoryCpn = ({data}) => {
                                 className=" gap-3 px-4 text-xs "
                                 style={{color: "rgba(0, 0, 0, .54)"}}
                             >
-                                <div>Đánh giá trước ngày <u>{data?.review_before}</u> để nhận 100 điểm</div>
+                                <div>Đánh giá trước ngày <u>{data?.review_before}</u> để nhận 20 điểm</div>
                             </div>
                         </>
                     }
