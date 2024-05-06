@@ -1,6 +1,5 @@
 import {Breadcrumb, Spin} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import useAuctionOnline from "./useAuctionOnline.jsx";
 import PageNotFound from "../../Components/PageNotFound/pageNotFound.jsx";
 import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
@@ -13,6 +12,7 @@ import {CheckCircleOutlined} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 import useListenBidding from "../../Hooks/useListenBidding.js";
+import CountDownOnline from "../../Components/Clock/countDownOnline.jsx";
 
 const AuctionOnline = () => {
     const { id } = useParams();
@@ -112,26 +112,25 @@ const AuctionOnline = () => {
                             <div className="flex flex-row items-start gap-6 p-5 m-2 mt-4 "
                                  style={{backgroundColor: '#ef9731'}}
                             >
-                                <div className=" md:basis-1/2 sm:basis-1/2 ">
-                                    <div id="slider" className="flexslider">
-                                        <ul className="slides">
-                                            <li>
+                                <div className="lg:basis-1/2 md:basis-1/2 sm:basis-1/2 xl:basis-1/2">
+                                    <div id="slider" className="image-container">
                                                 <img style={{
                                                     width: '100%',
-                                                    height: '27.5rem',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat'
+                                                    height: '100%',
+                                                    display: 'block',
+                                                    objectFit:'cover',
+                                                    // backgroundSize: 'cover',
+                                                    // backgroundRepeat: 'no-repeat'
                                                 }}
                                                      src={productData?.main_image}
                                                      alt={`Image`}/>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                                 {
                                     isSuccess && <>
-                                        <div className="md:basis-1/2 sm:basis-2/5">
-                                            <CountDownTitleBig hours={9} minutes={13} seconds={0}/>
+                                        <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
+                                            {/*<CountDownOnline id={productData?._id}*/}
+                                            {/*                   targetDate={productData?.finish_time}/>*/}
                                             {/*thông tinn đấu giá*/}
                                             <div
                                                 className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"

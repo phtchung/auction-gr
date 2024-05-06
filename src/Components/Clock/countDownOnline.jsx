@@ -5,7 +5,7 @@ import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import Swal from 'sweetalert2'
 import {formatMoney} from "../../Utils/constant.js";
 
-const CountDownFullDate = ({targetDate, id}) => {
+const CountDownOnline = ({targetDate, id}) => {
     const [auctionData, setAuctionData] = useState({productId: id})
     const navigate = useNavigate()
     const {currentUser} = useAuthContext();
@@ -15,23 +15,21 @@ const CountDownFullDate = ({targetDate, id}) => {
         const target = new Date(targetDate);
         const timeDifference = +target - +new Date();
 
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-        return {days, hours, minutes, seconds};
-
+        return {hours, minutes, seconds};
     };
 
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const {days, hours, minutes, seconds} = calculateTimeRemaining();
-            setCurrentTime({days, hours, minutes, seconds});
+            const { hours, minutes, seconds} = calculateTimeRemaining();
+            setCurrentTime({ hours, minutes, seconds});
 
-            if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+            if (hours === 0 && minutes === 0 && seconds === 0) {
                 clearInterval(interval);
                 setIsLoading(true);
 
@@ -85,38 +83,33 @@ const CountDownFullDate = ({targetDate, id}) => {
 
         return () => clearInterval(interval);
     }, []);
-
     return (
         <>
-            <div className="text-2xl font-semibold justify-center flex-row flex" style={{minWidth: 200}}>
-                <div className="flex flex-col gap-3">
-                    <span className="bg-orange-400  p-1 mr-1 px-2.5 inline-block rounded-md" style={{width: 45}}>
-                {currentTime.days < 10 ? `0${currentTime.days}` : currentTime.days}
-                    </span>
-                    <span className="text-sm">ngày</span>
-                </div>
-                :
-                <div className="flex flex-col gap-3">
-                   <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+            <div className="text-2xl font-semibold justify-center flex-row flex " style={{minWidth: 200}}>
+                <div className="justify-center flex-row flex border ring-2 ring-orange-500 border-neutral-200 p-1">
+                    <div className="flex flex-col">
+                   <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.hours < 10 ? `0${currentTime.hours}` : currentTime.hours}
             </span>
-                    <span className="text-sm">giờ</span>
-                </div>
-                :
-                <div className="flex flex-col gap-3">
-                    <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                        <span className="text-sm">giờ</span>
+                    </div>
+                    :
+                    <div className="flex flex-col ">
+                    <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.minutes < 10 ? `0${currentTime.minutes}` : currentTime.minutes}
                     </span>
-                    <span className="text-sm">phút</span>
-                </div>
+                        <span className="text-sm">phút</span>
+                    </div>
 
-                :
-                <div className="flex flex-col gap-3">
-                    <span className="bg-orange-400 p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                    :
+                    <div className="flex flex-col ">
+                    <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.seconds < 10 ? `0${currentTime.seconds}` : currentTime.seconds}
             </span>
-                    <span className="text-sm">giây</span>
+                        <span className="text-sm">giây</span>
+                    </div>
                 </div>
+
 
                 {isLoading &&
                     <>
@@ -135,4 +128,4 @@ const CountDownFullDate = ({targetDate, id}) => {
     )
         ;
 };
-export default CountDownFullDate;
+export default CountDownOnline;

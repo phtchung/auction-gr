@@ -35,8 +35,7 @@ const ProductDetail = () => {
         navigate(`/auction/item/${id}`)
         window.scrollTo(0, 0);
     }
-    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro} = useAuctionProductDetail()
-    const {fullBidListData, isSc :isScFullBid , isLd : isLdFullBid} = useAuctionOnline(state)
+    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro,fullBidListData,isScFullBid,isLdFullBid} = useAuctionProductDetail(state)
     const [open1, setOpen1] = useState(false);
     const {id} = useParams()
     const [auctionData,setAuctionData] = useState({productId:id})
@@ -120,7 +119,7 @@ const ProductDetail = () => {
         showModal()
     }
     const modalStyles = {
-
+        body:{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px'},
         header:{
             textAlign:'center',
             fontWeight:700,
@@ -171,6 +170,9 @@ const ProductDetail = () => {
                     {
                         isSuccess && isSc && <>
                             <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
+
+
+
                                 <div className=" md:basis-3/5 sm:basis-2/3 ">
                                     <div id="slider" className="flexslider">
                                         <ul className="slides">
@@ -181,7 +183,7 @@ const ProductDetail = () => {
                                                     backgroundSize: 'cover',
                                                     backgroundRepeat: 'no-repeat'
                                                 }}
-                                                    src={auctionProductData?.main_image}
+                                                     src={auctionProductData?.main_image}
                                                      alt={`Image`}/>
                                             </li>
                                         </ul>
@@ -189,14 +191,14 @@ const ProductDetail = () => {
                                     <div id="carousel" className="flexslider mt-4 mb-4 flex flex-row gap-3">
                                         {
                                             auctionProductData?.image_list.map((image, index) => (
-                                                <div key={index} style={{width:'14%'}}>
+                                                <div key={index} style={{width: '14%'}}>
                                                     <img style={{
                                                         width: '100%',
                                                         height: '4.7rem',
                                                         backgroundSize: 'cover',
                                                         backgroundRepeat: 'no-repeat'
                                                     }}
-                                                          src={image} alt={`Image ${index}`}/>
+                                                         src={image} alt={`Image ${index}`}/>
                                                 </div>
                                             ))
                                         }
@@ -275,7 +277,7 @@ const ProductDetail = () => {
                                                     swipeable
                                                 >
                                                     {
-                                                        ralatedPro.map((product,index) => (
+                                                        ralatedPro.map((product, index) => (
                                                             <div
                                                                 onClick={() => handleNavigateAuction(product.product_id)}
                                                                 key={index} className="md:basis-1/5 p-2 ">
@@ -293,7 +295,7 @@ const ProductDetail = () => {
                                     {/*thông tinn đấu giá*/}
                                     <div
                                         className="flex flex-col bg-white  text-neutral-700 font-sans text-left pt-3 p-3 mb-4">
-                                        <div style={{fontWeight: 600}} className="flex pr-6 relative" >
+                                        <div style={{fontWeight: 600}} className="flex pr-6 relative">
                                             <span className="text-2xl    ">
                                                 {auctionProductData?.product_name}
                                             </span>
@@ -305,25 +307,25 @@ const ProductDetail = () => {
                                                         url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
                                                         quote={'Dummy text!'}
                                                     >
-                                                        <FacebookIcon size={28} round />
+                                                        <FacebookIcon size={28} round/>
                                                     </FacebookShareButton>
                                                     <TwitterShareButton
                                                         url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
                                                         quote={'Dummy text!'}
                                                     >
-                                                        <XIcon size={28} round={true} />
+                                                        <XIcon size={28} round={true}/>
                                                     </TwitterShareButton>
                                                     <TelegramShareButton
                                                         url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
                                                         quote={'Dummy text!'}
                                                     >
-                                                        <TelegramIcon size={28} round />
+                                                        <TelegramIcon size={28} round/>
                                                     </TelegramShareButton>
                                                     <FacebookMessengerShareButton
                                                         url={'https://janbox.com/vi/yahoo-auction/item/n1127985920'}
                                                         appId={'https://www.facebook.com/hoangthuydung.11'}
                                                     >
-                                                        <FacebookMessengerIcon size={28} round />
+                                                        <FacebookMessengerIcon size={28} round/>
                                                     </FacebookMessengerShareButton>
                                                 </div>
 
@@ -367,7 +369,8 @@ const ProductDetail = () => {
                                                     style={{width: 24, height: 24}}
                                                     src="https://s.yimg.jp/images/auc/pc/search/image/2.0.1/icon_hammer.svg"
                                                     alt=""/></div>
-                                                <span onClick={getFullBidList} className="text-sm cursor-pointer text-blue-800">{bidCount} lượt đấu giá</span>
+                                                <span onClick={getFullBidList}
+                                                      className="text-sm cursor-pointer text-blue-800">{bidCount} lượt đấu giá</span>
                                             </div>
 
                                             <div
@@ -406,14 +409,13 @@ const ProductDetail = () => {
                                         </div>
                                         <div className="text-center mb-2">
                                             <CountDownFullDate id={auctionProductData?.product_id}
-                                                targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
+                                                               targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
                                         </div>
                                     </div>
 
                                     {/*Dialog xem full ds đấu giá */}
                                     <Modal styles={modalStyles} title="Diễn biến các lệnh trả giá" className=" text-black "
                                            footer={null} centered open={isModalOpen}
-                                           bodyStyle={{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px' }}
                                            onCancel={handleCancel}>
                                         {
                                             isScFullBid ?
@@ -427,12 +429,14 @@ const ProductDetail = () => {
                                                                     <h1 className='text-base shadow-black'>
                                                                         {formatMoney(bid.bid_price)} đ
                                                                     </h1>
-                                                                    <span className="text-xs " style={{color:'rgb(156 157 160)'}}
+                                                                    <span className="text-xs "
+                                                                          style={{color: 'rgb(156 157 160)'}}
                                                                     >
                                                                       {formatDateTimeMiliSecond(bid.bid_time)}
                                                                 </span>
                                                                 </div>
-                                                                <div className="px-6 text-base font-medium " style={{color:'rgb(81 81 81)'}}>
+                                                                <div className="px-6 text-base font-medium "
+                                                                     style={{color: 'rgb(81 81 81)'}}>
                                                                     {bid.username}
                                                                 </div>
                                                             </div>
@@ -440,7 +444,8 @@ const ProductDetail = () => {
                                                     ))
                                                     :
                                                     <>
-                                                        <div className="text-center font-medium my-14">Không có dữ liệu</div>
+                                                        <div className="text-center font-medium my-14">Không có dữ liệu
+                                                        </div>
                                                     </>
                                                 :
                                                 <>
@@ -472,25 +477,27 @@ const ProductDetail = () => {
 
                                                     <div className="flex flex-row items-center ">
                                                         <Form scrollToFirstError>
-                                                        <Form.Item
+                                                            <Form.Item
 
-                                                            name='final_price'
-                                                            label='Giá đấu thầu mới'
+                                                                name='final_price'
+                                                                label='Giá đấu thầu mới'
 
-                                                            rules={[
-                                                                {
+                                                                rules={[
+                                                                    {
 
-                                                                    type: 'Number',
-                                                                    message: 'The input is not valid Number!',
-                                                                },
-                                                                {
-                                                                    required: true,
-                                                                    message: 'Hãy điền giá bạn muốn trả!',
-                                                                }
-                                                            ]}
-                                                        >
-                                                            <Input  onChange={(e) => handleAuctionData('final_price',e.target.value)} rootClassName='hover:border-orange-500' suffix="VNĐ"/>
-                                                        </Form.Item>
+                                                                        type: 'Number',
+                                                                        message: 'The input is not valid Number!',
+                                                                    },
+                                                                    {
+                                                                        required: true,
+                                                                        message: 'Hãy điền giá bạn muốn trả!',
+                                                                    }
+                                                                ]}
+                                                            >
+                                                                <Input
+                                                                    onChange={(e) => handleAuctionData('final_price', e.target.value)}
+                                                                    rootClassName='hover:border-orange-500' suffix="VNĐ"/>
+                                                            </Form.Item>
                                                         </Form>
 
                                                     </div>
@@ -528,7 +535,8 @@ const ProductDetail = () => {
                                                     className="items-center  font-medium text-base gap-6 my-4 mx-8 px-1 space-y-6 ">
                                                     <div className="flex gap-8 items-center">
                                                         <div className="">Giá bán trực tiếp</div>
-                                                        <span className="text-red-400">{formatMoney(auctionProductData?.sale_price)} VNĐ</span>
+                                                        <span
+                                                            className="text-red-400">{formatMoney(auctionProductData?.sale_price)} VNĐ</span>
                                                     </div>
 
                                                 </div>
@@ -562,8 +570,8 @@ const ProductDetail = () => {
                                             </div>
 
                                             <div onClick={() => handleStartChat(auctionProductData?.seller)}
-                                                className=" px-4 py-1.5 cursor-pointer border outline-0 border-orange-500 rounded shadow-md"
-                                                style={{backgroundColor: 'rgba(255,87,34,.1)'}}>
+                                                 className=" px-4 py-1.5 cursor-pointer border outline-0 border-orange-500 rounded shadow-md"
+                                                 style={{backgroundColor: 'rgba(255,87,34,.1)'}}>
                                                 <div className="flex flex-row gap-2 items-center">
                                                     <svg className="w-5 h-5 text-white fill-orange-500"
                                                          style={{color: '#ee4d2d'}}
@@ -633,7 +641,8 @@ const ProductDetail = () => {
                                         <div className="0 gap-4 px-4 p-3 pb-2 font-sans text-neutral-600">
                                             <div className="flex-row flex gap-3 mb-3">
                                                 <div className="basis-2/5 font-medium">Danh mục</div>
-                                                <div className="basis-3/5">{auctionProductData?.parent?.name} - {auctionProductData?.category_name}</div>
+                                                <div
+                                                    className="basis-3/5">{auctionProductData?.parent?.name} - {auctionProductData?.category_name}</div>
                                             </div>
                                             <div className="flex-row flex gap-3 mb-3">
                                                 <div className="basis-2/5 font-medium">Thương hiệu</div>
