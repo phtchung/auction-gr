@@ -2,10 +2,14 @@ import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import {formatDateTime, formatNumber} from "../../Utils/constant.js";
-import {getAuctionProductDetail, getRelatedProduct} from "../../Services/productService.jsx";
+import {
+    getAuctionProductDetail,
+    getFullBidListOnlineAuction,
+    getRelatedProduct
+} from "../../Services/productService.jsx";
 import {getProductBiddingCount} from "../../Services/biddingService.jsx";
 
-export default function useAuctionProductDetail() {
+export default function useAuctionProductDetail(state) {
     const { id } = useParams();
 
     const parseData = useCallback((data) => {
@@ -65,6 +69,21 @@ export default function useAuctionProductDetail() {
         return { product };
     }, []);
 
+    const parseData2 = useCallback((item) => {
+        const list = item?.list?.map((data) => {
+            return {
+                id: data?._id,
+                bid_price:data?.bid_price,
+                username:data?.username,
+                bid_time:data?.bid_time,
+            };
+        });
+        const highest_price = item?.highest_price
+        const product = item?.product
+
+        return { list , product , highest_price  };
+    }, []);
+
 
     const { data, isSuccess, isLoading,isError,refetch } = useQuery({
         queryKey: ["getAuctionProductDetail", id],
@@ -89,6 +108,14 @@ export default function useAuctionProductDetail() {
         enabled: !!id,
     });
 
+    const { data : fullBidListData, isSuccess : isScFullBid, isLoading : isLdFullBid} = useQuery({
+        queryKey: ["getFullBidListOnlineAuction",id],
+        queryFn: () => getFullBidListOnlineAuction(id),
+        staleTime: 20 * 1000,
+        select: (data) => parseData2(data.data),
+        enabled : !!id && !!state,
+    });
+
     return {
         ralatedPro : relatedProducts?.product,
         sc,ld,err,
@@ -98,6 +125,9 @@ export default function useAuctionProductDetail() {
         isError,
         refetch,
         bidCount:bidCount?.data?.bidCount,
-        isLd,isSc,rf
+        isLd,isSc,rf,
+        fullBidListData : fullBidListData?.list,
+        isScFullBid,
+        isLdFullBid
     };
 }

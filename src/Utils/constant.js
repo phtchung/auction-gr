@@ -577,6 +577,11 @@ export const canReturn = [
     {value: "0", label: "Không thể trả"},
 ];
 
+export const auctionLive = [
+    {value: "0", label: "Đấu giá thông thường"},
+    {value: "1", label: "Đấu giá trực tuyến"},
+];
+
 export const categories = [
     {value: "6590eeb91a599365d4b68951", label: "Điện tử"},
     {value: "65c1ffb748844c67a80a2156", label: "Đồ gia dụng"},

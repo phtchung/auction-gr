@@ -1,6 +1,7 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import "./home.css";
 import {
+    auctionLive,
     canReturn,
     isUsed,
     numberToString,
@@ -240,13 +241,14 @@ const ReqOrderTracking = () => {
                                     <Stack spacing={2} margin={1}>
                                         <div className="text-sm font-semibold">
                                             Thông tin sản phẩm
-                                            <small className="font-thin text-xs"> [Thương hiệu sản phẩm nếu không có thì bỏ trống]</small>
+                                            <small className="font-thin text-xs"> [Thương hiệu sản phẩm nếu không có thì
+                                                bỏ trống]</small>
                                         </div>
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField
                                                 id="filled-basic"
                                                 fullWidth
-                                                sx={{maxWidth: 690}}
+                                                sx={{maxWidth: 820}}
                                                 color="info"
                                                 defaultValue={
                                                     request?.product_name ? request?.product_name : null
@@ -258,10 +260,40 @@ const ReqOrderTracking = () => {
                                                 size="small"
                                                 variant="filled"
                                             />
+                                        </div>
+
+                                        <div className="flex justify-between items-center gap-6">
                                             <FormControl
                                                 size="small"
                                                 variant="filled"
-                                                sx={{minWidth: 190}}
+                                                sx={{minWidth: '48.5%'}}
+                                            >
+                                                <InputLabel id="demo-simple-select-filled-label">
+                                                   Hình thức đấu giá
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-filled-label"
+                                                    id="demo-simple-select-filled"
+                                                    defaultValue={
+                                                        requestCurrent?.current?.auction_live ? requestCurrent?.current?.auction_live : null
+                                                    }
+                                                >
+                                                    {auctionLive.map((item) => (
+                                                        <MenuItem
+                                                            key={item.value}
+                                                            value={item.value}
+                                                            onClick={() => handleRequest("auction_live", item.value)}
+                                                        >
+                                                            {item.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+
+                                            <FormControl
+                                                size="small"
+                                                variant="filled"
+                                                sx={{minWidth: '48.5%'}}
                                             >
                                                 <InputLabel id="demo-simple-select-filled-label">
                                                     Chất lượng *
@@ -285,6 +317,9 @@ const ReqOrderTracking = () => {
                                                 </Select>
                                             </FormControl>
                                         </div>
+
+
+
                                         <div className="flex justify-between items-center gap-6">
                                             <TextField
                                                 id="filled-basic"
@@ -328,6 +363,7 @@ const ReqOrderTracking = () => {
                                                     ))}
                                                 </Select>
                                             </FormControl>
+
                                             <FormControl
                                                 size="small"
                                                 variant="filled"
@@ -354,6 +390,7 @@ const ReqOrderTracking = () => {
                                                     ))}
                                                 </Select>
                                             </FormControl>
+
 
                                             <TextField
                                                 id="filled-basic"
