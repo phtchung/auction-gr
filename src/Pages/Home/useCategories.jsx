@@ -8,7 +8,9 @@ export default function useCategories() {
             return {
                 category_id:data?._id,
                 name: data?.name,
-                children : data?.children
+                children : data?.children,
+                value:data?._id,
+                label :  data?.name,
             };
         });
         return { categories };

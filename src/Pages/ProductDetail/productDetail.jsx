@@ -6,7 +6,7 @@ import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button} from "@material-tailwind/react";
 import {Modal} from 'antd';
 import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
@@ -17,7 +17,6 @@ import {
     FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
 import CardNormal from "../../Components/Card/cardNormal.jsx";
-import useAuctionOnline from "../AuctionOnline/useAuctionOnline.jsx";
 import useConversation from "../../zustand/useConversation.js";
 const ProductDetail = () => {
     const [state , setState] = useState(null)
@@ -140,8 +139,7 @@ const ProductDetail = () => {
     return (
         <>
             <MainLayOut>
-                <div className="md:container">
-
+                <div className="md:container mt-24">
                     {isSuccess && <>
                         <div className="px-3 mx-2 mt-2">
                             <Breadcrumb

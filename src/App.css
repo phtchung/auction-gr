@@ -46,3 +46,10 @@
 .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
   max-height: 300px!important;
 }
+
+.card-hover:hover{
+  box-shadow: 0 2px 18px rgb(252, 183, 115);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: .2s ease-in;
+}

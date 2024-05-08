@@ -97,7 +97,7 @@ const CategoriesFilter = () => {
     return (
         <>
             <MainLayOut>
-                <div className="md:container">
+                <div className="md:container mt-24">
                     {category &&
                         <>
                             <div className="px-3 mx-2 mt-2">
@@ -263,55 +263,57 @@ const CategoriesFilter = () => {
                             {isLd ?
                                 <>
                                     <Spin className="text-center mt-40"  tip="Loading" size="large"/>
-
                                 </>
                                 :
                                 <>
-                                    <div className="flex flex-col bg-white pt-3 p-2 mb-4">
-                                        <div
-                                            className="flex flex-grow items-center justify-end border-b border-b-neutral-200 px-2 pb-2">
-                                            <Select
-                                                value={queryString.sortBy || 'Sắp xếp'}
-                                                style={{
-                                                    width: 160,
-                                                    borderRadius: 0,
-                                                    zIndex: 0
-                                                }}
-                                                onSelect={(value) => handleFilter('sortBy', value)}
-                                            >
-                                                <Select.OptGroup label='Giá'>
-                                                    <Select.Option label='price' value='price-desc'>Từ cao đến
-                                                        thấp</Select.Option>
-                                                    <Select.Option label='price' value='price-asc'>Từ thấp đến
-                                                        cao</Select.Option>
-                                                </Select.OptGroup>
-                                                <Select.OptGroup label='Thời gian kết thúc'>
-                                                    <Select.Option label='finish_time' value='finish_time-asc'>Gần
-                                                        nhất</Select.Option>
-                                                    <Select.Option label='finish_time' value='finish_time-desc'>Xa
-                                                        nhất</Select.Option>
-                                                </Select.OptGroup>
-                                                <Select.OptGroup label='Số lượt đấu giá'>
-                                                    <Select.Option label='bid_count' value='bid_count-desc'>Nhiều
-                                                        nhất</Select.Option>
-                                                    <Select.Option label='bid_count' value='bid_count-asc'>Ít
-                                                        nhất </Select.Option>
-                                                </Select.OptGroup>
-                                            </Select>
-                                        </div>
 
-                                        <div className="flex flex-wrap">
-                                            {
-                                                products && products.map((product, index) => (
-                                                    <div onClick={() => handleNavigateAuction(product.product_id)}
-                                                         key={index} className="md:basis-1/5 p-2">
-                                                        <CardItem4Line data={product}/>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
                                     {(totalPage && totalPage !== 0 && currentPage) ? (
+                                            <>
+                                            <div className="flex flex-col bg-white pt-3 p-2 mb-4">
+                                                <div
+                                                    className="flex flex-grow items-center justify-end border-b border-b-neutral-200 px-2 pb-2">
+                                                    <Select
+                                                        value={queryString.sortBy || 'Sắp xếp'}
+                                                        style={{
+                                                            width: 160,
+                                                            borderRadius: 0,
+                                                            zIndex: 0
+                                                        }}
+                                                        onSelect={(value) => handleFilter('sortBy', value)}
+                                                    >
+                                                        <Select.OptGroup label='Giá'>
+                                                            <Select.Option label='price' value='price-desc'>Từ cao đến
+                                                                thấp</Select.Option>
+                                                            <Select.Option label='price' value='price-asc'>Từ thấp đến
+                                                                cao</Select.Option>
+                                                        </Select.OptGroup>
+                                                        <Select.OptGroup label='Thời gian kết thúc'>
+                                                            <Select.Option label='finish_time' value='finish_time-asc'>Gần
+                                                                nhất</Select.Option>
+                                                            <Select.Option label='finish_time' value='finish_time-desc'>Xa
+                                                                nhất</Select.Option>
+                                                        </Select.OptGroup>
+                                                        <Select.OptGroup label='Số lượt đấu giá'>
+                                                            <Select.Option label='bid_count' value='bid_count-desc'>Nhiều
+                                                                nhất</Select.Option>
+                                                            <Select.Option label='bid_count' value='bid_count-asc'>Ít
+                                                                nhất </Select.Option>
+                                                        </Select.OptGroup>
+                                                    </Select>
+                                                </div>
+
+                                                <div className="flex flex-wrap">
+                                                    {
+                                                        products && products.map((product, index) => (
+                                                            <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                                 key={index} className="md:basis-1/5 p-2">
+                                                                <CardItem4Line data={product}/>
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </div>
+
                                             <Pagination
                                                 count={totalPage}
                                                 page={currentPage}
@@ -322,10 +324,11 @@ const CategoriesFilter = () => {
                                                     display: "flex",
                                                 }}
                                             />
+                                            </>
                                         )
                                         :
                                         <>
-                                            <div className="flex flex-col items-center">
+                                            <div className="flex flex-col mt-8 items-center">
                                                 <img
                                                     style={{width: '30%'}}
                                                     src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
