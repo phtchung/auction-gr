@@ -4,10 +4,9 @@ import {useNavigate} from "react-router-dom";
 import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 
 const ProductBiddingCpn = ({data}) => {
-
     const navigate = useNavigate()
     const handleNavigate = () => {
-       navigate(`/auction/item/${data.product_id}`)
+       navigate(`/auction/item/${data._id}`)
       window.scroll(0,0)
     }
     return (
@@ -69,17 +68,6 @@ const ProductBiddingCpn = ({data}) => {
                         </div>
                     </div>
                 </div>
-                {/*<div*/}
-                {/*    className="py-4 flex items-center "*/}
-                {/*    style={{backgroundColor: "#fffefb"}}*/}
-                {/*>*/}
-                {/*    <div*/}
-                {/*        className="flex items-center "*/}
-                {/*        style={{color: "rgba(0,0,0,.54)"}}*/}
-                {/*    >*/}
-                {/*        <div>Người trả giá cao nhất : {data?.bidder}</div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
         </>
     );

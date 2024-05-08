@@ -21,6 +21,7 @@ import BlogDetail from "../Pages/Blog/blogDetail.jsx";
 import ProductOnlineDetail from "../Pages/AuctionOnlineDetail/productOnlineDetail.jsx";
 import AuctionOnline from "../Pages/AuctionOnline/auctionOnline.jsx";
 import MessageContainer from "../Components/Message/messageContainer.jsx";
+import AuctionRealTimeHome from "../Pages/AuctionRealtimeHome/auctionRealTimeHome.jsx";
 
 
 export const NormalRoutes = [
@@ -52,6 +53,7 @@ export const UserRoutes = [
   { path: "/404", element: <PageNotFound /> },
   { path: "/resultSuccess", element: <ResultPage /> },
   { path: "/bidding/:id", element: <AuctionOnline /> },
+  { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
 
 ];
 

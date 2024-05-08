@@ -18,23 +18,29 @@ const CardAuctionOnline = ({data}) => {
     return(
         <>
             <Card
+                className="card-hover "
                 size="small"
                 hoverable
                 bordered={false}
-                style={{width: '100%', borderRadius: 0, minHeight: 236}}
+                style={{width: '100%', borderRadius: 8, minHeight: 236}}
                 cover={<img alt="example" style={{
+                    padding:'4px',
                     width: '100%',
-                    height: '10rem',
+                    height: '11rem',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
+                    borderRadius:8
                 }}
                             src={data.main_image}/>}
             >
-                <div className="flex flex-col text-left py-2 px-1">
+                <div className="flex flex-col text-left pb-2 pt-1 px-1">
+                    <div className="text-sm font-medium text-neutral-600 text-center px-2 pb-1.5  truncate ">
+                        {data.product_name}
+                    </div>
                         <button
                             onClick={() => handleBiddingOnline(data.product_id)}
                             className=" p-2 leading-none  rounded-3xl  text-white  cursor-pointer"
-                            style={{backgroundColor: '#f32c50', width: '100%', border:'1px solid #ee002a'}}>
+                            style={{backgroundColor: '#ef5c0c', width: '100%', border:'1px solid #ee002a'}}>
                             Đấu giá trực tuyến
                         </button>
                     <div

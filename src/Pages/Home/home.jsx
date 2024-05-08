@@ -1,8 +1,5 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import { Card} from 'antd'
-import {formatMoney} from "../../Utils/constant.js";
 import {DownOutlined , UpOutlined} from "@ant-design/icons";
-import CountDownTitleBig from "../../Components/Clock/countDownTitleBig.jsx";
 import Carousel from "react-multi-carousel";
 import {useNavigate} from "react-router-dom";
 import useHome from "./useHome.jsx";
@@ -11,7 +8,7 @@ import CardSeller from "../../Components/Card/cardSeller.jsx";
 import CardPreEnd from "../../Components/Card/cardPreEnd.jsx";
 import useCategories from "./useCategories.jsx";
 import {useState} from "react";
-import CardAuctionOnline from "../../Components/Card/cardAuctionOnline.jsx";
+import Search from "../../Components/SearchCpn/Search.jsx";
 const Home = () => {
     const navigate = useNavigate()
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -40,13 +37,16 @@ const Home = () => {
     return (
         <>
             <MainLayOut style={{zIndex:10000}}>
+                <Search />
                 <div className="md:container">
+
                     <div>
                         {/*//chia 2 cột , 1 cột danhm muc , 1 sột sản phẩm */}
-                        <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
+                        <div className="flex flex-row items-start gap-6 p-3 m-2  ">
                             <div className=" md:basis-1/5 sm:basis-1/4  "
                                  style={{backgroundColor: "white"}}>
-                                {isSuccess &&
+                                {
+                                    isSuccess &&
                                     <div className="mb-1 pt-4 font-semibold text-lg">Danh mục</div>
                                 }
 
@@ -88,9 +88,10 @@ const Home = () => {
                                 {/*>*/}
                                 {/*</Menu>*/}
                             </div>
+
                             {/*cột hiển thị các sản phẩm*/}
                             <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">
-                                {/*trực tiếp live*/}
+                                {/* Sản phẩm nổi bật*/}
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4">
                                     <div className="flex flex-grow items-center justify-between p-2">
                                         <div className="flex gap-2 items-center mb-2 ">
@@ -100,13 +101,8 @@ const Home = () => {
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">ĐANG ĐẤU GIÁ
-                                                TRỰC TUYẾN
+                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM NỔI BẬT
                                             </div>
-                                        </div>
-                                        <div>
-                                            <CountDownTitleBig hours={12} minutes={30} seconds={0}
-                                                               backgroundColor={'bg-red-400'}></CountDownTitleBig>
                                         </div>
                                     </div>
 
@@ -114,7 +110,7 @@ const Home = () => {
                                         additionalTransfrom={0}
                                         arrows
                                         autoPlaySpeed={3000}
-                                        className="h-full"
+                                        className=""
                                         containerClass="carousel-container"
                                         dotListClass=""
                                         draggable
@@ -160,13 +156,12 @@ const Home = () => {
                                     >
                                         {
                                             isStandOutSc && standOut && standOut.map((product, index) => (
-                                                <div  key={index}
+                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
                                                      className="md:basis-1/5 p-2 ">
-                                                    <CardAuctionOnline data={product}/>
+                                                    <CardNormal data={product}/>
                                                 </div>
                                             ))
                                         }
-
                                     </Carousel>
                                 </div>
                                 {/*sắp kết thúc*/}
@@ -243,79 +238,6 @@ const Home = () => {
                                     </Carousel>
                                 </div>
 
-                                {/* Sản phẩm nổi bật*/}
-                                <div className="flex flex-col bg-white pt-3 p-2 mb-4">
-                                    <div className="flex flex-grow items-center justify-between p-2">
-                                        <div className="flex gap-2 items-center mb-2 ">
-                                        <span className="relative flex h-3 w-3">
-                                            <span
-                                                className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
-                                            <span
-                                                className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                                        </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM NỔI BẬT
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <Carousel
-                                        additionalTransfrom={0}
-                                        arrows
-                                        autoPlaySpeed={3000}
-                                        className=""
-                                        containerClass="carousel-container"
-                                        dotListClass=""
-                                        draggable
-                                        focusOnSelect={false}
-                                        keyBoardControl
-                                        minimumTouchDrag={50}
-                                        pauseOnHover
-                                        renderArrowsWhenDisabled={false}
-                                        renderButtonGroupOutside={false}
-                                        renderDotsOutside={false}
-                                        responsive={{
-                                            desktop: {
-                                                breakpoint: {
-                                                    max: 3000,
-                                                    min: 1024
-                                                },
-                                                items: 4,
-                                            },
-                                            mobile: {
-                                                breakpoint: {
-                                                    max: 464,
-                                                    min: 0
-                                                },
-                                                items: 1,
-                                            },
-                                            tablet: {
-                                                breakpoint: {
-                                                    max: 1024,
-                                                    min: 464
-                                                },
-                                                items: 3,
-                                            }
-                                        }}
-                                        rewind
-                                        centerMode={true}
-                                        rewindWithAnimation={false}
-                                        rtl={false}
-                                        shouldResetAutoplay
-                                        showDots={false}
-                                        sliderClass=""
-                                        slidesToSlide={4}
-                                        swipeable
-                                    >
-                                        {
-                                            isStandOutSc && standOut && standOut.map((product, index) => (
-                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
-                                                     className="md:basis-1/5 p-2 ">
-                                                    <CardNormal data={product}/>
-                                                </div>
-                                            ))
-                                        }
-                                    </Carousel>
-                                </div>
                                 {/*giá rẻ */}
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
                                     <div className="flex flex-grow  justify-between p-2">

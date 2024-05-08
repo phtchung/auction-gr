@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {FinishAuction} from "../../Services/biddingService.jsx";
+import { FinishAuctionOnline} from "../../Services/biddingService.jsx";
 import {useNavigate} from "react-router-dom";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import Swal from 'sweetalert2'
@@ -33,8 +33,9 @@ const CountDownOnline = ({targetDate, id}) => {
                 clearInterval(interval);
                 setIsLoading(true);
 
-                FinishAuction({...auctionData})
+                FinishAuctionOnline({...auctionData})
                     .then(res => {
+                        console.log(res.data)
                         const isSuccess = currentUser.id.toString() === res.data?.data?.winner_id;
                         const title = isSuccess ? "Đấu giá thành công!" : "Không trúng đấu giá!";
                         const icon = isSuccess ? 'success' : 'error';
@@ -88,14 +89,14 @@ const CountDownOnline = ({targetDate, id}) => {
             <div className="text-2xl font-semibold justify-center flex-row flex " style={{minWidth: 200}}>
                 <div className="justify-center flex-row flex border ring-2 ring-orange-500 border-neutral-200 p-1">
                     <div className="flex flex-col">
-                   <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                   <span className="  mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.hours < 10 ? `0${currentTime.hours}` : currentTime.hours}
             </span>
                         <span className="text-sm">giờ</span>
                     </div>
                     :
                     <div className="flex flex-col ">
-                    <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                    <span className="  mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.minutes < 10 ? `0${currentTime.minutes}` : currentTime.minutes}
                     </span>
                         <span className="text-sm">phút</span>
@@ -103,7 +104,7 @@ const CountDownOnline = ({targetDate, id}) => {
 
                     :
                     <div className="flex flex-col ">
-                    <span className=" p-1 mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
+                    <span className=" mx-1 inline-block px-2.5 rounded-md" style={{width: 45}}>
                 {currentTime.seconds < 10 ? `0${currentTime.seconds}` : currentTime.seconds}
             </span>
                         <span className="text-sm">giây</span>

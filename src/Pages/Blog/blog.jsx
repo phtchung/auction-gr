@@ -3,7 +3,6 @@ import {Card} from "antd";
 import useBlog from "./useBlog.jsx";
 import {useNavigate} from "react-router-dom";
 
-
 const Blog = () => {
     const {blogs, isLoading , isSuccess} = useBlog()
     const navigate = useNavigate()
@@ -14,13 +13,15 @@ const Blog = () => {
   return(
       <>
           <MainLayOut>
-              <div className="md:container">
-                  <div className="grid md:grid-cols-4 gap-4 sm:grid-cols-2 mx-6 mt-8">
+              <div className="md:container mt-24">
+                  <h2 className="text-3xl font-medium text-neutral-600">Tin tức mới</h2>
+                  <div className="grid md:grid-cols-4 gap-8 sm:grid-cols-2 mx-8 mt-8 mb-4">
                       {
                           blogs && blogs.map((blog, index) => (
                               <>
                                   <div key={index} className="md:basis-1/5  ">
                                       <Card
+                                          className="card-hover"
                                           onClick={() => handleNavigate(blog.blog_id)}
                                           size="small"
                                           hoverable
@@ -28,7 +29,7 @@ const Blog = () => {
                                           style={{width: '100%', borderRadius: 8, minHeight: 236}}
                                           cover={<img alt="example" style={{
                                               width: '100%',
-                                              height: '150px',
+                                              height: '10rem',
                                               backgroundSize: 'cover',
                                               borderRadius: '8px 8px 0 0',
                                               backgroundRepeat: 'no-repeat',

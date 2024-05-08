@@ -120,7 +120,7 @@ const SellerHome = () => {
     return (
         <>
             <MainLayOut>
-                <div className="md:container">
+                <div className="md:container mt-24">
                     {isLoading ?
                         <>
                             <Spin className="text-center mt-60" tip="Loading" size="large">

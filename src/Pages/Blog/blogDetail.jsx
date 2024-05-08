@@ -12,10 +12,10 @@ const BlogDetail = () => {
   return(
       <>
       <MainLayOut>
-          <div className="md:container">
+          <div className="md:container mt-24">
               {
                   isSuccess && <>
-                      <div className="flex flex-col gap-3 mt-8 m-4 mb-8 font_fml">
+                      <div className="flex flex-col gap-3 mt-8 mx-8 mb-8 font_fml">
                           <div>
                               <img src={blogData?.image}
                                    className="w-full mb-4 bg-no-repeat overflow-hidden bg-cover " style={{height:'40rem'}} alt=""/>

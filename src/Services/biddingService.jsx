@@ -75,6 +75,13 @@ export const FinishAuction = async (auctionData) => {
   });
 };
 
+export const FinishAuctionOnline = async (auctionData) => {
+  return publicHttp({
+    method: "POST",
+    url: "/auction/online/finish",
+    data: auctionData,
+  });
+};
 export const getBlogDetail = async (Id) => {
   return publicHttp({
     method: "GET",
@@ -121,6 +128,17 @@ export const getCategories = async () => {
   return publicHttp({
     method: "GET",
     url: `/categories`,
+  });
+};
+
+export const getProductRealTimeHome = async (type,query) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/productRealtime",
+    data: {
+      type,
+      query,
+    },
   });
 };
 

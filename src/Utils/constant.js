@@ -560,6 +560,11 @@ export function reqConvertStatus(status) {
     }
 }
 
+export function reqConvertType(type) {
+    if (type === "all" || type ===  'increase' || type === 'decrease' ) {
+        return type;
+    } else return  "all"
+}
 export const rankItems = [
     {value: "S", label: "S"},
     {value: "A", label: "A"},
