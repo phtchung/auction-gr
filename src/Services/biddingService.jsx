@@ -20,6 +20,15 @@ export const sendAuctionData = async (auctionData) => {
   });
 };
 
+
+export const CheckOutDeposit = async (data) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/checkoutDeposit",
+    data: data,
+  });
+};
+
 export const sendAuctionDataOnline = async (auctionData) => {
   return privateHttp({
     method: "POST",
@@ -154,5 +163,19 @@ export const getProductsByCategory = async (id,params) => {
     method: "GET",
     url: `/home/category/${id}`,
     params
+  });
+};
+
+export const getCheckOutInfor = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/checkoutDeposit/${Id}`,
+  });
+};
+
+export const getConfirmDeposit = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/getConfirmDeposit/${Id}`,
   });
 };
