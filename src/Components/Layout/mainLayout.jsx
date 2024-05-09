@@ -248,7 +248,7 @@ const MainLayOut = ({children}) => {
                                                   active={selectedItem === 0}>Đấu giá thường</ListItem>
                                         <ListItem NavLink="/auctionRealtime" onItemClick={() => selectItem(1)}
                                                   active={selectedItem === 1}>Đấu giá Real-time</ListItem>
-                                        <ListItem NavLink="/#" onItemClick={() => selectItem(2)}
+                                        <ListItem NavLink="/auctionStream" onItemClick={() => selectItem(2)}
                                                   active={selectedItem === 2}>Đấu giá LiveStream</ListItem>
                                         <ListItem NavLink="/#" onItemClick={() => selectItem(3)}
                                                   active={selectedItem === 3}>Phòng đấu giá</ListItem>
@@ -352,7 +352,7 @@ const MainLayOut = ({children}) => {
                                                onClick={() => setDropdownOpen(!dropdownOpen)}>
                                             <span className="hidden text-right lg:block flex-grow">
                                                 <span
-                                                    className="block text-sm font-medium text-black dark:text-white">{currentUser?.username}</span>
+                                                    className="block text-sm font-medium truncate text-white dark:text-white">{currentUser?.username}</span>
 
                                             </span>
                                                 <span className="rounded-full">
@@ -361,8 +361,8 @@ const MainLayOut = ({children}) => {
                                                 </span>
 
                                                 <svg
-                                                    className={dropdownOpen ? 'rotate-180' : ' fill-black sm:block'}
-                                                    width="12" height="8" viewBox="0 0 12 8" fill="black"
+                                                    className={dropdownOpen ? 'rotate-180' : ' fill-white sm:block'}
+                                                    width="12" height="8" viewBox="0 0 12 8" fill="white"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                 >
                                                     <path fillRule="evenodd" clipRule="evenodd"

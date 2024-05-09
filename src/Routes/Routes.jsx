@@ -22,6 +22,9 @@ import ProductOnlineDetail from "../Pages/AuctionOnlineDetail/productOnlineDetai
 import AuctionOnline from "../Pages/AuctionOnline/auctionOnline.jsx";
 import MessageContainer from "../Components/Message/messageContainer.jsx";
 import AuctionRealTimeHome from "../Pages/AuctionRealtimeHome/auctionRealTimeHome.jsx";
+import AuctionStreamHome from "../Pages/AuctionStreamHome/auctionStreamHome.jsx";
+import CheckOut from "../Pages/CheckOut/checkout.jsx";
+import ConfirmCheckOut from "../Pages/CheckOut/ConfirmCheckOut.jsx";
 
 
 export const NormalRoutes = [
@@ -54,6 +57,9 @@ export const UserRoutes = [
   { path: "/resultSuccess", element: <ResultPage /> },
   { path: "/bidding/:id", element: <AuctionOnline /> },
   { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
+  { path: "/auctionStream", element: <AuctionStreamHome /> },
+  { path: "/checkout/:id", element: <CheckOut /> },
+  { path: "/confirm/:id", element: <ConfirmCheckOut /> },
 
 ];
 

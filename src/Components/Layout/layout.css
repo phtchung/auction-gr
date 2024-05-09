@@ -227,7 +227,7 @@ a a:hover{
     padding: 4px;
     position: absolute;
     top: 0;
-    right: 24px;
+    right: 0;
 }
 .notifications{
     width: 22rem;
