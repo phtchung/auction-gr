@@ -151,6 +151,18 @@ export const getProductRealTimeHome = async (type,query) => {
   });
 };
 
+export const getProductStreamHome = async (type,query) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/productStream",
+    data: {
+      type,
+      query,
+    },
+  });
+};
+
+
 export const getCategoryDetail = async (Id) => {
   return publicHttp({
     method: "GET",

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import {getProductRealTimeHome} from "../../Services/biddingService.jsx";
+import { getProductStreamHome} from "../../Services/biddingService.jsx";
 import useQueryString from "../../Hooks/useQueryString.js";
 import {reqConvertType} from "../../Utils/constant.js";
 
@@ -19,7 +19,7 @@ export default function useAuctionStreamHome() {
             return {
                 product_id: data?._id,
                 product_name: data?.product_name,
-                coutdown_time : data?.finish_time,
+                register : data?.register,
                 main_image : data?.main_image,
             };
         });
@@ -34,8 +34,8 @@ export default function useAuctionStreamHome() {
     }, []);
 
     const { data, isSuccess, isLoading } = useQuery({
-        queryKey: ["getProductRealTimeHome",type,queryString],
-        queryFn: () => getProductRealTimeHome(type,queryString),
+        queryKey: ["getProductStreamHome",type,queryString],
+        queryFn: () => getProductStreamHome(type,queryString),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
         enabled: !!type,
