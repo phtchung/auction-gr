@@ -71,6 +71,20 @@ export const getAuctionProductDetail = async (Id) => {
     url: `/auction/item/${Id}`,
   });
 };
+export const getProductRealTimeDetail = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/realtime/item/${Id}`,
+  });
+};
+
+export const getProductStreamDetail = async (Id) => {
+  return privateHttp({
+    method: "GET",
+    url: `/auction/stream/item/${Id}`,
+  });
+};
+
 
 export const reviewProduct = async (reviewData) => {
   return privateHttp1({

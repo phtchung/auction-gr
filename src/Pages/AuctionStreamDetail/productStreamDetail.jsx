@@ -1,5 +1,4 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import Carousel from "react-multi-carousel";
 import {Avatar, Breadcrumb, Tag, Popover} from "antd";
 import {formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
@@ -8,23 +7,16 @@ import {useNavigate} from "react-router-dom";
 import {
     FacebookIcon, TwitterShareButton, FacebookMessengerShareButton, FacebookMessengerIcon, TelegramIcon, FacebookShareButton, XIcon, TelegramShareButton,
 } from "react-share";
-import CardNormal from "../../Components/Card/cardNormal.jsx";
-import useAuctionRealTimeDetail from "./useAuctionRealTimeDetail.jsx";
-import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
-const ProductOnlineDetail = () => {
+import useProductStreamDetail from "./useProductStreamDetail.jsx";
+import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+const ProductStreamDetail = () => {
     const navigate = useNavigate()
-
-    const handleNavigateAuction = (id) => {
-        navigate(`/auction/item/${id}`)
-        window.scrollTo(0, 0);
-    }
-    const{isError, isLoading, isSuccess, auctionProductData,sc,ralatedPro,ld,isErr} = useAuctionRealTimeDetail()
-    console.log(auctionProductData)
+    const {isError, isLoading, isSuccess, auctionProductData} = useProductStreamDetail()
 
     const handleNavigateToOnlineAuction = (url) => {
         if (localStorage.getItem("accessToken")) {
-            navigate(`/bidding/${url}`)
+            navigate(`/checkout/${url}`)
         } else {
             window.location.href = '/login';
         }
@@ -46,9 +38,7 @@ const ProductOnlineDetail = () => {
                             </>
                             :
                             isError ?
-                                <>
-                                    <FZFNotFound/>
-                                </>
+                                <FZFNotFound/>
                                 :
                                 isSuccess &&
                                 <>
@@ -61,7 +51,7 @@ const ProductOnlineDetail = () => {
                                                     },
                                                     {
                                                         title: <span className="cursor-pointer"
-                                                                     onClick={() => handleNavigate(auctionProductData?.parent._id)}>{auctionProductData?.parent?.name}</span>
+                                                                     onClick={() => handleNavigate(auctionProductData.parent._id)}>{auctionProductData?.parent?.name}</span>
                                                     },
                                                     {
                                                         title: <a href="">{auctionProductData?.category_name}</a>
@@ -71,7 +61,6 @@ const ProductOnlineDetail = () => {
                                         </div>
 
                                         <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
-                                            {/*cột ảnh + miêu tả */}
                                             <div className=" md:basis-3/5 sm:basis-2/3 ">
                                                 <div id="slider" className="flexslider">
                                                     <ul className="slides">
@@ -103,106 +92,12 @@ const ProductOnlineDetail = () => {
                                                     }
                                                 </div>
                                                 <div className="mt-5 bg-white  text-left mb-5 text-neutral-700 p-3">
-                                                    <div className="border-b pb-3 text-lg font-semibold">Mô tả sản
-                                                        phẩm
+                                                    <div className="border-b pb-3 text-lg font-semibold">Mô tả sản phẩm
                                                     </div>
                                                     <div className="pt-2 min-h-fit">
                                                         {auctionProductData?.description}
                                                     </div>
                                                 </div>
-
-                                                {/*các sp tương tự*/}
-                                                {
-                                                    ld ?
-                                                        <>
-                                                            <CustomSpinner h={8} w={8} font={'sm'}/>
-                                                        </>
-                                                        :
-                                                        sc &&  ralatedPro.length !== 0 &&
-                                                            <>
-                                                                <div className="flex flex-col bg-white pt-3 p-3 mb-4">
-                                                                    <div
-                                                                        className="flex flex-grow items-center justify-between p-2">
-                                                                        <div className="flex gap-2 items-center mb-2 ">
-                                                                            <span className="relative flex h-3 w-3">
-                                                                                <span
-                                                                                    className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
-                                                                                <span
-                                                                                    className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                                                                            </span>
-                                                                            <div
-                                                                                className="text-left text-lg font-semibold text-gray-900 ">Các
-                                                                                sản phẩm tương tự
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    {
-                                                                        ralatedPro &&
-                                                                        <>
-                                                                            <Carousel
-                                                                                additionalTransfrom={0}
-                                                                                arrows
-                                                                                autoPlaySpeed={3000}
-                                                                                className=""
-                                                                                containerClass="carousel-container-categories"
-                                                                                dotListClass=""
-                                                                                draggable
-                                                                                focusOnSelect={false}
-                                                                                keyBoardControl
-                                                                                minimumTouchDrag={30}
-                                                                                pauseOnHover
-                                                                                renderArrowsWhenDisabled={false}
-                                                                                renderButtonGroupOutside={false}
-                                                                                renderDotsOutside={false}
-                                                                                responsive={{
-                                                                                    desktop: {
-                                                                                        breakpoint: {
-                                                                                            max: 3000,
-                                                                                            min: 1024
-                                                                                        },
-                                                                                        items: 2.61,
-                                                                                    },
-                                                                                    mobile: {
-                                                                                        breakpoint: {
-                                                                                            max: 464,
-                                                                                            min: 0
-                                                                                        },
-                                                                                        items: 2,
-                                                                                    },
-                                                                                    tablet: {
-                                                                                        breakpoint: {
-                                                                                            max: 1024,
-                                                                                            min: 464
-                                                                                        },
-                                                                                        items: 2,
-                                                                                    }
-                                                                                }}
-                                                                                rewind
-                                                                                centerMode={true}
-                                                                                rewindWithAnimation={false}
-                                                                                rtl={false}
-                                                                                shouldResetAutoplay
-                                                                                showDots={false}
-                                                                                sliderClass=""
-                                                                                slidesToSlide={3}
-                                                                                swipeable
-                                                                            >
-                                                                                {
-                                                                                    ralatedPro.map((product, index) => (
-                                                                                        <div
-                                                                                            onClick={() => handleNavigateAuction(product.product_id)}
-                                                                                            key={index}
-                                                                                            className="md:basis-1/5 p-2 ">
-                                                                                            <CardNormal data={product}/>
-                                                                                        </div>
-                                                                                    ))
-                                                                                }
-                                                                            </Carousel>
-                                                                        </>
-                                                                    }
-                                                                </div>
-                                                            </>
-                                                }
                                             </div>
 
                                             <div className="md:basis-2/5 sm:basis-1/3">
@@ -242,6 +137,7 @@ const ProductOnlineDetail = () => {
                                                                     <FacebookMessengerIcon size={28} round/>
                                                                 </FacebookMessengerShareButton>
                                                             </div>
+
                                                         } placement="bottomRight" trigger="click">
                                                             <div className="mt-2 absolute right-0">
                                                                 <svg style={{width: 28, height: 28, cursor: 'pointer'}}
@@ -263,11 +159,9 @@ const ProductOnlineDetail = () => {
                                                         <Tag className=""
                                                              color="volcano">{auctionProductData?.rank}</Tag>
                                                         {
-                                                            auctionProductData?.is_used_interger === 0 &&
-                                                            <>
+                                                            auctionProductData?.is_used_interger === 0 && <>
                                                                 <Tag className="mr-2"
-                                                                     color="red">{auctionProductData?.is_used}
-                                                                </Tag>
+                                                                     color="red">{auctionProductData?.is_used}</Tag>
                                                             </>
                                                         }
                                                     </div>
@@ -277,9 +171,10 @@ const ProductOnlineDetail = () => {
                                                             onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id)}
                                                             className="text-xl overflow_css_w_158 p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
                                                             style={{backgroundColor: '#ee002a', width: '100%'}}>
-                                                            Đấu giá trực tuyến
+                                                            Đăng ký đấu giá
                                                         </button>
                                                     </div>
+                                                    <span className="text-center font-medium text-neutral-600 mb-3">Thời gian đăng ký còn lại </span>
                                                     <div className="text-center mb-2">
                                                         <CountDownFullDate id={auctionProductData?.product_id}
                                                                            targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
@@ -299,20 +194,21 @@ const ProductOnlineDetail = () => {
                                                     <div
                                                         className="flex flex-row justify-center 0 gap-4 px-4 p-3 pb-2 items-center">
                                                         <div className="flex-col gap-1">
-                                                            <span
-                                                                className="font-medium">{auctionProductData?.average_rating} </span>
+                                                        <span
+                                                            className="font-medium">{auctionProductData?.average_rating} </span>
                                                             <StarFilled className="text-yellow-500"/>
                                                         </div>
                                                         <div
                                                             className="flex-col pl-4 border-x border-neutral-200 flex items-center gap-1 pr-5 ">
-                                                            <span
-                                                                className="font-medium">{auctionProductData?.rate_count}  </span>
+                                                        <span
+                                                            className="font-medium">{auctionProductData?.rate_count}  </span>
                                                             <span> đánh giá </span>
                                                         </div>
 
                                                         <div
                                                             className="flex-col border-r border-neutral-200  flex items-center gap-1 pr-5 ">
-                                                            <span className="font-medium">{auctionProductData?.product_done_count}  </span>
+                                              <span
+                                                  className="font-medium">{auctionProductData?.product_done_count}  </span>
                                                             <span> đơn hàng </span>
                                                         </div>
                                                         <div className="flex-col  flex items-center gap-1 pr-5 ">
@@ -374,6 +270,7 @@ const ProductOnlineDetail = () => {
                                                                 className="basis-3/5">{formatMoney(auctionProductData?.reserve_price)} VNĐ
                                                             </div>
                                                         </div>
+
                                                         <div className="flex-row flex gap-3 mb-3">
                                                             <div className="basis-2/5 font-medium">Phí giao hàng</div>
                                                             <div
@@ -381,7 +278,7 @@ const ProductOnlineDetail = () => {
                                                             </div>
                                                         </div>
                                                         <div className="flex-row flex gap-3 mb-3">
-                                                            <div className="basis-2/5 font-medium">Thời gian bắt đầu</div>
+                                                            <div className="basis-2/5 font-medium">Thời gian bắt đầu </div>
                                                             <div
                                                                 className="basis-3/5">{auctionProductData?.start_time}</div>
                                                         </div>
@@ -396,6 +293,7 @@ const ProductOnlineDetail = () => {
                                             </div>
                                         </div>
                                     </div>
+
                                 </>
                     }
                 </div>
@@ -403,4 +301,5 @@ const ProductOnlineDetail = () => {
         </>
     )
 }
-export default ProductOnlineDetail
+
+export default ProductStreamDetail
