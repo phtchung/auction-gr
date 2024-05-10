@@ -32,7 +32,7 @@ export default function useAuctionProductDetail(state) {
             seller_user_name:data?.seller_id?.username,
             seller_name : data?.seller_id?.name,
             seller:data?.seller_id,
-            average_rating:data?.seller_id?.average_rating.toFixed(2),
+            average_rating:data?.seller_id?.average_rating?.toFixed(2),
             product_done_count:data?.seller_id?.product_done_count,
             point:data?.seller_id?.point,
             rate_count:data?.seller_id?.rate_count,
