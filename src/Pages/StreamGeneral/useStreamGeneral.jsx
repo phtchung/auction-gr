@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import { getProductStreamHome} from "../../Services/biddingService.jsx";
+import { getStreamGeneral} from "../../Services/biddingService.jsx";
 import useQueryString from "../../Hooks/useQueryString.js";
 import {reqConvertType} from "../../Utils/constant.js";
 
-export default function useAuctionStreamHome() {
+export default function useStreamGeneral() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const { queryString, setQueryString } = useQueryString();
@@ -15,12 +15,13 @@ export default function useAuctionStreamHome() {
     );
 
     const parseData = useCallback((item) => {
-        const streamData = item?.products?.map((data) => {
+        const streamAuctionGeneral = item?.products?.map((data) => {
             return {
                 product_id: data?._id,
                 product_name: data?.product_name,
-                register : data?.register,
+                coutdown_time : data?.finish_time,
                 main_image : data?.main_image,
+                room : data?.room_id
             };
         });
 
@@ -30,12 +31,12 @@ export default function useAuctionStreamHome() {
             total:item?.total,
         };
 
-        return { streamData , pagination};
+        return { streamAuctionGeneral , pagination};
     }, []);
 
     const { data, isSuccess, isLoading } = useQuery({
-        queryKey: ["getProductStreamHome",type,queryString],
-        queryFn: () => getProductStreamHome(type,queryString),
+        queryKey: ["getStreamGeneral",type,queryString],
+        queryFn: () => getStreamGeneral(type,queryString),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
         enabled: !!type,
@@ -50,7 +51,7 @@ export default function useAuctionStreamHome() {
     );
 
     return {
-        data : data?.streamData,
+        data : data?.streamAuctionGeneral,
         isSuccess,
         isLoading,
         type,

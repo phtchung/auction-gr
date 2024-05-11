@@ -29,6 +29,14 @@ export const CheckOutDeposit = async (data) => {
   });
 };
 
+export const VerifyCodeRoom = async (data) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/checkPasswordStreamRoom",
+    data: data,
+  });
+};
+
 export const sendAuctionDataOnline = async (auctionData) => {
   return privateHttp({
     method: "POST",
@@ -150,6 +158,18 @@ export const getProductRealTimeHome = async (type,query) => {
     },
   });
 };
+
+export const getStreamGeneral = async (type,query) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/streamGeneral",
+    data: {
+      type,
+      query,
+    },
+  });
+};
+
 
 export const getProductStreamHome = async (type,query) => {
   return privateHttp({
