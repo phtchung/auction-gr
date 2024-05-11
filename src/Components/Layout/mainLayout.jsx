@@ -250,7 +250,7 @@ const MainLayOut = ({children}) => {
                                                   active={selectedItem === 1}>Đấu giá Real-time</ListItem>
                                         <ListItem NavLink="/auctionStream" onItemClick={() => selectItem(2)}
                                                   active={selectedItem === 2}>Đấu giá LiveStream</ListItem>
-                                        <ListItem NavLink="/#" onItemClick={() => selectItem(3)}
+                                        <ListItem NavLink="/streamGeneral" onItemClick={() => selectItem(3)}
                                                   active={selectedItem === 3}>Phòng đấu giá</ListItem>
                                         <ListItem NavLink="/articles/news" onItemClick={() => selectItem(4)}
                                                   active={selectedItem === 4}>Tin tức</ListItem>
