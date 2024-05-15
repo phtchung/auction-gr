@@ -94,6 +94,15 @@ export const reviewProduct = async (reviewData) => {
   });
 };
 
+export const getReview = async (auction_id) => {
+  return privateHttp({
+    method: "POST",
+    url: "/getReview",
+    data: auction_id,
+  });
+};
+
+
 export const getRelatedProduct = async (Id) => {
   return privateHttp({
     method: "GET",

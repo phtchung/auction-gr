@@ -17,6 +17,7 @@ export default function useAuctionHistory() {
         main_image:data?.product_id?.main_image,
         is_review:data?.is_review,
         review_before:formatDateTime1(data?.review_before),
+        seller:data?.seller_id,
       };
     });
 

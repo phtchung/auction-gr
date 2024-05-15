@@ -4,10 +4,19 @@ import {useNavigate} from "react-router-dom";
 import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 
 const ProductBiddingCpn = ({data}) => {
+    console.log(data)
     const navigate = useNavigate()
     const handleNavigate = () => {
-       navigate(`/auction/item/${data._id}`)
-      window.scroll(0,0)
+        if(data?.auction_live === 0){
+            navigate(`/auction/item/${data._id}`)
+            window.scroll(0,0)
+        }else if(data?.auction_live === 1){
+            navigate(`/bidding/${data._id}`)
+            window.scroll(0,0)
+        }else if(data?.auction_live === 2){
+            navigate(`/streamGeneral`)
+            window.scroll(0,0)
+        }
     }
     return (
         <>
@@ -28,7 +37,7 @@ const ProductBiddingCpn = ({data}) => {
                         </div>
                         <button
                             onClick={handleNavigate}
-                            className="p-2 px-6 py-2  right-0  bg-blue-800 rounded cursor-pointer   text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                            className="p-2 px-6 py-2  right-0  bg-orange-500 rounded cursor-pointer   text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
                             Tới trang đấu giá
                         </button>
                     </div>
