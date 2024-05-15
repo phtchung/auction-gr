@@ -53,7 +53,7 @@ const BiddingInfo = ({data}) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Người trúng thầu :</div>
                                 <div className="font-normal col-span-2">
-                                    {data?.seller_name}
+                                    {data?.winner?.name}
                                 </div>
                             </div>
                         </>

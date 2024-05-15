@@ -25,8 +25,8 @@ export default function useWinOrdersTracking() {
         const winTrackingData = item?.winOrderList?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
-                rank: data?.rank,
+                product_name: data?.product_id?.product_name,
+                rank: data?.product_id?.rank,
                 status: data?.status,
                 status_word: data?.status === 9 ? 'Yêu cầu trả hàng' : data?.status === 14 ? 'Trả hàng thành công' : 'Từ chối trả hàng',
                 createdAt: formatDateTime(new Date(data?.createdAt)),
@@ -35,7 +35,7 @@ export default function useWinOrdersTracking() {
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: formatMoney(data?.final_price + data?.shipping_fee),
                 completed_time: formatDateTime(
-                    new Date(data?.product_delivery?.completed_time),
+                    new Date(data?.delivery?.completed_time),
                 ),
             };
         });

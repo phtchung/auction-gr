@@ -14,7 +14,7 @@ const ProductBiddingCpn = ({data}) => {
             <div className=" px-6  shadow-inner bg-white  text-sm ">
                 <div className="flex pb-2 pt-2 items-center  border-b border-b-gray-150">
                     <div className="font-semibold pr-10">{data?.seller_id?.name}</div>
-                    <div className="">{data?.seller_id?.average_rating.toFixed(2)}</div>
+                    <div className="">{data?.seller_id?.average_rating?.toFixed(2)}</div>
                     <StarIcon
                         fontSize="small"
                         sx={{color: "rgb(245 158 11)", width: 14, height: 14}}
@@ -42,19 +42,19 @@ const ProductBiddingCpn = ({data}) => {
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat'
                             }}
-                                 src={data?.main_image}
+                                 src={data?.product_id?.main_image}
                                  alt=""
                             />
                         </div>
                         <div className="flex flex-col">
                             <div className="px-4 max-w-3xl text-base text-left">
-                                {data?.product_name}
+                                {data?.product_id?.product_name}
                             </div>
                             <div
                                 style={{color: "rgba(0,0,0,.54)"}}
                                 className="px-4 mt-2 max-w-3xl text-left"
                             >
-                                Rank : {data?.rank}
+                                Rank : {data?.product_id?.rank}
                             </div>
                         </div>
                     </div>

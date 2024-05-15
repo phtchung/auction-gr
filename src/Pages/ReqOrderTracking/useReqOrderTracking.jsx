@@ -19,8 +19,8 @@ export default function useReqOrderTracking() {
     const reqTrackingData = item?.reqOrderList?.map((data) => {
       return {
         product_id: data?._id,
-        product_name: data?.product_name,
-        rank: data?.rank,
+        product_name: data?.product_id?.product_name,
+        rank: data?.product_id?.rank,
         status: data?.status,
         request_time: formatDateTime(new Date(data?.createdAt)),
         reserve_price: formatMoney(data?.reserve_price) + " VND",
@@ -29,17 +29,17 @@ export default function useReqOrderTracking() {
         status_string:data?.status === 3 ? 'Đang đấu giá' : data?.status === 4 ? 'Chờ thông tin giao hàng' : data?.status === 9 ? 'Yêu cầu trả hàng ' : data?.status === 14 ? 'Duyệt yêu cầu trả hàng' : 'Từ chối yêu cầu trả hàng',
         start_time:formatDateTime(new Date(data?.start_time)),
         finish_time:formatDateTime(new Date(data?.finish_time)),
-        return_time:formatDateTime(new Date(data?.product_delivery?.return_time)),
+        return_time:formatDateTime(new Date(data?.delivery?.return_time)),
         // cancel_time:formatDateTime(new Date(data?.updatedAt)),
         victory_time: formatDateTime(new Date(data?.victory_time)),
         reject_time: formatDateTime(new Date(data?.reject_time)),
         total_price: formatMoney(data?.final_price + data?.shipping_fee) + " VND",
         completed_time: formatDateTime(
-          new Date(data?.product_delivery?.completed_time),
+          new Date(data?.delivery?.completed_time),
         ),
         shipping_fee:data?.shipping_fee,
-        phone:data?.product_delivery?.phone,
-        address:data?.product_delivery?.address,
+        phone:data?.delivery?.phone,
+        address:data?.delivery?.address,
         request_id: data?._id,
       };
     });

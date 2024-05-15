@@ -22,12 +22,11 @@ export default function useRequestHistory() {
   });
 
   const parseData = useCallback((item) => {
-    console.log("item", item);
     const reqHis = item?.requests.map((data) => {
       return {
         id: data._id,
-        product_name: data.product_name,
-        rank: data.rank,
+        product_name: data.product_id?.product_name,
+        rank: data.product_id?.rank,
         status: data.status,
         createdAt: formatDateTime(new Date(data.createdAt)),
       };

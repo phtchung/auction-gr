@@ -18,9 +18,9 @@ export default function useAuctionRealTimeHome() {
         const realTimeData = item?.products?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 coutdown_time : data?.finish_time,
-                main_image : data?.main_image,
+                main_image : data?.product_id?.main_image,
             };
         });
 

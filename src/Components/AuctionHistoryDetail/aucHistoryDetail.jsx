@@ -64,7 +64,7 @@ const AucHistoryDetail = () => {
                                             <StepLabel>
                                                 {steps[1]} <br/>
                                                 <span className="text-xs text-stone-400">
-                        {formatDateTime(data?.product_delivery?.confirm_time)}
+                        {formatDateTime(data?.delivery?.confirm_time)}
                       </span>
                                             </StepLabel>
                                         </Step>
@@ -73,7 +73,7 @@ const AucHistoryDetail = () => {
                                                 {steps[2]} <br/>{" "}
                                                 <span className="text-xs text-stone-400">
                         {formatDateTime(
-                            data?.product_delivery?.delivery_start_time,
+                            data?.delivery?.delivery_start_time,
                         )}
                       </span>
                                             </StepLabel>
@@ -82,7 +82,7 @@ const AucHistoryDetail = () => {
                                             <StepLabel>
                                                 {steps[3]} <br/>{" "}
                                                 <span className="text-xs text-stone-400">
-                        {formatDateTime(data?.product_delivery?.completed_time)}
+                        {formatDateTime(data?.delivery?.completed_time)}
                       </span>
                                             </StepLabel>
                                         </Step>
@@ -97,12 +97,12 @@ const AucHistoryDetail = () => {
                                         </div>
 
                                         <div className="flex-col mt-4 mx-6  ">
-                                            <div className="mb-3">{data.product_delivery?.name}</div>
+                                            <div className="mb-3">{data.delivery?.name}</div>
                                             <div className="text-xs text-neutral-500 mb-2">
-                                                {data.product_delivery?.phone}
+                                                {data.delivery?.phone}
                                             </div>
                                             <div className="text-xs text-neutral-500">
-                                                {data.product_delivery?.address}
+                                                {data.delivery?.address}
                                             </div>
                                         </div>
                                     </div>
@@ -133,19 +133,19 @@ const AucHistoryDetail = () => {
                                                             maxWidth: '96px', maxHeight: '96px',
                                                             overflow: 'hidden', height: 'auto', width: '100%'
                                                         }}
-                                                        src={data?.main_image}
+                                                        src={data?.product_id?.main_image}
                                                         alt=""
                                                     />
                                                 </div>
                                                 <div className="flex flex-col text-sm">
                                                     <div className="px-4 max-w-3xl  text-base text-left">
-                                                    {data?.product_name}
+                                                    {data?.product_id?.product_name}
                                                     </div>
                                                     <div
                                                         style={{color: "rgba(0,0,0,.54)"}}
                                                         className="px-4 mt-2 max-w-3xl text-left"
                                                     >
-                                                        Rank : {data?.rank}
+                                                        Rank : {data?.product_id?.rank}
                                                     </div>
                                                 </div>
                                             </div>

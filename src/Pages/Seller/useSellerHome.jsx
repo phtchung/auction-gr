@@ -27,16 +27,17 @@ export default function useSellerHome() {
     const parseData1 = useCallback((item) => {
 
         const products = item?.products?.map((data) => {
+            console.log(data)
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 reserve_price: data?.reserve_price,
                 start_time: formatDateTime(new Date(data?.start_time)),
                 finish_time: formatDateTime(new Date(data?.finish_time)),
                 final_price: data.final_price ? data?.final_price : data?.reserve_price,
                 shipping_fee:data?.shipping_fee,
                 countdownTime: data?.finish_time,
-                main_image: data?.main_image,
+                main_image: data?.product_id?.main_image,
                 type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
                 bidCount:data?.count,
             };

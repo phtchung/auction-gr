@@ -10,26 +10,29 @@ export default function useReqHistoryDetail() {
   const parseData = useCallback((data) => {
     const detail = {
       request_id: data?._id,
-      product_name: data?.product_name,
-      description: data?.description,
+      product_name: data?.product_id?.product_name,
+      description: data?.product_id?.description,
       step_price: data?.step_price,
       shipping_fee: data?.shipping_fee,
       sale_price: data?.sale_price,
       reserve_price: data?.reserve_price,
-      brand:data?.brand,
-      is_used:data?.is_used === 1 ? 'Đã sử dụng' : 'Chưa sử dụng',
-      can_return:data?.can_return === 0 ? 'Không' : 'Có thể',
+      brand:data?.product_id?.brand,
+      is_used:data?.product_id?.is_used === 1 ? 'Đã sử dụng' : 'Chưa sử dụng',
+      can_return:data?.product_id?.can_return === 0 ? 'Không' : 'Có thể',
       createdAt: formatDateTime(new Date(data?.createdAt)),
       approved_time: formatDateTime(new Date(data?.updatedAt)),
       reject_time: formatDateTime(new Date(data?.reject_time)),
       request_time: formatDateTime(new Date(data?.createdAt)),
       start_time: formatDateTime(new Date(data?.start_time)),
       finish_time: formatDateTime(new Date(data?.finish_time)),
-      image_list:data?.image_list,
-      main_image:data?.main_image,
-      rank: data?.rank,
+      image_list:data?.product_id?.image_list,
+      main_image:data?.product_id?.main_image,
+      delivery_from:data?.product_id?.delivery_from,
+      category_name:data?.category_id?.name,
+      rank: data?.product_id?.rank,
       status: data?.status,
       type_of_auction: data?.type_of_auction,
+      auction_live : data?.auction_live === 0 ? 'Đấu giá thông thường' : 'Đấu giá trực tuyến'
     };
     return { detail };
   }, []);

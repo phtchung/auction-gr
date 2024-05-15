@@ -32,12 +32,12 @@ export default function useSaleHistory() {
             return {
                 id: data?._id,
                 request_time : formatDateTime(new Date(data?.request_time)),
-                product_name: data?.product_name,
+                product_name: data?.auction_name,
                 final_price: data?.final_price,
                 request_id: data?.request_id,
                 shipping_fee: data?.shipping_fee,
                 status: data?.status,
-                completed_time: formatDateTime(new Date(data?.product_delivery?.completed_time),),
+                completed_time: formatDateTime(new Date(data?.delivery?.completed_time),),
                 updatedAt: formatDateTime(
                     new Date(data?.updatedAt),
                 ),

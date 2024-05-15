@@ -18,9 +18,9 @@ export default function useAuctionStreamHome() {
         const streamData = item?.products?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 register : data?.register,
-                main_image : data?.main_image,
+                main_image : data?.product_id?.main_image,
             };
         });
 

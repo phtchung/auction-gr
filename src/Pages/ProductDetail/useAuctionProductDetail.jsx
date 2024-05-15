@@ -15,9 +15,9 @@ export default function useAuctionProductDetail(state) {
     const parseData = useCallback((data) => {
         const detail = {
             product_id: data?._id,
-            product_name: data?.product_name,
+            product_name: data?.product_id?.product_name,
             phone: data?.seller_id.phone,
-            description: data?.description,
+            description: data?.product_id?.description,
             step_price: data?.step_price,
             shipping_fee: data?.shipping_fee,
             sale_price: data?.sale_price,
@@ -26,7 +26,7 @@ export default function useAuctionProductDetail(state) {
             finish_time: formatDateTime(new Date(data?.finish_time)),
             final_price: data.final_price ? data.final_price : data?.reserve_price ,
             procedure_complete_time: formatDateTime(
-                new Date(data?.procedure_complete_time),
+                new Date(data?.delivery?.procedure_complete_time),
             ),
             countdownTime:data?.finish_time,
             seller_user_name:data?.seller_id?.username,
@@ -36,16 +36,16 @@ export default function useAuctionProductDetail(state) {
             product_done_count:data?.seller_id?.product_done_count,
             point:data?.seller_id?.point,
             rate_count:data?.seller_id?.rate_count,
-            image_list:data?.image_list,
-            main_image:data?.main_image,
-            rank: data?.rank,
+            image_list:data?.product_id?.image_list,
+            main_image:data?.product_id?.main_image,
+            rank: data?.product_id?.rank,
             status: data?.status,
-            is_used:data?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng',
-            is_used_interger:data?.is_used ,
+            is_used:data?.product_id?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng',
+            is_used_interger:data?.product_id?.is_used ,
             min_auction_price : data.final_price  ? data.final_price + data?.step_price : data?.reserve_price + data?.step_price,
-            brand:data.brand ? data.brand : 'Không',
-            can_return:data?.can_return === 0 ? 'Không' : 'Có thể',
-            delivery_from:data?.delivery_from,
+            brand:data?.product_id?.brand ? data.product_id.brand : 'Không',
+            can_return:data?.product_id?.can_return === 0 ? 'Không' : 'Có thể',
+            delivery_from:data?.product_id?.delivery_from,
             type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
             category_name: data?.category_id?.name,
             parent : data?.parent,
@@ -57,12 +57,12 @@ export default function useAuctionProductDetail(state) {
         const product = item?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 reserve_price: data?.reserve_price,
                 final_price: data.final_price ? data?.final_price : data?.reserve_price,
                 finish_time: formatDateTime(new Date(data?.finish_time)),
                 countdownTime: data?.finish_time,
-                main_image:data?.main_image,
+                main_image:data?.product_id?.main_image,
             };
         });
 

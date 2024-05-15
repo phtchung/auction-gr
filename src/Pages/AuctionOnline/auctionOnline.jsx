@@ -118,7 +118,7 @@ const AuctionOnline = () => {
                                                         // backgroundSize: 'cover',
                                                         // backgroundRepeat: 'no-repeat'
                                                     }}
-                                                         src={productData?.main_image}
+                                                         src={productData?.product_id?.main_image}
                                                          alt={`Image`}/>
                                                 </div>
                                             </div>

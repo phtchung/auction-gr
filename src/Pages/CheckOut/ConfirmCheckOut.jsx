@@ -51,25 +51,25 @@ const ConfirmCheckOut = () => {
                                             <div className=" grid lg:grid-cols-4 sm:grid-cols-1  border-b border-gray-200 py-6">
                                                 <div className="lg:col-span-3 sm:col-span-1 min-[200px]:col-span-1 flex flex-row">
                                                     <img
-                                                        src={data?.main_image}
+                                                        src={data?.product_id?.main_image}
                                                         alt="Image"
                                                         className=" flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-32 sm:w-32"
                                                     />
                                                     <div className="flex flex-auto text-left ml-6 flex-col">
                                                         <div>
                                                             <h4 className=" text-lg truncate font-medium text-neutral-600">
-                                                                {data?.product_name}
+                                                                {data?.product_id?.product_name}
                                                             </h4>
                                                         </div>
 
                                                         <dl className="flex flex-col gap-2 mt-2  ">
                                                             <div className="flex text-sm font-medium gap-5 mt-3">
                                                                 <dt className=" text-gray-500">Chất lượng</dt>
-                                                                <dd className=" text-gray-900">{data?.rank}</dd>
+                                                                <dd className=" text-gray-900">{data?.product_id?.rank}</dd>
                                                             </div>
                                                             <div className="flex text-sm font-medium gap-5">
                                                                 <dt className=" text-gray-500">Trạng thái</dt>
-                                                                <dd className="text-gray-900">{data?.is_used === 1 ? 'Đã sử dụng' : 'Không sử dung'}</dd>
+                                                                <dd className="text-gray-900">{data?.product_id?.is_used === 1 ? 'Đã sử dụng' : 'Chưa sử dung'}</dd>
                                                             </div>
                                                         </dl>
                                                     </div>
