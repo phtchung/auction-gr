@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
     formatDateTime,
@@ -15,11 +15,11 @@ export default function useHome() {
         const biddingData = item?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 final_price: data.final_price ? data.final_price : data.reserve_price ,
                 finish_time:formatDateTime(new Date(data?.finish_time)),
                 coutdown_time : data?.finish_time,
-                main_image : data?.main_image,
+                main_image : data?.product_id?.main_image,
                 reserve_price : data?.reserve_price,
                 flag : data.reserve_price < 1000 ? 1 : 0,
             };

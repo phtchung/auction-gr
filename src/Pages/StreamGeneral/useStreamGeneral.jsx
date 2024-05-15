@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { getStreamGeneral} from "../../Services/biddingService.jsx";
 import useQueryString from "../../Hooks/useQueryString.js";
-import {reqConvertType} from "../../Utils/constant.js";
+import {formatDateTime, reqConvertType} from "../../Utils/constant.js";
 
 export default function useStreamGeneral() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -18,9 +18,9 @@ export default function useStreamGeneral() {
         const streamAuctionGeneral = item?.products?.map((data) => {
             return {
                 product_id: data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 coutdown_time : data?.finish_time,
-                main_image : data?.main_image,
+                main_image : data?.product_id?.main_image,
                 room : data?.room_id
             };
         });

@@ -9,12 +9,12 @@ export default function useAuctionHistory() {
       return {
         id: data?._id,
         seller_name: data?.seller_id?.name,
-        product_name: data?.product_name,
-        rank: data?.rank,
+        product_name: data?.product_id?.product_name,
+        rank: data?.product_id?.rank,
         reserve_price:formatMoney( data?.reserve_price),
         final_price:formatMoney( data?.final_price),
-        completed_time: data?.product_delivery?.completed_time,
-        main_image:data?.main_image,
+        completed_time: data?.delivery?.completed_time,
+        main_image:data?.product_id?.main_image,
         is_review:data?.is_review,
         review_before:formatDateTime1(data?.review_before),
       };

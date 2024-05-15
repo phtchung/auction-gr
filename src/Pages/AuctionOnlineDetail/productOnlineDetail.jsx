@@ -24,7 +24,7 @@ const ProductOnlineDetail = () => {
 
     const handleNavigateToOnlineAuction = (url) => {
         if (localStorage.getItem("accessToken")) {
-            navigate(`/bidding/${url}`)
+            window.location.href = `/bidding/${url}`;
         } else {
             window.location.href = '/login';
         }

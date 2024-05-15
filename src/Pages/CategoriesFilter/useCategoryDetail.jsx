@@ -25,12 +25,12 @@ export default function useCategoryDetail() {
             return {
                 product_id: data?._id,
                 shipping_fee:data?.shipping_fee,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 reserve_price: data?.reserve_price,
                 final_price: data.final_price ? data?.final_price : data?.reserve_price,
                 finish_time: formatDateTime(new Date(data?.finish_time)),
                 countdownTime: data?.finish_time,
-                main_image:data?.main_image,
+                main_image:data?.product_id?.main_image,
                 bidCount:data?.count,
             };
         });

@@ -78,7 +78,7 @@ const CheckOut = () => {
                                                 <div
                                                     className=" border leading-10 text-left border-solid truncate border-neutral-300 rounded-lg p-3.5   ">
                                                 <span
-                                                    className="text-base  w-80   font-semibold">Thông tin sản phẩm : {data?.data?.product_name}</span>
+                                                    className="text-base  w-80   font-semibold">Thông tin sản phẩm : {data?.data?.auction_name}</span>
                                                     <div className="flex items-center justify-between ">
                                                         <p className="text-sm leading-[44px] font-normal text-neutral-700">Tiền
                                                             đặt trước </p>
