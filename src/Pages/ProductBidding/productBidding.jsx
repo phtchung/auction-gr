@@ -57,7 +57,7 @@ const ProductBidding = () => {
                                 onClick={handleSearch}
                                 size="sm"
                                 className={`!absolute right-1 top-1 rounded ${
-                                    keyword ? "bg-blue-800" : "bg-gray-400"
+                                    keyword ? "bg-orange-500" : "bg-gray-400"
                                 }`}
                             >
                                 Search

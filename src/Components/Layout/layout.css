@@ -209,6 +209,10 @@ a a:hover{
     border-radius: 0;
 }
 
+:where(.css-dev-only-do-not-override-1b0bdye).ant-rate .ant-rate-star:not(:last-child) {
+    margin-inline-end: 2px;
+}
+
 .react-multiple-carousel__arrow{
     z-index: 0!important;
 }

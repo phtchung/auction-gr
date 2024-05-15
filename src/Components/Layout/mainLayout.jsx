@@ -1,8 +1,7 @@
 import {Avatar, Layout} from 'antd';
 import './layout.css'
 import '../../index.css'
-import {Input} from 'antd';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import useNotify from "./useNotify.jsx";
@@ -27,7 +26,9 @@ const MainLayOut = ({children}) => {
     const [dropdownOpen, setDropdownOpen] = useState(false)
     const {loading, logout} = useLogout()
     const {openChat, setOpenChat, unReadCount} = useConversation();
-    const [selectedItem, setSelectedItem] = useState(0);
+    const location = useLocation()
+    const [selectedItem, setSelectedItem] = useState(location.pathname);
+
 
     useEffect(() => {
         if (currentUser) {
@@ -244,16 +245,16 @@ const MainLayOut = ({children}) => {
                                     style={{backgroundColor: 'rgb(242, 124, 8)'}}
                                 >
                                     <ul className="block lg:flex">
-                                        <ListItem NavLink="/#" onItemClick={() => selectItem(0)}
-                                                  active={selectedItem === 0}>Đấu giá thường</ListItem>
-                                        <ListItem NavLink="/auctionRealtime" onItemClick={() => selectItem(1)}
-                                                  active={selectedItem === 1}>Đấu giá Real-time</ListItem>
-                                        <ListItem NavLink="/auctionStream" onItemClick={() => selectItem(2)}
-                                                  active={selectedItem === 2}>Đấu giá LiveStream</ListItem>
-                                        <ListItem NavLink="/streamGeneral" onItemClick={() => selectItem(3)}
-                                                  active={selectedItem === 3}>Phòng đấu giá</ListItem>
-                                        <ListItem NavLink="/articles/news" onItemClick={() => selectItem(4)}
-                                                  active={selectedItem === 4}>Tin tức</ListItem>
+                                        <ListItem NavLink="/" onItemClick={() => selectItem("/")}
+                                                  active={selectedItem === "/"}>Đấu giá thường</ListItem>
+                                        <ListItem NavLink="/auctionRealtime" onItemClick={() => selectItem('/auctionRealtime')}
+                                                  active={selectedItem === '/auctionRealtime'}>Đấu giá Real-time</ListItem>
+                                        <ListItem NavLink="/auctionStream" onItemClick={() => selectItem("/auctionStream")}
+                                                  active={selectedItem === "/auctionStream"}>Đấu giá LiveStream</ListItem>
+                                        <ListItem NavLink="/streamGeneral" onItemClick={() => selectItem("/streamGeneral")}
+                                                  active={selectedItem === "/streamGeneral"}>Phòng đấu giá</ListItem>
+                                        <ListItem NavLink="/articles/news" onItemClick={() => selectItem("/articles/news")}
+                                                  active={selectedItem === "/articles/news"}>Tin tức</ListItem>
                                     </ul>
                                 </nav>
                             </div>
