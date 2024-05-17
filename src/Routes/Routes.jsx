@@ -27,6 +27,7 @@ import CheckOut from "../Pages/CheckOut/checkout.jsx";
 import ConfirmCheckOut from "../Pages/CheckOut/ConfirmCheckOut.jsx";
 import ProductStreamDetail from "../Pages/AuctionStreamDetail/productStreamDetail.jsx";
 import StreamGeneral from "../Pages/StreamGeneral/StreamGeneral.jsx";
+import AuctionStream from "../Pages/AuctionStream/auctionStream.jsx";
 
 
 export const NormalRoutes = [
@@ -59,6 +60,7 @@ export const UserRoutes = [
   { path: "/404", element: <PageNotFound /> },
   { path: "/resultSuccess", element: <ResultPage /> },
   { path: "/bidding/:id", element: <AuctionOnline /> },
+  { path: "/biddingStream/:id", element: <AuctionStream /> },
   { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
   { path: "/auctionStream", element: <AuctionStreamHome /> },
   { path: "/checkout/:id", element: <CheckOut /> },

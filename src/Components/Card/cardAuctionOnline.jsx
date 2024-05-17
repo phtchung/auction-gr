@@ -11,8 +11,8 @@ const CardAuctionOnline = ({data}) => {
         window.scrollTo(0, 0);
     }
     const handleBiddingOnline = (id) => {
-        navigate(`/bidding/${id}`)
         setSelectedAuction(id)
+        navigate(`/bidding/${id}`)
         window.scrollTo(0, 0);
     }
     return(
