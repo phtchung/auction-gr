@@ -118,6 +118,14 @@ export const getTopBidListOnlineAuction = async (productId) => {
   });
 };
 
+export const getTopBidListStreamAuction = async (data) => {
+  return privateHttp({
+    method: "POST",
+    url: `/auction/topBidStream`,
+    data: data,
+  });
+};
+
 export const getFullBidListOnlineAuction = async (productId) => {
   return privateHttp({
     method: "GET",

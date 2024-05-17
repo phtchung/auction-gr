@@ -2,6 +2,7 @@ import {createContext, useState, useEffect, useContext} from "react";
 import io from "socket.io-client";
 import {useAuthContext} from "./AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
+import useConversation from "../../zustand/useConversation.js";
 
 const SocketContext = createContext();
 
@@ -15,6 +16,8 @@ export const SocketContextProvider = ({children}) => {
     const [socket1, setSocket1] = useState(null);
     const {currentUser} = useAuthContext();
     const {selectedAuction} = useAuctionOnlineTracking()
+    const {openChat, setOpenChat} = useConversation();
+
 
     useEffect(() => {
         if (currentUser) {
@@ -37,7 +40,7 @@ export const SocketContextProvider = ({children}) => {
     }, [currentUser, selectedAuction]);
 
     useEffect(() => {
-        if (currentUser) {
+        if (currentUser && openChat) {
             const socket1 = io('http://localhost:8088', {
                     query: {
                         userId: currentUser.id,
@@ -52,7 +55,7 @@ export const SocketContextProvider = ({children}) => {
                     setSocket1(null);
                 }
             }
-    }, [currentUser]);
+    }, [currentUser,openChat]);
 
     return <SocketContext.Provider value={{socket , socket1}}>{children}</SocketContext.Provider>;
 };
