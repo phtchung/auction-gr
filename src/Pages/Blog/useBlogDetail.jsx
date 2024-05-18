@@ -21,7 +21,7 @@ export default function useBlogDetail() {
         return { blog };
     }, []);
 
-    const { data, isSuccess, isLoading } = useQuery({
+    const { data, isSuccess, isLoading,isError } = useQuery({
         queryKey: ["getBlogDetail", id],
         queryFn: () => getBlogDetail(id),
         staleTime: 20 * 1000,
@@ -33,5 +33,6 @@ export default function useBlogDetail() {
         blogData: data?.blog,
         isSuccess,
         isLoading,
+        isError
     };
 }

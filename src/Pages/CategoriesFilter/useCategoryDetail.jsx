@@ -45,7 +45,7 @@ export default function useCategoryDetail() {
     }, []);
 
 
-    const { data, isSuccess, isLoading } = useQuery({
+    const { data, isSuccess, isLoading,isError } = useQuery({
         queryKey: ["getCategoryDetail", id],
         queryFn: () => getCategoryDetail(id),
         staleTime: 20 * 1000,
@@ -53,7 +53,7 @@ export default function useCategoryDetail() {
         enabled: !!id,
     });
 
-    const { data : data1, isSuccess : isSc, isLoading : isLd } = useQuery({
+    const { data : data1, isSuccess : isSc, isLoading : isLd, isError : isEr } = useQuery({
         queryKey: ["getProductsByCategory", id,queryString],
         queryFn: () => getProductsByCategory(id,queryString),
         staleTime: 20 * 1000,
@@ -73,6 +73,7 @@ export default function useCategoryDetail() {
         products:data1?.product,
         category: data?.category,
         isSuccess,
+        isError,isEr,
         handlePageChange,
         isLoading,
         isLd,isSc,

@@ -129,11 +129,9 @@ const SaleHistory = () => {
                                 </div>
                             </>
                         )}
-
                     </div>
                 </div>
             </MainLayOut>
-
         </>
     );
 };

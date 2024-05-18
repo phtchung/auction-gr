@@ -1,12 +1,13 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Avatar, Breadcrumb, Checkbox,Input, Select, Spin } from "antd";
+import {Avatar, Breadcrumb, Checkbox,Input, Select } from "antd";
 import {StarFilled , SearchOutlined} from "@ant-design/icons";
 import {useEffect, useState} from "react";
 import useSellerHome from "./useSellerHome.jsx";
 import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
 import {useNavigate} from "react-router-dom";
 import {Pagination} from "@mui/material";
-
+import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 
 const SellerHome = () => {
     const navigate = useNavigate()
@@ -37,7 +38,6 @@ const SellerHome = () => {
             top: 0,
             behavior: "smooth",
         });
-        console.log(queryString)
     }
 
     const handleKeyword = (value) => {
@@ -48,7 +48,6 @@ const SellerHome = () => {
                 behavior: "smooth",
             });
         }else {
-            console.log('alo')
              delete queryString.keyword
             setQueryString(queryString)
         }
@@ -120,22 +119,22 @@ const SellerHome = () => {
     return (
         <>
             <MainLayOut>
-                <div className="md:container mt-24">
+                <div className="md:container">
                     {isLoading ?
                         <>
-                            <Spin className="text-center mt-60" tip="Loading" size="large">
-                            </Spin>
+                            <CustomSpinner h={12} w={12} font={'sm'}/>
                         </>
                         :
                         <>
                         {
                             isError ?
-                                navigate('/404')
+                                <FZFNotFound error={'Rất tiếc, hệ thống không tìm thấy người bán hàng này.'}
+                                             urlReturn={'/'} btnText={'Về trang chủ'}/>
                             :
                             <>
                                 {
                                     isSuccess && <>
-                                        <div className="px-3  mx-2 mt-2">
+                                        <div className="px-3 mt-24  mx-2 mt-2">
                                             <Breadcrumb
                                                 items={[
                                                     {
@@ -282,8 +281,7 @@ const SellerHome = () => {
                                             <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">
                                                 {isLd ?
                                                     <>
-                                                        <Spin className="text-center mt-40" tip="Loading" size="large"/>
-
+                                                        <CustomSpinner h={12} w={12} font={'sm'}/>
                                                     </>
                                                     :
                                                     <>

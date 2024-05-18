@@ -62,7 +62,8 @@ const CheckOut = () => {
                             :
                             error ?
                                 <>
-                                    <FZFNotFound/>
+                                    <FZFNotFound error={'Rất tiếc,đã xảy ra lỗi hoặc bạn đã đăng ký thành công phiên đấu giá này.'}
+                                                 urlReturn={'/auctionStream'} btnText={'Trở về'}/>
                                 </>
                                 :
                                 isSuccess &&

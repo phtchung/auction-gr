@@ -50,7 +50,7 @@ export default function useReqOrderDetail() {
     return { detail };
   }, []);
 
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["getReqDetail", id, status],
     queryFn: () => getReqDetail(id, status),
     staleTime: 20 * 1000,
@@ -62,5 +62,6 @@ export default function useReqOrderDetail() {
     reqData: data?.detail,
     isSuccess,
     isLoading,
+    isError
   };
 }

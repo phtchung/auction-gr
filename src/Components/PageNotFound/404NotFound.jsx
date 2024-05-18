@@ -1,18 +1,18 @@
-const FZFNotFound = () => {
+const FZFNotFound = ({error,margin , btnText , urlReturn}) => {
+    const marginT = margin ? margin : ''
     return (
         <>
             <div
-                className="w-full h-screen flex flex-col lg:flex-row items-center justify-center space-y-12 lg:space-y-0 space-x-8 2xl:space-x-0">
+                className={`w-full h-screen ${marginT}  flex flex-col lg:flex-row items-center justify-center space-y-12 lg:space-y-0 space-x-8 2xl:space-x-0`}>
                 <div
                     className="w-full lg:w-1/2 flex flex-col items-center justify-center lg:px-2  xl:px-0 text-center">
                     <div className="relative w-full mt-12 lg:w-1/2 md:w-2/3 sm:w-2/3 lg:mt-0">
                         <img className="w-full max-w-lg lg:mx-auto"
                              src="https://merakiui.com/images/components/illustration.svg" alt=""/>
                     </div>
-                    <p className="text-lg text-gray-500 my-12">Rất tiếc,
-                        trang bạn tìm kiếm không tồn tại.</p>
-                    <a href="/"
-                       className="flex items-center space-x-2 hover:text-white bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded transition duration-150"
+                    <p className="text-lg mx-6 text-gray-500 my-12">{error}</p>
+                    <a href={urlReturn}
+                       className="flex gap-2 items-center space-x-2 hover:text-white bg-orange-500 hover:bg-orange-700 text-white px-6 py-2 rounded transition duration-150"
                        title="Return Home">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5"
                              viewBox="0 0 20 20" fill="white">
@@ -20,7 +20,7 @@ const FZFNotFound = () => {
                                   d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
                                   clipRule="evenodd"></path>
                         </svg>
-                        Về trang chủ
+                        {btnText}
                     </a>
                 </div>
                 <div className="w-1/2 lg:h-full flex lg:items-end justify-center p-4">
