@@ -87,7 +87,7 @@ const AuctionStream = () => {
                         </> :
                         isError ?
                             <>
-                                <FZFNotFound/>
+                                <FZFNotFound error={'Rất tiếc,bạn không đủ điều kiện tham gia phiên đấu giá.'} urlReturn={'/streamGeneral'} btnText={'Về phòng đấu giá'}/>
                             </>
                             :
                             isSuccess &&

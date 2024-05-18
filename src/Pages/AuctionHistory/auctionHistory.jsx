@@ -4,10 +4,12 @@ import {Button, Input} from "@material-tailwind/react";
 import AuctionHistoryCpn from "../../Components/AuctionHistoryCpn/auctionHistoryCpn.jsx";
 import useAuctionHistory from "./useAuctionHistory.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 
 const AuctionHistory = () => {
     const [search, setSearch] = useState("");
-    const {aucHistoryData, isLoading, isSuccess} = useAuctionHistory();
+    const {aucHistoryData, isLoading, isSuccess,isError} = useAuctionHistory();
     const onChange = ({target}) => setSearch(target.value);
     return (
         <>
@@ -39,21 +41,29 @@ const AuctionHistory = () => {
                             </Button>
                         </div>
 
-                        {isSuccess &&
+                        {isLoading ?
                             <>
-                                <div className="flex flex-col gap-3">
-                                    {
-                                        aucHistoryData.map((data) => (
-                                            <AuctionHistoryCpn key={data.id} data={data}/>
-                                        ))
-                                    }
-                                </div>
+                                <CustomSpinner h={12} w={12} font={'sm'}/>
                             </>
+                            :
+                            isError ?
+                                <FZFNotFound error={'Rất tiếc, đã có lỗi xảy ra.'}
+                                             urlReturn={'/'} btnText={'Về trang chủ'}/>
+                            :
+                                isSuccess &&
+                                    <>
+                                        <div className="flex flex-col gap-3">
+                                            {
+                                                aucHistoryData.map((data) => (
+                                                    <AuctionHistoryCpn key={data.id} data={data}/>
+                                                ))
+                                            }
+                                        </div>
+                                    </>
                         }
                     </div>
                 </div>
             </MainLayOut>
-
         </>
     );
 };

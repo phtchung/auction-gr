@@ -9,11 +9,13 @@ import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 import {toast} from "react-toastify";
 import {returnProductData} from "../../Services/requestService.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 
 const ReturnProduct = () => {
     const navigate = useNavigate();
     const {id} = useParams()
     const {state} = useLocation()
+    const [isError , setIsError] = useState(false)
     const [returnData, setreturnData] = useState({id:id});
     const handleReturnData = (key, value) => {
         setreturnData({...returnData, [key]: value});
@@ -21,9 +23,7 @@ const ReturnProduct = () => {
     const handleFileUpload = (formData) => {
         handleReturnData("files", formData)
     };
-    if(state !== 7){
-        navigate('/404')
-    }
+
     const handleSubmit = async () => {
         try {
             if (Object.keys(returnData).length < 2 ) {
@@ -120,7 +120,6 @@ const ReturnProduct = () => {
                               </div>
                           </div>
 
-
                           <div className="flex  gap-5 pb-6 justify-start mr-10">
                               <Button
                                   onClick={handleSubmit}
@@ -132,11 +131,7 @@ const ReturnProduct = () => {
                   </div>
               </div>
           </MainLayOut>
-
-
       </>
-
-
   )
 }
 export default ReturnProduct

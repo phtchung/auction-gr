@@ -37,7 +37,7 @@ export default function useReqHistoryDetail() {
     return { detail };
   }, []);
 
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["getReqHistoryDetail", id],
     queryFn: () => getReqHistoryDetail(id),
     staleTime: 20 * 1000,
@@ -49,5 +49,6 @@ export default function useReqHistoryDetail() {
     reqData: data?.detail,
     isSuccess,
     isLoading,
+    isError
   };
 }

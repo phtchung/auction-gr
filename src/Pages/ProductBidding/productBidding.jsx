@@ -4,8 +4,9 @@ import {Button, Input} from "@material-tailwind/react";
 import ProductBiddingCpn from "../../Components/ProductBiddingCpn/productBiddingCpn.jsx";
 import useProductBidding from "./useProductBidding.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Spin} from "antd";
 import {useInView} from 'react-intersection-observer';
+import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
+import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 
 const ProductBidding = () => {
     const [keyword, setKeyword] = useState('')
@@ -66,7 +67,7 @@ const ProductBidding = () => {
 
                         {isLoading ?
                             <>
-                                <Spin className="text-center mt-60" tip="Loading"/>
+                                <CustomSpinner h={12} w={12} font={'sm'}/>
                             </>
                             :
                             isSuccess ?
@@ -96,7 +97,8 @@ const ProductBidding = () => {
                                 </>
                                 :
                                 <>
-                                    <div>Lỗi</div>
+                                    <FZFNotFound error={'Rất tiếc, đã có lỗi xảy ra.'}
+                                                 urlReturn={'/'} btnText={'Về trang chủ'}/>
                                 </>
                         }
                     </div>

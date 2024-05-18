@@ -47,7 +47,7 @@ const ProductOnlineDetail = () => {
                             :
                             isError ?
                                 <>
-                                    <FZFNotFound/>
+                                    <FZFNotFound btnText={'Trở về'} error={'Rất tiếc,không tìm thấy phiên đấu giá nào'} urlReturn={'/auctionRealtime'} />
                                 </>
                                 :
                                 isSuccess &&
