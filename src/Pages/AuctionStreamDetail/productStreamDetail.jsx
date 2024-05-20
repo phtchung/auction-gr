@@ -167,6 +167,11 @@ const ProductStreamDetail = () => {
                                                         }
                                                     </div>
 
+                                                    <span className="text-center font-medium mt-6 text-neutral-600 mb-3">Thời gian đăng ký còn lại </span>
+                                                    <div className="text-center mb-2">
+                                                        <CountDownFullDate id={auctionProductData?.product_id}
+                                                                           targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
+                                                    </div>
                                                     <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
                                                         <button
                                                             onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id)}
@@ -174,11 +179,6 @@ const ProductStreamDetail = () => {
                                                             style={{backgroundColor: '#ee002a', width: '100%'}}>
                                                             Đăng ký đấu giá
                                                         </button>
-                                                    </div>
-                                                    <span className="text-center font-medium text-neutral-600 mb-3">Thời gian đăng ký còn lại </span>
-                                                    <div className="text-center mb-2">
-                                                        <CountDownFullDate id={auctionProductData?.product_id}
-                                                                           targetDate={auctionProductData?.countdownTime}></CountDownFullDate>
                                                     </div>
                                                 </div>
 

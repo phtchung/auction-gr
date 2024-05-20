@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import { FinishAuctionOnline} from "../../Services/biddingService.jsx";
 import {useNavigate} from "react-router-dom";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import Swal from 'sweetalert2'
@@ -21,7 +20,6 @@ const CountDownOnline = ({targetDate, id}) => {
 
         return {hours, minutes, seconds};
     };
-
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
 
     useEffect(() => {
@@ -32,11 +30,11 @@ const CountDownOnline = ({targetDate, id}) => {
             if (hours === 0 && minutes === 0 && seconds === 0) {
                 clearInterval(interval);
                 setIsLoading(true);
-
-                FinishAuctionOnline({...auctionData})
-                    .then(res => {
-                        console.log(res.data)
-                        const isSuccess = currentUser.id.toString() === res.data?.data?.winner_id;
+                const eventSource = new EventSource('http://localhost:8088/events');
+                eventSource.addEventListener(`finishAuctionOnline_${id}`, function (event) {
+                    const res = JSON.parse(event.data);
+                    {
+                        const isSuccess = currentUser.id.toString() === res?.winner;
                         const title = isSuccess ? "Đấu giá thành công!" : "Không trúng đấu giá!";
                         const icon = isSuccess ? 'success' : 'error';
 
@@ -44,9 +42,9 @@ const CountDownOnline = ({targetDate, id}) => {
                         Swal.fire({
                             title: title,
                             html: isSuccess ?
-                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res.data?.data?.final_price)} VNĐ</h5>
+                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
-                                `<h5 class="text-sm">Rất tiếc! Bạn đã không đấu giá thành công sản phẩm</h5>
+                                `<h5 class="text-sm">Rất tiếc! Bạn không đấu giá thành công sản phẩm</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
                             timer: 10000,
                             timerProgressBar: true,
@@ -71,14 +69,9 @@ const CountDownOnline = ({targetDate, id}) => {
                                 navigate('/winOrderTracking')
                             }
                         });
-                        setAuctionData({productId: id});
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-                    .finally(() => {
-                        setIsLoading(false);
-                    });
+                    }
+                    setIsLoading(false);
+                });
             }
         }, 1000);
 
@@ -110,7 +103,6 @@ const CountDownOnline = ({targetDate, id}) => {
                         <span className="text-sm">giây</span>
                     </div>
                 </div>
-
 
                 {isLoading &&
                     <>

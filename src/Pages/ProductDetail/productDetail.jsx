@@ -1,6 +1,6 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
-import {Avatar, Breadcrumb, Form, Input, Spin, Tag, Popover} from "antd";
+import {Avatar, Breadcrumb, Form, Input, Tag, Popover} from "antd";
 import {formatDateTimeMiliSecond, formatMoney} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
@@ -56,13 +56,7 @@ const ProductDetail = () => {
     const handleBuyProduct = async () => {
       try{
           const res = await sendBuyData({...auctionData,final_price:auctionProductData?.sale_price});
-
-          toast.success("Trả giá  thành công", {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 500,
-          });
           setOpen1()
-          navigate("/resultSuccess", { state: 100});
           setAuctionData({productId:id})
       }catch (error) {
           toast.error(error?.response?.data?.message);
@@ -125,7 +119,7 @@ const ProductDetail = () => {
             <MainLayOut>
                 <div className="md:container">
                     {isSuccess && <>
-                        <div className="px-3 mx-2 mt-24 mt-2">
+                        <div className="px-3 mx-2 mt-24">
                             <Breadcrumb
                                 items={[
                                     {

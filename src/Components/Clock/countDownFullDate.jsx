@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import {FinishAuction} from "../../Services/biddingService.jsx";
 import {useNavigate} from "react-router-dom";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import Swal from 'sweetalert2'
@@ -14,7 +13,6 @@ const CountDownFullDate = ({targetDate, id}) => {
     const calculateTimeRemaining = () => {
         const target = new Date(targetDate);
         const timeDifference = +target - +new Date();
-
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
@@ -23,8 +21,54 @@ const CountDownFullDate = ({targetDate, id}) => {
         return {days, hours, minutes, seconds};
 
     };
-
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
+
+    useEffect(() => {
+        const eventSource = new EventSource('http://localhost:8088/events');
+        eventSource.addEventListener(`finishAuction_${id}`, function (event) {
+            const res = JSON.parse(event.data);
+            {
+                const isSuccess = currentUser.id.toString() === res?.winner;
+                const title = isSuccess ? "Đấu giá thành công!" : "Không trúng đấu giá!";
+                const icon = isSuccess ? 'success' : 'error';
+
+                let timerInterval;
+                Swal.fire({
+                    title: title,
+                    html: isSuccess ?
+                        `<h5 class="text-sm">Bạn đã mua thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
+                                    <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
+                        `<h5 class="text-sm">Rất tiếc! Người dùng khác đã mua trực tiếp sản phẩm</h5>
+                                    <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
+                    timer: 10000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    width:'400px',
+                    icon: icon,
+                    didOpen: () => {
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            const secondsLeft = Math.ceil(Swal.getTimerLeft() / 1000); // Chuyển mili giây thành giây và làm tròn lên
+                            timer.textContent = `${secondsLeft}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        navigate('/winOrderTracking')
+                    }
+                });
+            }
+        });
+        return () => {
+            eventSource.close();
+        };
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,10 +78,11 @@ const CountDownFullDate = ({targetDate, id}) => {
             if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
                 clearInterval(interval);
                 setIsLoading(true);
-
-                FinishAuction({...auctionData})
-                    .then(res => {
-                        const isSuccess = currentUser.id.toString() === res.data?.data?.winner_id;
+                const eventSource = new EventSource('http://localhost:8088/events');
+                eventSource.addEventListener(`finishAuction_${id}`, function (event) {
+                    const res = JSON.parse(event.data);
+                    {
+                        const isSuccess = currentUser.id.toString() === res?.winner;
                         const title = isSuccess ? "Đấu giá thành công!" : "Không trúng đấu giá!";
                         const icon = isSuccess ? 'success' : 'error';
 
@@ -45,7 +90,7 @@ const CountDownFullDate = ({targetDate, id}) => {
                         Swal.fire({
                             title: title,
                             html: isSuccess ?
-                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res.data?.data?.final_price)} VNĐ</h5>
+                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
                                 `<h5 class="text-sm">Rất tiếc! Bạn đã không đấu giá thành công sản phẩm</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
@@ -72,14 +117,9 @@ const CountDownFullDate = ({targetDate, id}) => {
                                 navigate('/winOrderTracking')
                             }
                         });
-                        setAuctionData({productId: id});
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-                    .finally(() => {
-                        setIsLoading(false);
-                    });
+                    }
+                    setIsLoading(false);
+                });
             }
         }, 1000);
 
