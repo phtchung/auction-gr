@@ -118,8 +118,8 @@ const AuctionOnline = () => {
                                                 </div>
                                             </div>
                                             <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
-                                                {/*<CountDownOnline id={productData?._id}*/}
-                                                {/*                   targetDate={productData?.finish_time}/>*/}
+                                                <CountDownOnline id={productData?._id}
+                                                                   targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
                                                 <div
                                                     className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"

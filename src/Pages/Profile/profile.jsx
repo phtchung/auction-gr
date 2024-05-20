@@ -76,7 +76,7 @@ const Profile = () => {
                                                     name="price"
                                                     id="price"
                                                     disabled
-                                                    value="Phạm Thành Chung"
+                                                    value={userData.name}
                                                     className="block  w-11/12 focus:outline-none focus:border-none border-0 py-1.5 pl-5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                 />
                                             </div>
