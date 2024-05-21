@@ -245,28 +245,6 @@ const CategoriesFilter = () => {
                                                     </div>
                                                 </div>
 
-                                                {/*<div className="flex flex-col mt-4 justify-center gap-y-1">*/}
-                                                {/*    <div className="flex flex-grow gap-2 mt-2 items-center justify-between">*/}
-                                                {/*        <Input className="border focus:border-amber-500 p-2 h-9 border-amber-500"*/}
-                                                {/*               placeholder="Từ"*/}
-                                                {/*               defaultValue={parseInt(queryString.mMinPrice)}*/}
-                                                {/*               type="number"*/}
-                                                {/*               onChange={(e) => handleInput('pMinPrice', e.target.value)}/>*/}
-                                                {/*        <span>-</span>*/}
-                                                {/*        <Input className="border p-2 h-9 border-amber-500 hover:border-amber-500"*/}
-                                                {/*               placeholder="Đến"*/}
-                                                {/*               type="number"*/}
-                                                {/*               defaultValue={parseInt(queryString.pMaxPrice)}*/}
-                                                {/*               onChange={(e) => handleInput('pMaxPrice', e.target.value)}/>*/}
-                                                {/*    </div>*/}
-                                                {/*    <div>*/}
-                                                {/*        <div onClick={handlePrice}*/}
-                                                {/*             className="pb-1 mt-4 text-center border border-amber-500 h-9 bg-orange-400 text-white hover:bg-orange-500 cursor-pointer pt-1 font-semibold  text-base">*/}
-                                                {/*            Theo giá khởi điểm*/}
-                                                {/*        </div>*/}
-                                                {/*    </div>*/}
-
-                                                {/*</div>*/}
                                             </div>
                                             <div>
                                                 <div onClick={handleRemove}
@@ -291,16 +269,6 @@ const CategoriesFilter = () => {
                                                                     }}
                                                                     onSelect={(value) => handleFilter('sortBy', value)}
                                                                 >
-                                                                    <Select.OptGroup label='Giá'>
-                                                                        <Select.Option label='price' value='price-desc'>Từ
-                                                                            cao
-                                                                            đến
-                                                                            thấp</Select.Option>
-                                                                        <Select.Option label='price' value='price-asc'>Từ
-                                                                            thấp
-                                                                            đến
-                                                                            cao</Select.Option>
-                                                                    </Select.OptGroup>
                                                                     <Select.OptGroup label='Thời gian kết thúc'>
                                                                         <Select.Option label='finish_time'
                                                                                        value='finish_time-asc'>Gần

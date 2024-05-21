@@ -1004,3 +1004,22 @@ export function daysRemaining(inputDateString) {
     const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     return `${daysRemaining} ngày`;
 }
+
+const ColorList = ['#ec4046', '#7265e6', '#ffbf00', '#06ae00','#00a2ae','#f56a00','#004ef5','#f5009f'];
+export const getColorForLetter = (letter) => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const index = alphabet.indexOf(letter.toUpperCase());
+    if (index === -1) {
+        return null;
+    }
+    const colorIndex = Math.floor(index / 4) % ColorList.length;
+    return ColorList[colorIndex];
+};
+
+export const getFirstLetter = (name) => {
+    const words = name.split(' ');
+
+    const firstLetter = words[words.length - 1].charAt(0);
+
+    return firstLetter.toUpperCase();
+};

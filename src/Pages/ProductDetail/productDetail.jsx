@@ -1,7 +1,7 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
 import {Avatar, Breadcrumb, Form, Input, Tag, Popover} from "antd";
-import {formatDateTimeMiliSecond, formatMoney} from "../../Utils/constant.js";
+import {formatDateTimeMiliSecond, formatMoney, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
@@ -436,9 +436,9 @@ const ProductDetail = () => {
                                         <Dialog open={open} onClose={handleOpen} maxWidth="sm">
                                             <DialogTitle>
                                                 <div className="flex items-center font_fml justify-center">
-                                    <span className="font-medium text-base">
-                                         Đấu giá
-                                    </span>
+                                                <span className="font-medium text-base">
+                                                     Đấu giá
+                                                </span>
                                                 </div>
                                                 <div className="border-b mt-2  border-gray-300"></div>
                                             </DialogTitle>
@@ -537,8 +537,15 @@ const ProductDetail = () => {
                                              className="pt-1 pb-1   mb-5 text-neutral-700 font-sans text-left">
                                             <div className="flex flex-row p-3 pb-1 justify-between items-center">
                                                 <div className="flex flex-row  items-center gap-2">
-                                                    <Avatar size="large"
-                                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
+                                                    <Avatar
+                                                        style={{
+                                                            backgroundColor: getColorForLetter(getFirstLetter(auctionProductData.seller_name)),
+                                                            verticalAlign: 'middle',
+                                                        }}
+                                                        size='large'
+                                                    >
+                                                        <span className="font-medium text-lg">{getFirstLetter(auctionProductData.seller_name)}</span>
+                                                    </Avatar>
                                                     <div
                                                         className=" text-neutral-700 text-base font-sans"> {auctionProductData?.seller_name}
                                                     </div>

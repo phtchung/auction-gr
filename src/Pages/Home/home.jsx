@@ -309,7 +309,7 @@ const Home = () => {
                                 </div>
 
                                 {/* người bán nổi bật*/}
-                                <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
+                                <div className="flex flex-col bg-white pt-3 p-2 " style={{maxHeight: 844}}>
                                     <div className="flex flex-grow items-center justify-between p-2">
                                         <div className="flex gap-2 items-center mb-2 ">
                                             <div className="text-left text-lg font-semibold text-gray-900 ">NGƯỜI BÁN
