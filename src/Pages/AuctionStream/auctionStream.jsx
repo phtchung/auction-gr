@@ -1,4 +1,4 @@
-import {Breadcrumb, Spin} from "antd";
+import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
@@ -87,7 +87,7 @@ const AuctionStream = () => {
                         </> :
                         isError ?
                             <>
-                                <FZFNotFound error={'Rất tiếc,bạn không đủ điều kiện tham gia phiên đấu giá.'} urlReturn={'/streamGeneral'} btnText={'Về phòng đấu giá'}/>
+                                <FZFNotFound error={'Rất tiếc,bạn không đủ điều kiện tham gia phiên đấu giá hoặc phiên đấu giá đã hết thời hạn.'} urlReturn={'/streamGeneral'} btnText={'Về phòng đấu giá'}/>
                             </>
                             :
                             isSuccess &&
@@ -122,8 +122,8 @@ const AuctionStream = () => {
                                                 </div>
                                             </div>
                                             <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
-                                                {/*<CountDownOnline id={productData?._id}*/}
-                                                {/*                   targetDate={productData?.finish_time}/>*/}
+                                                <CountDownOnline id={productData?._id}
+                                                                   targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
                                                 <div
                                                     className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
@@ -174,8 +174,7 @@ const AuctionStream = () => {
                                                             :
                                                             <>
                                                                 <h5 className="text-sm font-medium text-center mt-10">Không
-                                                                    có
-                                                                    dữ liệu</h5>
+                                                                    có dữ liệu</h5>
                                                             </>
                                                     }
                                                 </div>
@@ -194,7 +193,6 @@ const AuctionStream = () => {
                                             </span>
                                                     </div>
                                                     <div className=" justify-between items-center ">
-
                                                         <div
                                                             onClick={() => handleOnlineBidding(highestPrice + productData.step_price)}
                                                             className="p-3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-8 mt-3 mb-3 font-semibold text-lg">
@@ -246,11 +244,7 @@ const AuctionStream = () => {
                                                 </>
                                             :
                                             <>
-                                                <Spin tip="Loading" className="text-center mt-60" >
-                                                    <div className="content"  style={{
-                                                        borderRadius: 4
-                                                    }}/>
-                                                </Spin>
+                                                <CustomSpinner h={8} w={8} font={'xs'}/>
                                             </>
                                     }
                                 </Modal>

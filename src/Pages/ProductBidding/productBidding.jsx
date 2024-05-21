@@ -41,30 +41,6 @@ const ProductBidding = () => {
                 <div className="wrapper">
                     <SideBar/>
                     <div className="home-right ">
-                        <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                            Đang tham gia đấu giá
-                        </div>
-                        <div className="border-b border-neutral-300 "></div>
-                        <div className="relative flex w-full ">
-                            <Input
-                                type="text"
-                                style={{backgroundColor: "#eaeaea"}}
-                                defaultValue={queryString.keyword ? queryString.keyword : keyword}
-                                onChange={onChange}
-                                placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
-                                className="pr-30 pl-5"
-                            />
-                            <Button
-                                onClick={handleSearch}
-                                size="sm"
-                                className={`!absolute right-1 top-1 rounded ${
-                                    keyword ? "bg-orange-500" : "bg-gray-400"
-                                }`}
-                            >
-                                Search
-                            </Button>
-                        </div>
-
                         {isLoading ?
                             <>
                                 <CustomSpinner h={12} w={12} font={'sm'}/>
@@ -72,6 +48,30 @@ const ProductBidding = () => {
                             :
                             isSuccess ?
                                 <>
+                                    <div
+                                        className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
+                                        Đang tham gia đấu giá
+                                    </div>
+                                    <div className="border-b border-neutral-300 "></div>
+                                    <div className="relative flex w-full ">
+                                        <Input
+                                            type="text"
+                                            style={{backgroundColor: "#eaeaea"}}
+                                            defaultValue={queryString.keyword ? queryString.keyword : keyword}
+                                            onChange={onChange}
+                                            placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
+                                            className="pr-30 pl-5"
+                                        />
+                                        <Button
+                                            onClick={handleSearch}
+                                            size="sm"
+                                            className={`!absolute right-1 top-1 rounded ${
+                                                keyword ? "bg-orange-500" : "bg-gray-400"
+                                            }`}
+                                        >
+                                            Search
+                                        </Button>
+                                    </div>
                                     {data.pages.map((page) => (
                                         <>
                                             {
@@ -97,7 +97,7 @@ const ProductBidding = () => {
                                 </>
                                 :
                                 <>
-                                    <FZFNotFound error={'Rất tiếc, đã có lỗi xảy ra.'}
+                                    <FZFNotFound margin={'-mt-20'} error={'Rất tiếc, đã có lỗi xảy ra.'}
                                                  urlReturn={'/'} btnText={'Về trang chủ'}/>
                                 </>
                         }

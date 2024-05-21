@@ -144,14 +144,27 @@ const WinOrderDetail = () => {
                                                         <div className="font-normal col-span-2">
                                                             {formatMoney(winDetailData?.reserve_price)} VND
                                                         </div>
-                                                        <div> Giá bán trực tiếp :</div>
-                                                        <div
-                                                            className="font-normal col-span-2"> {formatMoney(winDetailData?.sale_price)} VND
-                                                        </div>
+                                                        {
+                                                            winDetailData?.auction_live !== 2 ?
+                                                                <>
+                                                                    <div> Giá bán trực tiếp :</div>
+                                                                    <div
+                                                                        className="font-normal col-span-2"> {formatMoney(winDetailData?.sale_price)} VND
+                                                                    </div>
+                                                                </>
+                                                                :
+                                                                <>
+                                                                    <div> Phí đăng ký :</div>
+                                                                    <div
+                                                                        className="font-normal col-span-2"> {formatMoney(winDetailData?.deposit_price)} VND
+                                                                    </div>
+                                                                </>
+                                                        }
+
                                                     </div>
 
                                                     <div className="grid grid-cols-6 text-left ">
-                                                        <div> Bước giá :</div>
+                                                    <div> Bước giá :</div>
                                                         <div
                                                             className="font-normal col-span-2"> {formatMoney(winDetailData?.step_price)} VND
                                                         </div>
@@ -271,6 +284,10 @@ const WinOrderDetail = () => {
                                                         <div> Tổng tiền :</div>
                                                         <div className="font-normal col-span-2">
                                                             <strong>{formatMoney(winDetailData?.total_price)} VND</strong>
+                                                            {
+                                                                winDetailData?.auction_live === 2 &&
+                                                                <span> (đã trừ phí đăng ký đấu giá)</span>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>

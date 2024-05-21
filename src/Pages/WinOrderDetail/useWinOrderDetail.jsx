@@ -28,7 +28,7 @@ export default function useWinOrderDetail() {
       ),
       image_list:data?.product_id?.image_list,
       main_image:data?.product_id?.main_image,
-      total_price: data?.final_price + data?.shipping_fee,
+      total_price:data?.auction_live !== 2 ? data?.final_price + data?.shipping_fee : data?.final_price - data.deposit_price + data?.shipping_fee ,
       rank: data?.product_id?.rank,
       return_reason:data?.delivery?.return_reason,
       return_image:data?.delivery?.return_image_list,
@@ -46,6 +46,8 @@ export default function useWinOrderDetail() {
       delivery_start_time: formatDateTime(new Date(data?.delivery?.delivery_start_time)),
       type_of_auction: data?.type_of_auction,
       category_name: data?.category_id?.name,
+      auction_live : data?.auction_live,
+      deposit_price : data?.deposit_price,
     };
     return { detail };
   }, []);

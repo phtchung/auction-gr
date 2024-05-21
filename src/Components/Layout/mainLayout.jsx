@@ -6,14 +6,14 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import useNotify from "./useNotify.jsx";
 import {useQueryClient} from "@tanstack/react-query";
-import {emphasizeTextAfterHash} from "../../Utils/constant.js";
+import {emphasizeTextAfterHash, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 import useLogout from "../../Hooks/useLogout.js";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import MessageContainer from "../Message/messageContainer.jsx";
 import useConversation from "../../zustand/useConversation.js";
-import {UserOutlined} from "@ant-design/icons";
+import Footer from "../Footer/index.jsx";
 
-const {Header, Content, Footer} = Layout;
+const {Header, Content} = Layout;
 
 
 const MainLayOut = ({children}) => {
@@ -357,8 +357,15 @@ const MainLayOut = ({children}) => {
 
                                             </span>
                                                 <span className="rounded-full">
-                                                  <Avatar style={{backgroundColor: '#87d068'}} icon={<UserOutlined/>}/>
-                                                    {/*<img src="src/images/user/user-01.png" alt="User"/>*/}
+                                                    <Avatar
+                                                        style={{
+                                                            backgroundColor: getColorForLetter(getFirstLetter(currentUser?.name)),
+                                                            verticalAlign: 'middle',
+                                                        }}
+                                                        size='medium'
+                                                    >
+                                                        <span className="font-medium text-lg">{getFirstLetter(currentUser?.name)}</span>
+                                                    </Avatar>
                                                 </span>
 
                                                 <svg
@@ -373,7 +380,7 @@ const MainLayOut = ({children}) => {
                                             </a>
 
                                             <div style={{display: dropdownOpen ? 'block' : 'none'}}
-                                                 className="absolute right-0 mt-4 flex w-full flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                                                 className="absolute -right-1 mt-4 flex w-full  flex-col rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                                                 <ul className="flex flex-col  border-b border-stroke  dark:border-strokedark">
                                                     <li>
                                                         <a href="/user/profile"
@@ -505,13 +512,7 @@ const MainLayOut = ({children}) => {
                     }
                 </Layout>
             </Content>
-            <Footer
-                style={{
-                    textAlign: 'center',
-                }}
-            >
-                Ant Design ©{new Date().getFullYear()} Created by Ant UED
-            </Footer>
+            <Footer/>
         </Layout>
     )
 };

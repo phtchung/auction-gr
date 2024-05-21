@@ -1,6 +1,6 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import {Avatar, Breadcrumb, Tag, Popover} from "antd";
-import {formatMoney} from "../../Utils/constant.js";
+import {formatMoney, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
@@ -186,8 +186,15 @@ const ProductStreamDetail = () => {
                                                 <div style={{backgroundColor: "white"}}
                                                      className="pt-1 pb-1  mb-5 text-neutral-700 font-sans text-left">
                                                     <div className="flex flex-row p-3 pb-1 items-center gap-2">
-                                                        <Avatar size="large"
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
+                                                        <Avatar
+                                                            style={{
+                                                                backgroundColor: getColorForLetter(getFirstLetter(auctionProductData.seller_name)),
+                                                                verticalAlign: 'middle',
+                                                            }}
+                                                            size='large'
+                                                        >
+                                                            <span className="font-medium text-lg">{getFirstLetter(auctionProductData.seller_name)}</span>
+                                                        </Avatar>
                                                         <div
                                                             className=" text-neutral-700 text-base font-sans"> {auctionProductData?.seller_name}
                                                         </div>

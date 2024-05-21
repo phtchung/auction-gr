@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {Pagination} from "@mui/material";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
+import {getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 
 const SellerHome = () => {
     const navigate = useNavigate()
@@ -152,8 +153,15 @@ const SellerHome = () => {
                                             <div className=" md:basis-1/5 sm:basis-1/4 ">
                                                 <div style={{backgroundColor: "white"}} className="pt-1 mb-5">
                                                     <div className="flex flex-row p-3 pb-1 items-center gap-2">
-                                                        <Avatar size="large"
-                                                                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
+                                                        <Avatar
+                                                            style={{
+                                                                backgroundColor: getColorForLetter(getFirstLetter(sellerHomeData.seller_name)),
+                                                                verticalAlign: 'middle',
+                                                            }}
+                                                            size='large'
+                                                        >
+                                                            <span className="font-medium text-lg">{getFirstLetter(sellerHomeData.seller_name)}</span>
+                                                        </Avatar>
                                                         <div
                                                             className="overflow_css_w_158 text-left text-neutral-700 text-base font-sans"> {sellerHomeData.seller_user_name}
                                                         </div>
@@ -299,14 +307,6 @@ const SellerHome = () => {
                                                                                 }}
                                                                                 onSelect={(value) => handleFilter('sortBy', value)}
                                                                             >
-                                                                                <Select.OptGroup label='Giá'>
-                                                                                    <Select.Option label='price' value='price-desc'>Từ
-                                                                                        cao đến
-                                                                                        thấp</Select.Option>
-                                                                                    <Select.Option label='price' value='price-asc'>Từ
-                                                                                        thấp đến
-                                                                                        cao</Select.Option>
-                                                                                </Select.OptGroup>
                                                                                 <Select.OptGroup label='Thời gian kết thúc'>
                                                                                     <Select.Option label='finish_time'
                                                                                                    value='finish_time-asc'>Gần
@@ -358,8 +358,7 @@ const SellerHome = () => {
                                                                         src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
                                                                         alt=""/>
                                                                     <div className="text-gray-500 text-base">Không có sản phẩm nào. Bạn
-                                                                        thử
-                                                                        tắt điều kiện lọc và tìm lại nhé?
+                                                                        thử tắt điều kiện lọc và tìm lại nhé?
                                                                     </div>
                                                                     <div onClick={handleRemove}
                                                                          className="p-6 mt-5 text-center border border-amber-500 h-9 bg-orange-400 text-white hover:bg-orange-500 cursor-pointer pt-1 font-semibold  text-base">
