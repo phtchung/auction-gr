@@ -141,12 +141,6 @@ export const getTopSeller = async () => {
   });
 };
 
-export const getCategories = async () => {
-  return publicHttp({
-    method: "GET",
-    url: `/categories`,
-  });
-};
 
 export const getProductRealTimeHome = async (type,query) => {
   return privateHttp({
@@ -189,6 +183,14 @@ export const getCategoryDetail = async (Id) => {
     url: `/category/${Id}`,
   });
 };
+
+export const getCategories = async () => {
+  return publicHttp({
+    method: "GET",
+    url: `/categories`,
+  });
+};
+
 
 export const getProductsByCategory = async (id,params) => {
   return publicHttp({

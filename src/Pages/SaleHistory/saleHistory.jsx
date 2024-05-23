@@ -43,55 +43,63 @@ const SaleHistory = () => {
                             Lịch Sử Bán
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="bg-white p-3 m-7 border-gray-300 border h-28 text-sm gap-7 justify-around flex">
-                            <div className="font-medium text-xs p-3 ">Tìm kiếm ngày :</div>
-                            <div className="flex-col ">
-                                <LocalizationProvider
-                                    dateFormats="fullDate"
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DatePicker
-                                        defaultValue={dayjs(new Date()).subtract(7, "day")}
-                                        sx={{
-                                            margin: 3,
-                                            "& .MuiInputBase-input": {width: 150, fontSize: 12},
-                                        }}
-                                        onChange={(newValue) =>
-                                            handleFilter(
-                                                "start_time",
-                                                newValue.startOf("day").toISOString(),
-                                            )
-                                        }
-                                    />
-                                </LocalizationProvider>
-                                <LocalizationProvider
-                                    dateFormats="fullDate"
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DatePicker
-                                        defaultValue={dayjs(new Date())}
-                                        sx={{
-                                            margin: 3,
-                                            "& .MuiInputBase-input": {width: 150, fontSize: 12},
-                                        }}
-                                        onChange={(newValue) =>
-                                            handleFilter("finish_time", newValue.toISOString())
-                                        }
-                                    />
-                                </LocalizationProvider>
+                        <div className="bg-white p-3 grid grid-cols-5 gap-3 border-gray-300 border h-28 text-sm  justify-around">
+                            <div className="font-medium text-base p-3 ">Tìm kiếm ngày :</div>
+                            <div className="col-span-3">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <LocalizationProvider
+                                        dateFormats="fullDate"
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DatePicker
+                                            defaultValue={dayjs(new Date()).subtract(7, "day")}
+                                            sx={{
+                                                margin: 2,
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                            }}
+                                            onChange={(newValue) =>
+                                                handleFilter(
+                                                    "start_time",
+                                                    newValue.startOf("day").toISOString(),
+                                                )
+                                            }
+                                        />
+                                    </LocalizationProvider>
+
+                                    <LocalizationProvider
+                                        dateFormats="fullDate"
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DatePicker
+                                            defaultValue={dayjs(new Date())}
+                                            sx={{
+                                                margin: 2,
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                            }}
+                                            onChange={(newValue) =>
+                                                handleFilter("finish_time", newValue.toISOString())
+                                            }
+                                        />
+                                    </LocalizationProvider>
+                                </div>
+
+
                             </div>
-                            <Button
-                                onClick={onSubmit}
-                                size="md"
-                                className="bg-blue-800 ml-auto h-9 py-2 rounded m-2 mt-5 px-4"
-                            >
-                                Search
-                            </Button>
+                            <div>
+                                <Button
+                                    onClick={onSubmit}
+                                    size="md"
+                                    className="bg-blue-800  h-9 py-2 rounded  mt-4 px-7"
+                                >
+                                    Tìm kiếm
+                                </Button>
+                            </div>
+
                         </div>
 
                         {isSuccess && (
                             <>
-                                <div className="bg-white border-gray-300 border p-2 m-7 text-sm h-24">
+                                <div className="bg-white border-gray-300 border p-2 mt-6 text-sm h-24">
                                     <table style={{width: "100%"}}>
                                         <thead>
                                         <tr
@@ -123,7 +131,7 @@ const SaleHistory = () => {
 
                         {isSuccess && (
                             <>
-                                <div className="border border-gray-300 mt-6 mx-7">
+                                <div className="border border-gray-300 mt-6">
                                     <TableDataHistory path={pathSaleHistory} cols={colSaleHistory}
                                                       rows={saleHistoryData}></TableDataHistory>
                                 </div>

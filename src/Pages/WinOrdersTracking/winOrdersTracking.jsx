@@ -49,9 +49,9 @@ const WinOrdersTracking = () => {
                             </div>
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="flex items-center font-normal justify-center pt-10 flex-wrap  ">
+                        <div className="flex items-center font-normal  justify-center pt-10 flex-wrap  ">
                             {isSuccess && isScCount && (
-                                <div className="flex justify-end">
+                                <div className="flex flex-wrap">
                                     <>
                                         <TabItem
                                             data={tabData1[0]}

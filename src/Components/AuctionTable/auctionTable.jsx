@@ -33,10 +33,9 @@ const AuctionTable = ({cols, rows}) => {
                                     align={"center"}
                                     style={{
                                         backgroundColor: "#f5f5f5",
-                                        color: "dimgray",
-                                        fontWeight: "550",
-                                        fontSize: "12px",
-                                        lineHeight: "16px",
+                                        fontWeight: "600",
+                                        fontSize: "14px",
+                                        lineHeight: "17px",
                                     }}
                                     key={column.id}
                                 >
@@ -74,11 +73,12 @@ const AuctionTable = ({cols, rows}) => {
                                                             overflow: "hidden",
                                                             textOverflow: "ellipsis",
                                                             whiteSpace: "nowrap",
-                                                            fontSize: "12px",
+                                                            fontSize: "13px",
                                                         }}
                                                         style={{
+                                                            color:'rgb(38 38 38)',
                                                             minWidth: "128px",
-                                                            maxWidth: "240px",
+                                                            maxWidth: "220px",
                                                         }}
                                                         size="small"
                                                         align={"center"}
@@ -99,7 +99,7 @@ const AuctionTable = ({cols, rows}) => {
                                         style={{
                                             color: "dimgray",
                                             fontWeight: "550",
-                                            fontSize: "12px",
+                                            fontSize: "14px",
                                         }}
                                     >
                                         Không có dữ liệu

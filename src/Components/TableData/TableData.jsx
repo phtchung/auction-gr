@@ -23,7 +23,7 @@ const TableData = ({cols, rows}) => {
 
     return (
         <>
-            <TableContainer sx={{maxHeight: 800, backgroundColor: "#fff"}}>
+            <TableContainer sx={{maxHeight: 800,maxWidth:1000, backgroundColor: "#fff"}}>
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
@@ -32,10 +32,10 @@ const TableData = ({cols, rows}) => {
                                     align={"center"}
                                     style={{
                                         backgroundColor: "#f5f5f5",
-                                        color: "dimgray",
+                                        color: "rgb(38 38 38)",
                                         fontWeight: "550",
-                                        fontSize: "12px",
-                                        lineHeight: "16px",
+                                        fontSize: "14px",
+                                        lineHeight: "17px",
                                     }}
                                     key={column.id}
                                 >
@@ -70,15 +70,15 @@ const TableData = ({cols, rows}) => {
                                                             overflow: "hidden",
                                                             textOverflow: "ellipsis",
                                                             whiteSpace: "nowrap",
-                                                            fontSize: "12px",
+                                                            fontSize: "13px",
                                                         }}
                                                         style={{
+                                                            color:'rgb(38 38 38)',
                                                             minWidth: "128px",
-                                                            maxWidth: "240px",
+                                                            maxWidth: "220px",
                                                         }}
                                                         size="small"
                                                         align={"center"}
-
                                                     >
                                                         {value}
                                                     </TableCell>
@@ -96,7 +96,7 @@ const TableData = ({cols, rows}) => {
                                         style={{
                                             color: "dimgray",
                                             fontWeight: "550",
-                                            fontSize: "12px",
+                                            fontSize: "14px",
                                         }}
                                     >
                                         {" "}

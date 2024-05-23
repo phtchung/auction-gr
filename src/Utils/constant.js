@@ -24,7 +24,6 @@ export const colBidding = [
     {id: "request_time", name: "Thời gian gửi"},
     {id: "request_id", name: "Mã yêu cầu"},
     {id: "product_name", name: "Tên sản phẩm"},
-    {id: "reserve_price", name: "Giá khởi điểm"},
     {id: "start_time", name: "Thời gian đấu giá"},
     {id: "status_string", name: "Trạng thái"},
 

@@ -44,67 +44,73 @@ const RequestHistory = () => {
                             Lịch sử yêu cầu
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="bg-white p-3 m-7 border-gray-300 border h-28 text-sm gap-7 justify-around flex">
-                            <div className="font-medium text-xs p-3 ">Tìm kiếm ngày :</div>
-                            <div className="flex-col ">
-                                <LocalizationProvider
-                                    dateFormats="fullDate"
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DatePicker
-                                        defaultValue={dayjs(new Date()).subtract(7, "day")}
-                                        sx={{
-                                            margin: 3,
-                                            "& .MuiInputBase-input": {width: 150, fontSize: 12},
-                                        }}
-                                        onChange={(newValue) =>
-                                            handleFilter("start_time", newValue.toISOString())
-                                        }
-                                    />
-                                </LocalizationProvider>
-                                <LocalizationProvider
-                                    dateFormats="fullDate"
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DatePicker
-                                        defaultValue={dayjs(new Date())}
-                                        sx={{
-                                            margin: 3,
-                                            "& .MuiInputBase-input": {width: 150, fontSize: 12},
-                                        }}
-                                        onChange={(newValue) =>
-                                            handleFilter("finish_time", newValue.toISOString())
-                                        }
-                                    />
-                                </LocalizationProvider>
+                        <div className="bg-white p-3 grid grid-cols-5 border-gray-300 border h-28 text-sm  justify-around">
+                            <div className="font-medium text-base p-3 ">Tìm kiếm ngày :</div>
+                            <div className="col-span-3 ">
+                                <div className="grid grid-cols-2">
+                                    <LocalizationProvider
+                                        dateFormats="fullDate"
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DatePicker
+                                            defaultValue={dayjs(new Date()).subtract(7, "day")}
+                                            sx={{
+                                                margin: 2,
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                            }}
+                                            onChange={(newValue) =>
+                                                handleFilter("start_time", newValue.toISOString())
+                                            }
+                                        />
+                                    </LocalizationProvider>
+                                    <LocalizationProvider
+                                        dateFormats="fullDate"
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DatePicker
+                                            defaultValue={dayjs(new Date())}
+                                            sx={{
+                                                margin: 2,
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                            }}
+                                            onChange={(newValue) =>
+                                                handleFilter("finish_time", newValue.toISOString())
+                                            }
+                                        />
+                                    </LocalizationProvider>
+                                </div>
                             </div>
-                            <Button
-                                onClick={onSubmit}
-                                size="md"
-                                className="bg-blue-800 ml-auto h-9 py-2 rounded m-2 mt-5 px-4"
-                            >
-                                Search
-                            </Button>
+                            <div>
+                                <Button
+                                    onClick={onSubmit}
+                                    size="md"
+                                    className="bg-blue-800  h-9 py-2 rounded m-2 mt-4 px-6"
+                                >
+                                    Tìm kiếm
+                                </Button>
+                            </div>
+
                         </div>
                         {isSuccess && (
                             <>
-                                <div className="bg-white border-gray-300 border p-2 m-7 text-sm h-24">
-                                    <table style={{width: "100%"}}>
+                                <div className="bg-white border-gray-300 border p-2 mt-6  h-24">
+                                    <table style={{width: "100%"}} >
                                         <thead>
                                         <tr
+                                            className="text-neutral-800 text-base "
                                             style={{
                                                 borderBottom: "1px solid #e5e7eb",
                                                 height: 40,
                                             }}
                                         >
-                                            <th>Tổng số yêu cầu</th>
-                                            <th>Đã duyệt</th>
-                                            <th>Đang duyệt</th>
-                                            <th>Từ chối</th>
+                                            <th className="font-medium">Tổng số yêu cầu</th>
+                                            <th className="font-medium">Đã duyệt</th>
+                                            <th className="font-medium">Đang duyệt</th>
+                                            <th className="font-medium">Từ chối</th>
                                         </tr>
                                         </thead>
-                                        <tbody className="font-light">
-                                        <tr style={{height: 40, fontSize: 14}}>
+                                        <tbody className="font-semibold">
+                                        <tr style={{height: 40, fontSize: 18}}>
                                             <td className="cursor-pointer">{total.total_request}</td>
                                             <td>{total.total_approved}</td>
                                             <td>{total.total_pending}</td>
@@ -118,7 +124,7 @@ const RequestHistory = () => {
                         {/*table data*/}
                         {isSuccess && (
                             <>
-                                <div className="border border-gray-300 mt-6 mx-7">
+                                <div className="border border-gray-300 mt-6 ">
 
                                     <TableDataHistory path={pathReqHistory} cols={colReqHistory}
                                                       rows={reqHistoryData}></TableDataHistory>
