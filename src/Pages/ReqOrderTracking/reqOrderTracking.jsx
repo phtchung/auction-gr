@@ -510,9 +510,9 @@ const ReqOrderTracking = () => {
                         {/* Dialog confirm */}
                         <Dialog open={open1} onClose={closePopup1} maxWidth="xs">
                             <DialogTitle>
-              <span className="font-semibold text-base">
-                Xác nhận gửi yêu cầu
-              </span>
+                              <span className="font-semibold text-base">
+                                Xác nhận gửi yêu cầu
+                              </span>
                                 <div className="border-b-2 mt-2  border-gray-300"></div>
                             </DialogTitle>
                             <DialogContent>
@@ -546,9 +546,9 @@ const ReqOrderTracking = () => {
                         {/*dialog hủy confirm*/}
                         <Dialog open={open2} onClose={() => closePopup2} maxWidth="xs">
                             <DialogTitle>
-              <span className="font-semibold text-base">
-                Xác nhận gửi yêu cầu
-              </span>
+                                  <span className="font-semibold text-base">
+                                    Xác nhận gửi yêu cầu
+                                  </span>
                                 <div className="border-b-2 mt-2  border-gray-300"></div>
                             </DialogTitle>
                             <DialogContent>

@@ -9,7 +9,7 @@ const CardItem4Line = ({data}) => {
               size="small"
               hoverable
               bordered={false}
-              style={{width: '100%', borderRadius: 0, minHeight: 236}}
+              style={{width: '100%', borderRadius: 8, minHeight: 236}}
               cover={<img alt="example" style={{
                   width: '100%',
                   height: '163.84px',

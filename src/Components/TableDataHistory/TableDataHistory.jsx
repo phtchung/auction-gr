@@ -34,8 +34,8 @@ const TableDataHistory = ({cols, rows,path}) => {
                                         backgroundColor: "#f5f5f5",
                                         color: "dimgray",
                                         fontWeight: "550",
-                                        fontSize: "12px",
-                                        lineHeight: "16px",
+                                        fontSize: "14px",
+                                        lineHeight: "17px",
                                     }}
                                     key={column.id}
                                 >
@@ -78,14 +78,14 @@ const TableDataHistory = ({cols, rows,path}) => {
                                                             overflow: "hidden",
                                                             textOverflow: "ellipsis",
                                                             whiteSpace: "nowrap",
-                                                            fontSize: "12px",
+                                                            fontSize: "13px",
                                                             "&:last-child": {
                                                                 color: "red",
                                                             },
 
                                                         }}
-
                                                         style={{
+                                                            color:'rgb(38 38 38)',
                                                             minWidth: "128px",
                                                             maxWidth: "240px",
                                                         }}
@@ -112,7 +112,6 @@ const TableDataHistory = ({cols, rows,path}) => {
                                             fontSize: "12px",
                                         }}
                                     >
-                                        {" "}
                                         Không có dữ liệu
                                     </TableCell>
                                 </tr>
