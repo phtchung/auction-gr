@@ -200,6 +200,14 @@ export const getProductsByCategory = async (id,params) => {
   });
 };
 
+export const getSerachProducts = async (params) => {
+  return publicHttp({
+    method: "GET",
+    url: `/search`,
+    params
+  });
+};
+
 export const getCheckOutInfor = async (Id) => {
   return privateHttp({
     method: "GET",

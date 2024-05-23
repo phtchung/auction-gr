@@ -8,11 +8,17 @@ import CardSeller from "../../Components/Card/cardSeller.jsx";
 import CardPreEnd from "../../Components/Card/cardPreEnd.jsx";
 import useCategories from "./useCategories.jsx";
 import {useState} from "react";
-import Search from "../../Components/SearchCpn/Search.jsx";
 const Home = () => {
     const navigate = useNavigate()
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [keyword, setKeyword] = useState('');
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (keyword.trim()) {
+            navigate(`/search?keyword=${keyword}`);
+        }
+    };
     const toggleCategory = (category) => {
         setSelectedCategory(selectedCategory === category ? null : category);
     };
@@ -36,8 +42,43 @@ const Home = () => {
 
     return (
         <>
-            <MainLayOut style={{zIndex:10000}}>
-                <Search />
+            <MainLayOut style={{zIndex: 10000}}>
+
+                {/*Search */}
+                <div className="header_container z-50 mx-[-8.04rem] bg-orange-500 opacity-90 border border-t-amber-50"
+                     style={{marginTop: '4rem'}}>
+                    <div className="container">
+                        <div className=" lg:w-7/12 md:w-6/12 my-8   mx-auto">
+                            <form className="" onSubmit={handleSearch}>
+                                <label htmlFor="default-search"
+                                       className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm
+                                    kiếm</label>
+                                <div className="relative">
+                                    <div
+                                        className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                  strokeWidth="2"
+                                                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                    </div>
+                                    <input type="search" id="default-search"
+                                           value={keyword}
+                                           onChange={(e) => setKeyword(e.target.value)}
+                                           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
+                                           placeholder="Tìm kiếm..." required/>
+                                    <button type="submit"
+                                            className="text-white absolute end-2.5 bottom-2 bg-orange-500 hover:bg-orange-600 focus:ring-1 hover:border-orange-500 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Tìm
+                                        kiếm
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="md:container">
 
                     <div>
@@ -53,19 +94,24 @@ const Home = () => {
                                 {
                                     categories && categories.map((category, index) => (
                                         <>
-                                            <div key={index} className={`${selectedCategory === category.name ? 'bg-orange-200' : ''} border-b border-neutral-100 pl-5 hover:bg-neutral-200 relative  cursor-pointer flex items-center justify-between`}>
+                                            <div key={index}
+                                                 className={`${selectedCategory === category.name ? 'bg-orange-200' : ''} border-b border-neutral-100 pl-5 hover:bg-neutral-200 relative  cursor-pointer flex items-center justify-between`}>
                                                 <div onClick={() => handleNavigateCate(category.category_id)}
-                                                    className={`text-base cursor-pointer leading-10 text-neutral-700 `}>
+                                                     className={`text-base cursor-pointer leading-10 text-neutral-700 `}>
                                                     {category.name}
                                                 </div>
                                                 <div className="py-2 px-4" onClick={() => toggleCategory(category.name)}>
-                                                    {selectedCategory === category.name ? <UpOutlined style={{fontSize:12}}/> : <DownOutlined style={{fontSize:12}} />}
+                                                    {selectedCategory === category.name ?
+                                                        <UpOutlined style={{fontSize: 12}}/> :
+                                                        <DownOutlined style={{fontSize: 12}}/>}
                                                 </div>
                                             </div>
                                             {selectedCategory === category.name && (
-                                                category.children.map((child,index) => (
-                                                    <div key={index} className=" slide-down cursor-pointer text-left px-5  bg-white">
-                                                        <div className="hover:text-orange-500 border-b border-neutral-100 leading-8 text-sm">
+                                                category.children.map((child, index) => (
+                                                    <div key={index}
+                                                         className=" slide-down cursor-pointer text-left px-5  bg-white">
+                                                        <div
+                                                            className="hover:text-orange-500 border-b border-neutral-100 leading-8 text-sm">
                                                             {child.name}
                                                         </div>
                                                     </div>
@@ -101,7 +147,8 @@ const Home = () => {
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM NỔI BẬT
+                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM NỔI
+                                                BẬT
                                             </div>
                                         </div>
                                     </div>
@@ -154,20 +201,23 @@ const Home = () => {
                                         slidesToSlide={4}
                                         swipeable
                                     >
-                                        {
-                                            isStandOutSc && standOut && standOut.map((product, index) => (
-                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
-                                                     className="md:basis-1/5 p-2 ">
-                                                    <CardNormal data={product}/>
-                                                </div>
-                                            ))
-                                        }
+
+                                            {
+                                                isStandOutSc && standOut && standOut.map((product, index) => (
+                                                    <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                         key={index}
+                                                         className=" p-2 ">
+                                                        <CardNormal data={product}/>
+                                                    </div>
+                                                ))
+                                            }
+
                                     </Carousel>
                                 </div>
                                 {/*sắp kết thúc*/}
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4">
                                     <div className="flex flex-grow items-center justify-between p-2">
-                                    <div className="flex gap-2 items-center mb-2 ">
+                                        <div className="flex gap-2 items-center mb-2 ">
                                         <span className="relative flex h-3 w-3">
                                             <span
                                                 className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
@@ -296,11 +346,11 @@ const Home = () => {
 
                                     </div>
 
-                                    <div className="flex flex-wrap">
+                                    <div className="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
                                         {
                                             isRareSc && productRare && productRare.map((product, index) => (
                                                 <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
-                                                     className="md:basis-1/5 p-1.5 py-3 ">
+                                                     className=" p-2 ">
                                                     <CardNormal data={product}/>
                                                 </div>
                                             ))

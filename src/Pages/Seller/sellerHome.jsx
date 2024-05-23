@@ -326,12 +326,14 @@ const SellerHome = () => {
                                                                             </Select>
                                                                         </div>
 
-                                                                        <div className="flex flex-wrap">
+                                                                        <div
+                                                                            className="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
                                                                             {
                                                                                 products && products.map((product, index) => (
                                                                                     <div
                                                                                         onClick={() => handleNavigateAuction(product.product_id)}
-                                                                                        key={index} className="md:basis-1/5 p-2">
+                                                                                        key={index}
+                                                                                        className="p-2">
                                                                                         <CardItem4Line data={product}/>
                                                                                     </div>
                                                                                 ))
