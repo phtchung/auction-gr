@@ -27,7 +27,7 @@ const CardPreEnd = ({data}) => {
                 </div>
                 <div className="flex flex-col text-left py-1 px-1">
                     <div
-                        className="overflow_css_w_158 text-sm font-sans  hover:text-orange-300"
+                        className="truncate text-sm font-sans  hover:text-orange-300"
                         style={{lineHeight: '1.3rem'}}>{data?.product_name}
                     </div>
                     <div className="flex flex-row items-center gap-1 overflow_css">

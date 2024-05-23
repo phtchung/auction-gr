@@ -6,10 +6,11 @@ const CardItem4Line = ({data}) => {
   return(
       <>
           <Card
+              className="card-hover_home"
               size="small"
               hoverable
               bordered={false}
-              style={{width: '100%', borderRadius: 8, minHeight: 236}}
+              style={{width: '100%', borderRadius: 8,padding:4, minHeight: 236}}
               cover={<img alt="example" style={{
                   width: '100%',
                   height: '163.84px',
@@ -21,7 +22,7 @@ const CardItem4Line = ({data}) => {
           >
               <div className="flex flex-col text-left py-0.5 px-1 gap-y-0.5">
                   <div
-                      className="overflow_css text-sm font-sans font-semibold leading-6 hover:text-orange-300 ">{data?.product_name}
+                      className="truncate text-sm font-sans font-semibold leading-6 hover:text-orange-300 ">{data?.product_name}
                   </div>
                   <div className="flex flex-row items-center gap-1 overflow_css">
                       <div

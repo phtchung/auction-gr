@@ -1,20 +1,26 @@
-import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import {Select, Checkbox, Breadcrumb, Radio, Input} from "antd";
-import { StarFilled} from '@ant-design/icons';
+import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import useCategoryDetail from "./useCategoryDetail.jsx";
-import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
-import {useNavigate} from "react-router-dom";
-import {Pagination} from "@mui/material";
+import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import { Checkbox, Input, Radio, Select} from "antd";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import {StarFilled} from "@ant-design/icons";
+import CardItem4Line from "../../Components/Card/cardItem4Line.jsx";
+import {Pagination} from "@mui/material";
+import useSearchPage from "./useSearchPage.jsx";
+import useCategories from "../Home/useCategories.jsx";
 
-const CategoriesFilter = () => {
+const SearchPage = () => {
     const navigate = useNavigate()
     const [price,setPrice] = useState({})
-    const {isSuccess, isLoading, category,isError,isEr , products, isSc,total,isLd,currentPage,totalPage,setQueryString,queryString,handlePageChange} = useCategoryDetail()
+    const {categories  , isSuccess : sc , isLoading : ld} = useCategories()
+    const {isEr , products, isSc,total,isLd,currentPage,totalPage,setQueryString,queryString,handlePageChange} = useSearchPage()
     const [minPrice,setMinPrice] = useState(null)
     const [maxPrice,setMaxPrice] = useState(null)
+    const query = new URLSearchParams(useLocation().search);
+    const initialKeyword = query.get('keyword') || '';
+    const [keyword, setKeyword] = useState(initialKeyword);
+
 
     const handleFilter =  (key,value) => {
         setQueryString({...queryString,[key]:value,page:1})
@@ -23,6 +29,13 @@ const CategoriesFilter = () => {
             behavior: "smooth",
         });
     }
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (keyword.trim()) {
+            navigate(`/search?keyword=${keyword}`);
+        }
+    };
+
     const handleInput = (key,value) => {
         const reg = /^-?\d*(\.\d*)?$/;
         if (reg.test(value) || value === '' || value === '-') {
@@ -98,61 +111,89 @@ const CategoriesFilter = () => {
     return (
         <>
             <MainLayOut>
+                <div
+                    className="header_container z-50 lg:mx-[-8.04rem] md:mx-[-4.04rem]  bg-orange-500 opacity-90 border border-t-amber-50"
+                    style={{marginTop: '4rem'}}>
+                    <div className="container">
+                        <div className=" lg:w-7/12 md:w-6/12 my-8   mx-auto">
+                            <form className="" onSubmit={handleSearch}>
+                                <label htmlFor="default-search"
+                                       className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm
+                                    kiếm</label>
+                                <div className="relative">
+                                    <div
+                                        className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                  strokeWidth="2"
+                                                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                    </div>
+                                    <input type="search" id="default-search"
+                                           value={keyword}
+                                           onChange={(e) => setKeyword(e.target.value)}
+                                           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
+                                           placeholder="Tìm kiếm..." required/>
+                                    <button type="submit"
+                                            className="text-white absolute end-2.5 bottom-2 bg-orange-500 hover:bg-orange-600 focus:ring-1 hover:border-orange-500 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Tìm
+                                        kiếm
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div className="md:container ">
-                    {category &&
-                        <>
-                            <div className="px-3 mx-2 mt-24">
-                                <Breadcrumb
-                                    items={[
-                                        {
-                                            title: 'Home',
-                                        },
-                                        {
-                                            title: <a href="">Application Center</a>,
-                                        },
-                                        {
-                                            title: <span>{category.name}</span>
-                                        },
-                                    ]}
-                                />
-                            </div>
-                        </>}
 
-                        {
-                            isLoading || isLd ?
+                    {
+                        ld || isLd ?
+                            <>
+                                <CustomSpinner h={12} w={12} font={'sm'}/>
+                            </>
+                            :
+                            isEr ?
                                 <>
-                                    <CustomSpinner h={12} w={12} font={'sm'}/>
+                                    <FZFNotFound
+                                        error={'Rất tiếc, hệ thống không tìm thấy người danh mục sản phẩm này.'}
+                                        urlReturn={'/'} btnText={'Về trang chủ'}/>
                                 </>
                                 :
-                                isError || isEr ?
-                                    <>
-                                        <FZFNotFound error={'Rất tiếc, hệ thống không tìm thấy người danh mục sản phẩm này.'}
-                                                     urlReturn={'/'} btnText={'Về trang chủ'}/>
-                                    </>
-                                    :
-                                isSuccess && isSc &&
-                                    <>
-                                    <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
+                                sc && isSc &&
+                                <>
+                                    <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4">
                                         {/*cột menu danh mục và filter */}
                                         <div className=" md:basis-1/5 sm:basis-1/4 ">
-                                            <div style={{backgroundColor: "white"}} className="pt-5 mb-5">
-                                                <div
-                                                    className={`mb-1 font-semibold  text-base ${!category.child ? 'pb-5' : 'pb-1'}`}>{category.name}</div>
-                                                {
-                                                    category.child && category?.child.map((child, index) => (
-                                                        <>
-                                                            <div
-                                                                className={` border-b border-neutral-100 pl-5 hover:bg-neutral-200 relative  cursor-pointer flex items-center justify-between`}>
-                                                                <div key={index}
-                                                                     onClick={() => handleFilter('subcate', child._id)}
-                                                                     className={`text-base cursor-pointer leading-10 text-neutral-700 `}>
-                                                                    {child.name}
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    ))
-                                                }
+
+                                            <div
+                                                className="text-base text-neutral-800 font-semibold text-center mb-4">BỘ
+                                                LỌC TÌM KIẾM
                                             </div>
+
+                                            {/*<div style={{backgroundColor: "white"}} className="p-5 pt-3 mb-5 ">*/}
+                                            {/*    <div*/}
+                                            {/*        className="pb-1 mb-2 border-b border-b-neutral-200 font-sans text-base text-left">Theo danh mục*/}
+                                            {/*    </div>*/}
+
+                                            {/*    <Checkbox.Group value={queryString.advance}*/}
+                                            {/*                    onChange={(value) => handleFilter('cat', value)}*/}
+                                            {/*                    className="flex flex-col justify-center gap-y-1">*/}
+                                            {/*        {*/}
+                                            {/*            categories && categories.map((category, index) => (*/}
+                                            {/*                <>*/}
+                                            {/*                        <Checkbox index={index} value={index}>{category.name}</Checkbox>*/}
+                                            {/*                        /!*<div key={index}*!/*/}
+                                            {/*                        /!*     onClick={() => handleFilter('subcate', child._id)}*!/*/}
+                                            {/*                        /!*     className={`text-base cursor-pointer leading-10 text-neutral-700 `}>*!/*/}
+                                            {/*                        /!*    {child.name}*!/*/}
+                                            {/*                        /!*</div>*!/*/}
+
+                                            {/*                </>*/}
+                                            {/*            ))*/}
+                                            {/*        }*/}
+                                            {/*    </Checkbox.Group>*/}
+                                            {/*</div>*/}
 
                                             <div style={{backgroundColor: "white"}} className="p-5 pt-3 mb-5 ">
                                                 <div
@@ -202,7 +243,6 @@ const CategoriesFilter = () => {
                                                             className="text-yellow-500"/>
                                                         </Radio>
                                                     </Radio.Group>
-
                                                 </div>
                                             </div>
 
@@ -217,7 +257,6 @@ const CategoriesFilter = () => {
                                                         <div onClick={handleRmPrice}
                                                              className="text-yellow-500 underline cursor-pointer font-semibold text-sm">Xóa</div>
                                                     }
-
                                                 </div>
 
                                                 <div className="flex flex-col justify-center gap-y-1">
@@ -255,6 +294,10 @@ const CategoriesFilter = () => {
                                         </div>
 
                                         <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">
+                                            <div className="text-left text-neutral-600 font-medium text-lg mb-3">Kết quả
+                                                tìm kiếm cho từ khóa
+                                                <span className="text-orange-500 "> &#39;{queryString.keyword}&#39;</span>
+                                            </div>
                                             {(totalPage && totalPage !== 0 && currentPage) ? (
                                                     <>
                                                         <div className="flex flex-col bg-white pt-3 p-2 mb-4">
@@ -288,8 +331,7 @@ const CategoriesFilter = () => {
                                                                 </Select>
                                                             </div>
 
-                                                            <div
-                                                                className="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
+                                                            <div className="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
                                                                 {
                                                                     products && products.map((product, index) => (
                                                                         <div
@@ -322,10 +364,7 @@ const CategoriesFilter = () => {
                                                             src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
                                                             alt=""/>
                                                         <div className="text-gray-500 text-base">Không có sản phẩm nào.
-                                                            Bạn
-                                                            thử
-                                                            tắt điều
-                                                            kiện lọc và tìm lại nhé?
+                                                            Bạn thử tắt điều kiện lọc và tìm lại nhé?
                                                         </div>
                                                         <div onClick={handleRemove}
                                                              className="p-6 mt-5 text-center border border-amber-500 h-9 bg-orange-400 text-white hover:bg-orange-500 cursor-pointer pt-1 font-semibold  text-base">
@@ -336,11 +375,12 @@ const CategoriesFilter = () => {
                                             }
                                         </div>
                                     </div>
-                                    </>
-                        }
+                                </>
+                    }
                 </div>
             </MainLayOut>
         </>
     )
 }
-export default CategoriesFilter
+
+export default SearchPage

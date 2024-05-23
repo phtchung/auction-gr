@@ -9,7 +9,7 @@ const CardNormal = ({data}) => {
                 size="small"
                 hoverable
                 bordered={false}
-                style={{width: '100%', minHeight: 236}}
+                style={{width: '100%', minHeight: 216}}
                 cover={<img alt="example" style={{
                     padding: '4px',
                     width: '100%',
@@ -22,7 +22,7 @@ const CardNormal = ({data}) => {
             >
                 <div className="flex flex-col text-left py-1 px-1">
                     <div
-                        className="overflow_css_card_160 text-sm font-sans  hover:text-orange-300"
+                        className="truncate text-sm font-sans  hover:text-orange-300"
                         style={{lineHeight: '1.25rem'}}>{data?.product_name}
                     </div>
                     <div className="flex flex-row items-center gap-1 overflow_css">
