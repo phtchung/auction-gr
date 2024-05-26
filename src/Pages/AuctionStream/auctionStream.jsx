@@ -5,8 +5,8 @@ import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {  Radio } from 'antd';
 import {toast} from "react-toastify";
-import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
-import {useParams} from "react-router-dom";
+import { sendStreamBid} from "../../Services/biddingService.jsx";
+import {useLocation, useParams} from "react-router-dom";
 import {CheckCircleOutlined, CheckCircleTwoTone,CloseCircleTwoTone} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
@@ -19,8 +19,10 @@ import YouTubeEmbed from "../../Components/YouTubeEmbed/index.jsx";
 
 const AuctionStream = () => {
     const { id } = useParams();
+    const query = new URLSearchParams(useLocation().search);
+    const accessCode = query.get('accessCode') || null;
     const {selectedAuction,setSelectedAuction  , setBidList ,  setHighestPrice } = useAuctionOnlineTracking()
-    const [auctionData,setAuctionData] = useState({productId:id})
+    const [auctionData,setAuctionData] = useState({productId:id, accessCode : accessCode})
     const [state, setState] = useState(null)
     const { currentUser } = useAuthContext();
     const [open, setOpen] = useState(false)
@@ -46,7 +48,7 @@ const AuctionStream = () => {
 
     const handleOnlineBidding =  async (new_price) => {
         try{
-            const res = await sendAuctionDataOnline({...auctionData,final_price:new_price});
+            const res = await sendStreamBid({...auctionData,final_price:new_price});
             setAuctionData({productId:id})
             const data = res.data.new_bid
         }catch (error) {
@@ -222,16 +224,7 @@ const AuctionStream = () => {
                                                 }
                                             </Modal>
 
-
-                                            {
-                                                open &&
-                                                <>
-
-                                                </>
-                                            }
-
                                             <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
-
                                                 <CountDownOnline id={productData?._id}
                                                                  targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
@@ -241,7 +234,6 @@ const AuctionStream = () => {
                                                     className="pt-2 text-center hover:underline  cursor-pointer text-base font-semibold hover:text-blue-900">
                                                     Chi tiết
                                                 </div>
-
 
                                                 <div
                                                     className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mx-6 mb-6 mt-4"
