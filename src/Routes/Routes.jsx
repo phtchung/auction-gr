@@ -29,6 +29,7 @@ import ProductStreamDetail from "../Pages/AuctionStreamDetail/productStreamDetai
 import StreamGeneral from "../Pages/StreamGeneral/StreamGeneral.jsx";
 import AuctionStream from "../Pages/AuctionStream/auctionStream.jsx";
 import SearchPage from "../Pages/SearchPage/searchPage.jsx";
+import CreateRequest from "../Pages/CreateRequest/createRequest.jsx";
 
 
 export const NormalRoutes = [
@@ -68,6 +69,7 @@ export const UserRoutes = [
   { path: "/checkout/:id", element: <CheckOut /> },
   { path: "/confirm/:id", element: <ConfirmCheckOut /> },
   { path: "/streamGeneral", element: <StreamGeneral /> },
+  { path: "/create", element: <CreateRequest /> },
 
 ];
 

@@ -19,7 +19,6 @@ const SideBar = () => {
                 {/*<div className="flex-col w-52 py-4 text-base">*/}
                 {/*    */}
                 {/*</div>*/}
-
                 <aside
                     className="flex flex-col w-[16.7rem]  px-2 py-3 ">
                     <div className="flex gap-0.5 justify-end items-center mb-3">
@@ -64,6 +63,20 @@ const SideBar = () => {
                             </NavLink>
 
                             <NavLink
+                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                to="/winOrderTracking"
+                                onClick={() => handleItemClick('/winOrderTracking')}
+                                style={{color: activeItem === 'winOrderTracking' ? 'orange' : ''}}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>
+                                </svg>
+                                <span className="mx-4  text-base font-medium">Đơn mua</span>
+                            </NavLink>
+
+                            <NavLink
                                 style={{color: activeItem === 'reqOrderTracking' ? 'orange' : ''}}
                                 onClick={() => handleItemClick('/reqOrderTracking')}
                                 to="/reqOrderTracking"
@@ -76,20 +89,6 @@ const SideBar = () => {
                                 </svg>
 
                                 <span className="mx-4  text-base font-medium">Đơn bán</span>
-                            </NavLink>
-
-                            <NavLink
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
-                                to="/winOrderTracking"
-                                onClick={() => handleItemClick('/winOrderTracking')}
-                                style={{color: activeItem === 'winOrderTracking' ? 'orange' : ''}}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                          d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>
-                                </svg>
-                                <span className="mx-4  text-base font-medium">Đơn mua</span>
                             </NavLink>
 
                             <NavLink
@@ -160,6 +159,22 @@ const SideBar = () => {
                                 </svg>
 
                                 <span className="mx-4  text-base font-medium">Lịch sử yêu cầu</span>
+                            </NavLink>
+
+                            <NavLink
+                                to="/create"
+                                style={{color: activeItem === 'create' ? 'orange' : 'text-neutral-600'}}
+                                onClick={() => handleItemClick('/reqHistory')}
+                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth="1.5"
+                                     stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"/>
+                                </svg>
+
+                                <span className="mx-4  text-base font-medium">Tạo yêu cầu</span>
                             </NavLink>
                         </nav>
                     </div>
