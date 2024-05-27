@@ -41,6 +41,7 @@ export default function useReqOrderTracking() {
         phone:data?.delivery?.phone,
         address:data?.delivery?.address,
         request_id: data?._id,
+        auction_live : data?.auction_live === 0 ? 'Đấu giá thường' : 'Đấu giá trực tuyến',
       };
     });
 

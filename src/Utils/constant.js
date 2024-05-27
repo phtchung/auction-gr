@@ -11,7 +11,7 @@ export const colPending = [
     {id: "request_id", name: "Mã yêu cầu"},
     {id: "product_name", name: "Tên sản phẩm"},
     {id: "reserve_price", name: "Giá khởi điểm"},
-    {id: "sale_price", name: "Giá bán trực tiếp"},
+    {id: "auction_live", name: "Hình thức"},
 ];
 export const colAppr = [
     {id: "request_time", name: "Thời gian gửi"},
@@ -103,73 +103,6 @@ export const tabData1 = [
     {value: "5", name: "Return", top: "Return", color: "bg-cyan-500"},
 ];
 
-export const tabDataAdmin = [
-    {value: "1", name: "New Request", top: "New", color: "bg-cyan-400"},
-    {value: "2", name: "Approved", top: "Approved", color: "bg-amber-500"},
-    {value: "3", name: "Bidding", top: "Bidding", color: "bg-indigo-800"},
-    {value: "4", name: "Reject", top: "Reject", color: "bg-pink-900"},
-    {value: "5", name: "Cancel", top: "Cancel", color: "bg-red-600"},
-];
-
-export const tabDataBiddingAdmin = [
-    {
-        value: "N",
-        name: "New Product",
-        top: "Up",
-        color: "bg-orange-400",
-    },
-    {
-        value: "B",
-        name: "Bidding",
-        top: "Bidding",
-        color: "bg-lime-500",
-    },
-    {
-        value: "S",
-        name: "Success",
-        top: "Success",
-        color: "bg-green-700",
-    },
-    {
-        value: "C",
-        name: "Confirm",
-        top: "Confirm",
-        color: "bg-fuchsia-700",
-    },
-
-    {
-        value: "D",
-        name: "Delivery start",
-        top: "Departure",
-        color: "bg-indigo-800",
-    },
-    {
-        value: "E",
-        name: "Completed",
-        top: "Completion",
-        color: "bg-emerald-800",
-    },
-    {value: "R", name: "Cancel", top: "Cancel", color: "bg-red-600"},
-    {
-        value: "G",
-        name: "Return",
-        top: "Return",
-        color: "bg-yellow-300",
-    },
-    {
-        value: "F",
-        name: "Failure ",
-        top: "Failure",
-        color: "bg-rose-900",
-    },
-    {
-        value: "N",
-        name: "New Product",
-        top: "Down",
-        color: "bg-orange-400",
-    },
-];
-
 export const colFail = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
@@ -212,12 +145,20 @@ export const colReject = [
     {id: "reserve_price", name: "Giá khởi điểm"},
     {id: "reject_time", name: "Thời gian từ chối"},
 ];
-export const colWinCancel = [
+
+export const colWinReturn = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
     {id: "final_price", name: "Giá trúng thầu"},
     {id: "victory_time", name: "Thời gian thắng"},
     {id: "status_word", name: "Trạng thái"},
+];
+export const colWinCancel = [
+    {id: "product_id", name: "Mã sản phẩm"},
+    {id: "product_name", name: "Tên sản phẩm"},
+    {id: "final_price", name: "Giá trúng thầu"},
+    {id: "victory_time", name: "Thời gian thắng"},
+    {id: "cancel_time", name: "Thời gian hủy "},
 ];
 export const colAuctionWin = [
     {id: "product_id", name: "Mã sản phẩm"},

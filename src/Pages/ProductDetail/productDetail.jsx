@@ -1,13 +1,12 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
-import {Avatar, Breadcrumb, Form, Input, Tag, Popover} from "antd";
+import {Avatar, Breadcrumb, Form, Tag, Popover, InputNumber} from "antd";
 import {formatDateTimeMiliSecond, formatMoney, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {useState} from "react";
-import {Button} from "@material-tailwind/react";
+import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
 import {toast} from "react-toastify";
@@ -22,8 +21,14 @@ const ProductDetail = () => {
     const [state , setState] = useState(null)
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
+    const [form] = Form.useForm();
+    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro,fullBidListData,isScFullBid,isLdFullBid} = useAuctionProductDetail(state)
+    const [open1, setOpen1] = useState(false);
+    const {id} = useParams()
+    const [auctionData,setAuctionData] = useState({productId:id})
     const handleOpen = () => {
         if (localStorage.getItem("accessToken")) {
+            form.resetFields();
             setOpen(!open);
         } else {
             window.location.href = '/login';
@@ -33,10 +38,7 @@ const ProductDetail = () => {
         navigate(`/auction/item/${id}`)
         window.scrollTo(0, 0);
     }
-    const {isError, isLoading, isSuccess, auctionProductData,refetch,bidCount,isSc,isLd,rf,ralatedPro,fullBidListData,isScFullBid,isLdFullBid} = useAuctionProductDetail(state)
-    const [open1, setOpen1] = useState(false);
-    const {id} = useParams()
-    const [auctionData,setAuctionData] = useState({productId:id})
+
     const handleOpen1 = () => {
         if (localStorage.getItem("accessToken")) {
             setOpen1(!open1);
@@ -52,6 +54,9 @@ const ProductDetail = () => {
     const handleAuctionData = (key, value) => {
         setAuctionData({...auctionData, [key]: value});
     };
+    useEffect(() => {
+        setAuctionData({...auctionData,final_price : auctionProductData?.quickbid})
+    }, [auctionProductData]);
 
     const handleBuyProduct = async () => {
       try{
@@ -65,11 +70,6 @@ const ProductDetail = () => {
     }
     const handleAuction = async () => {
         try{
-            if(auctionData.final_price < auctionProductData?.min_auction_price || !auctionProductData){
-                toast.error('Giá đưa ra thấp hơn giá tối thiểu')
-                setOpen()
-                return;
-            }
             const res = await sendAuctionData({...auctionData});
 
             toast.success("Trả giá  thành công", {
@@ -79,6 +79,7 @@ const ProductDetail = () => {
             refetch()
             rf()
             setOpen()
+            form.resetFields();
             setAuctionData({productId:id})
         }catch (error) {
             toast.error(error?.response?.data?.message,{
@@ -88,6 +89,16 @@ const ProductDetail = () => {
             rf()
             setOpen()
         }
+    }
+
+    const handleSubmit = async () => {
+        const values = await form.validateFields();
+        await handleAuction()
+    }
+
+    const handleQuickBid = async () => {
+        handleAuctionData('final_price', auctionProductData.quickbid)
+        await handleAuction()
     }
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -147,7 +158,6 @@ const ProductDetail = () => {
                             isSuccess && isSc &&
                             <>
                                 <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
-
                                     <div className=" md:basis-3/5 sm:basis-2/3 ">
                                         <div id="slider" className="flexslider">
                                             <ul className="slides">
@@ -433,62 +443,83 @@ const ProductDetail = () => {
                                         </Modal>
 
                                         {/*Dialog đấu giá */}
-                                        <Dialog open={open} onClose={handleOpen} maxWidth="sm">
+                                        <Dialog open={open} onClose={handleOpen} maxWidth="md">
                                             <DialogTitle>
-                                                <div className="flex items-center font_fml justify-center">
-                                                <span className="font-medium text-base">
+                                                <div className="flex items-center  justify-center">
+                                                <span className="font-medium text-neutral-600 text-base">
                                                      Đấu giá
                                                 </span>
                                                 </div>
                                                 <div className="border-b mt-2  border-gray-300"></div>
                                             </DialogTitle>
                                             <DialogContent>
-                                                <Stack spacing={2} margin={1}>
+                                                <Stack spacing={2} width={460} margin={1}>
                                                     <div
-                                                        className="items-center font-medium text-base gap-6 my-7 mx-8 px-1 space-y-6 ">
-                                                        <div className="flex gap-8 text-sm items-center">
+                                                        className="items-center font-medium text-base gap-6 mt-7 mx-8 px-1 space-y-5 ">
+                                                        <div className="grid grid-cols-3 text-sm items-center">
                                                             <div className="">Giá đấu thầu tối thiểu</div>
                                                             <span
                                                                 className="text-red-400">{formatMoney(auctionProductData?.min_auction_price)} VNĐ</span>
+                                                            <button
+                                                                type="primary"
+                                                                onClick={handleQuickBid}
+                                                                className="p-2 px-6 bg-[#c74200] py-2 w-full right-0  active:bg-orange-500 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-600  focus:outline-0">
+                                                                Trả giá nhanh
+                                                            </button>
                                                         </div>
 
-                                                        <div className="flex flex-row items-center ">
-                                                            <Form scrollToFirstError>
+                                                        <div className=" items-center ">
+                                                            <Form form={form} scrollToFirstError>
                                                                 <Form.Item
                                                                     name='final_price'
                                                                     label='Giá đấu thầu mới'
                                                                     rules={[
                                                                         {
-
-                                                                            type: 'Number',
-                                                                            message: 'The input is not valid Number!',
-                                                                        },
-                                                                        {
                                                                             required: true,
                                                                             message: 'Hãy điền giá bạn muốn trả!',
-                                                                        }
+                                                                        },
+                                                                        () => ({
+                                                                            validator(_, value) {
+                                                                                if(auctionProductData.sale_price < value) {
+                                                                                    return Promise.reject(new Error('Giá phải nhỏ hơn giá quyết định!'));
+                                                                                }else
+                                                                                if(auctionProductData.final_price > value) {
+                                                                                    return Promise.reject(new Error('Giá phải lớn hơn giá tối thiểu!'));
+                                                                                }
+                                                                                else if (!value ||auctionProductData.sale_price > value) {
+                                                                                    return Promise.resolve();
+                                                                                }
+                                                                                return Promise.reject(new Error('Giá phải nhỏ hơn giá quyết định!'));
+                                                                            },
+                                                                        }),
                                                                     ]}
                                                                 >
-                                                                    <Input
-                                                                        onChange={(e) => handleAuctionData('final_price', e.target.value)}
-                                                                        rootClassName='hover:border-orange-500' suffix="VNĐ"/>
+                                                                    <InputNumber
+                                                                        onChange={(value) => handleAuctionData('final_price', value)}
+                                                                        rootClassName='hover:border-orange-500 w-full'
+                                                                        formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                                                        parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                                                                        suffix="VNĐ"/>
                                                                 </Form.Item>
+
+                                                            <Form.Item>
+                                                                <div className="flex gap-4 mt-4  ">
+                                                                    <button
+                                                                        onClick={handleOpen}
+                                                                        className="p-2 px-6 py-2 w-full right-0 bg-white rounded text-orange-500 border-orange-500 hover:bg-zinc-50  text-base hover:border-orange-500 font-medium focus:outline-0">
+                                                                        Hủy
+                                                                    </button>
+
+                                                                    <button
+                                                                        type="primary"
+                                                                        onClick={handleSubmit}
+                                                                        className="p-2 px-6 py-2 w-full right-0 bg-orange-500 active:bg-orange-400 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-600  font-semibold focus:outline-0">
+                                                                        Trả giá
+                                                                    </button>
+                                                                </div>
+                                                            </Form.Item>
                                                             </Form>
-
                                                         </div>
-                                                    </div>
-                                                    <div className="flex m-6 gap-5  mr-10">
-                                                        <Button
-                                                            onClick={handleOpen}
-                                                            className="p-2 px-6 py-2 w-full right-0 bg-white rounded text-orange-500 border-orange-500 hover:bg-zinc-50  text-base hover:border-orange-500  font-medium focus:outline-0">
-                                                            Hủy
-                                                        </Button>
-
-                                                        <Button
-                                                            onClick={handleAuction}
-                                                            className="p-2 px-6 py-2 w-full right-0 bg-orange-500 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-600  font-semibold focus:outline-0">
-                                                            Trả giá
-                                                        </Button>
                                                     </div>
                                                 </Stack>
                                             </DialogContent>
@@ -496,7 +527,7 @@ const ProductDetail = () => {
 
                                         {/*dialog mua trực tiếp */}
                                         <Dialog open={open1} onClose={handleOpen1} maxWidth="sm">
-                                            <DialogTitle>
+                                        <DialogTitle>
                                                 <div className="flex items-center justify-center">
                                                     <span className="font-medium font_fml text-base">
                                                         Mua trực tiếp sản phẩm
@@ -516,17 +547,17 @@ const ProductDetail = () => {
 
                                                     </div>
                                                     <div className="flex m-6 gap-5  mr-10">
-                                                        <Button
+                                                        <button
                                                             onClick={handleOpen1}
                                                             className="p-2 px-5 py-2 w-full right-0 bg-white rounded text-orange-700 border-orange-700 hover:bg-zinc-50  text-base hover:border-orange-700   font-medium focus:outline-0">
                                                             Hủy
-                                                        </Button>
+                                                        </button>
 
-                                                        <Button
+                                                        <button
                                                             onClick={handleBuyProduct}
                                                             className="p-2 px-2 py-2 w-full right-0 bg-orange-700 rounded text-white  border-none text-base hover:border-orange-700 hover:bg-orange-700  font-medium focus:outline-0">
                                                             Mua trực tiếp
-                                                        </Button>
+                                                        </button>
                                                     </div>
                                                 </Stack>
                                             </DialogContent>
@@ -550,7 +581,6 @@ const ProductDetail = () => {
                                                         className=" text-neutral-700 text-base font-sans"> {auctionProductData?.seller_name}
                                                     </div>
                                                 </div>
-
                                             </div>
 
 
