@@ -4,7 +4,7 @@ import {
     colAuctionWin,
     colCompletion,
     colDlvWait,
-    colWinCancel,
+    colWinCancel, colWinReturn,
     formatDateTime, formatMoney,
     processStatus,
 } from "../../Utils/constant.js";
@@ -37,6 +37,7 @@ export default function useWinOrdersTracking() {
                 completed_time: formatDateTime(
                     new Date(data?.delivery?.completed_time),
                 ),
+                cancel_time : formatDateTime(data?.cancel_time),
             };
         });
 
@@ -47,9 +48,9 @@ export default function useWinOrdersTracking() {
                     ? colDlvWait
                     : item.status === 8
                         ? colCompletion
-                        : item.status === 9
+                        : item.status === 11
                             ? colWinCancel
-                            : colWinCancel;
+                            : colWinReturn;
 
         return {winTrackingData, colTrackingData};
     }, []);
