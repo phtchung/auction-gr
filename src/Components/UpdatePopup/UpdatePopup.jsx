@@ -6,6 +6,7 @@ import {updateStatus} from "../../Services/updateStatusService.jsx";
 import useWinOrdersTracking from "../../Pages/WinOrdersTracking/useWinOrdersTracking.jsx";
 import useReqOrderTracking from "../../Pages/ReqOrderTracking/useReqOrderTracking.jsx";
 import {convertCanReturn} from "../../Utils/constant.js";
+import CloseSvg from "../../assets/close.jsx";
 
 const UpdatePopup = ({state,canReturn}) => {
     const {id} = useParams();
@@ -60,8 +61,8 @@ const UpdatePopup = ({state,canReturn}) => {
 
     return (
         <>
-            <div className="flex justify-between m-2.5 items-center px-2">
-                <div className="text-left text-sm font-semibold ">
+            <div className="flex justify-between text-neutral-600 m-2.5 items-center px-2">
+                <div className="text-center px-2 text-sm font-semibold ">
                    Cập nhật trạng thái
                 </div>
             </div>
@@ -70,14 +71,18 @@ const UpdatePopup = ({state,canReturn}) => {
 
                 <button
                     onClick={openPopup1}
-                    className="bg-black text-sm p-2 rounded text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
-                >
+                    className=" px-6  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                     Cập nhật
                 </button>
                 <Dialog open={open1} onClose={closePopup1}  >
                     <DialogTitle>
-                        <div className="text-left text-sm font-semibold ">
-                            Cập nhật trạng thái
+                        <div className="flex flex-row text-neutral-600 items-center justify-between">
+                            <div className="text-left text-base font-semibold ">
+                                Cập nhật trạng thái
+                            </div>
+                            <div onClick={closePopup1}>
+                                <CloseSvg/>
+                            </div>
                         </div>
                         <div className="border-b-2 mt-2  border-gray-300"></div>
                     </DialogTitle>
@@ -95,7 +100,7 @@ const UpdatePopup = ({state,canReturn}) => {
                                         </button>
                                         <button
                                             onClick={() => updateState(6)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-green-600 border-none font-medium focus:outline-0"
+                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
                                         >
                                             Xác nhận thông tin giao hàng
                                         </button>
@@ -112,7 +117,7 @@ const UpdatePopup = ({state,canReturn}) => {
                                         </button>
                                         <button
                                             onClick={() => updateState(7)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-green-600 border-none font-medium focus:outline-0"
+                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
                                         >
                                             Bắt đầu giao hàng
                                         </button>
@@ -134,7 +139,7 @@ const UpdatePopup = ({state,canReturn}) => {
                                         }
                                         <button
                                             onClick={() => updateState(8)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-green-600 border-none font-medium focus:outline-0"
+                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
                                         >
                                         Đã nhận hàng
                                         </button>

@@ -13,6 +13,7 @@ import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 
 const ReturnProduct = () => {
     const navigate = useNavigate();
+    const [form] = Form.useForm();
     const {id} = useParams()
     const {state} = useLocation()
     const [isError , setIsError] = useState(false)
@@ -25,14 +26,8 @@ const ReturnProduct = () => {
     };
 
     const handleSubmit = async () => {
+        const values = await form.validateFields();
         try {
-            if (Object.keys(returnData).length < 2 ) {
-                toast.error("Chưa điền đủ các thông tin", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 1000,
-                });
-                return;
-            }
             const res = await returnProductData({...returnData});
             navigate("/resultSuccess", { state: 9});
             setreturnData({id:id});
@@ -47,9 +42,9 @@ const ReturnProduct = () => {
               <div className="wrapper">
                   <SideBar/>
                   <div className="home-right bg-white">
-                      <div className="flex p-4 gap-2  items-center px-2 justify-between">
+                      <div className="flex p-4 gap-2 pr-6  items-center px-2 justify-between">
                           <div
-                              className="flex items-center cursor-pointer"
+                              className="flex items-center font-medium text-neutral-600 cursor-pointer"
                               onClick={() => navigate(-1)}
                           >
                               <ArrowBackIosOutlinedIcon
@@ -59,7 +54,7 @@ const ReturnProduct = () => {
                               <div className="text-base"> Trở lại</div>
                           </div>
 
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center font-medium text-neutral-600 gap-2">
                               <div className="text-left text-base ">Danh Sách</div>
                               <ArrowForwardIosOutlinedIcon
                                   sx={{fontSize: 18}}
@@ -76,57 +71,59 @@ const ReturnProduct = () => {
                           </div>
                       </div>
                       <div className="border-b border-gray-400  mx-5"></div>
-                      <div className="flex justify-between m-2.5 items-center px-2">
+                      <div className="flex justify-between m-2.5 items-center px-6">
                           <div className="text-left text-sm font-semibold mt-4 ">
                               Thông tin yêu cầu trả hàng
                           </div>
 
                       </div>
                       <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-                          <div className="grid grid-cols-6  items-center">
-                              <div className="font-normal text-left col-span-5">
-                                  <Form.Item
-                                      name="return_reason"
-                                      label="Lí do"
-                                      rules={[
-                                          {
-                                              required: true,
-                                              message: 'Hãy điền tên sản phẩm!',
-                                              whitespace: true,
-                                          },
-                                      ]}
-                                  >
-                                      <Input
-                                          onChange={(e) => handleReturnData('return_reason', e.target.value)}
-                                          placeholder="Lí do"/>
-                                  </Form.Item>
-                              </div>
-                          </div>
-                          <div className="grid grid-cols-6  items-center">
-                              <div className="font-normal text-left col-span-6">
-                                  <Form.Item
-                                      name="main_image"
-                                      label="Các hình ảnh liên quan "
-                                      style={{textAlign: "left"}}
-                                      rules={[
-                                          {
-                                              required: true,
-                                              message: 'Hãy điền phí vận chuyển sản phẩm!',
-                                          },
-                                      ]}
-                                  >
-                                      <FileUpload length={16} onGetFormData={handleFileUpload}/>
-                                  </Form.Item>
-                              </div>
+                          <div className="mr-auto w-9/12  items-center">
+
+                                  <Form form={form} >
+                                      <Form.Item
+                                          name="return_reason"
+                                          label="Lí do"
+                                          rules={[
+                                              {
+                                                  required: true,
+                                                  message: 'Hãy điền lí do yêu cầu trả sản phẩm!',
+                                                  whitespace: true,
+                                              },
+                                          ]}
+                                      >
+                                          <Input
+                                              onChange={(e) => handleReturnData('return_reason', e.target.value)}
+                                              placeholder="Lí do"/>
+                                      </Form.Item>
+
+
+                                      <Form.Item
+                                          name="main_image"
+                                          label="Các hình ảnh liên quan "
+                                          style={{textAlign: "left"}}
+                                          rules={[
+                                              {
+                                                  required: false,
+                                                  message: 'Hãy tải lên hình ảnh minh chứng!',
+                                              },
+                                          ]}
+                                      >
+                                          <FileUpload length={16} onGetFormData={handleFileUpload}/>
+                                      </Form.Item>
+
+                                      <Form.Item>
+                                          <button
+                                              type="primary"
+                                              onClick={handleSubmit}
+                                              className="p-2 px-6 py-2 float-right bg-orange-500 rounded text-white border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                              Trả hàng
+                                          </button>
+                                      </Form.Item>
+
+                                  </Form>
                           </div>
 
-                          <div className="flex  gap-5 pb-6 justify-start mr-10">
-                              <Button
-                                  onClick={handleSubmit}
-                                  className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
-                                  Trả hàng
-                              </Button>
-                          </div>
                       </div>
                   </div>
               </div>
