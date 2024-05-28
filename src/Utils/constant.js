@@ -310,6 +310,7 @@ export function convertStatusToData(status) {
 }
 
 export const formatDateTime = (inputDateString) => {
+    if (!inputDateString) return ""
     const inputDate = new Date(inputDateString);
     const formatDateComponent = (component) => String(component).padStart(2, "0");
     const year = formatDateComponent(inputDate.getFullYear());

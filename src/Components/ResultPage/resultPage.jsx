@@ -1,6 +1,4 @@
-
 import {  Result } from 'antd';
-import {Button} from "@material-tailwind/react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import MainLayOut from "../Layout/mainLayout.jsx";
@@ -36,15 +34,16 @@ const ResultPage = () => {
       <>
           <MainLayOut>
           <Result
+              className="mt-24"
               status="success"
               title={title}
               subTitle={subTitle}
               extra={[
-                  <Button
+                  <button
                       onClick={() => navigate('/reqOrderTracking') }
-                      className="p-2 px-6 py-2 right-0 bg-blue-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                      className="p-2 px-6 py-2 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
                       Về trang chủ
-                  </Button>
+                  </button>
 
               ]}
           />
