@@ -28,7 +28,7 @@ export default function useAuctionProductDetail(state) {
             procedure_complete_time: formatDateTime(
                 new Date(data?.delivery?.procedure_complete_time),
             ),
-            quickbid : parseInt(data?.final_price) + parseInt(data?.step_price),
+            quickbid :data?.final_price ?  parseInt(data?.final_price) + parseInt(data?.step_price) : parseInt(data?.reserve_price) + parseInt(data?.step_price),
             countdownTime:data?.finish_time,
             seller_user_name:data?.seller_id?.username,
             seller_name : data?.seller_id?.name,

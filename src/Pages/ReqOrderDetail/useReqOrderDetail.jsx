@@ -46,6 +46,7 @@ export default function useReqOrderDetail() {
       reason:data?.reason,
       reject_time: formatDateTime(new Date(data?.reject_time)),
       type_of_auction: data?.type_of_auction,
+      auction_live:data?.auction_live === 0 ? 'Đấu giá thông thường' : 'Đấu giá trực tuyến',
     };
     return { detail };
   }, []);
