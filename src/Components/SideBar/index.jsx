@@ -44,7 +44,7 @@ const SideBar = () => {
                         <nav>
                             <NavLink
                                 onClick={() => handleItemClick('/user')}
-                                style={{color: activeItem === 'user' ? 'orange' : ''}}
+                                style={{color: activeItem === 'user' ? '#F27C08' : ''}}
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                                 to="/user/profile"
                             >
@@ -66,7 +66,7 @@ const SideBar = () => {
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                                 to="/winOrderTracking"
                                 onClick={() => handleItemClick('/winOrderTracking')}
-                                style={{color: activeItem === 'winOrderTracking' ? 'orange' : ''}}
+                                style={{color: activeItem === 'winOrderTracking' ? '#F27C08' : ''}}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -77,7 +77,7 @@ const SideBar = () => {
                             </NavLink>
 
                             <NavLink
-                                style={{color: activeItem === 'reqOrderTracking' ? 'orange' : ''}}
+                                style={{color: activeItem === 'reqOrderTracking' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/reqOrderTracking')}
                                 to="/reqOrderTracking"
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
@@ -92,7 +92,7 @@ const SideBar = () => {
                             </NavLink>
 
                             <NavLink
-                                style={{color: activeItem === 'productBid' ? 'orange' : ''}}
+                                style={{color: activeItem === 'productBid' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/productBid')}
                                 to="/productBid"
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
@@ -113,7 +113,7 @@ const SideBar = () => {
 
                             <NavLink
                                 to="/auctionHistory"
-                                style={{color: activeItem === 'auctionHistory' ? 'orange' : ''}}
+                                style={{color: activeItem === 'auctionHistory' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/auctionHistory')}
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                             >
@@ -130,7 +130,7 @@ const SideBar = () => {
 
                             <NavLink
                                 to="/saleHistory"
-                                style={{color: activeItem === 'saleHistory' ? 'orange' : ''}}
+                                style={{color: activeItem === 'saleHistory' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/saleHistory')}
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                             >
@@ -147,7 +147,7 @@ const SideBar = () => {
 
                             <NavLink
                                 to="/reqHistory"
-                                style={{color: activeItem === 'reqHistory' ? 'orange' : 'text-neutral-600'}}
+                                style={{color: activeItem === 'reqHistory' ? '#F27C08' : 'text-neutral-600'}}
                                 onClick={() => handleItemClick('/reqHistory')}
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                             >
@@ -163,7 +163,7 @@ const SideBar = () => {
 
                             <NavLink
                                 to="/create"
-                                style={{color: activeItem === 'create' ? 'orange' : 'text-neutral-600'}}
+                                style={{color: activeItem === 'create' ? '#F27C08' : 'text-neutral-600'}}
                                 onClick={() => handleItemClick('/reqHistory')}
                                 className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
                             >

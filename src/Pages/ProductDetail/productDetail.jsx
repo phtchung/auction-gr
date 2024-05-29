@@ -54,6 +54,7 @@ const ProductDetail = () => {
     const handleAuctionData = (key, value) => {
         setAuctionData({...auctionData, [key]: value});
     };
+
     useEffect(() => {
         setAuctionData({...auctionData,final_price : auctionProductData?.quickbid})
     }, [auctionProductData]);

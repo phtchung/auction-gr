@@ -7,11 +7,13 @@ const CardPreEnd = ({data}) => {
     return (
         <>
             <Card
+                className="card-hover_home"
                 size="small"
                 hoverable
                 bordered={false}
-                style={{width: '100%', borderRadius: 0, minHeight: 236}}
+                style={{width: '100%', borderRadius: 8, minHeight: 236}}
                 cover={<img alt="example" style={{
+                    padding: '4px',
                     width: '100%',
                     height: '10rem',
                     backgroundSize: 'cover',
