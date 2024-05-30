@@ -17,7 +17,8 @@ export default function useProfile() {
       username: data?.username,
       birthday: data?.date_of_birth,
       gender: data?.gender,
-      avatar:data?.avatar
+      avatar:data?.avatar,
+      shop_point : data?.shop_point
     };
     return { user };
   }, []);

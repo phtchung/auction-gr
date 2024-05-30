@@ -65,14 +65,12 @@ const CreateRequest = () => {
                   <SideBar/>
 
                   <div className="home-right">
-                      <div className="m-7">
-                      <div className="flex items-center justify-between">
-                                  <span className="font-semibold text-base">
-                                    Tạo yêu cầu đấu giá
-                                  </span>
-                      </div>
+                      <div className="">
+                          <div className="text-left px-5 pt-3 pb-3 text-xl  font-bold text-neutral-600  bg-white">
+                              Tạo yêu cầu đấu giá
+                          </div>
 
-                      <div className="border-b-2 mt-2  border-gray-300"></div>
+                          <div className="border-b-2 border-gray-300"></div>
                           <div className="m-8">
                               <Form
                                   form={form}
@@ -316,7 +314,7 @@ const CreateRequest = () => {
                                               suffix="VNĐ"
                                               className="xl:w-full lg:w-10/12"
                                               style={{
-                                                  width:'100%',
+                                                  width: '100%',
                                                   maxWidth: 230,
                                                   borderRadius: 0,
                                               }}
@@ -334,7 +332,7 @@ const CreateRequest = () => {
                                                       required: true,
                                                       message: 'Hãy điền giá bán trực tiếp!',
                                                   },
-                                                  ({ getFieldValue }) => ({
+                                                  ({getFieldValue}) => ({
                                                       validator(_, value) {
                                                           if (!value || getFieldValue('reserve_price') < value) {
                                                               return Promise.resolve();
@@ -406,7 +404,7 @@ const CreateRequest = () => {
                                           ]}
                                       >
                                           <Input.TextArea
-                                              style={{width:'86%'}}
+                                              style={{width: '86%'}}
                                               className="hover:border-none"
                                               placeholder="Mô tả sản phẩm"
                                               onChange={(e) => handleRequest('description', e.target.value)}
@@ -417,7 +415,7 @@ const CreateRequest = () => {
                                   <Form.Item>
                                       <button
                                           type="primary"
-                                          onClick={ handleSubmit}
+                                          onClick={handleSubmit}
                                           className=" px-6 mb-8  right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                           Xác nhận
                                       </button>
@@ -428,7 +426,7 @@ const CreateRequest = () => {
 
                       {/* Dialog confirm */}
                       <Dialog open={open1} onClose={() => openchange1(!open1)} maxWidth="xs">
-                          <DialogTitle>
+                      <DialogTitle>
                               <span className="font-semibold text-base text-neutral-600">
                                 Xác nhận gửi yêu cầu
                               </span>

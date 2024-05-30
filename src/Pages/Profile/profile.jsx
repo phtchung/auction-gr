@@ -9,8 +9,6 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {toast} from "react-toastify";
 import {updateUserInfo} from "../../Services/userService";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-
-
 const Profile = () => {
     const {userData, isSuccess, isLoading} = useProfile();
     const [data, setData] = useState(userData);
@@ -26,14 +24,11 @@ const Profile = () => {
         setData({...data, [key]: value});
     };
 
-
     const update = useMutation({
         mutationFn: () => updateUserInfo({...data, userId: userData.id}),
     });
 
     const onSubmit = () => {
-        console.log(data);
-
         update.mutate(
             {...data, userId: userData.id},
             {
@@ -62,7 +57,7 @@ const Profile = () => {
                                 </div>
                                 <div className="border-b border-neutral-200 "></div>
 
-                                <div className="items-center pt-6 text-sm gap-6 my-8 mx-8 px-1  ">
+                                <div className="items-center  text-sm gap-6 my-8 mx-8 px-1  ">
                                     <div className="flex-1 pr-5 px-12 text-lef w-4/6">
                                         <div className="flex pt-3 pb-5 gap-6 text-right">
                                             <div className=" w-1/5"> Tên đăng nhập</div>
@@ -70,7 +65,7 @@ const Profile = () => {
                                         </div>
                                         <div className="flex pt-3 pb-5 items-center gap-6 text-right">
                                             <div className=" w-1/5"> Tên</div>
-                                            <div className="relative  w-3/5 shadow-sm">
+                                            <div className="relative  w-3/5">
                                                 <input
                                                     type="text"
                                                     name="price"
@@ -92,6 +87,10 @@ const Profile = () => {
                                         <div className="flex pt-3 pb-5  gap-6 text-right">
                                             <div className=" w-1/5"> Điểm tích lũy</div>
                                             <div className=" "> {userData?.point}</div>
+                                        </div>
+                                        <div className="flex pt-3 pb-5  gap-6 text-right">
+                                            <div className=" w-1/5"> Điểm cửa hàng </div>
+                                            <div className=" "> {userData?.shop_point}</div>
                                         </div>
                                         <div className="flex pt-3 pb-5  gap-6 text-right">
                                             <div className=" w-1/5"> Giới tính</div>
@@ -138,7 +137,7 @@ const Profile = () => {
                                             >
                                                 <DatePicker
                                                     defaultValue={dayjs(userData.birthday)}
-                                                    sx={{"& .MuiInputBase-input": {width: 258}}}
+                                                    sx={{"& .MuiInputBase-input": {width: 258,fontSize:15}}}
                                                     onChange={(newValue) =>
                                                         handleData(
                                                             "date_of_birth",
@@ -159,7 +158,7 @@ const Profile = () => {
                                         >
                                             <div className=" w-1/5"></div>
                                             <button
-                                                className=" bg-orange-500 text-white px-5 py-2.5 rounded  border-none">
+                                                className=" bg-orange-500 text-white px-7 py-2 text-base rounded  border-none">
                                                 Lưu
                                             </button>
                                         </div>

@@ -39,7 +39,7 @@ const SaleHistory = () => {
                 <div className="wrapper">
                     <SideBar/>
                     <div className="home-right">
-                        <div className="text-left px-5 pt-3 pb-3 text-xl font-semibold text-neutral-600  bg-white">
+                        <div className="text-left px-5 pt-3 pb-3 text-xl  font-bold text-neutral-600  bg-white">
                             Lịch Sử Bán
                         </div>
                         <div className="border-b border-neutral-300 "></div>

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { formatDateTime } from "../../Utils/constant.js";
+import {converReason, formatDateTime} from "../../Utils/constant.js";
 import { getWinOrderDetail } from "../../Services/productService.jsx";
 
 export default function useWinOrderDetail() {
@@ -32,6 +32,7 @@ export default function useWinOrderDetail() {
       total_price:data?.auction_live !== 2 ? data?.final_price + data?.shipping_fee : data?.final_price - data.deposit_price + data?.shipping_fee ,
       rank: data?.product_id?.rank,
       return_reason:data?.delivery?.return_reason,
+      return_reasonQuick:converReason(data?.delivery?.return_reasonQuick),
       return_image:data?.delivery?.return_image_list,
       receiver: data?.delivery?.name,
       phone_receiver: data?.delivery?.phone,
