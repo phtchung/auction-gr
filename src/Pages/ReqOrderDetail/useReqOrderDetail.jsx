@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { getReqDetail } from "../../Services/productService.jsx";
-import { formatDateTime } from "../../Utils/constant.js";
+import {converReason, formatDateTime} from "../../Utils/constant.js";
 
 export default function useReqOrderDetail() {
   const { id } = useParams();
@@ -40,6 +40,7 @@ export default function useReqOrderDetail() {
       can_return:data?.product_id?.can_return === 0 ? 'Không' : 'Có thể',
       delivery_from:data?.product_id?.delivery_from,
       return_reason: data?.delivery?.return_reason,
+      return_reasonQuick: converReason(data?.delivery?.return_reasonQuick),
       return_image:data?.delivery?.return_image_list,
       rank: data?.product_id?.rank,
       status: data?.status,

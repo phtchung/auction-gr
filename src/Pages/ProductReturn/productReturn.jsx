@@ -1,8 +1,7 @@
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
-import { Form, Input} from 'antd';
-import {Button} from "@material-tailwind/react";
+import {Form, Input, Select} from 'antd';
 import {useState} from "react";
 import SideBar from "../../Components/SideBar/index.jsx";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
@@ -10,6 +9,7 @@ import {toast} from "react-toastify";
 import {returnProductData} from "../../Services/requestService.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+const {Option} = Select;
 
 const ReturnProduct = () => {
     const navigate = useNavigate();
@@ -79,22 +79,55 @@ const ReturnProduct = () => {
                       </div>
                       <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                           <div className="mr-auto w-9/12  items-center">
-
                                   <Form form={form} >
                                       <Form.Item
-                                          name="return_reason"
+                                          name="return_reasonQuick"
                                           label="Lí do"
+                                          hasFeedback
+                                          required
+                                          className="font-semibold ml-[53px]"
                                           rules={[
                                               {
                                                   required: true,
-                                                  message: 'Hãy điền lí do yêu cầu trả sản phẩm!',
-                                                  whitespace: true,
+                                                  message: 'Hãy chọn lí do yêu cầu trả sản phẩm!',
                                               },
                                           ]}
                                       >
-                                          <Input
+                                          <Select
+                                              onChange={(value) => handleReturnData('return_reasonQuick', value)}
+                                              placeholder="Lí do"
+                                              style={{
+                                                  textAlign: "left",
+                                                  width:'84%',
+                                              }}
+                                          >
+                                              <Option value="0">Sản phẩm không đúng mô tả</Option>
+                                              <Option value="1">Sản phẩm bị hỏng hoặc lỗi kỹ thuật</Option>
+                                              <Option value="2">Thay đổi nhu cầu</Option>
+                                              <Option value="3">Lý do cá nhân</Option>
+                                              <Option value="4"> Sản phẩm có dấu hiệu đã qua sử dụng</Option>
+                                              <Option value="5"> Không đúng số lượng</Option>
+                                              <Option value="6">Sai thông tin đơn hàng</Option>
+                                          </Select>
+                                      </Form.Item>
+
+                                      <Form.Item
+                                          name="return_reason"
+                                          required
+                                          label="Mô tả chi tiết"
+                                          className="font-semibold "
+                                          rules={[
+                                              {
+                                                  required: true,
+                                                  message: 'Hãy điền mô tả chi tiết yêu cầu trả hàng!',
+                                              },
+                                          ]}
+                                      >
+                                          <Input.TextArea
+                                              style={{width:'84%'}}
+                                              placeholder="Mô tả sản phẩm"
                                               onChange={(e) => handleReturnData('return_reason', e.target.value)}
-                                              placeholder="Lí do"/>
+                                              maxLength={390}/>
                                       </Form.Item>
 
 
@@ -120,7 +153,6 @@ const ReturnProduct = () => {
                                               Trả hàng
                                           </button>
                                       </Form.Item>
-
                                   </Form>
                           </div>
 

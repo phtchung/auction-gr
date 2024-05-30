@@ -42,7 +42,7 @@ const WinOrdersTracking = () => {
                     <div className="home-right ">
                         <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
                             <div className="text-left text-xl font-bold ">
-                                Quản Lý Đơn Thắng Đấu Giá
+                                Quản lý đơn thắng đấu giá
                             </div>
                             <div className="  ">
                                 <CountdownTimer initialTimeInSeconds={20}/>

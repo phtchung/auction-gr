@@ -964,3 +964,24 @@ export const getFirstLetter = (name) => {
 
     return firstLetter.toUpperCase();
 };
+
+export const converReason = (reason) => {
+    switch (reason) {
+        case 0:
+            return 'Sản phẩm không đúng mô tả';
+        case 1:
+            return 'Sản phẩm bị hỏng hoặc lỗi kỹ thuật';
+        case 2:
+            return 'Thay đổi nhu cầu';
+        case 3:
+            return 'Lý do cá nhân';
+        case 4:
+            return 'Sản phẩm có dấu hiệu đã qua sử dụng';
+        case 5:
+            return 'Không đúng số lượng';
+        case 6:
+            return 'Sai thông tin đơn hàng';
+        default:
+            return 'Lý do không xác định';
+    }
+}
