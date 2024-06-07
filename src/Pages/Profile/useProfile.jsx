@@ -18,7 +18,8 @@ export default function useProfile() {
       birthday: data?.date_of_birth,
       gender: data?.gender,
       avatar:data?.avatar,
-      shop_point : data?.shop_point
+      shop_point : data?.shop_point,
+      receiveAuctionSuccessEmail : data?.receiveAuctionSuccessEmail,
     };
     return { user };
   }, []);

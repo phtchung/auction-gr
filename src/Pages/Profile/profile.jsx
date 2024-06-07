@@ -9,19 +9,25 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {toast} from "react-toastify";
 import {updateUserInfo} from "../../Services/userService";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
+import {Tooltip} from "antd";
+
 const Profile = () => {
     const {userData, isSuccess, isLoading} = useProfile();
     const [data, setData] = useState(userData);
     const queryClient = useQueryClient();
+    const [check , setCheck] = useState(false)
+
     const handleRadio = (value) => {
-        console.log(value);
         setData({
             ...data,
             gender: value,
         });
+        setCheck(true)
     };
+
     const handleData = (key, value) => {
         setData({...data, [key]: value});
+        setCheck(true)
     };
 
     const update = useMutation({
@@ -101,8 +107,7 @@ const Profile = () => {
                                                     type="radio"
                                                     name="gender"
                                                     defaultChecked={
-                                                        (userData.gender && userData.gender === "1") || false
-                                                    }
+                                                        (userData.gender && userData.gender === "1") || false}
                                                     onChange={() => handleRadio(1)}
                                                 />
                                                 <label
@@ -117,8 +122,7 @@ const Profile = () => {
                                                     type="radio"
                                                     name="gender"
                                                     defaultChecked={
-                                                        (userData.gender && userData.gender === "0") || false
-                                                    }
+                                                        (userData.gender && userData.gender === "0") || false}
                                                     onChange={() => handleRadio(0)}
                                                 />
                                                 <label
@@ -129,6 +133,23 @@ const Profile = () => {
                                                 </label>
                                             </div>
                                         </div>
+                                        <div className="flex pt-3 pb-5  gap-6 text-right">
+                                            <Tooltip placement="top" title={<p>Nhận thông báo tới email khi đấu giá thành công</p>} arrow={true}>
+                                                <div className=" w-1/5"> Thông báo</div>
+                                            </Tooltip>
+
+                                            <label className="relative inline-flex cursor-pointer items-center">
+                                                <input id="switch" type="checkbox" defaultChecked={userData.receiveAuctionSuccessEmail} onChange={(e) => handleData('receiveAuctionSuccessEmail', e.target.checked)} className="peer sr-only"/>
+                                                <label htmlFor="switch" className="hidden"></label>
+                                                <div
+                                                    className="peer h-6 w-11 rounded-full border bg-slate-200 after:absolute after:left-[2px]
+                                                    after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white
+                                                    after:transition-all after:content-[''] peer-checked:bg-orange-500 peer-checked:after:translate-x-full
+                                                    peer-checked:after:border-white peer-focus:ring-green-300"></div>
+                                            </label>
+
+                                        </div>
+
                                         <div className="flex pt-3 pb-5 items-center gap-6 text-right">
                                             <div className=" w-1/5"> Ngày sinh</div>
                                             <LocalizationProvider
@@ -158,7 +179,8 @@ const Profile = () => {
                                         >
                                             <div className=" w-1/5"></div>
                                             <button
-                                                className=" bg-orange-500 text-white px-7 py-2 text-base rounded  border-none">
+                                                disabled={!check}
+                                                className={`${check ? 'bg-orange-500' : 'bg-gray-300 cursor-no-drop'}  text-white px-7 py-2 text-base rounded  border-none`}>
                                                 Lưu
                                             </button>
                                         </div>

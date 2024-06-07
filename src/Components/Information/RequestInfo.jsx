@@ -85,8 +85,8 @@ const RequestInfo = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div className="min-[225px]:col-span-3  sm:col-span-2">
                     Hỉnh ảnh sản phẩm
+                    </div>
                 </div>
-            </div>
                 {data.main_image &&
                     <>
                         <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 min-[225px]:col-span-1 text-left mb-4">
@@ -132,7 +132,6 @@ const RequestInfo = ({data}) => {
                         </div>
                     </>
                 }
-
             </div>
         </>
     );
