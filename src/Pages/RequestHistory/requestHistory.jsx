@@ -2,7 +2,6 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import useRequestHistory from "./useRequestHistory.jsx";
 import {useState} from "react";
@@ -81,23 +80,21 @@ const RequestHistory = () => {
                                 </div>
                             </div>
                             <div>
-                                <Button
+                                <button
                                     onClick={onSubmit}
-                                    size="md"
-                                    className="bg-blue-800  h-9 py-2 rounded m-2 mt-4 px-6"
-                                >
+                                    className="px-6 mt-3 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                                     Tìm kiếm
-                                </Button>
+                                </button>
                             </div>
 
                         </div>
                         {isSuccess && (
                             <>
                                 <div className="bg-white border-gray-300 border p-2 mt-6  h-24">
-                                    <table style={{width: "100%"}} >
+                                    <table style={{width: "100%"}}>
                                         <thead>
                                         <tr
-                                            className="text-neutral-800 text-base "
+                                            className="text-neutral-700 text-base "
                                             style={{
                                                 borderBottom: "1px solid #e5e7eb",
                                                 height: 40,

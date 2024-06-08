@@ -1,6 +1,5 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import {useState} from "react";
-import {Button, Input} from "@material-tailwind/react";
 import AuctionHistoryCpn from "../../Components/AuctionHistoryCpn/auctionHistoryCpn.jsx";
 import useAuctionHistory from "./useAuctionHistory.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
@@ -21,24 +20,22 @@ const AuctionHistory = () => {
                             Lịch sử đấu giá
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="relative flex w-full ">
-                            <Input
-                                type="search"
+                        <div className=" flex h-10 flex-row justify-between ">
+                            <input
+                                type="text"
                                 style={{backgroundColor: "#eaeaea"}}
                                 value={search}
                                 onChange={onChange}
                                 placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
-                                className="pr-30 pl-5"
-
+                                className=" pl-5 w-full outline-none"
                             />
-                            <Button
-                                size="sm"
-                                className={`!absolute right-1 top-1 rounded ${
-                                    search ? "bg-black" : "bg-gray-400"
+                            <button
+                                className={`w-[7rem]  text-white border-none text-sm font-semibold focus:outline-0  rounded ${
+                                    search ? "bg-orange-500" : "bg-gray-300"
                                 }`}
                             >
-                                Search
-                            </Button>
+                                Tìm kiếm
+                            </button>
                         </div>
 
                         {isLoading ?
@@ -49,17 +46,17 @@ const AuctionHistory = () => {
                             isError ?
                                 <FZFNotFound error={'Rất tiếc, đã có lỗi xảy ra.'}
                                              urlReturn={'/'} btnText={'Về trang chủ'}/>
-                            :
+                                :
                                 isSuccess &&
-                                    <>
-                                        <div className="flex flex-col gap-3">
-                                            {
-                                                aucHistoryData.map((data) => (
-                                                    <AuctionHistoryCpn key={data.id} data={data}/>
-                                                ))
-                                            }
-                                        </div>
-                                    </>
+                                <>
+                                    <div className="flex flex-col gap-3">
+                                        {
+                                            aucHistoryData.map((data) => (
+                                                <AuctionHistoryCpn key={data.id} data={data}/>
+                                            ))
+                                        }
+                                    </div>
+                                </>
                         }
                     </div>
                 </div>

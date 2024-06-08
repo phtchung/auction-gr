@@ -109,7 +109,7 @@ const TableDataHistory = ({cols, rows,path}) => {
                                         style={{
                                             color: "dimgray",
                                             fontWeight: "550",
-                                            fontSize: "12px",
+                                            fontSize: "14px",
                                         }}
                                     >
                                         Không có dữ liệu
