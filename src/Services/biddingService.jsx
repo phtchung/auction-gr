@@ -68,6 +68,14 @@ export const sendBuyData = async (auctionData) => {
   });
 };
 
+export const BuyAuctionPriceDown = async (auctionData) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/online/buy",
+    data: auctionData,
+  });
+};
+
 export const getSellerHomeData = async (seller) => {
   return publicHttp({
     method: "GET",

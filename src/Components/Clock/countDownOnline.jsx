@@ -23,6 +23,53 @@ const CountDownOnline = ({targetDate, id}) => {
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
 
     useEffect(() => {
+        const eventSource = new EventSource('http://localhost:8088/events');
+        eventSource.addEventListener(`finishAuctionOnline_${id}`, function (event) {
+            const res = JSON.parse(event.data);
+            {
+                const isSuccess = currentUser.id.toString() === res?.winner;
+                const title = isSuccess ? "Đấu giá thành công!" : "Không trúng đấu giá!";
+                const icon = isSuccess ? 'success' : 'error';
+
+                let timerInterval;
+                Swal.fire({
+                    title: title,
+                    html: isSuccess ?
+                        `<h5 class="text-sm">Bạn đã mua thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
+                                    <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
+                        `<h5 class="text-sm">Rất tiếc! Người dùng khác đã mua trực tiếp sản phẩm</h5>
+                                    <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
+                    timer: 10000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    width:'400px',
+                    icon: icon,
+                    didOpen: () => {
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            const secondsLeft = Math.ceil(Swal.getTimerLeft() / 1000); // Chuyển mili giây thành giây và làm tròn lên
+                            timer.textContent = `${secondsLeft}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        navigate('/winOrderTracking')
+                    }
+                });
+            }
+        });
+        return () => {
+            eventSource.close();
+        };
+    }, []);
+
+    useEffect(() => {
         const interval = setInterval(() => {
             const { hours, minutes, seconds} = calculateTimeRemaining();
             setCurrentTime({ hours, minutes, seconds});
@@ -46,7 +93,7 @@ const CountDownOnline = ({targetDate, id}) => {
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
                                 `<h5 class="text-sm">Rất tiếc! Bạn không đấu giá thành công sản phẩm</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
-                            timer: 10000,
+                            timer: 5000,
                             timerProgressBar: true,
                             showConfirmButton: false,
                             allowOutsideClick: false,

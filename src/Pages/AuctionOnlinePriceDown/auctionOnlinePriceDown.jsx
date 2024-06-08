@@ -1,11 +1,11 @@
 import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
-import useAuctionOnline from "./useAuctionOnline.jsx";
+
 import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";
-import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
+import {BuyAuctionPriceDown, sendAuctionDataOnline, sendBuyData} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import {CheckCircleOutlined} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
@@ -14,8 +14,9 @@ import useListenBidding from "../../Hooks/useListenBidding.js";
 import CountDownOnline from "../../Components/Clock/countDownOnline.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import useAuctionOnlinePriceDown from "./useAuctionOnlinePriceDown.jsx";
 
-const AuctionOnline = () => {
+const AuctionOnlinePriceDown = () => {
     const { id } = useParams();
     const {selectedAuction,setSelectedAuction  , setBidList ,  setHighestPrice } = useAuctionOnlineTracking()
     const [auctionData,setAuctionData] = useState({productId:id})
@@ -36,7 +37,7 @@ const AuctionOnline = () => {
         highestPrice,
         bidList,
         isError
-    } = useAuctionOnline(state)
+    } = useAuctionOnlinePriceDown(state)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,6 +52,15 @@ const AuctionOnline = () => {
             });
         }
     }
+
+    const handleBuyProduct = async () => {
+        try{
+            const res = await BuyAuctionPriceDown({...auctionData,final_price:highestPrice});
+            setAuctionData({productId:id})
+        }catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
+    }
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -63,6 +73,8 @@ const AuctionOnline = () => {
         showModal()
     }
 
+
+    console.log(productData)
     const modalStyles = {
         body:{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px'},
         header:{
@@ -91,7 +103,7 @@ const AuctionOnline = () => {
                             isSuccess &&
                         <>
                         {
-                            productData.type_of_auction === 1 ?
+                            productData.type_of_auction === -1 ?
                                 <>
                                     <div className="mt-24">
                                         <div className="px-3 mx-2 mt-2">
@@ -181,27 +193,55 @@ const AuctionOnline = () => {
                                                 <div
                                                     className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
                                                     style={{backgroundColor: '#f1a851'}}>
-                                                    <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
-                                                         className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
-                                                        <span className="text-base flex gap-3  ">
-                                                              <img src="../../src/assets/label.png" alt=""
-                                                                   style={{width: '17%'}}/>
-                                                           Giá hiện tại
-                                                        </span>
-                                                        <span className="text-base font-semibold    ">
+
+                                                    <div style={{
+                                                            fontWeight: 600,
+                                                            textShadow: '0px 0px 10px #ccc3b8'
+                                                        }}
+                                                             className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
+                                                            <span className="text-base flex gap-3  ">
+                                                                  <img src="../../src/assets/label.png" alt=""
+                                                                       style={{width: '17%'}}/>
+                                                               Giá hiện tại
+                                                            </span>
+                                                            <span className="text-base font-semibold    ">
                                                               {formatMoney(highestPrice)} Đ
-                                                        </span>
+                                                            </span>
                                                     </div>
+
                                                     <div className=" justify-between items-center ">
-                                                        <div
-                                                            onClick={() => handleOnlineBidding(highestPrice + productData.step_price)}
-                                                            className="p-3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-8 mt-3 mb-3 font-semibold text-lg">
-                                                        <span>Trả giá <span
-                                                            className='font-bold'> {formatMoney(highestPrice + productData.step_price)} đ</span> </span>
+                                                        <div className="flex flex-row justify-between m-2">
+                                                            {
+                                                                highestPrice - productData.step_price > 0 &&
+                                                                <>
+                                                                    <div
+                                                                        onClick={() => handleOnlineBidding(highestPrice - productData.step_price)}
+                                                                        className="p-3 w-2/3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-2 mt-3 mb-3 font-semibold text-lg">
+                                                                        <span className="font-semibold text-cyan-50">Trả giá <span
+                                                                            className='font-bold'> {formatMoney(highestPrice - productData.step_price)} đ</span> </span>
+                                                                    </div>
+                                                                </>
+                                                            }
+
+                                                            <div
+                                                                onClick={handleBuyProduct}
+                                                                className={`p-3 ${highestPrice - productData.step_price > 0 ? 'w-1/3' : 'w-full pr-2'}  text-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-900 hover:from-orange-700 hover:to-red-500 mx-2 mt-3 mb-3 font-semibold text-lg`}
+                                                            >
+                                                                <span>
+                                                                    Mua {highestPrice - productData.step_price > 0 ? '' : formatMoney(highestPrice) +'đ'}
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div
-                                                            className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
-                                                        </div>
+
+                                                        {
+                                                            highestPrice - productData.step_price > 0 &&
+                                                            <>
+                                                                <div
+                                                                    className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
+                                                                </div>
+                                                            </>
+                                                        }
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,4 +298,4 @@ const AuctionOnline = () => {
         </>
     )
 }
-export default AuctionOnline
+export default AuctionOnlinePriceDown
