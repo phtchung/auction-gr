@@ -3,7 +3,6 @@ import {getBiddingList} from "../../Services/biddingService.jsx";
 import useQueryString from "../../Hooks/useQueryString.js";
 
 export default function useProductBidding() {
-
     const {queryString , setQueryString} = useQueryString()
 
     const {

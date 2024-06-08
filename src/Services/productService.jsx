@@ -1,13 +1,24 @@
 import privateHttp from "./Http/privateHttp.config.jsx";
 import privateHttp1 from "./Http/privateHttp1.config.jsx";
 
-export const getAuctionHistory = async ({ status = "" }) => {
+// export const getAuctionHistory = async ({ status = "" }) => {
+//   return privateHttp({
+//     method: "POST",
+//     url: "/product/history",
+//     data: {
+//       status: status,
+//     },
+//   });
+// };
+
+export const getAuctionHistory = async (pageParam,keyword) => {
+  let url = `/product/history?page=${pageParam}`;
+  if (keyword !== undefined) {
+    url += `&keyword=${keyword}`;
+  }
   return privateHttp({
-    method: "POST",
-    url: "/product/history",
-    data: {
-      status: status,
-    },
+    method: "GET",
+    url: url,
   });
 };
 
