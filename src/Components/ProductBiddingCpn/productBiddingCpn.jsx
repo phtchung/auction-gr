@@ -11,7 +11,7 @@ const ProductBiddingCpn = ({data}) => {
             navigate(`/auction/item/${data._id}`)
             window.scroll(0,0)
         }else if(data?.auction_live === 1){
-            navigate(`/bidding/${data._id}`)
+            navigate(`/auction/online/item/${data._id}`)
             window.scroll(0,0)
         }else if(data?.auction_live === 2){
             navigate(`/streamGeneral`)

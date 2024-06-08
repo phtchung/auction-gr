@@ -2,7 +2,6 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useSaleHistory from "./useSaleHistory.jsx";
@@ -31,8 +30,6 @@ const SaleHistory = () => {
         setQueryString(params);
     };
 
-    const navigate = useNavigate();
-
     return (
         <>
             <MainLayOut>
@@ -40,7 +37,7 @@ const SaleHistory = () => {
                     <SideBar/>
                     <div className="home-right">
                         <div className="text-left px-5 pt-3 pb-3 text-xl  font-bold text-neutral-600  bg-white">
-                            Lịch Sử Bán
+                            Lịch sử bán
                         </div>
                         <div className="border-b border-neutral-300 "></div>
                         <div className="bg-white p-3 grid grid-cols-5 gap-3 border-gray-300 border h-28 text-sm  justify-around">
@@ -86,23 +83,22 @@ const SaleHistory = () => {
 
                             </div>
                             <div>
-                                <Button
+                                <button
                                     onClick={onSubmit}
-                                    size="md"
-                                    className="bg-blue-800  h-9 py-2 rounded  mt-4 px-7"
-                                >
+                                    className="px-6 mt-3 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                                     Tìm kiếm
-                                </Button>
+                                </button>
                             </div>
 
                         </div>
 
                         {isSuccess && (
                             <>
-                                <div className="bg-white border-gray-300 border p-2 mt-6 text-sm h-24">
+                                <div className="bg-white text-neutral-800 font-medium border-gray-300 border p-2 mt-6 text-sm h-24">
                                     <table style={{width: "100%"}}>
                                         <thead>
                                         <tr
+                                            className="text-neutral-600"
                                             style={{
                                                 borderBottom: "1px solid #e5e7eb",
                                                 height: 40,
@@ -115,7 +111,7 @@ const SaleHistory = () => {
                                             <th>Trả hàng</th>
                                         </tr>
                                         </thead>
-                                        <tbody className="font-light">
+                                        <tbody className="font-medium">
                                         <tr style={{height: 40, fontSize: 14}}>
                                             <td> Số lượng</td>
                                             <td>{total.total_sale}</td>

@@ -416,7 +416,7 @@ const CreateRequest = () => {
                                       <button
                                           type="primary"
                                           onClick={handleSubmit}
-                                          className=" px-6 mb-8  right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                          className="px-6 mt-3 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                                           Xác nhận
                                       </button>
                                   </Form.Item>

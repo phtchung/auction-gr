@@ -1,6 +1,5 @@
 import SideBar from "../../Components/SideBar/index.jsx";
 import {useEffect, useState} from "react";
-import {Button, Input} from "@material-tailwind/react";
 import ProductBiddingCpn from "../../Components/ProductBiddingCpn/productBiddingCpn.jsx";
 import useProductBidding from "./useProductBidding.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
@@ -53,24 +52,23 @@ const ProductBidding = () => {
                                         Đang tham gia đấu giá
                                     </div>
                                     <div className="border-b border-neutral-300 "></div>
-                                    <div className="relative flex w-full ">
-                                        <Input
+                                    <div className=" flex h-10 flex-row justify-between ">
+                                        <input
                                             type="text"
                                             style={{backgroundColor: "#eaeaea"}}
                                             defaultValue={queryString.keyword ? queryString.keyword : keyword}
                                             onChange={onChange}
                                             placeholder="Bạn có thể tìm kiếm theo tên hoặc mã sản phẩm"
-                                            className="pr-30 pl-5"
+                                            className=" pl-5 w-full outline-none"
                                         />
-                                        <Button
+                                        <button
                                             onClick={handleSearch}
-                                            size="sm"
-                                            className={`!absolute right-1 top-1 rounded ${
-                                                keyword ? "bg-orange-500" : "bg-gray-400"
+                                            className={`w-[7rem]  text-white border-none text-sm font-semibold focus:outline-0  rounded ${
+                                                keyword ? "bg-orange-500" : "bg-gray-300"
                                             }`}
                                         >
-                                            Search
-                                        </Button>
+                                            Tìm kiếm
+                                        </button>
                                     </div>
                                     {data.pages.map((page) => (
                                         <>
@@ -89,7 +87,14 @@ const ProductBidding = () => {
                                                     </>
                                                     :
                                                     <>
-                                                        <div className="mt-20">Không có sản phẩm</div>
+                                                        <div className="flex flex-col mb-7 mt-5 items-center">
+                                                            <img
+                                                                style={{width: '30%'}}
+                                                                src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
+                                                                alt=""/>
+                                                            <div className="text-gray-500 -mt-7 font-medium text-base">Không có sản phẩm nào.
+                                                            </div>
+                                                        </div>
                                                     </>
                                             }
                                         </>

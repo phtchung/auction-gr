@@ -45,7 +45,7 @@ const SideBar = () => {
                             <NavLink
                                 onClick={() => handleItemClick('/user')}
                                 style={{color: activeItem === 'user' ? '#F27C08' : ''}}
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 hover:text-orange-600 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                                 to="/user/profile"
                             >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -66,7 +66,7 @@ const SideBar = () => {
                                 to="/create"
                                 style={{color: activeItem === 'create' ? '#F27C08' : 'text-neutral-600'}}
                                 onClick={() => handleItemClick('/reqHistory')}
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 hover:text-orange-600 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -77,7 +77,7 @@ const SideBar = () => {
                             </NavLink>
 
                             <NavLink
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 hover:text-orange-600  py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                                 to="/winOrderTracking"
                                 onClick={() => handleItemClick('/winOrderTracking')}
                                 style={{color: activeItem === 'winOrderTracking' ? '#F27C08' : ''}}
@@ -94,7 +94,7 @@ const SideBar = () => {
                                 style={{color: activeItem === 'reqOrderTracking' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/reqOrderTracking')}
                                 to="/reqOrderTracking"
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 py-2 hover:text-orange-600 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                                 href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -109,7 +109,7 @@ const SideBar = () => {
                                 style={{color: activeItem === 'productBid' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/productBid')}
                                 to="/productBid"
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 py-2 hover:text-orange-600 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5"
@@ -129,7 +129,7 @@ const SideBar = () => {
                                 to="/auctionHistory"
                                 style={{color: activeItem === 'auctionHistory' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/auctionHistory')}
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center px-4 hover:text-orange-600 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5"
@@ -146,7 +146,7 @@ const SideBar = () => {
                                 to="/saleHistory"
                                 style={{color: activeItem === 'saleHistory' ? '#F27C08' : ''}}
                                 onClick={() => handleItemClick('/saleHistory')}
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center hover:text-orange-600 px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5"
@@ -163,7 +163,7 @@ const SideBar = () => {
                                 to="/reqHistory"
                                 style={{color: activeItem === 'reqHistory' ? '#F27C08' : 'text-neutral-600'}}
                                 onClick={() => handleItemClick('/reqHistory')}
-                                className="flex items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 "
+                                className="flex items-center hover:text-orange-600 px-4 py-2 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-orange-100 "
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth="1.5"

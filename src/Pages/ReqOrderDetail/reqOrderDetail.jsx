@@ -60,7 +60,7 @@ const ReqOrderDetail = () => {
                                         </div>
                                         <div className="border-b border-gray-400  mx-5"></div>
                                         <div className="flex justify-between absolute right-32  m-2.5 items-center px-2">
-                                            <div className="text-base  font-semibold  bg-amber-300 p-1 px-4">
+                                            <div className="text-base  font-medium  text-white bg-orange-400 p-1 px-4">
                                                 {stateStr}
                                             </div>
                                         </div>
