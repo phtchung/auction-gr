@@ -1,5 +1,4 @@
 import SideBar from "../SideBar/index.jsx";
-import {Step, StepLabel, Stepper} from "@mui/material";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate, useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
@@ -8,6 +7,7 @@ import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 import MainLayOut from "../Layout/mainLayout.jsx";
 import CustomSpinner from "../CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../PageNotFound/404NotFound.jsx";
+import CheckOKSvg from "../../assets/check.jsx";
 
 const AucHistoryDetail = () => {
     const navigate = useNavigate();
@@ -18,12 +18,6 @@ const AucHistoryDetail = () => {
         select: (data) => data.data,
         enabled: !!aucHistoryParams,
     });
-    const steps = [
-        "Đấu giá thành công",
-        "Xác nhận đơn hàng",
-        "Bắt đầu giao hàng",
-        "Đã nhận được hàng",
-    ];
 
     return (
         <>
@@ -40,7 +34,7 @@ const AucHistoryDetail = () => {
                                     :
                                     isSuccess &&
                                     <>
-                                        <div className="flex justify-between items-center m-1.5">
+                                        <div className="flex font-medium justify-between items-center m-1.5">
                                             <div
                                                 className="flex items-center cursor-pointer"
                                                 onClick={() => navigate(-1)}
@@ -52,49 +46,85 @@ const AucHistoryDetail = () => {
                                                 <div className="text-sm"> TRỞ LẠI</div>
                                             </div>
 
-                                            <div className="text-right px-5 pt-3 pb-3 text-sm  text-red-500  bg-white">
+                                            <div className="text-right px-5 pt-3 pb-3 text-sm  text-orange-500  bg-white">
                                                 ĐƠN HÀNG ĐÃ HOÀN THÀNH
                                             </div>
                                         </div>
 
                                         <div className="border-b border-neutral-300 "></div>
-                                        <div className="bg-white pt-10">
-                                            <Stepper activeStep={4} alternativeLabel>
-                                                <Step>
-                                                    <StepLabel>
-                                                        {steps[0]} <br/>{" "}
-                                                        <span className="text-xs text-stone-400">
-                                                    {formatDateTime(data?.victory_time)}
-                                                </span>
-                                                    </StepLabel>
-                                                </Step>
-                                                <Step>
-                                                    <StepLabel>
-                                                        {steps[1]} <br/>
-                                                        <span className="text-xs text-stone-400">
-                                                    {formatDateTime(data?.delivery?.confirm_time)}
-                                                </span>
-                                                    </StepLabel>
-                                                </Step>
-                                                <Step>
-                                                    <StepLabel>
-                                                        {steps[2]} <br/>{" "}
-                                                        <span className="text-xs text-stone-400">
-                                                    {formatDateTime(
-                                                        data?.delivery?.delivery_start_time,
-                                                    )}
-                                                </span>
-                                                    </StepLabel>
-                                                </Step>
-                                                <Step>
-                                                    <StepLabel>
-                                                        {steps[3]} <br/>{" "}
-                                                        <span className="text-xs text-stone-400">
-                                                    {formatDateTime(data?.delivery?.completed_time)}
-                                                </span>
-                                                    </StepLabel>
-                                                </Step>
-                                            </Stepper>
+
+                                        <div
+                                            className="flex items-start mt-16 max-md:flex-col gap-y-6 gap-x-3 max-w-screen-lg mx-auto px-8 font-[sans-serif]">
+                                            <div className="w-full">
+                                                <div
+                                                    className={`w-full h-1 rounded-xl ${data.victory_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                <div className="mt-2 mr-2 flex  w-full">
+                                                    <CheckOKSvg/>
+                                                    <div className="ml-2 ">
+                                                        <h6 className={`text-sm font-bold ${data.victory_time ? 'text-green-500' : 'text-gray-300'} `}>Thắng
+                                                            đấu giá</h6>
+                                                        <p className={`text-xs ${data.victory_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data.victory_time)}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="w-full">
+                                                <div
+                                                    className={`w-full h-1 rounded-xl ${data?.delivery?.confirm_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                <div className="mt-2 mr-2 flex w-full">
+                                                    {data?.delivery?.confirm_time && <CheckOKSvg/>}
+                                                    <div className="ml-2 w-full">
+                                                        <h6 className={`text-sm font-bold ${data?.delivery?.confirm_time ? 'text-green-500' : ' text-gray-300'} `}>Xác
+                                                            nhận giao
+                                                            hàng
+                                                        </h6>
+                                                        <p className={`text-xs ${data?.delivery?.confirm_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.confirm_time)}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="w-full">
+                                                <div
+                                                    className={`w-full h-1 rounded-xl ${data?.delivery?.delivery_start_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                <div className="mt-2 mr-2 w-full  flex">
+                                                    {data?.delivery?.delivery_start_time && <CheckOKSvg/>}
+                                                    <div className="ml-2 w-full">
+                                                        <h6 className={`text-sm font-bold ${data?.delivery?.delivery_start_time ? 'text-green-500' : ' text-gray-300'} `}>Bắt
+                                                            đầu giao hàng
+                                                        </h6>
+                                                        <p className={`text-xs ${data?.delivery?.delivery_start_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.delivery_start_time)}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                                        <div className="w-full">
+                                                            <div
+                                                                className={`w-full h-1 rounded-xl ${data?.delivery?.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                            <div className="mt-2 mr-2 w-full  flex">
+                                                                {data?.delivery?.completed_time &&
+                                                                    <CheckOKSvg/>}
+                                                                <div className="ml-2 w-full">
+                                                                    <h6 className={`text-sm font-bold ${data?.delivery?.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đã
+                                                                        nhận hàng
+                                                                    </h6>
+                                                                    <p className={`text-xs ${data?.delivery?.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.completed_time)}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="w-full">
+                                                            <div
+                                                                className={`w-full h-1 rounded-xl ${data?.delivery?.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                            <div className="mt-2 mr-2 w-full  flex">
+                                                                {data?.delivery?.completed_time &&
+                                                                    <CheckOKSvg/>}
+                                                                <div className="ml-2 w-full">
+                                                                    <h6 className={`text-sm font-bold ${data?.delivery?.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đánh
+                                                                        giá
+                                                                    </h6>
+                                                                    <p className={`text-xs ${data?.delivery?.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.completed_time)}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                         </div>
                                         <div className="border-b border-neutral-300 mx-14 pt-10 "></div>
 
@@ -104,12 +134,12 @@ const AucHistoryDetail = () => {
                                                     Thông tin nhận hàng
                                                 </div>
 
-                                                <div className="flex-col mt-4 mx-6  ">
+                                                <div className="flex-col mt-4 mx-6 font-medium text-base  ">
                                                     <div className="mb-3">{data.delivery?.name}</div>
-                                                    <div className="text-xs text-neutral-500 mb-2">
+                                                    <div className="text-sm text-neutral-500 mb-2">
                                                         {data.delivery?.phone}
                                                     </div>
-                                                    <div className="text-xs text-neutral-500">
+                                                    <div className="text-sm text-neutral-500">
                                                         {data.delivery?.address}
                                                     </div>
                                                 </div>
@@ -119,11 +149,16 @@ const AucHistoryDetail = () => {
                                                     {/*<div className="text-base font-semibold text-neutral-600  text-left">*/}
                                                     {/*    Thông tin sản phẩm*/}
                                                     {/*</div>*/}
-                                                    <div className="border-b border-neutral-200 text-left flex flex-row gap-3 items-center pb-3">
-                                                        <span className="text-base font-semibold text-neutral-600  text-left">{data?.seller_id?.name} </span>
-                                                        <a href={`/seller/${data?.seller_id?.username}`} className="decoration-0 ">
-                                                            <div className="border border-gray-200 hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
-                                                                <svg enableBackground="new 0 0 15 15" viewBox="0 0 15 15" x="0"
+                                                    <div
+                                                        className="border-b border-neutral-200 text-left flex flex-row gap-3 items-center pb-3">
+                                                        <span
+                                                            className="text-base font-semibold text-neutral-600  text-left">{data?.seller_id?.name} </span>
+                                                        <a href={`/seller/${data?.seller_id?.username}`}
+                                                           className="decoration-0 ">
+                                                            <div
+                                                                className="border border-gray-200 hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
+                                                                <svg enableBackground="new 0 0 15 15"
+                                                                     viewBox="0 0 15 15" x="0"
                                                                      y="0"
                                                                      className="fill-gray-600 inline-block  h-4 w-4  icon-btn-shop">
                                                                     <path
@@ -159,7 +194,8 @@ const AucHistoryDetail = () => {
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-3 text-sm mt-10">
-                                                    <div className="col-span-2 border-r border-gray-300 text-right pl-6 ">
+                                                    <div
+                                                        className="col-span-2 border-r border-gray-300 text-right pl-6 ">
                                                         <div className="border-b border-gray-200 "></div>
                                                         <div className="border-b border-gray-200 p-3">
                                                             Giá khởi điểm
@@ -186,7 +222,7 @@ const AucHistoryDetail = () => {
                                                             {formatMoney(data?.shipping_fee)}đ
                                                         </div>
                                                         <div
-                                                            className=" font-semibold text-base text-gray-600 p-4">
+                                                            className=" font-semibold text-base text-orange-600 p-4">
                                                             {formatMoney(data?.final_price + data?.shipping_fee)}đ
                                                         </div>
                                                     </div>

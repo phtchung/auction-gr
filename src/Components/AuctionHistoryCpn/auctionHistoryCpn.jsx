@@ -1,6 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
 import {useNavigate} from "react-router-dom";
-import { formatDateTime, isDateGreaterThanToday} from "../../Utils/constant.js";
+import {formatDateTime, formatDateTime1, formatMoney, isDateGreaterThanToday} from "../../Utils/constant.js";
 import {Avatar, Tooltip} from "antd";
 import { Form, Input} from "antd";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
@@ -17,18 +17,17 @@ const desc = ['Tệ', 'Không hài lòng', 'Bình thường', 'Hài lòng', 'Tuy
 const AuctionHistoryCpn = ({data}) => {
     const [value, setValue] = useState(5);
     const [showModal, setShowModal] = useState(false);
-    const [reviewData, setReviewData] = useState({product_id:data.id})
+    const [reviewData, setReviewData] = useState({product_id:data._id,rate : 5})
     const [open, setOpen] = useState(false);
     const {setOpenChat,selectedConversation,setSelectedConversation } = useConversation()
 
     const handleOpen = () => setOpen(!open);
     const handleReviewData = (key, value) => {
         setReviewData({...reviewData, [key]: value});
-        console.log(reviewData)
     };
     const navigate = useNavigate();
     const handleNavigate = () => {
-        navigate("/auctionHistory" + `/auction/${data.id}`)
+        navigate("/auctionHistory" + `/auction/${data._id}`)
         window.scrollTo(0, 0);
     }
     const handleValueChange = (newValue) => {
@@ -43,7 +42,7 @@ const AuctionHistoryCpn = ({data}) => {
             const res = await reviewProduct({...reviewData});
             handleOpen()
             toast.success('Đánh giá thành công')
-            setReviewData({product_id:data.id});
+            setReviewData({product_id:data._id});
             navigate('/auctionHistory')
         } catch (error) {
             toast.error(error?.response?.data?.message);
@@ -58,7 +57,7 @@ const AuctionHistoryCpn = ({data}) => {
 
     const { data : dataRv, isSuccess, isLoading } = useQuery({
         queryKey: ["getReview"],
-        queryFn: () => getReview({auction_id  : data.id }),
+        queryFn: () => getReview({auction_id  : data._id }),
         select: (data) => data.data,
         enabled : !!showModal
     });
@@ -68,7 +67,7 @@ const AuctionHistoryCpn = ({data}) => {
             <div className=" px-6 py-3 shadow-inner bg-white  text-sm ">
                 <div onClick={handleNavigate}
                      className="flex cursor-pointer pb-2 pt-2 items-center border-b border-b-gray-150">
-                    <div className="font-semibold pr-10">{data?.seller_name}</div>
+                    <div className="font-semibold pr-10">{data?.seller_id?.name}</div>
                     <div className="mr-1 mb-0.5">4.5</div>
                     <StarIcon
                         fontSize="small"
@@ -79,7 +78,7 @@ const AuctionHistoryCpn = ({data}) => {
                         <Tooltip placement="bottom" title={
                             <div>
                                 Giao hàng thành công <br/>
-                                {formatDateTime(data?.completed_time)}
+                                {formatDateTime(data?.delivery?.completed_time)}
                             </div>
                         }>
                             <img
@@ -97,7 +96,7 @@ const AuctionHistoryCpn = ({data}) => {
                         </div>
 
                         <div
-                            className="p-2  py-2  right-0 rounded  text-red-600 opacity-80 border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                            className="p-2  py-2  right-0 rounded  text-orange-600 opacity-80 border-gray-400 border-none text-sm  font-medium focus:outline-0">
                             {data?.is_review === 1 ? 'ĐÁNH GIÁ' : 'HOÀN THÀNH'}
                         </div>
                     </div>
@@ -112,25 +111,25 @@ const AuctionHistoryCpn = ({data}) => {
                                     overflow: 'hidden', backgroundSize: 'cover',
                                     backgroundRepeat: 'no-repeat'
                                 }}
-                                src={data?.main_image}
+                                src={data?.product_id?.main_image}
                                 alt="image"
                             />
                         </div>
                         <div className="flex flex-col">
                             <div className="px-4 max-w-3xl text-base text-left">
-                                {data?.product_name}
+                                {data?.product_id?.product_name}
                             </div>
                             <div
                                 style={{color: "rgba(0,0,0,.54)"}}
                                 className="px-4 mt-2 max-w-3xl text-left"
                             >
-                                Rank : {data?.rank}
+                                Rank : {data?.product_id?.rank}
                             </div>
                         </div>
                     </div>
 
                     <div className=" text-base ml-auto px-5">
-                        <span className="text-black font-medium text-base">₫{data?.reserve_price}</span>
+                        <span className="text-black font-medium text-base">₫{formatMoney(data?.reserve_price)}</span>
                     </div>
                 </div>
                 <div
@@ -138,8 +137,8 @@ const AuctionHistoryCpn = ({data}) => {
                     style={{backgroundColor: "#fffefb"}}
                 >
                     {
-                        (data.is_review === 0 && isDateGreaterThanToday(data?.review_before)) && <>
-                            <button style={{backgroundColor: "#ee4d2d"}}
+                        (data.is_review === 0 && isDateGreaterThanToday(formatDateTime1(data?.review_before))) && <>
+                            <button style={{backgroundColor: "#ee6b3c"}}
                                     onClick={handleOpen}
                                     className="p-2 px-8 py-2  right-0 rounded-none cursor-pointer   text-white  border-none text-sm  font-medium focus:outline-0">
                                 Đánh giá
@@ -148,18 +147,18 @@ const AuctionHistoryCpn = ({data}) => {
                                 className=" gap-3 px-4 text-xs "
                                 style={{color: "rgba(0, 0, 0, .54)"}}
                             >
-                                <div>Đánh giá trước ngày <u>{data?.review_before}</u> để nhận 20 điểm</div>
+                                <div>Đánh giá trước ngày <u>{formatDateTime1(data?.review_before)}</u> để nhận 20 điểm</div>
                             </div>
                         </>
                     }
 
                     <div className="flex ml-auto items-center gap-2 px-6">
                         <div className="text-base text-neutral-600 font-medium">Giá trúng thầu :</div>
-                        <div className="text-red-500 text-2xl money">₫{data?.final_price}</div>
+                        <div className="text-orange-600 font-semibold text-2xl money">₫{formatMoney( data?.final_price)}</div>
                     </div>
                 </div>
                 <div style={{backgroundColor: "#fffefb"}} className="flex flex-row justify-end p-3 gap-4 pb-1 ml-auto items-center">
-                    <div onClick={() => handleStartChat(data?.seller)}
+                    <div onClick={() => handleStartChat(data?.seller_id)}
                          className=" px-4 py-1.5 cursor-pointer border outline-0 border-orange-500 rounded-md shadow-md"
                          style={{backgroundColor: 'rgba(255,87,34,.1)'}}>
                         <div className="flex flex-row gap-2 items-center">
@@ -178,14 +177,18 @@ const AuctionHistoryCpn = ({data}) => {
                             <p className="text-orange-500 rounded-md font-medium text-base">Liên hệ người bán </p>
                         </div>
                     </div>
+                    {
+                        data.is_review === 1 &&
+                        <button onClick={() => setShowModal(true)}
+                                className="border border-neutral-200 hover:border-neutral-300 ">Xem đánh giá </button>
+                    }
 
-                    <button onClick={() => setShowModal(true)}
-                            className="border border-neutral-200 hover:border-neutral-300 ">Xem đánh giá </button>
                 </div>
+
                 {/*dialog xem đánh giasd */}
                 {showModal ? (
                     <>
-                        {
+                    {
                             isLoading ?
                                 <>
                                     <CustomSpinner h={8} w={8} font={'sm'}/>
@@ -289,19 +292,19 @@ const AuctionHistoryCpn = ({data}) => {
                                                 width: '4rem', maxHeight: '4rem',
                                                 overflow: 'hidden', height: 'auto'
                                             }}
-                                            src={data?.main_image}
+                                            src={data?.product_id?.main_image}
                                             alt=""
                                         />
                                     </div>
                                     <div className="flex flex-col ">
                                         <div className="px-4  overflow_css_card_740 text-sm text-left">
-                                            {data?.product_name}
+                                            {data?.product_id?.product_name}
                                         </div>
                                         <div
                                             style={{color: "rgba(0,0,0,.54)"}}
                                             className="px-4 mt-2 text-sm  text-left"
                                         >
-                                            Rank : {data?.rank}
+                                            Rank : {data?.product_id?.rank}
                                         </div>
                                     </div>
                                 </div>
@@ -349,13 +352,13 @@ const AuctionHistoryCpn = ({data}) => {
                             <div className="flex gap-4 justify-end my-2">
                                 <button
                                     onClick={handleOpen}
-                                    className="p-2 px-6 py-2 right-0 bg-white rounded-none text-orange-500  border border-orange-500  text-sm hover:border-orange-500 hover:bg-neutral-50  font-medium focus:outline-0">
+                                    className=" px-8   right-0 bg-white rounded text-orange-500 border-orange-500 text-sm hover:border-orange-500 hover:bg-orange-50 font-medium ">
                                     Trở về
                                 </button>
 
                                 <button
                                     onClick={handleSubmitReview}
-                                    className="p-2 px-6 py-2 right-0 bg-orange-400 rounded-none text-white  border-gray-300 border-none text-sm hover:bg-orange-500  font-semibold focus:outline-0">
+                                    className="px-6 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                                     Hoàn thành
                                 </button>
                             </div>
