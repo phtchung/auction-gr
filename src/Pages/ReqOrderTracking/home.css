@@ -106,3 +106,15 @@ button:focus {
   overflow: hidden;
   border-radius: 8px;
 }
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #f27c08 !important;
+}
+
+.ant-tabs .ant-tabs-tab:hover {
+  color: #f27c08 !important;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  background: #f27c08 !important;
+}

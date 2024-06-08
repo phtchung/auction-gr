@@ -30,6 +30,7 @@ import StreamGeneral from "../Pages/StreamGeneral/StreamGeneral.jsx";
 import AuctionStream from "../Pages/AuctionStream/auctionStream.jsx";
 import SearchPage from "../Pages/SearchPage/searchPage.jsx";
 import CreateRequest from "../Pages/CreateRequest/createRequest.jsx";
+import AuctionOnlinePriceDown from "../Pages/AuctionOnlinePriceDown/auctionOnlinePriceDown.jsx";
 
 
 export const NormalRoutes = [
@@ -63,6 +64,7 @@ export const UserRoutes = [
   { path: "/404", element: <PageNotFound /> },
   { path: "/resultSuccess", element: <ResultPage /> },
   { path: "/bidding/:id", element: <AuctionOnline /> },
+  { path: "/biddingDown/:id", element: <AuctionOnlinePriceDown /> },
   { path: "/biddingStream/:id", element: <AuctionStream /> },
   { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
   { path: "/auctionStream", element: <AuctionStreamHome /> },
