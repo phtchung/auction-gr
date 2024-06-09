@@ -19,7 +19,10 @@ import CloseSvg from "../../assets/close.jsx";
 
 const WinOrderDetail = () => {
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
+    const handleOpen = (e) => {
+        e.preventDefault(); // page won't reload
+        setOpen(!open);
+    }
     const {isLoading, isSuccess, winDetailData, isError} = useWinOrderDetail();
     const {refetch, refetch1} = useWinOrdersTracking();
     const [dlvInfor, setDlvInfor] = useState(null);
@@ -34,11 +37,13 @@ const WinOrderDetail = () => {
             setDlvInfor({
                 ...dlvInfor,
                 product_id: winDetailData?.product_id,
+                payment_method:0
             });
         }
     }, [isSuccess, winDetailData]);
     const handleDlvInfor = (key, value) => {
         setDlvInfor({...dlvInfor, [key]: value});
+        console.log(dlvInfor)
     };
 
     const handleSendDlvInfor = async () => {
@@ -198,7 +203,8 @@ const WinOrderDetail = () => {
                                                                                 <h6 className={`text-sm font-bold ${winDetailData.approve_return_time || winDetailData.deny_return_time ? 'text-green-500' : ' text-gray-300'} `}>
                                                                                     {winDetailData.status === 9 ? 'Trả hàng' : winDetailData.status === 14 ? 'Trả hàng thành công' : 'Từ chối trả hàng'}
                                                                                 </h6>
-                                                                                <p className={`text-xs ${winDetailData.approve_return_time || winDetailData.deny_return_time ? 'text-green-500' : 'text-gray-300'} `}>{winDetailData.approve_return_time || winDetailData.deny_return_time}</p>
+                                                                                <p className={`text-xs ${winDetailData.approve_return_time || winDetailData.deny_return_time ? 'text-green-500' : 'text-gray-300'} `}>
+                                                                                    {winDetailData.approve_return_time || winDetailData.deny_return_time}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -254,18 +260,20 @@ const WinOrderDetail = () => {
                                                                         Thông tin giao hàng
                                                                     </div>
                                                                 </div>
-                                                                <div
-                                                                    className="items-center font-medium text-neutral-600 text-sm gap-6 my-8 px-1 space-y-4  ">
+                                                                <form onSubmit={handleOpen}
+                                                                    className="items-center font-medium text-neutral-600 text-sm gap-4 mt-8 px-1 space-y-4  ">
                                                                     <div
                                                                         className="grid grid-cols-6 text-left items-center">
                                                                         <div className="col-span-2"> Tên :</div>
                                                                         <div className="font-normal col-span-4">
                                                                             <input
+                                                                                required
                                                                                 type="text"
                                                                                 name="price"
                                                                                 id="name"
                                                                                 onChange={(e) => handleDlvInfor("name", e.target.value)}
-                                                                                className="block focus:outline-none focus:border-none border-0 py-1.5 px-2 w-full text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
+                                                                                className="block focus:outline-none focus:border-none border-0 py-1.5 px-2 w-full text-gray-900 ring-1 ring-inset ring-gray-300
+                                                                                  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -275,12 +283,14 @@ const WinOrderDetail = () => {
                                                                         </div>
                                                                         <div className="font-normal col-span-4">
                                                                             <input
+                                                                                required
                                                                                 type="text"
                                                                                 name="phone"
                                                                                 id="phone"
                                                                                 placeholder="Số điện thoại"
                                                                                 onChange={(e) => handleDlvInfor("phone", e.target.value)}
-                                                                                className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
+                                                                                className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset
+                                                                                 ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -289,6 +299,7 @@ const WinOrderDetail = () => {
                                                                         <div className="col-span-2"> Địa chỉ :</div>
                                                                         <div className="font-normal col-span-4">
                                                                             <input
+                                                                                required
                                                                                 type="text"
                                                                                 name="address"
                                                                                 id="address"
@@ -296,7 +307,8 @@ const WinOrderDetail = () => {
                                                                                 onChange={(e) =>
                                                                                     handleDlvInfor("address", e.target.value)
                                                                                 }
-                                                                                className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
+                                                                                className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset
+                                                                                 ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -308,6 +320,7 @@ const WinOrderDetail = () => {
                                                                         <div
                                                                             className="flex flex-col item-center col-span-4 ">
                                                                             <Radio.Group className="flex flex-col "
+                                                                                         defaultValue={0}
                                                                                          onChange={(e) =>
                                                                                              handleDlvInfor("payment_method", e.target.value)}>
                                                                                 <Radio value={0}>
@@ -343,15 +356,13 @@ const WinOrderDetail = () => {
                                                                             </Radio.Group>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-
-                                                                <div className="flex float-right gap-2 mb-3">
-                                                                    <button
-                                                                        onClick={handleOpen}
-                                                                        className=" px-6  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
-                                                                        Xác nhận
-                                                                    </button>
-                                                                </div>
+                                                                    <div className=" gap-2">
+                                                                        <button
+                                                                            className=" px-6 mb-6  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
+                                                                            Xác nhận
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
 
 
                                                                 {/*xác nhận thông tin giao hàng*/}
@@ -378,8 +389,7 @@ const WinOrderDetail = () => {
                                                                                 className="items-center font-medium text-neutral-700 text-sm gap-6 my-8 mx-8 px-1 space-y-4 ">
                                                                                 <div
                                                                                     className="grid grid-cols-12 text-left">
-                                                                                    <div className="col-span-3"> Tên
-                                                                                        :
+                                                                                    <div className="col-span-3"> Tên :
                                                                                     </div>
                                                                                     <div
                                                                                         className=" col-span-9 font-semibold">
@@ -389,9 +399,7 @@ const WinOrderDetail = () => {
                                                                                 <div
                                                                                     className="grid grid-cols-12 text-left">
                                                                                     <div className="col-span-3"> Số
-                                                                                        điện
-                                                                                        thoại
-                                                                                        :
+                                                                                        điện thoại :
                                                                                     </div>
                                                                                     <div
                                                                                         className=" col-span-9 font-semibold">
@@ -400,9 +408,7 @@ const WinOrderDetail = () => {
                                                                                 </div>
                                                                                 <div
                                                                                     className="grid grid-cols-12 text-left">
-                                                                                    <div className="col-span-3"> Địa
-                                                                                        chỉ
-                                                                                        :
+                                                                                    <div className="col-span-3"> Địa chỉ :
                                                                                     </div>
                                                                                     <div
                                                                                         className=" col-span-9 font-semibold">
@@ -412,8 +418,7 @@ const WinOrderDetail = () => {
                                                                                 <div
                                                                                     className="grid grid-cols-12 text-left ">
                                                                                     <div
-                                                                                        className="col-span-3"> Thanh
-                                                                                        toán :
+                                                                                        className="col-span-3"> Thanh toán :
                                                                                     </div>
                                                                                     <div
                                                                                         className=" col-span-9 font-semibold">
@@ -423,7 +428,6 @@ const WinOrderDetail = () => {
                                                                             </div>
                                                                             <div
                                                                                 className="flex gap-4 justify-end ">
-
                                                                                 <button
                                                                                     onClick={handleOpen}
                                                                                     className=" px-8   right-0 bg-white rounded text-orange-500 border-orange-500 text-sm hover:border-orange-500 hover:bg-amber-50 font-medium ">
@@ -434,7 +438,6 @@ const WinOrderDetail = () => {
                                                                                     className=" px-8  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-medium focus:outline-0">
                                                                                     Gửi
                                                                                 </button>
-
                                                                             </div>
                                                                         </Stack>
                                                                     </DialogContent>

@@ -149,7 +149,7 @@ const ReturnProduct = () => {
                                           <button
                                               type="primary"
                                               onClick={handleSubmit}
-                                              className="p-2 px-6 py-2 float-right bg-orange-500 rounded text-white border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                              className="p-2 px-6 py-2 float-right mr-12 bg-orange-500 rounded text-white border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                               Trả hàng
                                           </button>
                                       </Form.Item>

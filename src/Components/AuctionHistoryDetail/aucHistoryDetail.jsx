@@ -12,7 +12,7 @@ import CheckOKSvg from "../../assets/check.jsx";
 const AucHistoryDetail = () => {
     const navigate = useNavigate();
     const aucHistoryParams = useParams();
-    const {isLoading, isSuccess, data,isError} = useQuery({
+    const {isLoading, isSuccess, data, isError} = useQuery({
         queryKey: ["getAucHistoryDetail"],
         queryFn: () => getAuctionHistoryDetail(aucHistoryParams.id),
         select: (data) => data.data,
@@ -30,7 +30,9 @@ const AucHistoryDetail = () => {
                                 <CustomSpinner h={12} w={12} font={'sm'}/>
                                 :
                                 isError ?
-                                    <FZFNotFound margin={'-mt-20'} btnText={'Trở về'} error={'Rất tiếc,không tìm thấy thông tin của sản phẩm đấu giá này.'} urlReturn={'/auctionHistory'} />
+                                    <FZFNotFound margin={'-mt-20'} btnText={'Trở về'}
+                                                 error={'Rất tiếc,không tìm thấy thông tin của sản phẩm đấu giá này.'}
+                                                 urlReturn={'/auctionHistory'}/>
                                     :
                                     isSuccess &&
                                     <>
@@ -46,7 +48,8 @@ const AucHistoryDetail = () => {
                                                 <div className="text-sm"> TRỞ LẠI</div>
                                             </div>
 
-                                            <div className="text-right px-5 pt-3 pb-3 text-sm  text-orange-500  bg-white">
+                                            <div
+                                                className="text-right px-5 pt-3 pb-3 text-sm  text-orange-500  bg-white">
                                                 ĐƠN HÀNG ĐÃ HOÀN THÀNH
                                             </div>
                                         </div>
@@ -96,35 +99,35 @@ const AucHistoryDetail = () => {
                                                 </div>
                                             </div>
 
-                                                        <div className="w-full">
-                                                            <div
-                                                                className={`w-full h-1 rounded-xl ${data?.delivery?.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
-                                                            <div className="mt-2 mr-2 w-full  flex">
-                                                                {data?.delivery?.completed_time &&
-                                                                    <CheckOKSvg/>}
-                                                                <div className="ml-2 w-full">
-                                                                    <h6 className={`text-sm font-bold ${data?.delivery?.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đã
-                                                                        nhận hàng
-                                                                    </h6>
-                                                                    <p className={`text-xs ${data?.delivery?.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.completed_time)}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                            <div className="w-full">
+                                                <div
+                                                    className={`w-full h-1 rounded-xl ${data?.delivery?.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                <div className="mt-2 mr-2 w-full  flex">
+                                                    {data?.delivery?.completed_time &&
+                                                        <CheckOKSvg/>}
+                                                    <div className="ml-2 w-full">
+                                                        <h6 className={`text-sm font-bold ${data?.delivery?.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đã
+                                                            nhận hàng
+                                                        </h6>
+                                                        <p className={`text-xs ${data?.delivery?.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.completed_time)}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                        <div className="w-full">
-                                                            <div
-                                                                className={`w-full h-1 rounded-xl ${data?.delivery?.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
-                                                            <div className="mt-2 mr-2 w-full  flex">
-                                                                {data?.delivery?.completed_time &&
-                                                                    <CheckOKSvg/>}
-                                                                <div className="ml-2 w-full">
-                                                                    <h6 className={`text-sm font-bold ${data?.delivery?.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đánh
-                                                                        giá
-                                                                    </h6>
-                                                                    <p className={`text-xs ${data?.delivery?.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.completed_time)}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                            <div className="w-full">
+                                                <div
+                                                    className={`w-full h-1 rounded-xl ${data?.delivery?.review_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                <div className="mt-2 mr-2 w-full  flex">
+                                                    {data?.delivery?.review_time &&
+                                                        <CheckOKSvg/>}
+                                                    <div className="ml-2 w-full">
+                                                        <h6 className={`text-sm font-bold ${data?.delivery?.review_time ? 'text-green-500' : ' text-gray-300'} `}>Đánh
+                                                            giá
+                                                        </h6>
+                                                        <p className={`text-xs ${data?.delivery?.review_time ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(data?.delivery?.review_time)}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="border-b border-neutral-300 mx-14 pt-10 "></div>
 

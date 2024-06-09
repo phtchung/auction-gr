@@ -334,7 +334,7 @@ export const formatDateTimeMiliSecond = (inputDateString) => {
     const seconds = formatDateComponent(inputDate.getSeconds());
     const miliseconds = formatDateComponent(inputDate.getMilliseconds());
 
-    return `${day}-${month}-${year} - ${hours}:${minutes}:${seconds}:${miliseconds}`;
+    return ` ${hours}:${minutes}:${seconds}:${miliseconds} ${day}-${month}-${year} `;
 };
 
  export function readMoney(amount) {
