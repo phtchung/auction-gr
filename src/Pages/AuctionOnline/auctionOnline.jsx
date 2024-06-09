@@ -1,11 +1,11 @@
 import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import useAuctionOnline from "./useAuctionOnline.jsx";
-import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
+import {formatDateTimeMiliSecond, formatDateTimeMiliSecond1, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";
-import { sendAuctionDataOnline} from "../../Services/biddingService.jsx";
+import {sendAuctionDataOnline} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import {CheckCircleOutlined} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
@@ -16,11 +16,11 @@ import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 
 const AuctionOnline = () => {
-    const { id } = useParams();
-    const {selectedAuction,setSelectedAuction  , setBidList ,  setHighestPrice } = useAuctionOnlineTracking()
-    const [auctionData,setAuctionData] = useState({productId:id})
+    const {id} = useParams();
+    const {selectedAuction, setSelectedAuction, setBidList, setHighestPrice} = useAuctionOnlineTracking()
+    const [auctionData, setAuctionData] = useState({productId: id})
     const [state, setState] = useState(null)
-    const { currentUser } = useAuthContext();
+    const {currentUser} = useAuthContext();
     useListenBidding()
     useEffect(() => {
         setSelectedAuction(id)
@@ -40,13 +40,13 @@ const AuctionOnline = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleOnlineBidding =  async (new_price) => {
-        try{
-            const res = await sendAuctionDataOnline({...auctionData,final_price:new_price});
-            setAuctionData({productId:id})
+    const handleOnlineBidding = async (new_price) => {
+        try {
+            const res = await sendAuctionDataOnline({...auctionData, final_price: new_price});
+            setAuctionData({productId: id})
             const data = res.data.new_bid
-        }catch (error) {
-            toast.error(error?.response?.data?.message,{
+        } catch (error) {
+            toast.error(error?.response?.data?.message, {
                 position: "top-right",
             });
         }
@@ -64,35 +64,32 @@ const AuctionOnline = () => {
     }
 
     const modalStyles = {
-        body:{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px'},
-        header:{
-            backgroundColor:'#fdb45b',
-            textAlign:'center',
-            fontWeight:700,
+        body: {maxHeight: '450px', overflowY: 'auto', marginRight: '-10px'},
+        header: {
+            backgroundColor: '#fdb45b',
+            textAlign: 'center',
+            fontWeight: 700,
         },
         content: {
-            backgroundColor:'#fdb45b',
-            borderRadius:0,
-            color:'#363534',
+            backgroundColor: '#fdb45b',
+            borderRadius: 0,
+            color: '#363534',
         },
     };
-
     return (
-        <>
-            <MainLayOut>
-                <div className="md:container">
-                    {isLoading ?
-                        <>
-                            <CustomSpinner h={12} w={12} font={'sm'}/>
-                        </> :
-                        isError ?
-                            <FZFNotFound  btnText={'Trở về'} error={'Rất tiếc, hệ thống không tìm thấy phiên đấu giá.'} urlReturn={'/auctionRealtime'} />
-                           :
-                            isSuccess &&
-                        <>
-                        {
-                            productData.type_of_auction === 1 ?
-                                <>
+        <><MainLayOut>
+            <div className="md:container">
+                {isLoading ?
+                    <>
+                        <CustomSpinner h={12} w={12} font={'sm'}/>
+                    </> :
+                    isError ?
+                        <FZFNotFound btnText={'Trở về'} error={'Rất tiếc, hệ thống không tìm thấy phiên đấu giá.'}
+                                     urlReturn={'/auctionRealtime'}/>
+                        :
+                        isSuccess &&
+                        <>{
+                            productData.type_of_auction === 1 ? <>
                                     <div className="mt-24">
                                         <div className="px-3 mx-2 mt-2">
                                             <Breadcrumb
@@ -104,38 +101,39 @@ const AuctionOnline = () => {
                                             />
                                         </div>
 
-                                        <div className="flex flex-row items-start gap-6 p-5 m-2 mt-4 "
+                                        <div className="grid md:grid-cols-4  items-center gap-6 p-5 m-2 mt-4 "
                                              style={{backgroundColor: '#ef9731'}}>
-                                            <div className="lg:basis-1/2 md:basis-1/2 sm:basis-1/2 xl:basis-1/2">
+                                            <div className="lg:col-span-2 md:col-span-4  sm:col-span-2">
                                                 <div id="slider" className="image-container">
                                                     <img style={{
                                                         width: '100%',
                                                         height: '100%',
                                                         display: 'block',
                                                         objectFit: 'cover',
-                                                        // backgroundSize: 'cover',
-                                                        // backgroundRepeat: 'no-repeat'
                                                     }}
                                                          src={productData?.product_id?.main_image}
                                                          alt={`Image`}/>
                                                 </div>
                                             </div>
-                                            <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
+                                            <div className="lg:col-span-2 md:col-span-4 sm:col-span-2">
                                                 <CountDownOnline id={productData?._id}
                                                                  targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
                                                 <div
-                                                    className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
-                                                    style={{backgroundColor: '#f1a851', minHeight: '12.625rem'}}>
-                                                    <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
+                                                    className="flex flex-col ring-2 ring-orange-500 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]  min-[400px]:min-h-[14.8rem] shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
+                                                    style={{backgroundColor: '#f1a851'}}>
+                                                    <div style={{
+                                                        fontWeight: 600,
+                                                        textShadow: '0px 0px 10px #ccc3b8'
+                                                    }}
                                                          className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
-                                                            <span className="text-base  flex  gap-3  ">
-                                                                <img src="../../src/assets/bid.png" alt=""
+                                                            <span className="text-base   flex  gap-3  ">
+                                                                <img className="min-[420px]:hidden md:inline-block sm:hidden" src="../../src/assets/bid.png" alt=""
                                                                      style={{width: '12%'}}/>
                                                                Diễn biến cuộc đấu giá
                                                             </span>
                                                         <span onClick={getFullBidList}
-                                                              className="text-sm hover:text-blue-600 cursor-pointer  hover:underline ">
+                                                              className="text-sm truncate hover:text-blue-600 cursor-pointer  hover:underline ">
                                                             Xem tất cả
                                                              </span>
                                                     </div>
@@ -144,11 +142,10 @@ const AuctionOnline = () => {
                                                         bidList && bidList.length !== 0 ?
                                                             bidList.slice(0, 3).map((bid, index) => (
                                                                 <>
-                                                                    <div key={index}
-                                                                         className="flex justify-between items-center ">
+                                                                    <div key={index} className="grid grid-cols-2 justify-between items-center ">
                                                                         <div style={{fontWeight: 600}}
-                                                                             className=" px-6 p-1.5 flex flex-col  relative">
-                                                                        <span className="flex gap-3">
+                                                                             className=" px-5 p-1.5 flex flex-col  relative">
+                                                                            <span className="flex gap-3">
                                                                             <h1 className={`text-base shadow-black ${index === 0 ? 'text-red-800 font-bold' : ''}`}
                                                                                 style={{textShadow: '#f1a851 1px 0 10px'}}>
                                                                             {formatMoney(bid.bid_price)} Đ
@@ -158,13 +155,14 @@ const AuctionOnline = () => {
                                                                                 <CheckCircleOutlined
                                                                                     style={{color: "green"}}/>
                                                                             }
-                                                                        </span>
+                                                                            </span>
 
                                                                             <span className="text-xs text-gray-200">
                                                                             {formatDateTimeMiliSecond(bid.bid_time)}
-                                                                        </span>
+                                                                             </span>
                                                                         </div>
-                                                                        <div className="px-6 font-semibold text-base">
+                                                                        <div
+                                                                            className="px-6 justify-self-end font-semibold text-base">
                                                                             {bid.username}
                                                                         </div>
                                                                     </div>
@@ -181,7 +179,10 @@ const AuctionOnline = () => {
                                                 <div
                                                     className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
                                                     style={{backgroundColor: '#f1a851'}}>
-                                                    <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
+                                                    <div style={{
+                                                        fontWeight: 600,
+                                                        textShadow: '0px 0px 10px #ccc3b8'
+                                                    }}
                                                          className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
                                                         <span className="text-base flex gap-3  ">
                                                               <img src="../../src/assets/label.png" alt=""
@@ -224,12 +225,14 @@ const AuctionOnline = () => {
                                                                     <h1 className='text-base font-semibold shadow-black'>
                                                                         {formatMoney(bid.bid_price)} đ
                                                                     </h1>
-                                                                    <span className="text-xs" style={{color: '#676464'}}
+                                                                    <span className="text-xs"
+                                                                          style={{color: '#676464'}}
                                                                     >
                                                                     {formatDateTimeMiliSecond(bid.bid_time)}
                                                                 </span>
                                                                 </div>
-                                                                <div className="px-6 font-medium opacity-90 text-base">
+                                                                <div
+                                                                    className="px-6 font-medium opacity-90 text-base">
                                                                     {bid.username}
                                                                 </div>
                                                             </div>
@@ -237,8 +240,7 @@ const AuctionOnline = () => {
                                                     ))
                                                     :
                                                     <>
-                                                        <div className="text-center font-medium my-14">Không có dữ
-                                                            liệu
+                                                        <div className="text-center font-medium my-14">Không có dữ liệu
                                                         </div>
                                                     </>
                                                 :
@@ -249,12 +251,14 @@ const AuctionOnline = () => {
                                     </Modal>
                                 </>
                                 :
-                                <FZFNotFound  btnText={'Trở về'} error={'Rất tiếc, hệ thống không tìm thấy phiên đấu giá.'} urlReturn={'/auctionRealtime'} />
+                                <FZFNotFound btnText={'Trở về'}
+                                             error={'Rất tiếc, hệ thống không tìm thấy phiên đấu giá.'}
+                                             urlReturn={'/auctionRealtime'}/>
                         }
                         </>
-                    }
-                </div>
-            </MainLayOut>
+                }
+            </div>
+        </MainLayOut>
         </>
     )
 }

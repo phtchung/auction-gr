@@ -87,21 +87,18 @@ const UpdatePopup = ({state,canReturn}) => {
                         <div className="border-b-2 mt-2  border-gray-300"></div>
                     </DialogTitle>
                     <DialogContent>
-                        <Stack spacing={2} margin={1} minWidth={420}>
+                        <Stack spacing={2} margin={1} >
                             <div className="flex gap-4 justify-end mt-1  text-sm ">
                                 {state && (state === 5) && (
                                     <>
                                         <button
                                             onClick={closePopup1}
-                                            className="bg-red-600 p-2 w-full rounded
-                                                 text-white hover:bg-red-400 border-none font-medium focus:outline-0"
-                                        >
+                                            className=" px-8 right-0 bg-white rounded text-orange-500 border-orange-500 text-sm hover:border-orange-500 hover:bg-orange-50 font-medium ">
                                             Không
                                         </button>
                                         <button
                                             onClick={() => updateState(6)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
-                                        >
+                                            className=" px-8  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-medium focus:outline-0">
                                             Xác nhận thông tin giao hàng
                                         </button>
                                     </>
@@ -110,15 +107,12 @@ const UpdatePopup = ({state,canReturn}) => {
                                     <>
                                         <button
                                             onClick={closePopup1}
-                                            className="bg-red-600 p-2 rounded w-full
-                                                 text-white hover:bg-red-400 border-none font-medium focus:outline-0"
-                                        >
+                                            className=" px-8   right-0 bg-white rounded text-orange-500 border-orange-500 text-sm hover:border-orange-500 hover:bg-orange-50 font-medium ">
                                             Không
                                         </button>
                                         <button
                                             onClick={() => updateState(7)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
-                                        >
+                                            className=" px-8  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-medium focus:outline-0">
                                             Bắt đầu giao hàng
                                         </button>
                                     </>
@@ -130,19 +124,17 @@ const UpdatePopup = ({state,canReturn}) => {
                                             <>
                                                 <button
                                                     onClick={handleNavigateReturn}
-                                                    className="bg-red-600 p-2 rounded
-                                                 text-white w-full hover:bg-red-400 border-none font-medium focus:outline-0"
-                                                >
-                                                    Yêu cầu trà hàng
+                                                    className=" px-8  right-0 bg-orange-800 rounded text-white border-none text-sm hover:bg-orange-900 font-medium focus:outline-0">
+                                                    Yêu cầu trả hàng
                                                 </button>
                                             </>
                                         }
                                         <button
                                             onClick={() => updateState(8)}
-                                            className="bg-black p-2 w-full rounded text-white hover:bg-orange-500 border-none font-medium focus:outline-0"
-                                        >
-                                        Đã nhận hàng
+                                            className=" px-8  right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-medium focus:outline-0">
+                                            Đã nhận hàng
                                         </button>
+
                                     </>
                                 )}
                             </div>

@@ -278,7 +278,7 @@ const ProductOnlineDetail = () => {
 
                                                     <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
                                                         <button
-                                                            onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id , auctionProductData?.type_of_auction)}
+                                                            onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id , auctionProductData?.type)}
                                                             className="text-xl overflow_css_w_158 p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
                                                             style={{backgroundColor: '#ee002a', width: '100%'}}>
                                                             Đấu giá trực tuyến

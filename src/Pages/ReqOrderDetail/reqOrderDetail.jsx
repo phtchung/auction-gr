@@ -15,6 +15,7 @@ import { theme } from 'antd';
 import DeliveryInfor from "../../Components/Information/DeliveryInfo.jsx";
 import ReturnInfo from "../../Components/Information/ReturnInfo.jsx";
 import RejectInfo from "../../Components/Information/RejectInfo.jsx";
+import ReviewInfo from "../../Components/Information/ReviewInfo.jsx";
 const { useToken } = theme;
 const TabPane = Tabs.TabPane
 const ReqOrderDetail = () => {
@@ -88,8 +89,15 @@ const ReqOrderDetail = () => {
                                                         <ReturnInfo data={reqData}/>
                                                     </TabPane>
                                                 )}
+
+                                                {(reqData.status === 8 || reqData.is_review === 1) && (
+                                                    <TabPane tab="Thông tin đánh giá" key="5">
+                                                        <ReviewInfo data={reqData}/>
+                                                    </TabPane>
+                                                )}
+
                                                 {reqData.status === 13 && (
-                                                    <TabPane tab="Thông tin từ chối yêu cầu" key="5">
+                                                    <TabPane tab="Thông tin từ chối yêu cầu" key="6">
                                                         <RejectInfo data={reqData}/>
                                                     </TabPane>
                                                 )}

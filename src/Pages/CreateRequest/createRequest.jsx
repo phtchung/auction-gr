@@ -41,12 +41,12 @@ const CreateRequest = () => {
             }
         },
         onSuccess: (data) => {
-            window.location.reload();
-            openchange1(false)
             toast.success("Gửi yêu cầu thành công", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 500,
             });
+            window.location.href = '/reqOrderTracking'
+            openchange1(false)
             setRequest(null);
         },
         onError:(error) => {

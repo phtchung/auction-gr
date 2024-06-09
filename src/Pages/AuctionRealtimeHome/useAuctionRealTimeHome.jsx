@@ -21,6 +21,7 @@ export default function useAuctionRealTimeHome() {
                 product_name: data?.product_id?.product_name,
                 coutdown_time : data?.finish_time,
                 main_image : data?.product_id?.main_image,
+                type: data?.type_of_auction,
             };
         });
 

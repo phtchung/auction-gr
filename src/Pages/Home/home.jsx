@@ -67,7 +67,7 @@ const Home = () => {
                                     <input type="search" id="default-search"
                                            value={keyword}
                                            onChange={(e) => setKeyword(e.target.value)}
-                                           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
+                                           className="block w-full p-4 ps-10 text-base text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
                                            placeholder="Tìm kiếm..." required/>
                                     <button type="submit"
                                             className="text-white absolute end-2.5 bottom-2 bg-orange-500 hover:bg-orange-600 focus:ring-1 hover:border-orange-500 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Tìm
