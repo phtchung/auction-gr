@@ -10,10 +10,43 @@ import {
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import useProductStreamDetail from "./useProductStreamDetail.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import {useEffect, useRef, useState} from "react";
 const ProductStreamDetail = () => {
     const navigate = useNavigate()
     const {isError, isLoading, isSuccess, auctionProductData} = useProductStreamDetail()
+    const imageRef = useRef(null);
+    const [selectedImage, setSelectedImage] = useState('');
+    const [newlist,setNewlist] = useState([])
 
+    useEffect(() => {
+        if (auctionProductData && auctionProductData.image_list.length > 0) {
+            setSelectedImage(auctionProductData.main_image);
+            setNewlist([auctionProductData.main_image,...auctionProductData.image_list])
+        }
+    }, [auctionProductData]);
+    const handleMouseMove = (event) => {
+        if (imageRef.current) {
+            const rect = imageRef.current.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            imageRef.current.style.setProperty('transform-origin', `${xPercent}% ${yPercent}%`);
+        }
+    };
+
+    const handleMouseEnter = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(2.5)');
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(1)');
+        }
+    };
     const handleNavigateToOnlineAuction = (url) => {
         if (localStorage.getItem("accessToken")) {
             navigate(`/checkout/${url}`)
@@ -63,24 +96,26 @@ const ProductStreamDetail = () => {
 
                                         <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
                                             <div className=" md:basis-3/5 sm:basis-2/3 ">
-                                                <div id="slider" className="flexslider">
-                                                    <ul className="slides">
-                                                        <li>
-                                                            <img style={{
-                                                                width: '100%',
-                                                                height: '27.5rem',
-                                                                backgroundSize: 'cover',
-                                                                backgroundRepeat: 'no-repeat'
-                                                            }}
-                                                                 src={auctionProductData?.main_image}
-                                                                 alt={`Image`}/>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div id="carousel" className="flexslider mt-4 mb-4 flex flex-row gap-3">
+                                                <div
+                                                    className="image-magnifier-container"
+                                                >
                                                     {
-                                                        auctionProductData?.image_list.map((image, index) => (
-                                                            <div key={index} style={{width: '14%'}}>
+                                                        selectedImage && (
+                                                            <img onMouseEnter={handleMouseEnter}
+                                                                 onMouseLeave={handleMouseLeave}
+                                                                 onMouseMove={handleMouseMove}
+                                                                 ref={imageRef} src={selectedImage}
+                                                                 className="zoom-image cursor-crosshair" alt="Magnified"/>
+                                                        )
+                                                    }
+                                                </div>
+                                                <div id="carousel"
+                                                     className="flexslider mt-4 mb-4 grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 min-[200px]:grid-cols-4 gap-3">
+                                                    {
+                                                        newlist.map((image, index) => (
+                                                            <div
+                                                                className={`${image.toString() === selectedImage.toString() ? 'border bg-black border-orange-500 ' : 'border border-gray-300'}  cursor-pointer`}
+                                                                onClick={() => setSelectedImage(image)} key={index}>
                                                                 <img style={{
                                                                     width: '100%',
                                                                     height: '4.7rem',
@@ -200,28 +235,24 @@ const ProductStreamDetail = () => {
                                                         </div>
                                                     </div>
                                                     <div
-                                                        className="flex flex-row justify-center 0 gap-4 px-4 p-3 pb-2 items-center">
-                                                        <div className="flex-col gap-1">
-                                                        <span
-                                                            className="font-medium">{auctionProductData?.average_rating} </span>
+                                                        className="grid grid-cols-6 0 gap-6 px-4 p-3 pb-2 items-center">
+                                                        <div className=" col-end-3 gap-1">
+                                                            <span
+                                                            className="font-medium mr-1">{auctionProductData?.average_rating} </span>
                                                             <StarFilled className="text-yellow-500"/>
                                                         </div>
                                                         <div
-                                                            className="flex-col pl-4 border-x border-neutral-200 flex items-center gap-1 pr-5 ">
+                                                            className=" col-span-2 pl-4 border-x border-neutral-200 flex items-center gap-1 pr-5 ">
                                                         <span
                                                             className="font-medium">{auctionProductData?.rate_count}  </span>
                                                             <span> đánh giá </span>
                                                         </div>
 
                                                         <div
-                                                            className="flex-col border-r border-neutral-200  flex items-center gap-1 pr-5 ">
-                                              <span
-                                                  className="font-medium">{auctionProductData?.product_done_count}  </span>
+                                                            className=" col-span-2 flex items-center gap-1 pr-5 ">
+                                                        <span
+                                                            className="font-medium">{auctionProductData?.product_done_count}  </span>
                                                             <span> đơn hàng </span>
-                                                        </div>
-                                                        <div className="flex-col  flex items-center gap-1 pr-5 ">
-                                                            <span className="font-medium"> đang fix  </span>
-                                                            <span>người theo dõi </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex flex-row  0 gap-1 px-4 p-3 pb-2 items-center">

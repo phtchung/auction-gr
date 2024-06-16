@@ -6,7 +6,7 @@ import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import { StarFilled} from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Modal} from 'antd';
 import useAuctionProductDetail from "./useAuctionProductDetail.jsx";
 import {toast} from "react-toastify";
@@ -26,6 +26,8 @@ const ProductDetail = () => {
     const [open1, setOpen1] = useState(false);
     const {id} = useParams()
     const [auctionData,setAuctionData] = useState({productId:id})
+    const [newlist,setNewlist] = useState([])
+
     const handleOpen = () => {
         if (localStorage.getItem("accessToken")) {
             form.resetFields();
@@ -34,6 +36,40 @@ const ProductDetail = () => {
             window.location.href = '/login';
         }
     };
+    const imageRef = useRef(null);
+    const [selectedImage, setSelectedImage] = useState('');
+
+    useEffect(() => {
+        if (auctionProductData && auctionProductData.image_list.length > 0) {
+            setSelectedImage(auctionProductData.main_image);
+            setNewlist([auctionProductData.main_image,...auctionProductData.image_list])
+        }
+    }, [auctionProductData]);
+    console.log(newlist)
+    const handleMouseMove = (event) => {
+        if (imageRef.current) {
+            const rect = imageRef.current.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            imageRef.current.style.setProperty('transform-origin', `${xPercent}% ${yPercent}%`);
+        }
+    };
+
+    const handleMouseEnter = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(2.5)');
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(1)');
+        }
+    };
+
     const handleNavigateAuction = (id) => {
         navigate(`/auction/item/${id}`)
         window.scrollTo(0, 0);
@@ -129,7 +165,7 @@ const ProductDetail = () => {
     return (
         <>
             <MainLayOut>
-                <div className="md:container">
+                <div className="container">
                     {isSuccess && <>
                         <div className="px-3 mx-2 mt-24">
                             <Breadcrumb
@@ -160,24 +196,28 @@ const ProductDetail = () => {
                             <>
                                 <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
                                     <div className=" md:basis-3/5 sm:basis-2/3 ">
-                                        <div id="slider" className="flexslider">
-                                            <ul className="slides">
-                                                <li>
-                                                    <img style={{
-                                                        width: '100%',
-                                                        height: '27.5rem',
-                                                        backgroundSize: 'cover',
-                                                        backgroundRepeat: 'no-repeat'
-                                                    }}
-                                                         src={auctionProductData?.main_image}
-                                                         alt={`Image`}/>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div id="carousel" className="flexslider mt-4 mb-4 flex flex-row gap-3">
+                                        <div
+                                            className="image-magnifier-container"
+                                        >
                                             {
-                                                auctionProductData?.image_list.map((image, index) => (
-                                                    <div key={index} style={{width: '14%'}}>
+                                                selectedImage && (
+                                                    <img onMouseEnter={handleMouseEnter}
+                                                         onMouseLeave={handleMouseLeave}
+                                                         onMouseMove={handleMouseMove}
+                                                         ref={imageRef} src={selectedImage}
+                                                         className="zoom-image cursor-crosshair" alt="Magnified"/>
+                                                )
+                                            }
+                                        </div>
+
+                                        <div id="carousel"
+                                             className="flexslider mt-4 mb-4 grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 min-[200px]:grid-cols-4 gap-3">
+                                            {
+                                                newlist.map((image, index) => (
+                                                    <div
+                                                        className={`${image.toString() === selectedImage.toString() ? 'border bg-black border-orange-500 ' : 'border border-gray-300'}  cursor-pointer`}
+                                                        onClick={() => setSelectedImage(image)} key={index}
+                                                    >
                                                         <img style={{
                                                             width: '100%',
                                                             height: '4.7rem',
@@ -205,8 +245,8 @@ const ProductDetail = () => {
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                                    <div className="text-left text-lg font-semibold text-gray-900 ">Các sản phẩm
-                                                        tương tự
+                                                    <div className="text-left text-lg font-semibold text-gray-900 ">Các
+                                                        sản phẩm tương tự
                                                     </div>
                                                 </div>
                                             </div>
@@ -603,10 +643,6 @@ const ProductDetail = () => {
                                               <span
                                                   className="font-medium">{auctionProductData?.product_done_count}  </span>
                                                     <span> đơn hàng </span>
-                                                </div>
-                                                <div className="flex-col  flex items-center gap-1 pr-5 ">
-                                                    <span className="font-medium"> đang fix </span>
-                                                    <span> theo dõi </span>
                                                 </div>
                                             </div>
                                             <div className="flex flex-row  0 gap-1 px-4 p-3 pb-2 items-center">
