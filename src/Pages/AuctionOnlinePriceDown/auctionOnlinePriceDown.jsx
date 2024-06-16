@@ -237,7 +237,7 @@ const AuctionOnlinePriceDown = () => {
                                                             highestPrice - productData.step_price > 0 &&
                                                             <>
                                                                 <div
-                                                                    className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
+                                                                    className="text-xs capitalize text-center m-3">{readMoney(highestPrice - productData.step_price)} Đồng
                                                                 </div>
                                                             </>
                                                         }

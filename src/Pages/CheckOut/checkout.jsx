@@ -102,8 +102,7 @@ const CheckOut = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div
-                                            className="lg:col-span-2 md:col-span-1 sm:col-span-1 px-1.5 mt-4 md:ml-0 md:mt-6 sm:ml-0  lg:mt-0 sm:mt-6">
+                                        <div className="lg:col-span-2 md:col-span-1 sm:col-span-1 px-1.5 mt-4 md:ml-0 md:mt-6 sm:ml-0  lg:mt-0 sm:mt-6">
                                             <div className="w-full h-full rounded-lg bg-zinc-200">
                                                 <div className="h-full  py-2 px-2">
                                                     <Tabs size={"large"} defaultActiveKey="1" centered
