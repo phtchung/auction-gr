@@ -337,6 +337,7 @@ export const formatDateTimeMiliSecond = (inputDateString) => {
     return ` ${hours}:${minutes}:${seconds}:${miliseconds} ${day}-${month}-${year} `;
 };
 
+
  export function readMoney(amount) {
     const ones = ['', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
     const teens = ['', 'mười', 'mười một', 'mười hai', 'mười ba', 'mười bốn', 'mười lăm', 'mười sáu', 'mười bảy', 'mười tám', 'mười chín'];
@@ -463,6 +464,29 @@ export function adminProcessStatus(status) {
         return 1;
     }
 }
+
+export function getLevel(input) {
+    switch(input) {
+        case 50:
+            return { level : 1, price : 'dưới 2 triệu VNĐ'};
+        case 100:
+            return { level : 2, price : 'dưới 5 triệu VNĐ'};
+        case 200:
+            return { level : 3, price : 'dưới 15 triệu VNĐ'};
+        case 300:
+            return { level : 4, price : 'không giới hạn'};
+        default:
+            return { level : 1, price : 'dưới 2 triệu VNĐ'};
+    }
+}
+
+export const cardDepositRegis = [
+    { price: 'dưới 2 triệu', deposit: 50, level: 1 },
+    { price: 'dưới 5 triệu', deposit: 100, level: 2 },
+    { price: 'dưới 15 triệu', deposit: 200, level: 3 },
+    { price: 'không giới hạn', deposit: 300, level: 4 }
+];
+
 
 export function adminProductStatus(status) {
     if (

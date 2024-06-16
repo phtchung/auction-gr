@@ -1,7 +1,7 @@
 import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import useAuctionOnline from "./useAuctionOnline.jsx";
-import {formatDateTimeMiliSecond, formatDateTimeMiliSecond1, formatMoney, readMoney} from "../../Utils/constant.js";
+import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";

@@ -29,6 +29,22 @@ export const CheckOutDeposit = async (data) => {
   });
 };
 
+export const CheckOutRegistrationDeposit = async (data) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/checkoutRegistrationDeposit",
+    data: data,
+  });
+};
+
+export const WithdrawRegistrationDeposit = async (data) => {
+  return privateHttp({
+    method: "POST",
+    url: "/auction/withdrawRegistrationDeposit",
+    data: data,
+  });
+};
+
 export const VerifyCodeRoom = async (data) => {
   return privateHttp({
     method: "POST",

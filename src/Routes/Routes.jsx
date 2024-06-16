@@ -31,6 +31,9 @@ import AuctionStream from "../Pages/AuctionStream/auctionStream.jsx";
 import SearchPage from "../Pages/SearchPage/searchPage.jsx";
 import CreateRequest from "../Pages/CreateRequest/createRequest.jsx";
 import AuctionOnlinePriceDown from "../Pages/AuctionOnlinePriceDown/auctionOnlinePriceDown.jsx";
+import DepositRegistration from "../Pages/DepositRegistration/depositRegistration.jsx";
+import ConfirmRegistration from "../Pages/DepositRegistration/confirmRegistration.jsx";
+import ConfirmWithdrawRegistration from "../Pages/DepositRegistration/confirmWithdrawRegistration.jsx";
 
 
 export const NormalRoutes = [
@@ -72,6 +75,8 @@ export const UserRoutes = [
   { path: "/confirm/:id", element: <ConfirmCheckOut /> },
   { path: "/streamGeneral", element: <StreamGeneral /> },
   { path: "/create", element: <CreateRequest /> },
-
+  { path: "/depositRegistration", element: <DepositRegistration /> },
+  { path: "/confirmRegistration", element: <ConfirmRegistration /> },
+  { path: "/confirmWithdrawRegistration", element: <ConfirmWithdrawRegistration /> },
 ];
 
