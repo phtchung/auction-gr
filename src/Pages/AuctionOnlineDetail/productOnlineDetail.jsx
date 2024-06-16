@@ -12,6 +12,7 @@ import CardNormal from "../../Components/Card/cardNormal.jsx";
 import useAuctionRealTimeDetail from "./useAuctionRealTimeDetail.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
+import {useEffect, useRef, useState} from "react";
 const ProductOnlineDetail = () => {
     const navigate = useNavigate()
 
@@ -20,7 +21,39 @@ const ProductOnlineDetail = () => {
         window.scrollTo(0, 0);
     }
     const{isError, isLoading, isSuccess, auctionProductData,sc,ralatedPro,ld,isErr} = useAuctionRealTimeDetail()
-    console.log(auctionProductData)
+    const imageRef = useRef(null);
+    const [selectedImage, setSelectedImage] = useState('');
+    const [newlist,setNewlist] = useState([])
+
+    useEffect(() => {
+        if (auctionProductData && auctionProductData.image_list.length > 0) {
+            setSelectedImage(auctionProductData.main_image);
+            setNewlist([auctionProductData.main_image,...auctionProductData.image_list])
+        }
+    }, [auctionProductData]);
+    const handleMouseMove = (event) => {
+        if (imageRef.current) {
+            const rect = imageRef.current.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            imageRef.current.style.setProperty('transform-origin', `${xPercent}% ${yPercent}%`);
+        }
+    };
+
+    const handleMouseEnter = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(2.5)');
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (imageRef.current) {
+            imageRef.current.style.setProperty('transform', 'scale(1)');
+        }
+    };
 
     const handleNavigateToOnlineAuction = (url , type) => {
         if (localStorage.getItem("accessToken")) {
@@ -77,24 +110,26 @@ const ProductOnlineDetail = () => {
                                         <div className="flex flex-row items-start gap-6 p-3 m-2 mt-4 ">
                                             {/*cột ảnh + miêu tả */}
                                             <div className=" md:basis-3/5 sm:basis-2/3 ">
-                                                <div id="slider" className="flexslider">
-                                                    <ul className="slides">
-                                                        <li>
-                                                            <img style={{
-                                                                width: '100%',
-                                                                height: '27.5rem',
-                                                                backgroundSize: 'cover',
-                                                                backgroundRepeat: 'no-repeat'
-                                                            }}
-                                                                 src={auctionProductData?.main_image}
-                                                                 alt={`Image`}/>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div id="carousel" className="flexslider mt-4 mb-4 flex flex-row gap-3">
+                                                <div
+                                                    className="image-magnifier-container"
+                                                >
                                                     {
-                                                        auctionProductData?.image_list.map((image, index) => (
-                                                            <div key={index} style={{width: '14%'}}>
+                                                        selectedImage && (
+                                                            <img onMouseEnter={handleMouseEnter}
+                                                                 onMouseLeave={handleMouseLeave}
+                                                                 onMouseMove={handleMouseMove}
+                                                                 ref={imageRef} src={selectedImage}
+                                                                 className="zoom-image cursor-crosshair" alt="Magnified"/>
+                                                        )
+                                                    }
+                                                </div>
+
+                                                <div id="carousel" className="flexslider mt-4 mb-4 grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 min-[200px]:grid-cols-4 gap-3">
+                                                    {
+                                                        newlist.map((image, index) => (
+                                                            <div
+                                                                className={`${image.toString() === selectedImage.toString() ? 'border bg-black border-orange-500 ' : 'border border-gray-300' }  cursor-pointer`}
+                                                                onClick={() => setSelectedImage(image)} key={index} >
                                                                 <img style={{
                                                                     width: '100%',
                                                                     height: '4.7rem',
@@ -122,90 +157,90 @@ const ProductOnlineDetail = () => {
                                                             <CustomSpinner h={8} w={8} font={'sm'}/>
                                                         </>
                                                         :
-                                                        sc &&  ralatedPro.length !== 0 &&
-                                                            <>
-                                                                <div className="flex flex-col bg-white pt-3 p-3 mb-4">
-                                                                    <div
-                                                                        className="flex flex-grow items-center justify-between p-2">
-                                                                        <div className="flex gap-2 items-center mb-2 ">
+                                                        sc && ralatedPro.length !== 0 &&
+                                                        <>
+                                                            <div className="flex flex-col bg-white pt-3 p-3 mb-4">
+                                                                <div
+                                                                    className="flex flex-grow items-center justify-between p-2">
+                                                                    <div className="flex gap-2 items-center mb-2 ">
                                                                             <span className="relative flex h-3 w-3">
                                                                                 <span
                                                                                     className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
                                                                                 <span
                                                                                     className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                                                             </span>
-                                                                            <div
-                                                                                className="text-left text-lg font-semibold text-gray-900 ">Các
-                                                                                sản phẩm tương tự
-                                                                            </div>
+                                                                        <div
+                                                                            className="text-left text-lg font-semibold text-gray-900 ">Các
+                                                                            sản phẩm tương tự
                                                                         </div>
                                                                     </div>
-                                                                    {
-                                                                        ralatedPro &&
-                                                                        <>
-                                                                            <Carousel
-                                                                                additionalTransfrom={0}
-                                                                                arrows
-                                                                                autoPlaySpeed={3000}
-                                                                                className=""
-                                                                                containerClass="carousel-container-categories"
-                                                                                dotListClass=""
-                                                                                draggable
-                                                                                focusOnSelect={false}
-                                                                                keyBoardControl
-                                                                                minimumTouchDrag={30}
-                                                                                pauseOnHover
-                                                                                renderArrowsWhenDisabled={false}
-                                                                                renderButtonGroupOutside={false}
-                                                                                renderDotsOutside={false}
-                                                                                responsive={{
-                                                                                    desktop: {
-                                                                                        breakpoint: {
-                                                                                            max: 3000,
-                                                                                            min: 1024
-                                                                                        },
-                                                                                        items: 2.61,
-                                                                                    },
-                                                                                    mobile: {
-                                                                                        breakpoint: {
-                                                                                            max: 464,
-                                                                                            min: 0
-                                                                                        },
-                                                                                        items: 2,
-                                                                                    },
-                                                                                    tablet: {
-                                                                                        breakpoint: {
-                                                                                            max: 1024,
-                                                                                            min: 464
-                                                                                        },
-                                                                                        items: 2,
-                                                                                    }
-                                                                                }}
-                                                                                rewind
-                                                                                centerMode={true}
-                                                                                rewindWithAnimation={false}
-                                                                                rtl={false}
-                                                                                shouldResetAutoplay
-                                                                                showDots={false}
-                                                                                sliderClass=""
-                                                                                slidesToSlide={3}
-                                                                                swipeable
-                                                                            >
-                                                                                {
-                                                                                    ralatedPro.map((product, index) => (
-                                                                                        <div
-                                                                                            onClick={() => handleNavigateAuction(product.product_id)}
-                                                                                            key={index}
-                                                                                            className="md:basis-1/5 p-2 ">
-                                                                                            <CardNormal data={product}/>
-                                                                                        </div>
-                                                                                    ))
-                                                                                }
-                                                                            </Carousel>
-                                                                        </>
-                                                                    }
                                                                 </div>
-                                                            </>
+                                                                {
+                                                                    ralatedPro &&
+                                                                    <>
+                                                                        <Carousel
+                                                                            additionalTransfrom={0}
+                                                                            arrows
+                                                                            autoPlaySpeed={3000}
+                                                                            className=""
+                                                                            containerClass="carousel-container-categories"
+                                                                            dotListClass=""
+                                                                            draggable
+                                                                            focusOnSelect={false}
+                                                                            keyBoardControl
+                                                                            minimumTouchDrag={30}
+                                                                            pauseOnHover
+                                                                            renderArrowsWhenDisabled={false}
+                                                                            renderButtonGroupOutside={false}
+                                                                            renderDotsOutside={false}
+                                                                            responsive={{
+                                                                                desktop: {
+                                                                                    breakpoint: {
+                                                                                        max: 3000,
+                                                                                        min: 1024
+                                                                                    },
+                                                                                    items: 2.61,
+                                                                                },
+                                                                                mobile: {
+                                                                                    breakpoint: {
+                                                                                        max: 464,
+                                                                                        min: 0
+                                                                                    },
+                                                                                    items: 2,
+                                                                                },
+                                                                                tablet: {
+                                                                                    breakpoint: {
+                                                                                        max: 1024,
+                                                                                        min: 464
+                                                                                    },
+                                                                                    items: 2,
+                                                                                }
+                                                                            }}
+                                                                            rewind
+                                                                            centerMode={true}
+                                                                            rewindWithAnimation={false}
+                                                                            rtl={false}
+                                                                            shouldResetAutoplay
+                                                                            showDots={false}
+                                                                            sliderClass=""
+                                                                            slidesToSlide={3}
+                                                                            swipeable
+                                                                        >
+                                                                            {
+                                                                                ralatedPro.map((product, index) => (
+                                                                                    <div
+                                                                                        onClick={() => handleNavigateAuction(product.product_id)}
+                                                                                        key={index}
+                                                                                        className="md:basis-1/5 p-2 ">
+                                                                                        <CardNormal data={product}/>
+                                                                                    </div>
+                                                                                ))
+                                                                            }
+                                                                        </Carousel>
+                                                                    </>
+                                                                }
+                                                            </div>
+                                                        </>
                                                 }
                                             </div>
 
@@ -325,10 +360,6 @@ const ProductOnlineDetail = () => {
                                                             className="flex-col border-r border-neutral-200  flex items-center gap-1 pr-5 ">
                                                             <span className="font-medium">{auctionProductData?.product_done_count}  </span>
                                                             <span> đơn hàng </span>
-                                                        </div>
-                                                        <div className="flex-col  flex items-center gap-1 pr-5 ">
-                                                            <span className="font-medium"> đang fix  </span>
-                                                            <span>người theo dõi </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex flex-row  0 gap-1 px-4 p-3 pb-2 items-center">
