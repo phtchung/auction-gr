@@ -120,7 +120,8 @@ const AuctionOnline = () => {
                                                                  targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
                                                 <div
-                                                    className="flex flex-col ring-2 ring-orange-500 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]  min-[400px]:min-h-[14.8rem] shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
+                                                    className="flex flex-col ring-2 ring-orange-500 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]
+                                                      min-[400px]:min-h-[14.8rem] shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
                                                     style={{backgroundColor: '#f1a851'}}>
                                                     <div style={{
                                                         fontWeight: 600,
