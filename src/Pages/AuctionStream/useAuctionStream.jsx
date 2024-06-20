@@ -56,13 +56,6 @@ export default function useAuctionStream (state) {
         return { list , product , highest_price  };
     }, []);
 
-    // const { data, isSuccess, isLoading,isError,error } = useQuery({
-    //     queryKey: ["getTopBidListOnlineAuction",id],
-    //     queryFn: () => getTopBidListOnlineAuction(id),
-    //     select: (data) => parseData(data.data),
-    //     enabled : !!id,
-    // });
-
     const { data: fullList, isSuccess : isSc, isLoading : isLd  } = useQuery({
         queryKey: ["getFullBidListOnlineAuction",id],
         queryFn: () => getFullBidListOnlineAuction(id),

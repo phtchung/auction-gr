@@ -1,23 +1,29 @@
 import {useCallback, useEffect, useState} from "react";
 import { useQuery} from "@tanstack/react-query";
-import {getFullBidListOnlineAuction, getTopBidListOnlineAuction} from "../../Services/productService.jsx";
-import {useParams} from "react-router-dom";
+import {
+    getFullBidListOnlineAuction,
+    getTopBidListStreamAuction
+} from "../../Services/productService.jsx";
+import {useLocation, useParams} from "react-router-dom";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 
-export default function useAuctionStreamPriceDown(state) {
+export default function useAuctionStreamPriceDown (state) {
     const [loading, setLoading] = useState(false);
     const {selectedAuction , bidList , setBidList ,highestPrice,  setHighestPrice } = useAuctionOnlineTracking()
     const [productData, setProductData] = useState({});
     const [success, setSuccess] = useState(false);
     const [err, setErr] = useState(false);
     const {id} = useParams()
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const accessCode = queryParams.get('accessCode');
 
     useEffect(() => {
         const getBidList = async () => {
             setLoading(true);
             setSuccess(false)
             try {
-                const res = await getTopBidListOnlineAuction(id);
+                const res = await getTopBidListStreamAuction({id , accessCode});
                 const data = res.data;
                 if (data.error) throw new Error(data.error);
                 setBidList(data.list);
@@ -31,8 +37,8 @@ export default function useAuctionStreamPriceDown(state) {
             }
         };
 
-        if (id) getBidList();
-    }, [id, setBidList]);
+        if (id && accessCode) getBidList();
+    }, [id, setBidList,accessCode]);
 
     const parseData = useCallback((item) => {
         const list = item?.list?.map((data) => {

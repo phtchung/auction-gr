@@ -4,8 +4,11 @@ import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/cons
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";
-import {BuyAuctionPriceDown, sendAuctionDataOnline, sendBuyData} from "../../Services/biddingService.jsx";
-import {useParams} from "react-router-dom";
+import {
+    BuyAuctionPriceDown,
+    sendStreamBid
+} from "../../Services/biddingService.jsx";
+import {useLocation, useParams} from "react-router-dom";
 import {CheckCircleOutlined, CheckCircleTwoTone, CloseCircleTwoTone} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
@@ -19,7 +22,10 @@ import YouTubeEmbed from "../../Components/YouTubeEmbed/index.jsx";
 const AuctionStreamPriceDown = () => {
     const {id} = useParams();
     const {selectedAuction, setSelectedAuction, setBidList, setHighestPrice} = useAuctionOnlineTracking()
-    const [auctionData, setAuctionData] = useState({productId: id})
+    const query = new URLSearchParams(useLocation().search);
+    const accessCode = query.get('accessCode') || null;
+    const [auctionData,setAuctionData] = useState({productId:id, accessCode : accessCode})
+
     const [state, setState] = useState(null)
     const {currentUser} = useAuthContext();
     const [open, setOpen] = useState(false)
@@ -42,13 +48,13 @@ const AuctionStreamPriceDown = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleOnlineBidding = async (new_price) => {
-        try {
-            const res = await sendAuctionDataOnline({...auctionData, final_price: new_price});
-            setAuctionData({productId: id})
+    const handleOnlineBidding =  async (new_price) => {
+        try{
+            const res = await sendStreamBid({...auctionData,final_price:new_price});
+            setAuctionData({productId:id , accessCode : accessCode})
             const data = res.data.new_bid
-        } catch (error) {
-            toast.error(error?.response?.data?.message, {
+        }catch (error) {
+            toast.error(error?.response?.data?.message,{
                 position: "top-right",
             });
         }
@@ -98,7 +104,7 @@ const AuctionStreamPriceDown = () => {
                         </> :
                         isError ?
                             <FZFNotFound btnText={'Trở về'} error={'Rất tiếc, hệ thống không tìm thấy phiên đấu giá.'}
-                                         urlReturn={'/auctionRealtime'}/>
+                                         urlReturn={'/streamGeneral'}/>
                             :
                             isSuccess &&
                             <>
@@ -110,7 +116,7 @@ const AuctionStreamPriceDown = () => {
                                                     <Breadcrumb
                                                         items={[
                                                             {
-                                                                title: <a href="/auctionRealtime">Trở lại</a>,
+                                                                title: <a href="/streamGeneral">Trở lại</a>,
                                                             },
                                                         ]}
                                                     />
