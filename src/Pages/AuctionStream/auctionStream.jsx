@@ -111,9 +111,10 @@ const AuctionStream = () => {
 
                                 {
                                     isSuccess && <>
-                                        <div className="grid grid-cols-2  gap-3 p-5 m-2 mt-4 "
+                                        <div className="grid md:grid-cols-4  items-center gap-6 p-5 m-2 mt-4 "
                                              style={{backgroundColor: '#ef9731'}}>
 
+                                            <div className="lg:col-span-2 md:col-span-4  sm:col-span-2">
                                             {
                                                 productData?.url_stream ?
                                                     <YouTubeEmbed videoUrl={productData.url_stream}/>
@@ -127,6 +128,8 @@ const AuctionStream = () => {
                                                         </div>
                                                     </>
                                             }
+                                            </div>
+
                                             <Modal
                                                    header={null}
                                                    closable={false}
@@ -224,7 +227,7 @@ const AuctionStream = () => {
                                                 }
                                             </Modal>
 
-                                            <div className="md:basis-1/2 sm:basis-1/2 lg:basis-1/2 xl:basis-1/2">
+                                            <div className="lg:col-span-2 md:col-span-4 sm:col-span-2">
                                                 <CountDownOnline id={productData?._id}
                                                                  targetDate={productData?.finish_time}/>
                                                 {/*thông tinn đấu giá*/}
@@ -236,12 +239,13 @@ const AuctionStream = () => {
                                                 </div>
 
                                                 <div
-                                                    className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left mx-6 mb-6 mt-4"
+                                                    className="flex flex-col ring-2 ring-orange-500 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]  min-[400px]:min-h-[14.8rem] shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-6 mb-6"
                                                     style={{backgroundColor: '#f1a851', minHeight: '12.625rem'}}>
+
                                                     <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
-                                                         className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
+                                                         className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5 p-2 pr-6 relative">
                                                         <span className="text-base  flex  gap-3  ">
-                                                            <img src="../../src/assets/bid.png" alt=""
+                                                            <img className="min-[420px]:hidden md:inline-block sm:hidden" src="../../src/assets/bid.png" alt=""
                                                                  style={{width: '12%'}}/>
                                                            Diễn biến cuộc đấu giá
                                                         </span>
@@ -256,27 +260,27 @@ const AuctionStream = () => {
                                                             bidList.slice(0, 3).map((bid, index) => (
                                                                 <>
                                                                     <div key={index}
-                                                                         className="flex justify-between items-center ">
+                                                                         className="grid grid-cols-2 justify-between items-center ">
                                                                         <div style={{fontWeight: 600}}
-                                                                             className=" px-6 p-1.5 flex flex-col  relative">
-                                                                        <span className="flex gap-3">
-                                                                            <h1 className={`text-base shadow-black ${index === 0 ? 'text-red-800 font-bold' : ''}`}
-                                                                                style={{textShadow: '#f1a851 1px 0 10px'}}>
-                                                                            {formatMoney(bid.bid_price)} Đ
-                                                                            </h1>
-                                                                            {
-                                                                                bid.username === currentUser.username &&
-                                                                                <CheckCircleOutlined
-                                                                                    style={{color: "green"}}/>
-                                                                            }
-                                                                        </span>
+                                                                             className=" px-5 p-1.5 flex flex-col  relative">
+                                                                                <span className="flex gap-3">
+                                                                                    <h1 className={`text-base shadow-black ${index === 0 ? 'text-red-800 font-bold' : ''}`}
+                                                                                        style={{textShadow: '#f1a851 1px 0 10px'}}>
+                                                                                    {formatMoney(bid.bid_price)} Đ
+                                                                                    </h1>
+                                                                                    {
+                                                                                        bid.username === currentUser.username &&
+                                                                                        <CheckCircleOutlined
+                                                                                            style={{color: "green"}}/>
+                                                                                    }
+                                                                                </span>
 
 
-                                                                            <span className="text-xs text-gray-200">
-                                                                            {formatDateTimeMiliSecond(bid.bid_time)}
-                                                                        </span>
+                                                                                    <span className="text-xs text-gray-200">
+                                                                                    {formatDateTimeMiliSecond(bid.bid_time)}
+                                                                                </span>
                                                                         </div>
-                                                                        <div className="px-6 font-semibold text-base">
+                                                                        <div className="px-6 justify-self-end font-semibold text-base" >
                                                                             {bid.username}
                                                                         </div>
                                                                     </div>
@@ -332,25 +336,25 @@ const AuctionStream = () => {
                                             fullBidListData.length !== 0 ?
                                                 fullBidListData.map((bid, index) => (
                                                     <>
-                                                        <div key={index}
-                                                             className="flex justify-between my-2.5 items-center ">
-                                                            <div style={{fontWeight: 600}}
-                                                                 className="flex flex-col  relative">
-                                                                <h1 className='text-base font-semibold shadow-black'>
-                                                                    {formatMoney(bid.bid_price)} đ
-                                                                </h1>
-                                                                <span className="text-xs" style={{color:'#676464'}}
-                                                                     >
+                                                    <div key={index}
+                                                         className="grid grid-cols-2 justify-between items-center ">
+                                                        <div style={{fontWeight: 600}}
+                                                             className=" px-5 p-1.5 flex flex-col  relative">
+                                                            <h1 className='text-base font-semibold shadow-black'>
+                                                                {formatMoney(bid.bid_price)} đ
+                                                            </h1>
+                                                            <span className="text-xs" style={{color: '#676464'}}
+                                                            >
                                                                     {formatDateTimeMiliSecond(bid.bid_time)}
                                                                 </span>
-                                                            </div>
-                                                            <div className="px-6 font-medium opacity-90 text-base">
-                                                                {bid.username}
-                                                            </div>
                                                         </div>
+                                                        <div className="px-6 font-medium opacity-90 text-base">
+                                                            {bid.username}
+                                                        </div>
+                                                    </div>
                                                     </>
-                                                ))
-                                                :
+                                                    ))
+                                                    :
                                                 <>
                                                     <div className="text-center font-medium my-14">Không có dữ liệu</div>
                                                 </>
