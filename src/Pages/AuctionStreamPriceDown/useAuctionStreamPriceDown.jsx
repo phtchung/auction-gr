@@ -4,7 +4,7 @@ import {getFullBidListOnlineAuction, getTopBidListOnlineAuction} from "../../Ser
 import {useParams} from "react-router-dom";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 
-export default function useAuctionOnlinePriceDown(state) {
+export default function useAuctionStreamPriceDown(state) {
     const [loading, setLoading] = useState(false);
     const {selectedAuction , bidList , setBidList ,highestPrice,  setHighestPrice } = useAuctionOnlineTracking()
     const [productData, setProductData] = useState({});

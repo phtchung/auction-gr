@@ -115,7 +115,7 @@ const ProductStreamDetail = () => {
                                     <div className="mt-5 bg-white  text-left mb-5 text-neutral-700 p-3">
                                         <div className="border-b pb-3 text-lg font-semibold">Mô tả sản phẩm
                                         </div>
-                                        <div className="pt-2 min-h-fit">
+                                        <div className="pt-2 min-h-fit" style={{ whiteSpace: 'pre-line' }}>
                                             {auctionProductData?.description}
                                         </div>
                                     </div>

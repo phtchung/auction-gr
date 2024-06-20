@@ -1,5 +1,6 @@
 import {Card} from "antd";
 import {useNavigate} from "react-router-dom";
+import {formatDateTime} from "../../Utils/constant.js";
 
 const CardStreamGeneral = ({data , onOpenPopup , getData }) => {
     const navigate = useNavigate()
@@ -43,8 +44,8 @@ const CardStreamGeneral = ({data , onOpenPopup , getData }) => {
                                  10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
                         </svg>
                         <div className="text-sm  font-medium flex flex-col gap-1 text-neutral-600 px-1 pb-1.5  ">
-                            <p className="opacity-70 text-xs  ">Thời gian còn lại</p>
-                            <p className=""> {data?.coutdown_time}</p>
+                            <p className="opacity-70 text-xs  ">Thời gian kết thúc</p>
+                            <p className=""> {formatDateTime(data?.coutdown_time)}</p>
                         </div>
                     </div>
 

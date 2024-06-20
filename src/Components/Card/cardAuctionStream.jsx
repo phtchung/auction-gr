@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 
 const CardAuctionStream = ({data}) => {
-    console.log(typeof  data.register)
+
     const navigate = useNavigate()
     const {selectedAuction , setSelectedAuction  } = useAuctionOnlineTracking()
     const handleDetail = (id) => {

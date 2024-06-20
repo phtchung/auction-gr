@@ -34,6 +34,7 @@ import AuctionOnlinePriceDown from "../Pages/AuctionOnlinePriceDown/auctionOnlin
 import DepositRegistration from "../Pages/DepositRegistration/depositRegistration.jsx";
 import ConfirmRegistration from "../Pages/DepositRegistration/confirmRegistration.jsx";
 import ConfirmWithdrawRegistration from "../Pages/DepositRegistration/confirmWithdrawRegistration.jsx";
+import AuctionStreamPriceDown from "../Pages/AuctionStreamPriceDown/auctionStreamPriceDown.jsx";
 
 
 export const NormalRoutes = [
@@ -69,6 +70,7 @@ export const UserRoutes = [
   { path: "/bidding/:id", element: <AuctionOnline /> },
   { path: "/biddingDown/:id", element: <AuctionOnlinePriceDown /> },
   { path: "/biddingStream/:id", element: <AuctionStream /> },
+  { path: "/biddingStreamDown/:id", element: <AuctionStreamPriceDown /> },
   { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
   { path: "/auctionStream", element: <AuctionStreamHome /> },
   { path: "/checkout/:id", element: <CheckOut /> },

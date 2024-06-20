@@ -155,7 +155,7 @@ const ProductOnlineDetail = () => {
                                                     <div className="border-b pb-3 text-lg font-semibold">Mô tả sản
                                                         phẩm
                                                     </div>
-                                                    <div className="pt-2 min-h-fit">
+                                                    <div className="pt-2 min-h-fit" style={{ whiteSpace: 'pre-line' }}>
                                                         {auctionProductData?.description}
                                                     </div>
                                                 </div>
