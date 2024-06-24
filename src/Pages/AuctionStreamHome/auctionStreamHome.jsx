@@ -16,19 +16,12 @@ const AuctionStreamHome = () => {
     const initialKeyword = query.get('keyword') || '';
     const [keyword, setKeyword] = useState(initialKeyword);
 
-    const handleTabClick = (tab) => {
-        setType(tab);
-        setActiveTab(tab);
-        setQueryString({...queryString,type:tab})
-    };
-
     const handleFilter = (key, value) => {
         setQueryString({...queryString, [key]: value, page: 1})
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
-        console.log(queryString)
     }
 
     const handleSearch = (e) => {
@@ -88,19 +81,6 @@ const AuctionStreamHome = () => {
                                     <div
                                         className="mb-4 flex min-[450px]:flex-col  sm:flex-col md:flex-row flex-row  items-center justify-between text-base font-medium w-full ">
                                         <div className="h-12 w-full flex flex-row justify-between pt-3 rounded-md ">
-                                            <div onClick={() => handleTabClick("all")}
-                                                 className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "all" ? 'active_tab' : ''}`}
-                                            >Tất cả
-                                            </div>
-                                            <div
-                                                onClick={() => handleTabClick("increase")}
-                                                className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "increase" ? 'active_tab' : ''}`}>Đấu
-                                                giá tăng
-                                            </div>
-                                            <div onClick={() => handleTabClick("decrease")}
-                                                 className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "decrease" ? 'active_tab' : ''}`}>Đấu
-                                                giá giảm
-                                            </div>
                                         </div>
                                         <div className="cursor-text min-[450px]:mt-3 sm:mt-0  h-8 px-2.5 pt-1 ">
                                             <Select
@@ -159,6 +139,7 @@ const AuctionStreamHome = () => {
                                                                     onChange={handlePageChange}
                                                                     shape="rounded"
                                                                     style={{
+                                                                        marginTop:20,
                                                                         justifyContent: "center",
                                                                         display: "flex",
                                                                     }}

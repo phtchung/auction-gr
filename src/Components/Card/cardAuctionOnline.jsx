@@ -10,13 +10,10 @@ const CardAuctionOnline = ({data}) => {
         navigate(`/auction/online/item/${id}`)
         window.scrollTo(0, 0);
     }
-    const handleBiddingOnline = (id,type) => {
+    const handleBiddingOnline = (id) => {
         setSelectedAuction(id)
-        if (type === 1){
-            navigate(`/bidding/${id}`)
-        }else {
-            navigate(`/biddingDown/${id}`)
-        }
+        navigate(`/bidding/${id}`)
+
         window.scrollTo(0, 0);
     }
     return(
@@ -42,7 +39,7 @@ const CardAuctionOnline = ({data}) => {
                         {data.product_name}
                     </div>
                         <button
-                            onClick={() => handleBiddingOnline(data.product_id, data.type)}
+                            onClick={() => handleBiddingOnline(data.product_id)}
                             className=" p-2 leading-none  rounded-3xl  text-white  cursor-pointer"
                             style={{backgroundColor: '#ef5c0c', width: '100%', border:'1px solid #ee002a'}}>
                             Đấu giá trực tuyến

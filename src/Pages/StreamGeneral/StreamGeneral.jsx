@@ -31,11 +31,6 @@ const StreamGeneral = () => {
         setConnectData({...connectData, [key]: value});
         console.log(connectData)
     };
-    const handleTabClick = (tab) => {
-        setType(tab);
-        setActiveTab(tab);
-        setQueryString({...queryString,type:tab ,page : 1})
-    };
 
     const handleKeyword = (value) => {
         if(keyword){
@@ -96,20 +91,9 @@ const StreamGeneral = () => {
                         <div className=" relative ">
                             <div
                                 className="mb-4 flex min-[450px]:flex-col  sm:flex-col md:flex-row flex-row  items-center justify-between text-base font-medium w-full ">
-                                <div className="h-12 w-full flex flex-row justify-between pt-3 rounded-md ">
-                                    <div onClick={() => handleTabClick("all")}
-                                         className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "all" ? 'active_tab' : ''}`}
-                                    >Tất cả
-                                    </div>
-                                    <div
-                                        onClick={() => handleTabClick("increase")}
-                                        className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "increase" ? 'active_tab' : ''}`}>Đấu giá tăng
-                                    </div>
-                                    <div onClick={() => handleTabClick("decrease")}
-                                         className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "decrease" ? 'active_tab' : ''}`}>Đấu giá giảm
-                                    </div>
+                                <div className="h-12 w-full  flex flex-row justify-between pt-3 rounded-md ">
                                 </div>
-                                <div className="cursor-text min-[450px]:mt-3 sm:mt-0 mx-2 flex  h-10 px-2.5 gap-2  ">
+                                <div className="cursor-text sm:mt-0 mx-2 flex  h-10 px-2.5 gap-2  ">
                                     <input onChange={(e) => setKeyword(e.target.value)}
                                            placeholder="Tìm theo mã phòng"
                                            value={keyword}

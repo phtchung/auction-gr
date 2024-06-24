@@ -30,7 +30,6 @@ import StreamGeneral from "../Pages/StreamGeneral/StreamGeneral.jsx";
 import AuctionStream from "../Pages/AuctionStream/auctionStream.jsx";
 import SearchPage from "../Pages/SearchPage/searchPage.jsx";
 import CreateRequest from "../Pages/CreateRequest/createRequest.jsx";
-import AuctionOnlinePriceDown from "../Pages/AuctionOnlinePriceDown/auctionOnlinePriceDown.jsx";
 import DepositRegistration from "../Pages/DepositRegistration/depositRegistration.jsx";
 import ConfirmRegistration from "../Pages/DepositRegistration/confirmRegistration.jsx";
 import ConfirmWithdrawRegistration from "../Pages/DepositRegistration/confirmWithdrawRegistration.jsx";
@@ -68,7 +67,6 @@ export const UserRoutes = [
   { path: "/404", element: <PageNotFound /> },
   { path: "/resultSuccess", element: <ResultPage /> },
   { path: "/bidding/:id", element: <AuctionOnline /> },
-  { path: "/biddingDown/:id", element: <AuctionOnlinePriceDown /> },
   { path: "/biddingStream/:id", element: <AuctionStream /> },
   { path: "/biddingStreamDown/:id", element: <AuctionStreamPriceDown /> },
   { path: "/auctionRealtime", element: <AuctionRealTimeHome /> },
