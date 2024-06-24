@@ -25,7 +25,7 @@ const USER = {
       url: "/user/me",
     }),
 
-  register: async ({ email, password,username, name,phone}) => {
+  register: async ({ email, password,username, name,phone , confirm_password}) => {
     let result = await publicHttp({
       method: "POST",
       url: "/auth/signup",
@@ -34,7 +34,8 @@ const USER = {
         password: password,
         name: name,
         phone : phone,
-        username
+        username,
+        confirm_password
       },
     });
     return result;

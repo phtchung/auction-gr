@@ -214,13 +214,15 @@ const MainLayOut = ({children}) => {
             <header className={`flex w-full header  items-center dark:bg-dark`} style={{backgroundColor: '#F27C08'}}>
                 <div className="container">
                     <div className="relative -mx-2 flex items-center justify-between">
-                        <div className="w-60 max-w-full px-4">
-                            <a href="/#" className="block w-full py-3">
+                        <div className="w-48  px-4">
+                            <a href="/#" className=" flex items-center ml-4 py-2">
                                 <img
-                                    src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                                    className="w-[38.5%] h-[31%]"
+                                    src="https://storage.googleapis.com/auction_gr/1718988765274658ed6c300a80ce6b80ed846111-removebg-preview (2).png"
                                     alt="logo"
 
                                 />
+                                <div className="text-white ml-2 text-2xl">Auction</div>
                             </a>
                         </div>
                         <div className="flex w-full items-center justify-between px-4">
@@ -248,11 +250,11 @@ const MainLayOut = ({children}) => {
                                         <ListItem NavLink="/" onItemClick={() => selectItem("/")}
                                                   active={selectedItem === "/"}>Đấu giá thường</ListItem>
                                         <ListItem NavLink="/auctionRealtime" onItemClick={() => selectItem('/auctionRealtime')}
-                                                  active={selectedItem === '/auctionRealtime'}>Đấu giá Real-time</ListItem>
+                                                  active={selectedItem === '/auctionRealtime'}>Đấu giá trực tuyến</ListItem>
                                         <ListItem NavLink="/auctionStream" onItemClick={() => selectItem("/auctionStream")}
                                                   active={selectedItem === "/auctionStream"}>Đăng ký đấu giá</ListItem>
                                         <ListItem NavLink="/streamGeneral" onItemClick={() => selectItem("/streamGeneral")}
-                                                  active={selectedItem === "/streamGeneral"}>Phòng đấu giá</ListItem>
+                                                  active={selectedItem === "/streamGeneral"}>Đấu giá giảm</ListItem>
                                         <ListItem NavLink="/articles/news" onItemClick={() => selectItem("/articles/news")}
                                                   active={selectedItem === "/articles/news"}>Tin tức</ListItem>
                                     </ul>

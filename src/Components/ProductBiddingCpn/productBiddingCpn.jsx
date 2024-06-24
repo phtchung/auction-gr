@@ -32,7 +32,7 @@ const ProductBiddingCpn = ({data}) => {
                     <div className="flex items-center gap-6 ml-auto">
                         <div className="leading-10 ">{formatDateTime(data?.start_time)}</div>
                         <Tooltip placement="top" arrow={true}
-                                 title={<span>{data?.auction_live === 0 ? 'Đấu giá thông thường' : data?.auction_live === 1 ? 'Đấu giá Real-time' : 'Đấu giá livestream'}
+                                 title={<span>{data?.auction_live === 0 ? 'Đấu giá thông thường' : data?.auction_live === 1 ? 'Đấu giá Real-time' : 'Đấu giá giảm'}
                                         </span>}>
                             <svg xmlns="http://ww w.w3.org/2000/svg"
                                  className={`w-5 h-5 ${data?.auction_live === 0 ? 'fill-orange-500' : data?.auction_live === 1 ? 'fill-yellow-500' : 'fill-red-600'}`}
