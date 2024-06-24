@@ -86,21 +86,8 @@ const AuctionRealTimeHome = () => {
                                     <div
                                         className="mb-4 flex min-[450px]:flex-col  sm:flex-col md:flex-row flex-row  items-center justify-between text-base font-medium w-full ">
                                         <div className="h-12 w-full flex flex-row justify-between pt-3 rounded-md ">
-                                            <div onClick={() => handleTabClick("all")}
-                                                 className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "all" ? 'active_tab' : ''}`}
-                                            >Tất cả
-                                            </div>
-                                            <div
-                                                onClick={() => handleTabClick("increase")}
-                                                className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "increase" ? 'active_tab' : ''}`}>Đấu
-                                                giá tăng
-                                            </div>
-                                            <div onClick={() => handleTabClick("decrease")}
-                                                 className={`w-full text-center cursor-pointer text-neutral-600 pb-2.5 mx-2.5 ${activeTab === "decrease" ? 'active_tab' : ''}`}>Đấu
-                                                giá giảm
-                                            </div>
                                         </div>
-                                        <div className="cursor-text min-[450px]:mt-3 sm:mt-0  h-8 px-2.5 pt-1 ">
+                                        <div className="cursor-text sm:mt-0  h-8 px-2.5 pt-1 ">
                                             <Select
                                                 showSearch
                                                 className="hover:border-none"
@@ -157,6 +144,7 @@ const AuctionRealTimeHome = () => {
                                                                     onChange={handlePageChange}
                                                                     shape="rounded"
                                                                     style={{
+                                                                        marginTop:32,
                                                                         justifyContent: "center",
                                                                         display: "flex",
                                                                     }}

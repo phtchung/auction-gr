@@ -62,13 +62,9 @@ const ProductOnlineDetail = () => {
         }
     };
 
-    const handleNavigateToOnlineAuction = (url, type) => {
+    const handleNavigateToOnlineAuction = (url) => {
         if (localStorage.getItem("accessToken")) {
-            if (type === 1) {
-                window.location.href = `/bidding/${url}`;
-            } else {
-                window.location.href = `/biddingDown/${url}`;
-            }
+            window.location.href = `/bidding/${url}`;
         } else {
             window.location.href = '/login';
         }
@@ -316,7 +312,7 @@ const ProductOnlineDetail = () => {
 
                                                     <div className="mt-5 mb-6 flex gap-1 flex-row items-center">
                                                         <button
-                                                            onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id, auctionProductData?.type)}
+                                                            onClick={() => handleNavigateToOnlineAuction(auctionProductData?.product_id)}
                                                             className="text-xl overflow_css_w_158 p-2.5 hover:border-amber-700  font-semibold text-white rounded border-amber-500 cursor-pointer"
                                                             style={{backgroundColor: '#ee002a', width: '100%'}}>
                                                             Đấu giá trực tuyến

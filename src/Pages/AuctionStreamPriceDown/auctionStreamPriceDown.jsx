@@ -122,9 +122,9 @@ const AuctionStreamPriceDown = () => {
                                                     />
                                                 </div>
 
-                                                <div className="grid md:grid-cols-4 items-center gap-6 p-5 m-2 mt-4 "
+                                                <div className="grid md:grid-cols-4  items-center gap-6 p-5 m-2 mt-4 "
                                                      style={{backgroundColor: '#ef9731'}}>
-                                                    <div className="lg:col-span-2 md:col-span-4  sm:col-span-2">
+                                                    <div className="lg:col-span-2 md:col-span-4  sm:col-span-2" style={{height:'100%'}}>
                                                         {
                                                             productData?.url_stream ?
                                                                 <YouTubeEmbed videoUrl={productData.url_stream}/>
