@@ -20,6 +20,7 @@ const SignUp = () => {
     const { mutate, isError , isPending, error } = useMutation({
         mutationFn: async ({ email, username, name, password,phone, confirm_password }) => {
             try {
+                console.log( confirm_password)
                 const res = await USER.register({ email, username, name, password,phone,confirm_password })
                 const data = res.data
                 console.log(data);
@@ -50,6 +51,7 @@ const SignUp = () => {
         },
     });
     const handleInputChange = (e) => {
+        console.log(e.target.name,e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
     const handleSubmit = (e) => {
