@@ -35,6 +35,7 @@ export default function useProductStreamDetail() {
             type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
             category_name: data?.category_id?.name,
             parent : data?.parent,
+            min_price : data?.min_price
         };
         return { detail };
     }, []);

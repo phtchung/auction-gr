@@ -222,7 +222,7 @@ const AuctionStreamPriceDown = () => {
                                                             <div className="justify-between items-center ">
                                                                 <div className="flex flex-row justify-between m-2">
                                                                     {
-                                                                        highestPrice - productData.step_price > 0 &&
+                                                                        highestPrice - productData.step_price >= productData.min_price &&
                                                                         <>
                                                                             <div
                                                                                 onClick={() => handleOnlineBidding(highestPrice - productData.step_price)}
@@ -238,20 +238,20 @@ const AuctionStreamPriceDown = () => {
 
                                                                     <div
                                                                         onClick={handleBuyProduct}
-                                                                        className={`p-3 ${highestPrice - productData.step_price > 0 ? 'w-1/3' : 'w-full pr-2'} md:text-lg min-[200px]:text-base  text-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-900 
+                                                                        className={`p-3 ${highestPrice - productData.step_price >= productData.min_price ? 'w-1/3' : 'w-full pr-2'} md:text-lg min-[200px]:text-base  text-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-900 
                                                                         hover:from-orange-700 hover:to-red-500 mx-2 mt-3 mb-3 font-semibold text-lg`}
                                                                     >
                                                                         <span>
-                                                                            Mua {highestPrice - productData.step_price > 0 ? '' : formatMoney(highestPrice) + 'đ'}
+                                                                            Mua {highestPrice - productData.step_price >= productData.min_price ? '' : formatMoney(highestPrice) + 'đ'}
                                                                         </span>
                                                                     </div>
                                                                 </div>
 
                                                                 {
-                                                                    highestPrice - productData.step_price > 0 &&
+                                                                    highestPrice - productData.step_price >= productData.min_price &&
                                                                     <>
                                                                         <div
-                                                                            className="text-xs capitalize text-center m-3">{readMoney(highestPrice - productData.step_price)} Đồng
+                                                                            className="text-xs capitalize text-center m-2">{readMoney(highestPrice - productData.step_price)} Đồng
                                                                         </div>
                                                                     </>
                                                                 }
