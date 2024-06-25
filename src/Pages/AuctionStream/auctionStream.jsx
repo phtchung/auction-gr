@@ -263,17 +263,17 @@ const AuctionStream = () => {
                                                                     textShadow: '0px 0px 10px #ccc3b8'
                                                                 }}
                                                                      className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5 p-2 pr-6 relative">
-                                                        <span className="text-base  flex  gap-3  ">
-                                                            <img
-                                                                className="min-[420px]:hidden md:inline-block sm:hidden"
-                                                                src="../../src/assets/bid.png" alt=""
-                                                                style={{width: '12%'}}/>
-                                                           Diễn biến cuộc đấu giá
-                                                        </span>
+                                                                    <span className="text-base  flex  gap-3  ">
+                                                                        <img
+                                                                            className="min-[420px]:hidden md:inline-block sm:hidden"
+                                                                            src="../../src/assets/bid.png" alt=""
+                                                                            style={{width: '12%'}}/>
+                                                                       Diễn biến cuộc đấu giá
+                                                                    </span>
                                                                     <span onClick={getFullBidList}
                                                                           className="text-sm hover:text-blue-600 cursor-pointer  hover:underline ">
-                                                        Xem tất cả
-                                                    </span>
+                                                                        Xem tất cả
+                                                                    </span>
                                                                 </div>
 
                                                                 {

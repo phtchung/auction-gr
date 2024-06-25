@@ -292,6 +292,13 @@ const ProductStreamDetail = () => {
                                             </div>
 
                                             <div className="flex-row flex gap-3 mb-3">
+                                                <div className="basis-2/5 font-medium">Giá tối thiểu</div>
+                                                <div
+                                                    className="basis-3/5">{formatMoney(auctionProductData?.min_price)} VNĐ
+                                                </div>
+                                            </div>
+
+                                            <div className="flex-row flex gap-3 mb-3">
                                                 <div className="basis-2/5 font-medium">Phí giao hàng</div>
                                                 <div
                                                     className="basis-3/5">{formatMoney(auctionProductData?.shipping_fee)} VNĐ
@@ -315,7 +322,7 @@ const ProductStreamDetail = () => {
                             </div>
                         </div>
 
-                    </>}
+                        </>}
                 </div>
             </MainLayOut>
         </>

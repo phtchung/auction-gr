@@ -12,18 +12,20 @@ import {CheckOutRegistrationDeposit, WithdrawRegistrationDeposit} from "../../Se
 import {toast} from "react-toastify";
 import useDepositRegistration from "./useDepositRegistration.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
+import useProductBidding from "../ProductBidding/useProductBidding.jsx";
 
 const DepositRegistration = () => {
     const {data, isSuccess , isLoading, isError : err} = useDepositRegistration()
     const [isPaymentScreen, setIsPaymentScreen] = useState(false);
     const [selectedPackage, setSelectedPackage] = useState({payment_method : 1});
     const [dataWithdraw , setDataWithDraw] = useState({})
+    const {isSuccess : sc , data : dataBidding,} = useProductBidding();
 
     const handleSelect = (data) => {
         setSelectedPackage({...selectedPackage,data})
         setIsPaymentScreen(true);
     };
-    console.log(selectedPackage)
+
     const handleReturn = () => {
         setIsPaymentScreen(false);
     }
@@ -36,7 +38,6 @@ const DepositRegistration = () => {
             try {
                 const res = await CheckOutRegistrationDeposit(checkoutInfor)
                 const data = res.data
-                console.log(data);
                 return data;
             } catch (error) {
                 console.log(error.response.data);
@@ -61,7 +62,6 @@ const DepositRegistration = () => {
             try {
                 const res = await WithdrawRegistrationDeposit(checkoutInfor)
                 const data = res.data
-                console.log(data);
                 return data;
             } catch (error) {
                 console.log(error.response.data);
@@ -81,7 +81,6 @@ const DepositRegistration = () => {
             toast.error('Chưa điền đủ thông tin cần thiết.')
         }
     };
-
 
     return (
         <>
@@ -222,7 +221,7 @@ const DepositRegistration = () => {
                                                                                                                     <button
                                                                                                                         onClick={handleSubmit}
                                                                                                                         className='bg-orange-500 flex flex-row hover:border-orange-600 rounded-md items-center
-                                                                                    py-2 gap-2 px-6 text-center text-base font-medium text-white  hover:bg-[#F27C08] active:bg-orange-400 '>
+                                                                                                                           py-2 gap-2 px-6 text-center text-base font-medium text-white  hover:bg-[#F27C08] active:bg-orange-400 '>
                                                                                                                         <p> Thanh toán</p>
                                                                                                                     </button>
                                                                                                                 </>
@@ -270,18 +269,22 @@ const DepositRegistration = () => {
                                                                 :
                                                                 <>
                                                                 {
-                                                                    isSuccess && (
+                                                                    isSuccess && sc && (
                                                                         !data.auction_deposit ?
                                                                             <>
                                                                                 <p className="text-neutral-500 flex mx-auto text-center mt-4 text-base">Bạn chưa đăng ký mức cọc đấu giá nào.</p>
                                                                             </>
                                                                             :
                                                                             <>{
-                                                                                data.checkBidding ?
+                                                                                data.checkBidding || dataBidding.pages.length !== 0  ?
                                                                                     <>
-                                                                                        <p className="text-neutral-500 text-center text-base">Bạn
-                                                                                            đang tham gia đấu giá hoặc đang trong quá trình hoàn tất nhận hàng.
-                                                                                            Vui lòng yêu cầu lại sau khi hoàn tất nhận hàng.</p>
+                                                                                        <p className="text-neutral-700 gap-4 flex flex-col justify-center text-center text-base mx-auto">
+                                                                                            Sản phẩm của bạn đang được bán đấu giá hoặc
+                                                                                            Bạn đang đang trong quá trình đấu giá sản phẩm.
+                                                                                            <p>
+                                                                                                Vui lòng yêu cầu lại sau khi hoàn tất nhận hàng.
+                                                                                            </p>
+                                                                                        </p>
                                                                                     </>
                                                                                     :
                                                                                     <>
@@ -363,12 +366,8 @@ const DepositRegistration = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </MainLayOut>

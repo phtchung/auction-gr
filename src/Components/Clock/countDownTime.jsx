@@ -49,7 +49,7 @@ const CountdownTimer = ({ initialTimeInSeconds }) => {
 
     return (
         <div>
-            <p className="text-base  mr-4">Reload: <strong>{formatTime(timeInSeconds)}</strong></p>
+            <p className="text-base  mr-4">Tải trang : <strong>{formatTime(timeInSeconds)}</strong></p>
         </div>
     )
 };
