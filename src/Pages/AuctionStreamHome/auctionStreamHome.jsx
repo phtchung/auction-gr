@@ -42,7 +42,7 @@ const AuctionStreamHome = () => {
                     className="header_container z-50 lg:mx-[-8.04rem] md:mx-[-4.04rem] bg-orange-500 opacity-90 border border-t-amber-50"
                     style={{marginTop: '4rem'}}>
                     <div className="container">
-                        <div className=" lg:w-7/12 md:w-6/12 my-8   mx-auto">
+                        <div className=" lg:w-7/12 md:w-6/12 my-6   mx-auto">
                             <form className="" onSubmit={handleSearch}>
                                 <label htmlFor="default-search"
                                        className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm
@@ -79,15 +79,13 @@ const AuctionStreamHome = () => {
                                 className="flex flex-col gap-8 sm:gap-[60px]  lg:gap-32 xs:px-2 pb-4 md:pb-8 xl:pb-12 pt-[10px]">
                                 <div className=" relative ">
                                     <div
-                                        className="mb-4 flex min-[450px]:flex-col  sm:flex-col md:flex-row flex-row  items-center justify-between text-base font-medium w-full ">
-                                        <div className="h-12 w-full flex flex-row justify-between pt-3 rounded-md ">
-                                        </div>
+                                        className="mb-10 mt-6 md:w-1/2 mx-auto  items-center justify-between text-base font-medium w-full ">
                                         <div className="cursor-text min-[450px]:mt-3 sm:mt-0  h-8 px-2.5 pt-1 ">
                                             <Select
                                                 showSearch
                                                 className="hover:border-none"
                                                 style={{
-                                                    width: 200,
+                                                    width: 300,
                                                 }}
                                                 placeholder="Search to Select"
                                                 optionFilterProp="children"

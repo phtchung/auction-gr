@@ -52,7 +52,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date()).subtract(7, "day")}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter(
@@ -71,7 +71,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date())}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("finish_time", newValue.toISOString())

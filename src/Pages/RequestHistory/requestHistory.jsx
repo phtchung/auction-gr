@@ -55,7 +55,7 @@ const RequestHistory = () => {
                                             defaultValue={dayjs(new Date()).subtract(7, "day")}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("start_time", newValue.toISOString())
@@ -70,7 +70,7 @@ const RequestHistory = () => {
                                             defaultValue={dayjs(new Date())}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("finish_time", newValue.toISOString())
