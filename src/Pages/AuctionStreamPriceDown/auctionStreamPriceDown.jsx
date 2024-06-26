@@ -127,8 +127,9 @@ const AuctionStreamPriceDown = () => {
                                                     />
                                                 </div>
 
-                                                <div className="grid md:grid-cols-4  items-center gap-6 p-5 m-2 mt-4 "
-                                                     style={{backgroundColor: '#ef9731'}}>
+                                                <div className="grid md:grid-cols-4 bg-orange-400  items-center gap-6 p-5 m-2 mt-4 "
+                                                     // style={{backgroundColor: '#ef9731'}}
+                                                >
                                                     <div className="lg:col-span-2 md:col-span-4  sm:col-span-2" style={{height:'100%'}}>
                                                         {
                                                             productData?.url_stream ?
@@ -146,17 +147,33 @@ const AuctionStreamPriceDown = () => {
                                                     </div>
 
                                                     <div className="lg:col-span-2 md:col-span-4 sm:col-span-2">
-                                                        <CountDownOnline id={productData?._id}
-                                                                         targetDate={productData?.finish_time}/>
+                                                        <div
+                                                            className="flex flex-row mx-8 items-center justify-between">
+                                                            <div>
+                                                                <div
+                                                                    className="text-xl mx-2 font-semibold text-orange-900"> {productData?.room_id}</div>
+                                                                <div
+                                                                    onClick={() => setOpen(!open)}
+                                                                    className="pt-2 text-center hover:underline text-orange-100 cursor-pointer text-base font-semibold hover:text-orange-800">
+                                                                    Chi tiết
+                                                                </div>
+                                                            </div>
+
+
+                                                            <CountDownOnline id={productData?._id}
+                                                                             targetDate={productData?.finish_time}/>
+                                                        </div>
+
+
                                                         {/*thông tinn đấu giá*/}
                                                         <div
-                                                            className="flex flex-col ring-2 ring-orange-500 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]
-                                                      min-[400px]:min-h-[14.8rem] shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
+                                                            className="flex flex-col ring-2 ring-orange-600 text-white lg:min-h-[12.625rem] md:min-h-[13rem] sm:min-h-[13.3rem]
+                                                      min-[400px]:min-h-[14.8rem] bg-orange-300 shadow-lg shadow-orange-500/50 font-sans text-left mt-6 mx-10 mb-6"
                                                             style={{
-                                                                backgroundColor: '#f1a851',
+                                                                // backgroundColor: '#f1a851',
                                                                 minHeight: '12.625rem'
                                                             }}>
-                                                        <div style={{
+                                                            <div style={{
                                                                 fontWeight: 600,
                                                                 textShadow: '0px 0px 10px #ccc3b8'
                                                             }}
@@ -165,7 +182,7 @@ const AuctionStreamPriceDown = () => {
                                                                Diễn biến cuộc đấu giá
                                                             </span>
                                                                 <span onClick={getFullBidList}
-                                                                      className="text-sm hover:text-blue-600 cursor-pointer  hover:underline ">
+                                                                      className="text-sm hover:text-orange-700 cursor-pointer  hover:underline ">
                                                             Xem tất cả
                                                              </span>
                                                             </div>
@@ -179,9 +196,9 @@ const AuctionStreamPriceDown = () => {
                                                                                 <div style={{fontWeight: 600}}
                                                                                      className=" sm:px-6 min-[200px]:px-3 p-1.5 flex flex-col  relative">
                                                                                     <span className="flex gap-3">
-                                                                                        <h1 className={`text-base shadow-black ${index === 0 ? 'text-red-800 font-bold' : ''}`}
+                                                                                        <h1 className={`text-base shadow-black ${index === 0 ? 'text-orange-900 font-bold' : ''}`}
                                                                                             style={{textShadow: '#f1a851 1px 0 10px'}}>
-                                                                                        {formatMoney(bid.bid_price)} Đ
+                                                                                        {formatMoney(bid.bid_price)} VND
                                                                                         </h1>
                                                                                         {
                                                                                             bid.username === currentUser.username &&
@@ -195,7 +212,7 @@ const AuctionStreamPriceDown = () => {
                                                                                     </span>
                                                                                 </div>
                                                                                 <div
-                                                                                    className="px-6 justify-self-end font-semibold text-base">
+                                                                                    className="px-6 justify-self-end font-semibold text-orange-800 text-base">
                                                                                     {bid.username}
                                                                                 </div>
                                                                             </div>
@@ -210,17 +227,22 @@ const AuctionStreamPriceDown = () => {
                                                         </div>
 
                                                         <div
-                                                            className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
-                                                            style={{backgroundColor: '#f1a851'}}>
-                                                            <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
+                                                            className="flex flex-col ring-2 ring-orange-600 bg-orange-200 text-white  shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
+                                                        >
+                                                            <div style={{
+                                                                fontWeight: 600,
+                                                                textShadow: '0px 0px 10px #ccc3b8'
+                                                            }}
                                                                  className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5 p-2 pr-6 relative">
                                                                     <span className="text-base flex gap-3  ">
-                                                                          <img src="https://storage.googleapis.com/auction_gr/label.png" alt=""
-                                                                               style={{width: '17%'}}/>
+                                                                          <img
+                                                                              src="https://storage.googleapis.com/auction_gr/label.png"
+                                                                              alt=""
+                                                                              style={{width: '17%'}}/>
                                                                        Giá hiện tại
                                                                     </span>
-                                                                    <span className="text-base font-semibold    ">
-                                                                         {formatMoney(highestPrice)} Đ
+                                                                <span className="text-base font-semibold text-orange-900   ">
+                                                                         {formatMoney(highestPrice)} VND
                                                                     </span>
                                                             </div>
 
@@ -231,10 +253,11 @@ const AuctionStreamPriceDown = () => {
                                                                         <>
                                                                             <div
                                                                                 onClick={() => handleOnlineBidding(highestPrice - productData.step_price)}
-                                                                                className="p-3 w-2/3 text-center cursor-pointer bg-gradient-to-r md:text-lg min-[200px]:text-base bg-orange-500 hover:bg-orange-600 mx-2 mt-3 mb-3 font-semibold">
-                                                                                    <span className="font-semibold text-cyan-50">Trả giá
+                                                                                className="p-3 w-2/3 text-center cursor-pointer  md:text-lg min-[200px]:text-base bg-orange-600 hover:bg-orange-800 mx-2 mt-3 mb-3 font-semibold">
+                                                                                    <span
+                                                                                        className="font-semibold text-cyan-50">Trả giá
                                                                                         <span
-                                                                                        className='font-bold '> {formatMoney(highestPrice - productData.step_price)} đ
+                                                                                            className='font-bold '> {formatMoney(highestPrice - productData.step_price)} đ
                                                                                         </span>
                                                                                     </span>
                                                                             </div>
@@ -243,8 +266,8 @@ const AuctionStreamPriceDown = () => {
 
                                                                     <div
                                                                         onClick={handleBuyProduct}
-                                                                        className={`p-3 ${highestPrice - productData.step_price >= productData.min_price ? 'w-1/3' : 'w-full pr-2'} md:text-lg min-[200px]:text-base  text-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-900 
-                                                                        hover:from-orange-700 hover:to-red-500 mx-2 mt-3 mb-3 font-semibold text-lg`}
+                                                                        className={`p-3 ${highestPrice - productData.step_price >= productData.min_price ? 'w-1/3' : 'w-full pr-2'} md:text-lg min-[200px]:text-base  text-center cursor-pointer 
+                                                                       bg-orange-800 hover:bg-orange-600 mx-2 mt-3 mb-3 font-semibold text-lg`}
                                                                     >
                                                                         <span>
                                                                             Mua {highestPrice - productData.step_price >= productData.min_price ? '' : formatMoney(highestPrice) + 'đ'}
@@ -292,11 +315,13 @@ const AuctionStreamPriceDown = () => {
                                                             </svg>
                                                             <div
                                                                 className="grid text-left grid-cols-1 gap-3 text-sm  p-2 text-neutral-800">
-                                                                <div className="text-xl font-medium ">{productData?.product_id?.product_name}
+                                                                <div
+                                                                    className="text-xl font-medium ">{productData?.product_id?.product_name}
                                                                 </div>
                                                                 <div className="flex flex-col ">
                                                                     <div
-                                                                        className=" font-medium text-neutral-500">Thương hiệu
+                                                                        className=" font-medium text-neutral-500">Thương
+                                                                        hiệu
                                                                     </div>
                                                                     <div
                                                                         className="text-black font-semibold text-lg">{productData?.product_id?.brand}
@@ -304,54 +329,54 @@ const AuctionStreamPriceDown = () => {
                                                                 </div>
                                                                 <div className="flex flex-col ">
                                                                     <div
-                                                                        className=" font-medium text-neutral-500 mb-2">Chất lượng
+                                                                        className=" font-medium text-neutral-500 mb-2">Chất
+                                                                        lượng : {productData?.product_id?.rank}
                                                                     </div>
-                                                                    <Radio.Group buttonStyle="solid" disabled   defaultChecked={true} defaultValue={productData?.product_id?.rank}
-                                                                                 className="font-semibold">
-                                                                        <Radio.Button value="S">S</Radio.Button>
-                                                                        <Radio.Button value="A">A</Radio.Button>
-                                                                        <Radio.Button value="B">B</Radio.Button>
-                                                                        <Radio.Button value="C">C</Radio.Button>
-                                                                        <Radio.Button value="D">D</Radio.Button>
-                                                                    </Radio.Group>
+
                                                                 </div>
 
                                                                 <div className="flex flex-col ">
                                                                     <div
                                                                         className=" font-medium text-neutral-500 mb-2">Trạng
                                                                         thái
+                                                                        : {productData?.product_id?.is_used === 1 ? 'Đã sử dụng' : 'Chưa sử dụng'}
                                                                     </div>
-                                                                    <Radio.Group buttonStyle="solid" defaultValue={productData?.product_id?.is_used}
-                                                                                 className="font-semibold">
-                                                                        <Radio.Button  value="0">Chưa sử
-                                                                            dụng</Radio.Button>
-                                                                        <Radio.Button value="1">Đã sử
-                                                                            dụng</Radio.Button>
-                                                                    </Radio.Group>
                                                                 </div>
 
                                                                 <div className="flex flex-row items-center">
                                                                     <span className="font-medium text-neutral-600 mr-2">Trả hàng</span>
                                                                     {
                                                                         productData?.product_id?.can_return === 1 ?
-                                                                            <CheckCircleTwoTone className="pt-0.5 text-base"
-                                                                                                twoToneColor="#52c41a"/>
+                                                                            <CheckCircleTwoTone
+                                                                                className="pt-0.5 text-base"
+                                                                                twoToneColor="#52c41a"/>
                                                                             :
-                                                                            <CloseCircleTwoTone className="pt-0.5 text-base"
-                                                                                                twoToneColor="#e0080e"/>
+                                                                            <CloseCircleTwoTone
+                                                                                className="pt-0.5 text-base"
+                                                                                twoToneColor="#e0080e"/>
                                                                     }
+                                                                </div>
 
+                                                                <div className="flex flex-row items-center gap-4 ">
+                                                                    <div className=" font-medium text-neutral-500">Phí
+                                                                        giao hàng
+                                                                    </div>
+                                                                    <div
+                                                                        className=" ">{formatMoney(productData?.shipping_fee)} VND
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex flex-row items-center gap-4 ">
+                                                                    <div className=" font-medium text-neutral-500">Giá tối thiểu
+                                                                    </div>
+                                                                    <div
+                                                                        className=" ">{formatMoney(productData?.min_price)} VND
+                                                                    </div>
                                                                 </div>
 
                                                                 <div className="flex flex-col ">
-                                                                    <div className=" font-medium text-neutral-500">Phí giao hàng
-                                                                    </div>
-                                                                    <div className="text-black font-semibold text-lg">{formatMoney(productData?.shipping_fee)} VNĐ
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="flex flex-col ">
-                                                                    <div className=" font-medium text-neutral-500">Mô tả sản phẩm
+                                                                    <div className=" font-medium text-neutral-500">Mô tả
+                                                                        sản phẩm
                                                                     </div>
                                                                     <div
                                                                         className="font-medium text-neutral-600 text-sm">

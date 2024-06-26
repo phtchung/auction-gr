@@ -62,7 +62,7 @@ const Login = () => {
                 <div
                     className="grid md:grid-cols-4 items-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] md:my-20 md:py-32 rounded-xl overflow-hidden">
                     <a href="/" className="h-full w-full md:col-span-2">
-                        <img className="w-full h-full " src="/../../src/assets/signupimg.png" alt=""/>
+                        <img className="w-full h-full " src="https://storage.googleapis.com/auction_gr/signup.jpg" alt=""/>
                     </a>
 
                     <form className="md:col-span-2 w-full mx-auto flex-col flex  py-4 px-6 sm:px-16"

@@ -91,10 +91,8 @@ const StreamGeneral = () => {
                         className=" flex flex-col gap-8 sm:gap-[60px] mt-24 lg:gap-32 xs:px-2 pb-4 md:pb-8 xl:pb-12 pt-[10px]">
                         <div className=" relative ">
                             <div
-                                className="mb-4 flex min-[450px]:flex-col  sm:flex-col md:flex-row flex-row  items-center justify-between text-base font-medium w-full ">
-                                <div className="h-12 w-full  flex flex-row justify-between pt-3 rounded-md ">
-                                </div>
-                                <div className="cursor-text sm:mt-0 mx-2 flex  h-10 px-2.5 gap-2  ">
+                                className="mb-10 md:w-1/2  mx-auto items-center justify-between text-base font-medium w-full ">
+                                <div className="cursor-text sm:mt-0 mx-2 flex items-center h-10 px-2.5 gap-2  ">
                                     <input onChange={(e) => setKeyword(e.target.value)}
                                            placeholder="Tìm theo mã phòng"
                                            value={keyword}

@@ -129,12 +129,10 @@ const AuctionOnline = () => {
                                                     }}
                                                          className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
                                                             <span className="text-base   flex  gap-3  ">
-                                                                <img className="min-[420px]:hidden md:inline-block sm:hidden" src="../../src/assets/bid.png" alt=""
-                                                                     style={{width: '12%'}}/>
                                                                Diễn biến cuộc đấu giá
                                                             </span>
                                                         <span onClick={getFullBidList}
-                                                              className="text-sm truncate hover:text-blue-600 cursor-pointer  hover:underline ">
+                                                              className="text-sm truncate hover:text-orange-700 cursor-pointer  hover:underline ">
                                                             Xem tất cả
                                                              </span>
                                                     </div>
@@ -178,28 +176,28 @@ const AuctionOnline = () => {
                                                 </div>
 
                                                 <div
-                                                    className="flex flex-col ring-2 ring-orange-500 text-white  shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
-                                                    style={{backgroundColor: '#f1a851'}}>
+                                                    className="flex flex-col ring-2 ring-orange-500 text-white bg-orange-300 shadow-lg shadow-orange-500/50 font-sans text-left  mx-10 "
+                                                   >
                                                     <div style={{
                                                         fontWeight: 600,
                                                         textShadow: '0px 0px 10px #ccc3b8'
                                                     }}
                                                          className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5   p-2 pr-6 relative">
                                                         <span className="text-base flex gap-3  ">
-                                                              <img src="../../src/assets/label.png" alt=""
+                                                              <img src="https://storage.googleapis.com/auction_gr/label.png" alt=""
                                                                    style={{width: '17%'}}/>
                                                            Giá hiện tại
                                                         </span>
-                                                        <span className="text-base font-semibold    ">
-                                                              {formatMoney(highestPrice)} Đ
+                                                        <span className="text-base font-semibold text-orange-800 ">
+                                                              {formatMoney(highestPrice)} VND
                                                         </span>
                                                     </div>
                                                     <div className=" justify-between items-center ">
                                                         <div
                                                             onClick={() => handleOnlineBidding(highestPrice + productData.step_price)}
-                                                            className="p-3 text-center cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-700 hover:from-red-700 hover:to-orange-500  mx-8 mt-3 mb-3 font-semibold text-lg">
+                                                            className="p-3 text-center cursor-pointer bg-orange-700 hover:bg-orange-500 mx-8 mt-3 mb-3 font-semibold text-lg">
                                                         <span>Trả giá <span
-                                                            className='font-bold'> {formatMoney(highestPrice + productData.step_price)} đ</span> </span>
+                                                            className='font-bold'> {formatMoney(highestPrice + productData.step_price)} VND</span> </span>
                                                         </div>
                                                         <div
                                                             className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
