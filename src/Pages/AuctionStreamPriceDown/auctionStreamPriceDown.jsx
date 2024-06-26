@@ -8,8 +8,8 @@ import {
     BuyAuctionPriceDown,
     sendStreamBid
 } from "../../Services/biddingService.jsx";
-import {useLocation, useParams} from "react-router-dom";
-import {CheckCircleOutlined, CheckCircleTwoTone, CloseCircleTwoTone} from '@ant-design/icons';
+import {Link, NavLink, useLocation, useParams} from "react-router-dom";
+import {ArrowLeftOutlined, CheckCircleOutlined, CheckCircleTwoTone, CloseCircleTwoTone} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 import useListenBidding from "../../Hooks/useListenBidding.js";
@@ -18,6 +18,7 @@ import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import useAuctionStreamPriceDown from "./useAuctionStreamPriceDown.jsx";
 import YouTubeEmbed from "../../Components/YouTubeEmbed/index.jsx";
+import ReturnSvg from "../../assets/return.jsx";
 
 const AuctionStreamPriceDown = () => {
     const {id} = useParams();
@@ -112,11 +113,15 @@ const AuctionStreamPriceDown = () => {
                                     productData.type_of_auction === -1 ?
                                         <>
                                             <div className="mt-24">
-                                                <div className="px-3 mx-2 mt-2">
+                                                <div className=" mt-2">
                                                     <Breadcrumb
                                                         items={[
                                                             {
-                                                                title: <a href="/streamGeneral">Trở lại</a>,
+                                                                title: <div  className="  p-1 px-4">
+                                                                    <NavLink className="hover:bg-orange-500"  to={'/streamGenera'}>
+                                                                        <ArrowLeftOutlined  style={{fontSize : 24 , width : 28}} />
+                                                                    </NavLink>
+                                                                </div>,
                                                             },
                                                         ]}
                                                     />
@@ -210,7 +215,7 @@ const AuctionStreamPriceDown = () => {
                                                             <div style={{fontWeight: 600, textShadow: '0px 0px 10px #ccc3b8'}}
                                                                  className="flex justify-between items-center border-b border-orange-500 shadow-blue-100 px-5 p-2 pr-6 relative">
                                                                     <span className="text-base flex gap-3  ">
-                                                                          <img src="../../src/assets/label.png" alt=""
+                                                                          <img src="https://storage.googleapis.com/auction_gr/label.png" alt=""
                                                                                style={{width: '17%'}}/>
                                                                        Giá hiện tại
                                                                     </span>

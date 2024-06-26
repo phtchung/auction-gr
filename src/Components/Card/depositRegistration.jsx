@@ -33,7 +33,7 @@ const CardDeposit = ({level , price,deposit, select}) => {
                   <div
                       onClick={handleClick}
                       className="bg-orange-400 text-white text-base active:bg-orange-700 cursor-pointer rounded-md hover:bg-orange-600 p-3">
-                      {deposit},000 VNĐ
+                      {deposit},000 VND
                   </div>
               </div>
           </div>
