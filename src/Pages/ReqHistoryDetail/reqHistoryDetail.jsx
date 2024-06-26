@@ -6,9 +6,22 @@ import useReqHistoryDetail from "./useReqHistoryDetail.jsx";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined.js";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import {useNavigate} from "react-router-dom";
+import {numberToString} from "../../Utils/constant.js";
+import {Tabs} from "antd";
+import DeliveryInfor from "../../Components/Information/DeliveryInfo.jsx";
+import ReturnInfo from "../../Components/Information/ReturnInfo.jsx";
+import ReviewInfo from "../../Components/Information/ReviewInfo.jsx";
+import RejectInfo from "../../Components/Information/RejectInfo.jsx";
+const TabPane = Tabs.TabPane
 
 const ReqHistoryDetail = () => {
     const {reqData, isLoading, isSuccess,isError} = useReqHistoryDetail();
+
+    const navigate = useNavigate();
+    const stateStr = numberToString(reqData?.status);
     return (
         <>
             <MainLayOut>
@@ -24,76 +37,74 @@ const ReqHistoryDetail = () => {
                                     :
                                     isSuccess &&
                                     <>
-                                        <RequestInfo data={reqData}/>
-                                        {(reqData.status !== undefined && reqData.status !== 1 && reqData.status !== 13) ? (
-                                            <BiddingInfo data={reqData}/>
-                                        ) : (
-                                            <></>
-                                        )}
-                                        {reqData.status !== undefined &&
-                                        [5, 6].includes(reqData.status) ? (
-                                            <UpdatePopup state={reqData.status}/>
-                                        ) : (
-                                            <></>
-                                        )}
-                                        {reqData.status === 11 && (
-                                            <>
-                                                <div className="flex justify-between m-2.5 items-center px-2">
-                                                    <div className="text-left text-base font-medium ">
-                                                        Lí do hủy
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="items-center gap-6 font-medium my-8 mx-8 px-1 text-xs space-y-6 ">
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div> Tác nhân :</div>
-                                                        <div className="font-normal  col-span-2">
-                                                            {" "}
-                                                            Quản trị viên
-                                                        </div>
-                                                    </div>
+                                        <div className="flex m-4 gap-4 items-center px-2 justify-between">
+                                            <div
+                                                className="flex items-center font-medium text-neutral-600 gap-1 cursor-pointer"
+                                                onClick={() => navigate(-1)}
+                                            >
+                                                <ArrowBackIosOutlinedIcon
+                                                    sx={{fontSize: 16}}
+                                                    color="rgb(212,212,212)"
+                                                ></ArrowBackIosOutlinedIcon>
+                                                <div className="text-base "> Trở lại</div>
+                                            </div>
 
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div> Lí do :</div>
-                                                        <div className="font-normal  col-span-2">
-                                                            Không phù hơp, chưa vượt qua kiểm duyệt
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
+                                            <div className="flex items-center gap-2 font-medium text-neutral-600">
+                                                <div className="text-left text-base ">Danh sách - {stateStr} </div>
+                                                <ArrowForwardIosOutlinedIcon
+                                                    sx={{fontSize: 16}}
+                                                    fontSize="small"
+                                                    color="gray"
+                                                ></ArrowForwardIosOutlinedIcon>
+                                                <div className="text-base">Chi tiết</div>
+                                            </div>
+                                        </div>
 
-                                        {reqData.status === 13 && (
-                                            <>
-                                                <div className="flex justify-between m-2.5 items-center px-2">
-                                                    <div className="text-left text-sm font-semibold ">
-                                                        Lí do từ chối yêu cầu
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div> Thời gian từ chối :</div>
-                                                        <div className="font-normal  col-span-2">
-                                                            {reqData.reject_time}
-                                                        </div>
-                                                    </div>
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div> Tác nhân :</div>
-                                                        <div className="font-normal  col-span-2">
-                                                            Quản trị viên
-                                                        </div>
-                                                    </div>
+                                        <div className="border-b border-gray-400  mx-5"></div>
+                                        <div
+                                            className="flex justify-between absolute right-32  m-2.5 items-center px-2">
+                                            <div className="text-base  font-medium  text-white bg-orange-400 p-1 px-4">
+                                                {stateStr}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <Tabs defaultActiveKey="1" className="px-8">
+                                                <TabPane tab="Thông tin sản phẩm" key="1">
+                                                    <RequestInfo data={reqData}/>
+                                                </TabPane>
 
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div> Lí do :</div>
-                                                        <div className="font-normal  col-span-2">
-                                                            Không phù hơp, chưa vượt qua kiểm duyệt
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
+                                                {(reqData.status !== undefined && reqData.status !== 1 && reqData.status !== 13) ? (
+                                                    <TabPane tab="Thông tin đấu giá" key="2">
+                                                        <BiddingInfo data={reqData}/>
+                                                    </TabPane>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                {(reqData.status === 7 || reqData.status === 5 || reqData.status === 6 || reqData.status === 8 || reqData.status === 9 || reqData.status === 14 || reqData.status === 15) && (
+                                                    <TabPane tab="Thông tin giao hàng" key="3">
+                                                        <DeliveryInfor data={reqData}/>
+                                                    </TabPane>
+                                                )}
+
+                                                {(reqData.status === 9 || reqData.status === 14 || reqData.status === 15) && (
+                                                    <TabPane tab="Thông tin trả hàng" key="4">
+                                                        <ReturnInfo data={reqData}/>
+                                                    </TabPane>
+                                                )}
+
+                                                {(reqData.status === 8 || reqData.is_review === 1) && (
+                                                    <TabPane tab="Thông tin đánh giá" key="5">
+                                                        <ReviewInfo data={reqData}/>
+                                                    </TabPane>
+                                                )}
+
+                                                {reqData.status === 13 && (
+                                                    <TabPane tab="Thông tin từ chối yêu cầu" key="6">
+                                                        <RejectInfo data={reqData}/>
+                                                    </TabPane>
+                                                )}
+                                            </Tabs>
+                                        </div>
                                     </>
                         }
                     </div>

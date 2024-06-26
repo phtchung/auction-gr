@@ -9,6 +9,7 @@ import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import ReturnSvg from "../../assets/return.jsx";
 import LoadingSvg from "../../assets/loading.jsx";
+import {formatMoney} from "../../Utils/constant.js";
 
 const TabPane = Tabs.TabPane
 const CheckOut = () => {
@@ -85,19 +86,19 @@ const CheckOut = () => {
                                                     className="text-base  w-80   font-semibold">Thông tin sản phẩm : {data?.data?.auction_name}</span>
                                                 <div className="flex items-center justify-between ">
                                                     <p className="text-sm leading-[44px] font-normal text-neutral-700">Tiền đặt trước </p>
-                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">{data?.data?.deposit_price}đ</p>
+                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">{formatMoney(data?.data?.deposit_price)} VND</p>
                                                 </div>
                                                 <div
                                                     className="flex items-center justify-between border-b border-solid border-neutral-300">
                                                     <p className="text-sm leading-[44px] font-normal text-neutral-700">Phí đăng ký </p>
-                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">50.000 đ</p>
+                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">50,000 VND</p>
                                                 </div>
 
                                                 <div
                                                     className="flex items-center leading-[44px] justify-between mt-5">
                                                     <p className="text-sm font-normal text-neutral-700">Phí đăng
                                                         ký </p>
-                                                    <p className="text-2xl font-semibold text-neutral-800">{parseInt(data.data.deposit_price) + 50000} đ</p>
+                                                    <p className="text-2xl font-semibold text-neutral-800">{formatMoney(parseInt(data.data.deposit_price) + 50000)} VND</p>
                                                 </div>
                                             </div>
                                         </div>

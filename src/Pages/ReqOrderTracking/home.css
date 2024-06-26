@@ -141,5 +141,8 @@ button:focus {
   width: 100%;
   height: 100%;
   transition: transform-origin 0.2s ease;
+}
 
+:where(.css-dev-only-do-not-override-1b0bdye).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item-error, :where(.css-dev-only-do-not-override-1b0bdye).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error, :where(.css-dev-only-do-not-override-1b0bdye).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-error{
+  border-color: white!important; ;
 }

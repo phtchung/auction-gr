@@ -320,7 +320,7 @@ export const formatDateTime = (inputDateString) => {
     const minutes = formatDateComponent(inputDate.getMinutes());
     const seconds = formatDateComponent(inputDate.getSeconds());
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 };
 
 export const formatDateTimeMiliSecond = (inputDateString) => {

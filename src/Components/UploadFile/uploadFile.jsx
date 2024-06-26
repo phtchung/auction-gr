@@ -67,7 +67,7 @@ const FileUpload = ({ onGetFormData ,length ,def}) => {
     return (
         <>
             <Upload
-                action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+                action='https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload'
                 listType="picture-card"
                 fileList={fileList}
                 onPreview={handlePreview}
@@ -75,6 +75,7 @@ const FileUpload = ({ onGetFormData ,length ,def}) => {
                 beforeUpload={beforeUpload}
                 multiple={length !== 1}
                 maxCount={length}
+
             >
                 {fileList.length >= length ? null : uploadButton}
             </Upload>

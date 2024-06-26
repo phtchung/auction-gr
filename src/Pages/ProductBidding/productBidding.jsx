@@ -64,7 +64,7 @@ const ProductBidding = () => {
                                         <button
                                             onClick={handleSearch}
                                             className={`w-[7rem]  text-white border-none text-sm font-semibold focus:outline-0  rounded ${
-                                                keyword ? "bg-orange-500" : "bg-gray-300"
+                                                keyword === "" ?  "bg-gray-300 cursor-not-allowed " : "bg-orange-500 cursor-pointer " 
                                             }`}
                                         >
                                             Tìm kiếm

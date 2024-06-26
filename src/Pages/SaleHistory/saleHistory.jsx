@@ -40,7 +40,7 @@ const SaleHistory = () => {
                             Lịch sử bán
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="bg-white p-3 grid grid-cols-5 gap-3 border-gray-300 border h-28 text-sm  justify-around">
+                        <div className="bg-white p-3 grid grid-cols-5 items-center gap-3 border-gray-300 border h-28 text-sm  justify-around">
                             <div className="font-medium text-base p-3 ">Tìm kiếm ngày :</div>
                             <div className="col-span-3">
                                 <div className="grid grid-cols-2 gap-4">
@@ -52,7 +52,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date()).subtract(7, "day")}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter(
@@ -71,7 +71,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date())}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : 8},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("finish_time", newValue.toISOString())
@@ -85,7 +85,7 @@ const SaleHistory = () => {
                             <div>
                                 <button
                                     onClick={onSubmit}
-                                    className="px-6 mt-3 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
+                                    className="px-6 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
                                     Tìm kiếm
                                 </button>
                             </div>

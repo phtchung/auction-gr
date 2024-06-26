@@ -301,7 +301,7 @@ const CreateRequest = () => {
                                                                     <InputNumber
                                                                         placeholder="Giá khởi điểm"
                                                                         onChange={(value) => handleRequest('reserve_price', value)}
-                                                                        suffix="VNĐ"
+                                                                        suffix="VND"
                                                                         style={{
                                                                             width: '100%',
                                                                             borderRadius: 0,
@@ -324,7 +324,7 @@ const CreateRequest = () => {
                                                                     <InputNumber
                                                                         placeholder="Bước giá"
                                                                         onChange={(value) => handleRequest('step_price', value)}
-                                                                        suffix="VNĐ"
+                                                                        suffix="VND"
                                                                         style={{
                                                                             width: '100%',
                                                                             maxWidth: 230,
@@ -349,7 +349,7 @@ const CreateRequest = () => {
                                                                     <InputNumber
                                                                         placeholder="Phí vận chuyển"
                                                                         onChange={(value) => handleRequest('shipping_fee', value)}
-                                                                        suffix="VNĐ"
+                                                                        suffix="VND"
                                                                         className="xl:w-full lg:w-10/12"
                                                                         style={{
                                                                             width: '100%',
@@ -388,7 +388,7 @@ const CreateRequest = () => {
                                                                             }}
                                                                             placeholder="Giá bán trực tiếp"
                                                                             onChange={(e) => handleRequest('sale_price', e.target.value)}
-                                                                            suffix="VNĐ"/>
+                                                                            suffix="VND"/>
                                                                     </Form.Item>
                                                                 }
                                                             </div>

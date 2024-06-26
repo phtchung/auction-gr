@@ -62,6 +62,7 @@ const StreamGeneral = () => {
             try {
                 const res = await VerifyCodeRoom(connectData)
                 const data = res.data
+                console.log(data.pathUrl)
                 return data;
             } catch (error) {
                 throw error;
