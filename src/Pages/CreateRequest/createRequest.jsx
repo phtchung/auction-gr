@@ -304,7 +304,6 @@ const CreateRequest = () => {
                                                                         suffix="VND"
                                                                         style={{
                                                                             width: '100%',
-                                                                            borderRadius: 0,
                                                                             maxWidth: 230
                                                                         }}
                                                                     />
@@ -328,7 +327,6 @@ const CreateRequest = () => {
                                                                         style={{
                                                                             width: '100%',
                                                                             maxWidth: 230,
-                                                                            borderRadius: 0,
                                                                         }}
                                                                     />
                                                                 </Form.Item>
@@ -354,7 +352,6 @@ const CreateRequest = () => {
                                                                         style={{
                                                                             width: '100%',
                                                                             maxWidth: 230,
-                                                                            borderRadius: 0,
                                                                         }}
                                                                     />
                                                                 </Form.Item>
@@ -382,9 +379,7 @@ const CreateRequest = () => {
                                                                     >
                                                                         <Input
                                                                             style={{
-
                                                                                 maxWidth: 230,
-                                                                                borderRadius: 0,
                                                                             }}
                                                                             placeholder="Giá bán trực tiếp"
                                                                             onChange={(e) => handleRequest('sale_price', e.target.value)}

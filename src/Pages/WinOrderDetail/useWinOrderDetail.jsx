@@ -52,7 +52,9 @@ export default function useWinOrderDetail() {
       auction_live : data?.auction_live,
       deposit_price : data?.deposit_price,
       cancel_time : formatDateTime(data?.cancel_time),
-      payment : data?.delivery?.payment_method
+      payment : data?.delivery?.payment_method,
+      is_review :  data?.is_review,
+      review_time : data?.status === 8 && data?.is_review === 1 ? '' : data?.updatedAt
     };
     return { detail };
   }, []);

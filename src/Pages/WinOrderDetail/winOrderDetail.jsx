@@ -228,15 +228,15 @@ const WinOrderDetail = () => {
 
                                                                     <div className="w-full">
                                                                         <div
-                                                                            className={`w-full h-1 rounded-xl ${winDetailData.completed_time ? 'bg-green-500' : 'bg-gray-300'} `}></div>
+                                                                            className={`w-full h-1 rounded-xl ${winDetailData.is_review ? 'bg-green-500' : 'bg-gray-300'} `}></div>
                                                                         <div className="mt-2 mr-2 w-full  flex">
-                                                                            {winDetailData.completed_time &&
+                                                                            {winDetailData.is_review === 1 &&
                                                                                 <CheckOKSvg/>}
                                                                             <div className="ml-2 w-full">
-                                                                                <h6 className={`text-sm font-bold ${winDetailData.completed_time ? 'text-green-500' : ' text-gray-300'} `}>Đánh
+                                                                                <h6 className={`text-sm font-bold ${winDetailData.is_review ? 'text-green-500' : ' text-gray-300'} `}>Đánh
                                                                                     giá
                                                                                 </h6>
-                                                                                <p className={`text-xs ${winDetailData.completed_time ? 'text-green-500' : 'text-gray-300'} `}>{winDetailData.completed_time}</p>
+                                                                                <p className={`text-xs ${winDetailData.is_review ? 'text-green-500' : 'text-gray-300'} `}>{winDetailData.updatedAt}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>

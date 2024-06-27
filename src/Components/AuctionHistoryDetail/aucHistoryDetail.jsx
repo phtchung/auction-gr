@@ -216,17 +216,17 @@ const AucHistoryDetail = () => {
                                                     <div className="col-1 text-right mr-6">
                                                         <div className="border-b border-gray-200 "></div>
                                                         <div className="border-b border-gray-200  p-3">
-                                                            {formatMoney(data?.reserve_price)}đ
+                                                            {formatMoney(data?.reserve_price)} VND
                                                         </div>
                                                         <div className="border-b border-gray-200 p-3">
-                                                            {formatMoney(data?.final_price)}đ
+                                                            {formatMoney(data?.final_price)} VND
                                                         </div>
                                                         <div className="border-b border-gray-200 p-3">
-                                                            {formatMoney(data?.shipping_fee)}đ
+                                                            {formatMoney(data?.shipping_fee)} VND
                                                         </div>
                                                         <div
                                                             className=" font-semibold text-base text-orange-600 p-4">
-                                                            {formatMoney(data?.final_price + data?.shipping_fee)}đ
+                                                            {formatMoney(data?.final_price + data?.shipping_fee)} VND
                                                         </div>
                                                     </div>
                                                 </div>

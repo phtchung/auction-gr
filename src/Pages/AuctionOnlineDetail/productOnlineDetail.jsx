@@ -1,7 +1,7 @@
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import Carousel from "react-multi-carousel";
 import {Avatar, Breadcrumb, Tag, Popover} from "antd";
-import {formatMoney, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
+import {baseFEUrl, formatMoney, getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 import CountDownFullDate from "../../Components/Clock/countDownFullDate.jsx";
 import {StarFilled} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
@@ -256,25 +256,25 @@ const ProductOnlineDetail = () => {
                                                             <div className="flex items-center gap-3 py-2 px-3">
                                                                 <span>Chia sẻ :</span>
                                                                 <FacebookShareButton
-                                                                    url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                                    url={`${baseFEUrl}/auction/online/item/${auctionProductData.product_id}`}
                                                                     quote={'Dummy text!'}
                                                                 >
                                                                     <FacebookIcon size={28} round/>
                                                                 </FacebookShareButton>
                                                                 <TwitterShareButton
-                                                                    url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                                    url={`${baseFEUrl}/auction/online/item/${auctionProductData.product_id}`}
                                                                     quote={'Dummy text!'}
                                                                 >
                                                                     <XIcon size={28} round={true}/>
                                                                 </TwitterShareButton>
                                                                 <TelegramShareButton
-                                                                    url={'https://page.auctions.yahoo.co.jp/jp/auction/t1113591534'}
+                                                                    url={`${baseFEUrl}/auction/online/item/${auctionProductData.product_id}`}
                                                                     quote={'Dummy text!'}
                                                                 >
                                                                     <TelegramIcon size={28} round/>
                                                                 </TelegramShareButton>
                                                                 <FacebookMessengerShareButton
-                                                                    url={'https://janbox.com/vi/yahoo-auction/item/n1127985920'}
+                                                                    url={`${baseFEUrl}/auction/online/item/${auctionProductData.product_id}`}
                                                                     appId={'https://www.facebook.com/hoangthuydung.11'}
                                                                 >
                                                                     <FacebookMessengerIcon size={28} round/>
