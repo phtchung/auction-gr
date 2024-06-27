@@ -8,6 +8,7 @@ import CardStreamGeneral from "../../Components/Card/cardStreamGeneral.jsx";
 import useStreamGeneral from "./useStreamGeneral.jsx";
 import {useMutation} from "@tanstack/react-query";
 import { VerifyCodeRoom} from "../../Services/biddingService.jsx";
+import {baseFEUrl} from "../../Utils/constant.js";
 
 const modalStyles = {
     body:{ maxHeight: '450px', overflowY: 'auto',marginRight:'-10px'},
@@ -75,7 +76,7 @@ const StreamGeneral = () => {
         },
         onError:(error) =>{
             handleCancel()
-            setModalStatus({...modalStatus, message: error.response.data.message,status: error.response.status,url:'http://localhost:5173/streamGeneral'})
+            setModalStatus({...modalStatus, message: error.response.data.message,status: error.response.status,url:`${baseFEUrl}/streamGeneral`})
             showModal1()
         }
     });

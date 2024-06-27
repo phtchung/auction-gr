@@ -12,6 +12,7 @@ import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import MessageContainer from "../Message/messageContainer.jsx";
 import useConversation from "../../zustand/useConversation.js";
 import Footer from "../Footer/index.jsx";
+import {baseUrl} from "../../Services/Http/baseUrl.jsx";
 
 const {Header, Content} = Layout;
 
@@ -32,7 +33,7 @@ const MainLayOut = ({children}) => {
 
     useEffect(() => {
         if (currentUser) {
-            const eventSource = new EventSource('http://localhost:8088/events');
+            const eventSource = new EventSource(`${baseUrl}/events`);
 
             // có blog được tạo
             eventSource.addEventListener('newBlog', function (event) {

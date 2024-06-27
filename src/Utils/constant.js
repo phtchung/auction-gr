@@ -480,6 +480,8 @@ export function getLevel(input) {
     }
 }
 
+export const baseFEUrl = 'https://auction-gr-fe.onrender.com'
+
 export const cardDepositRegis = [
     { price: 'dưới 2 triệu', deposit: 50, level: 1 },
     { price: 'dưới 5 triệu', deposit: 100, level: 2 },
@@ -953,8 +955,9 @@ export const categoriesItems = [
 ];
 
 export function daysRemaining(inputDateString) {
+    console.log(inputDateString)
     const targetDate = new Date(inputDateString);
-
+    console.log(targetDate)
     const currentDate = new Date();
 
     // Tính toán chênh lệch thời gian

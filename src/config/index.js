@@ -1,6 +1,7 @@
 import axios from "axios";
+import {baseUrl} from "../Services/Http/baseUrl.jsx";
 
-const SERVER_URL = "http://localhost:8088"
+const SERVER_URL = baseUrl
 
 
 export const Axios = axios.create({
