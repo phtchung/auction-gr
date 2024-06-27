@@ -97,7 +97,7 @@ const ReqOrderDetail = () => {
                                                     </TabPane>
                                                 )}
 
-                                                {(reqData.status === 8 || reqData.is_review === 1) && (
+                                                {(reqData.status === 8 && reqData.is_review === 1) && (
                                                     <TabPane tab="Thông tin đánh giá" key="5">
                                                         <ReviewInfo data={reqData}/>
                                                     </TabPane>

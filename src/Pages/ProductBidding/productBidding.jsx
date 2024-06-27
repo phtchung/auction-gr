@@ -92,7 +92,7 @@ const ProductBidding = () => {
                                                                 style={{width: '30%'}}
                                                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
                                                                 alt=""/>
-                                                            <div className="text-gray-500 -mt-7 font-medium text-base">Không có sản phẩm nào.
+                                                            <div className="text-gray-500 -mt-3 font-medium text-base">Không có sản phẩm nào.
                                                             </div>
                                                         </div>
                                                     </>
