@@ -36,9 +36,9 @@ const ProductBiddingCpn = ({data}) => {
                     }
 
                     <div className="flex items-center gap-4 ml-auto">
-                        <div className="leading-10 ">{formatDateTime(data?.start_time)} </div>
-                        <div> -- </div>
-                        <div className="leading-10 ">
+                        <div className="leading-10 min-[300px]:hidden lg:block">{formatDateTime(data?.start_time)} </div>
+                        <div className="min-[300px]:hidden lg:block"> - </div>
+                        <div className="leading-10 min-[300px]:hidden lg:block">
                             {formatDateTime(data?.finish_time)}
                         </div>
                         <div className="border-r-2 border-gray-200 pr-4">
@@ -51,14 +51,14 @@ const ProductBiddingCpn = ({data}) => {
 
                         <button
                             onClick={handleNavigate}
-                            className="p-2 px-6 py-2  right-0  bg-orange-500 rounded cursor-pointer   text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                            className="p-2 px-6 py-2 truncate right-0 bg-orange-500 rounded cursor-pointer text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
                             Tới trang đấu giá
                         </button>
                     </div>
                 </div>
                 <div
-                    className="grid md:grid-cols-4 gap-3 pb-3 pt-4 items-center justify-between border-b border-b-gray-150">
-                    <div className="flex col-span-3 items-start">
+                    className="grid lg:grid-cols-3 min-[300px]:grid-cols-2 gap-3 pb-3 pt-4 items-center justify-between border-b border-b-gray-150">
+                    <div className="flex col-span-2 items-start">
                         <div className="">
                             <img style={{
                                 width: '6rem',
@@ -82,13 +82,13 @@ const ProductBiddingCpn = ({data}) => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col text-left gap-2">
+                    <div className="flex flex-col lg:col-span-1 min-[300px]:col-span-2  text-left gap-2">
                         <div className=" text-sm opacity-70 ml-auto px-5">
-                            <span className="font-medium"> ₫{formatMoney(data?.reserve_price)} </span>
+                            <span className="font-medium"> {formatMoney(data?.reserve_price)} VND </span>
                         </div>
                         <div className="flex ml-auto items-center opacity-90 gap-2 px-6">
                             <div className="text-sm">Hiện tại :</div>
-                            <div className="text-orange-600 font-semibold text-lg">₫{formatMoney(data?.bid_price)}</div>
+                            <div className="text-orange-600 font-semibold text-lg">{formatMoney(data?.bid_price)} VND</div>
                         </div>
                     </div>
                 </div>

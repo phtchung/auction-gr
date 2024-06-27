@@ -43,7 +43,7 @@ const ConfirmRegistration = () => {
 
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Phí đăng kí</dt>
-                                                        <dd className="text-gray-700">{formatMoney(data.auction_deposit*1000)} đ</dd>
+                                                        <dd className="text-gray-700">{formatMoney(data.auction_deposit*1000)} VND</dd>
                                                     </div>
                                                 </dl>
                                             </div>

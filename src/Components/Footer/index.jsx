@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <>
-            <footer className="relative z-10 mt-12 bg-white pb-4 pt-8 dark:bg-dark lg:pb-4 lg:pt-[45px]">
+            <footer className="relative z-10 mt-12 bg-white pb-4 pt-8  lg:pb-4 lg:pt-[45px]">
                 <div className="container">
                     <div className=" flex flex-wrap">
                         <div className=" px-4 text-left ml-auto   sm:w-2/3 lg:w-3/12">
@@ -28,13 +28,13 @@ const Footer = () => {
 
                         <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
                             <div className="mb-10 w-full">
-                                <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
+                                <h4 className="mb-9 text-lg font-semibold text-dark ">
                                     Theo dõi chúng tôi
                                 </h4>
                                 <div className="mb-6 flex justify-between items-center">
                                     <a
                                         href="javascript:void(0)"
-                                        className="mr-3 flex h-8 w-8 text-orange-500 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white dark:border-dark-3  sm:mr-4 lg:mr-3 xl:mr-4"
+                                        className="mr-3 flex h-8 w-8 text-orange-500 items-center justify-center rounded-full border border-stroke  hover:border-primary hover:bg-orange-500 hover:text-white   sm:mr-4 lg:mr-3 xl:mr-4"
                                     >
                                         <svg
                                             width="8"
@@ -48,7 +48,7 @@ const Footer = () => {
                                     </a>
                                     <a
                                         href="javascript:void(0)"
-                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white   sm:mr-4 lg:mr-3 xl:mr-4"
                                     >
                                         <svg
                                             width="16"
@@ -62,7 +62,7 @@ const Footer = () => {
                                     </a>
                                     <a
                                         href="javascript:void(0)"
-                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white  sm:mr-4 lg:mr-3 xl:mr-4"
                                     >
                                         <svg
                                             width="16"
@@ -76,7 +76,7 @@ const Footer = () => {
                                     </a>
                                     <a
                                         href="javascript:void(0)"
-                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white dark:border-dark-3 dark:text-white dark:hover:border-primary sm:mr-4 lg:mr-3 xl:mr-4"
+                                        className="mr-3 flex h-8 w-8 items-center text-orange-500 justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-orange-500 hover:text-white  sm:mr-4 lg:mr-3 xl:mr-4"
                                     >
                                         <svg
                                             width="14"

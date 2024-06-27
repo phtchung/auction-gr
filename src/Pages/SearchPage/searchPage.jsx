@@ -118,7 +118,7 @@ const SearchPage = () => {
                         <div className=" lg:w-7/12 md:w-6/12 my-8   mx-auto">
                             <form className="" onSubmit={handleSearch}>
                                 <label htmlFor="default-search"
-                                       className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm
+                                       className="mb-1 text-sm font-medium text-gray-900 sr-only">Tìm
                                     kiếm</label>
                                 <div className="relative">
                                     <div

@@ -37,13 +37,14 @@ header{
     max-width: 540px;
 }
 
-.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+.container, .container-fluid, .container-sm, .container-md {
     width: 100%;
     height: 100%;
     padding-right: 12px;
     padding-left: 12px;
     margin-right: auto;
     margin-left: auto;
+    max-width: 1280px;
 }
 
 .ant-input-search :where(.css-dev-only-do-not-override-1b0bdye).ant-input-group .ant-input-affix-wrapper:not(:last-child) {

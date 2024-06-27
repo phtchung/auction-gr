@@ -96,7 +96,7 @@ const StreamGeneral = () => {
                                     <input onChange={(e) => setKeyword(e.target.value)}
                                            placeholder="Tìm theo mã phòng"
                                            value={keyword}
-                                           className="border text-sm w-full border-orange-500 px-4 py-2 focus:outline-orange-500 "/>
+                                           className="border text-sm w-full bg-white border-orange-500 px-4 py-2 focus:outline-orange-500 "/>
                                     <SearchOutlined className="cursor-pointer"
                                                     onClick={() => handleKeyword(keyword)} style={{
                                         fontSize: '20px',

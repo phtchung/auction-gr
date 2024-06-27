@@ -408,13 +408,13 @@ const ProductOnlineDetail = () => {
                                                         <div className="flex-row flex gap-3 mb-3">
                                                             <div className="basis-2/5 font-medium">Giá khởi điểm</div>
                                                             <div
-                                                                className="basis-3/5">{formatMoney(auctionProductData?.reserve_price)} VNĐ
+                                                                className="basis-3/5">{formatMoney(auctionProductData?.reserve_price)} VND
                                                             </div>
                                                         </div>
                                                         <div className="flex-row flex gap-3 mb-3">
                                                             <div className="basis-2/5 font-medium">Phí giao hàng</div>
                                                             <div
-                                                                className="basis-3/5">{formatMoney(auctionProductData?.shipping_fee)} VNĐ
+                                                                className="basis-3/5">{formatMoney(auctionProductData?.shipping_fee)} VND
                                                             </div>
                                                         </div>
                                                         <div className="flex-row flex gap-3 mb-3">

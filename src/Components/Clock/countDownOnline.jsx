@@ -35,7 +35,7 @@ const CountDownOnline = ({targetDate, id}) => {
                 Swal.fire({
                     title: title,
                     html: isSuccess ?
-                        `<h5 class="text-sm">Bạn đã mua thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
+                        `<h5 class="text-sm">Bạn đã mua thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VND</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
                         `<h5 class="text-sm">Rất tiếc! Người dùng khác đã mua trực tiếp sản phẩm</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,
@@ -89,7 +89,7 @@ const CountDownOnline = ({targetDate, id}) => {
                         Swal.fire({
                             title: title,
                             html: isSuccess ?
-                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VNĐ</h5>
+                                `<h5 class="text-sm">Bạn đã đấu giá thành công sản phẩm với mức giá ${formatMoney(res?.final_price)} VND</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>` :
                                 `<h5 class="text-sm">Rất tiếc! Bạn không đấu giá thành công sản phẩm</h5>
                                     <br/><span class="text-base">Trở về trang chủ sau <b></b> s.</span>`,

@@ -223,7 +223,7 @@ const AuctionStream = () => {
                                                                                     giao hàng
                                                                                 </div>
                                                                                 <div
-                                                                                    className="text-black font-semibold text-lg">{formatMoney(productData?.shipping_fee)} VNĐ
+                                                                                    className="text-black font-semibold text-lg">{formatMoney(productData?.shipping_fee)} VND
                                                                                 </div>
                                                                             </div>
 

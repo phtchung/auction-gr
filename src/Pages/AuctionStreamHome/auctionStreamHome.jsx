@@ -45,7 +45,7 @@ const AuctionStreamHome = () => {
                         <div className=" lg:w-7/12 md:w-6/12 my-6   mx-auto">
                             <form className="" onSubmit={handleSearch}>
                                 <label htmlFor="default-search"
-                                       className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm
+                                       className="mb-1 text-sm font-medium text-gray-900 sr-only ">Tìm
                                     kiếm</label>
                                 <div className="relative">
                                     <div
@@ -61,7 +61,7 @@ const AuctionStreamHome = () => {
                                     <input type="search" id="default-search"
                                            value={keyword}
                                            onChange={(e) => setKeyword(e.target.value)}
-                                           className="block w-full p-4 ps-10 text-base text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
+                                           className="block w-full p-4 ps-10 bg-white text-base text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-600 focus:border-orange-500 "
                                            placeholder="Tìm kiếm..."/>
                                     <button type="submit"
                                             className="text-white absolute end-2.5 bottom-2 bg-orange-500 hover:bg-orange-600 focus:ring-1 hover:border-orange-500 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Tìm
