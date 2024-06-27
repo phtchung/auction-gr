@@ -4,7 +4,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useEffect, useState} from "react";
 import {DialogContent, DialogTitle, Dialog, Stack} from "@mui/material";
-import {formatMoney, statusToString} from "../../Utils/constant.js";
+import {formatDateTime, formatMoney, statusToString} from "../../Utils/constant.js";
 import useWinOrderDetail from "./useWinOrderDetail.jsx";
 import {toast} from "react-toastify";
 import {sendDeliveryInfor} from "../../Services/deliveryService.jsx";
@@ -236,7 +236,7 @@ const WinOrderDetail = () => {
                                                                                 <h6 className={`text-sm font-bold ${winDetailData.is_review ? 'text-green-500' : ' text-gray-300'} `}>Đánh
                                                                                     giá
                                                                                 </h6>
-                                                                                <p className={`text-xs ${winDetailData.is_review ? 'text-green-500' : 'text-gray-300'} `}>{winDetailData.updatedAt}</p>
+                                                                                <p className={`text-xs ${winDetailData.is_review ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(winDetailData.updatedAt)}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -848,7 +848,7 @@ const WinOrderDetail = () => {
                                                                             :
                                                                         </div>
                                                                         <div className="font-normal  col-span-4">
-                                                                            {winDetailData?.start_time}
+                                                                            {winDetailData?.finish_time}
                                                                         </div>
                                                                     </div>
 

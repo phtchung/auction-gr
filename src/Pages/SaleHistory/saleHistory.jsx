@@ -55,10 +55,7 @@ const SaleHistory = () => {
                                                 "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
-                                                handleFilter(
-                                                    "start_time",
-                                                    newValue.startOf("day").toISOString(),
-                                                )
+                                                handleFilter("start_time", dayjs(newValue).startOf('day').toDate().toISOString())
                                             }
                                         />
                                     </LocalizationProvider>
@@ -74,7 +71,7 @@ const SaleHistory = () => {
                                                 "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
                                             }}
                                             onChange={(newValue) =>
-                                                handleFilter("finish_time", newValue.toISOString())
+                                                handleFilter("finish_time", dayjs(newValue).endOf('day').toDate().toISOString())
                                             }
                                         />
                                     </LocalizationProvider>
