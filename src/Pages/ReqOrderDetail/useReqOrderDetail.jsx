@@ -34,6 +34,7 @@ export default function useReqOrderDetail() {
       review_comment : data?.review?.comment,
       review_images : data?.review?.rv_image_list,
       review_rate : data?.review?.rating,
+      is_review: data?.is_review,
       seller_name:data?.seller_id?.name,
       seller_phonne : data?.seller_id?.phone,
       winner : data?.winner_id,

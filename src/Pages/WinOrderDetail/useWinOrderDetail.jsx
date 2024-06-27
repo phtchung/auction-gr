@@ -54,6 +54,7 @@ export default function useWinOrderDetail() {
       cancel_time : formatDateTime(data?.cancel_time),
       payment : data?.delivery?.payment_method,
       is_review :  data?.is_review,
+      updatedAt : data?.updatedAt,
       review_time : data?.status === 8 && data?.is_review === 1 ? '' : data?.updatedAt
     };
     return { detail };

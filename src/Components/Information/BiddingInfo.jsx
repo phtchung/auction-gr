@@ -107,13 +107,6 @@ const BiddingInfo = ({data}) => {
                                 {formatMoney(data?.final_price + data?.shipping_fee)} VND
                             </div>
                         </div>
-
-                        <div className="lg:col-span-3  min-[225px]:col-span-6 grid grid-cols-3">
-                            <div className="min-[225px]:col-span-3  sm:col-span-1"> Tổng tiền thực nhận</div>
-                            <div className="font-normal  sm:col-span-2 min-[225px]:col-span-3 ">
-                                {formatMoney(((data?.final_price + data?.shipping_fee) * 0.9)) + " VND"}
-                            </div>
-                        </div>
                     </div>
 
                 </>)}
