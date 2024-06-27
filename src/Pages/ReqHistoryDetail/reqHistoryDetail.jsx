@@ -15,6 +15,7 @@ import DeliveryInfor from "../../Components/Information/DeliveryInfo.jsx";
 import ReturnInfo from "../../Components/Information/ReturnInfo.jsx";
 import ReviewInfo from "../../Components/Information/ReviewInfo.jsx";
 import RejectInfo from "../../Components/Information/RejectInfo.jsx";
+import PendingInfo from "../../Components/Information/PendingInfo.jsx";
 const TabPane = Tabs.TabPane
 
 const ReqHistoryDetail = () => {
@@ -72,6 +73,12 @@ const ReqHistoryDetail = () => {
                                                 <TabPane tab="Thông tin sản phẩm" key="1">
                                                     <RequestInfo data={reqData}/>
                                                 </TabPane>
+
+                                                {(reqData.status === 1 ) && (
+                                                    <TabPane tab="Thông tin đấu giá" key="2">
+                                                        <PendingInfo data={reqData}/>
+                                                    </TabPane>
+                                                )}
 
                                                 {(reqData.status !== undefined && reqData.status !== 1 && reqData.status !== 13) ? (
                                                     <TabPane tab="Thông tin đấu giá" key="2">

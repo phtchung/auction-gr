@@ -1,14 +1,11 @@
-import {Breadcrumb, Radio} from "antd";
+import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";
-import {
-    BuyAuctionPriceDown,
-    sendStreamBid
-} from "../../Services/biddingService.jsx";
-import {Link, NavLink, useLocation, useParams} from "react-router-dom";
+import {BuyAuctionPriceDown, sendStreamBid } from "../../Services/biddingService.jsx";
+import { NavLink, useLocation, useParams} from "react-router-dom";
 import {ArrowLeftOutlined, CheckCircleOutlined, CheckCircleTwoTone, CloseCircleTwoTone} from '@ant-design/icons';
 import {useAuthContext} from "../Context/AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
@@ -18,7 +15,6 @@ import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
 import useAuctionStreamPriceDown from "./useAuctionStreamPriceDown.jsx";
 import YouTubeEmbed from "../../Components/YouTubeEmbed/index.jsx";
-import ReturnSvg from "../../assets/return.jsx";
 
 const AuctionStreamPriceDown = () => {
     const {id} = useParams();
@@ -257,7 +253,7 @@ const AuctionStreamPriceDown = () => {
                                                                                     <span
                                                                                         className="font-semibold text-cyan-50">Trả giá
                                                                                         <span
-                                                                                            className='font-bold '> {formatMoney(highestPrice - productData.step_price)} đ
+                                                                                            className='font-bold '> {formatMoney(highestPrice - productData.step_price)} VND
                                                                                         </span>
                                                                                     </span>
                                                                             </div>

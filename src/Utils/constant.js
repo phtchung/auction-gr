@@ -468,15 +468,15 @@ export function adminProcessStatus(status) {
 export function getLevel(input) {
     switch(input) {
         case 50:
-            return { level : 1, price : 'dưới 2 triệu VNĐ'};
+            return { level : 1, price : 'dưới 2 triệu VND'};
         case 100:
-            return { level : 2, price : 'dưới 5 triệu VNĐ'};
+            return { level : 2, price : 'dưới 5 triệu VND'};
         case 200:
-            return { level : 3, price : 'dưới 15 triệu VNĐ'};
+            return { level : 3, price : 'dưới 15 triệu VND'};
         case 300:
             return { level : 4, price : 'không giới hạn'};
         default:
-            return { level : 1, price : 'dưới 2 triệu VNĐ'};
+            return { level : 1, price : 'dưới 2 triệu VND'};
     }
 }
 

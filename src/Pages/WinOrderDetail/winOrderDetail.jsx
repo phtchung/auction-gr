@@ -600,23 +600,23 @@ const WinOrderDetail = () => {
                                                         className="col-1 font-medium text-neutral-800 text-right mr-6">
                                                         <div className="border-b border-gray-200 "></div>
                                                         <div className="border-b border-gray-200  p-3">
-                                                            {formatMoney(winDetailData?.reserve_price)}đ
+                                                            {formatMoney(winDetailData?.reserve_price)} VND
                                                         </div>
                                                         <div className="border-b border-gray-200 p-3">
-                                                            {formatMoney(winDetailData?.final_price)}đ
+                                                            {formatMoney(winDetailData?.final_price)} VND
                                                         </div>
                                                         <div className="border-b border-gray-200 p-3">
-                                                            {formatMoney(winDetailData?.shipping_fee)}đ
+                                                            {formatMoney(winDetailData?.shipping_fee)} VND
                                                         </div>
                                                         {
                                                             winDetailData?.auction_live === 2 &&
                                                             <div className="border-b border-gray-200 p-3">
-                                                                - {formatMoney(winDetailData?.deposit_price)}đ
+                                                                - {formatMoney(winDetailData?.deposit_price)} VND
                                                             </div>
                                                         }
                                                         <div
                                                             className=" text-orange-500 p-4">
-                                                            {formatMoney(winDetailData?.total_price)}đ
+                                                            {formatMoney(winDetailData?.total_price)} VND
                                                         </div>
                                                         {
                                                             winDetailData?.payment &&
@@ -783,7 +783,7 @@ const WinOrderDetail = () => {
                                                                         <div className="col-span-2"> Phí vận chuyển :
                                                                         </div>
                                                                         <div className="font-normal col-span-4">
-                                                                            {formatMoney(winDetailData?.shipping_fee)}
+                                                                            {formatMoney(winDetailData?.shipping_fee)} VND
                                                                         </div>
                                                                     </div>
 

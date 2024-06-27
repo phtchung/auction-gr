@@ -147,7 +147,7 @@ const AuctionOnline = () => {
                                                                             <span className="flex gap-3">
                                                                             <h1 className={`text-base shadow-black ${index === 0 ? 'text-red-800 font-bold' : ''}`}
                                                                                 style={{textShadow: '#f1a851 1px 0 10px'}}>
-                                                                            {formatMoney(bid.bid_price)} Đ
+                                                                            {formatMoney(bid.bid_price)} VND
                                                                             </h1>
                                                                             {
                                                                                 bid.username === currentUser.username &&
@@ -222,7 +222,7 @@ const AuctionOnline = () => {
                                                                 <div style={{fontWeight: 600}}
                                                                      className="flex flex-col  relative">
                                                                     <h1 className='text-base font-semibold shadow-black'>
-                                                                        {formatMoney(bid.bid_price)} đ
+                                                                        {formatMoney(bid.bid_price)} VND
                                                                     </h1>
                                                                     <span className="text-xs"
                                                                           style={{color: '#676464'}}

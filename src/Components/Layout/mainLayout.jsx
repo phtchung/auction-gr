@@ -210,9 +210,9 @@ const MainLayOut = ({children}) => {
     }
 
     return (
-        <Layout>
-            <header className={`flex w-full header  items-center dark:bg-dark`} style={{backgroundColor: '#F27C08'}}>
-                <div className="container">
+        <Layout >
+            <header className={`flex w-full header items-center`} style={{backgroundColor: '#F27C08'}}>
+                <div className="container mx-auto" style={{maxWidth : 1280}}>
                     <div className="relative -mx-2 flex items-center justify-between">
                         <div className="w-48  px-4">
                             <a href="/#" className=" flex items-center ml-4 py-2">
@@ -243,7 +243,7 @@ const MainLayOut = ({children}) => {
                                 </button>
                                 <nav
                                     id="navbarCollapse"
-                                    className={`absolute right-0 top-full w-full max-w-[180px] rounded-lg px-6 py-3 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-white ${!open ? 'hidden' : ''}`}
+                                    className={`absolute right-0 top-full w-full max-w-[180px] rounded-lg px-6 py-3 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none  ${!open ? 'hidden' : ''}`}
                                     style={{backgroundColor: 'rgb(242, 124, 8)'}}
                                 >
                                     <ul className="block lg:flex">
@@ -461,7 +461,8 @@ const MainLayOut = ({children}) => {
             <Content
                 style={{
                     backgroundColor: '#f5f5f5',
-                    minHeight: '36rem'
+                    minHeight: '36rem',
+                    maxWidth: '1280px'
                 }}
                 className="container"
             >

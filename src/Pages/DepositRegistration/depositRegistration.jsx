@@ -168,7 +168,7 @@ const DepositRegistration = () => {
                                                                                                     <div
                                                                                                         className="flex mt-2 flex-row justify-between text-lg items-center font-semibold text-neutral-600">
                                                                                                         <div>Tổng tiền</div>
-                                                                                                        <div>{selectedPackage.data.deposit},000 VNĐ</div>
+                                                                                                        <div>{selectedPackage.data.deposit},000 VND</div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div className=" text-left mt-6 items-center">
@@ -291,27 +291,27 @@ const DepositRegistration = () => {
                                                                                         <form className="bg-white w-full mx-auto lg:w-1/2 flex flex-col" onSubmit={handleRequest}>
                                                                                             <div className="max-w-lg font-medium text-neutral-600 w-full m-auto px-6 py-6 sm:py-10">
                                                                                                 <div className="mb-5">
-                                                                                                    <label  className="block text-sm font-medium mb-2 dark:text-white">Card number</label>
+                                                                                                    <label  className="block text-sm font-medium mb-2 ">Card number</label>
                                                                                                     <input
                                                                                                         onChange={(e) => setDataWithDraw({...dataWithdraw, cardNumber : e.target.value})} required type="text" id="input-number"
                                                                                                         className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400  shadow-sm" placeholder="0000 0000 0000 0000"/>
                                                                                                 </div>
                                                                                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
                                                                                                     <div className="mb-5">
-                                                                                                        <label  className="block text-sm font-medium mb-2 dark:text-white">Expiration</label>
+                                                                                                        <label  className="block text-sm font-medium mb-2 ">Expiration</label>
                                                                                                         <input
                                                                                                             onChange={(e) => setDataWithDraw({...dataWithdraw,expiration : e.target.value})} required type="text" id="input-number"
                                                                                                             className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm   placeholder-gray-400  shadow-sm" placeholder="MM/YY"/>
                                                                                                     </div>
                                                                                                     <div className="mb-5">
-                                                                                                        <label  className="block text-sm font-medium mb-2 dark:text-white">CVC</label>
+                                                                                                        <label  className="block text-sm font-medium mb-2 ">CVC</label>
                                                                                                         <input
                                                                                                             onChange={(e) => setDataWithDraw({...dataWithdraw,cvc : e.target.value})} required type="text" id="input-number"
                                                                                                             className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm  placeholder-gray-400 shadow-sm" placeholder="CVC"/>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div className="mb-5">
-                                                                                                    <label  className="block text-sm font-medium mb-2 dark:text-white">Cardholder name</label>
+                                                                                                    <label  className="block text-sm font-medium mb-2 ">Cardholder name</label>
                                                                                                     <input
                                                                                                         onChange={(e) => setDataWithDraw({...dataWithdraw,cardName : e.target.value})} required type="text" id="input-number"
                                                                                                         className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400 shadow-sm" placeholder="Nguyen Van A"/>

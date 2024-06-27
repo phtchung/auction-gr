@@ -358,25 +358,25 @@ const ProductDetail = () => {
                                     <div className="flex flex-grow gap-3 items-end mt-4">
                                         <div className="text-sm mb-0.5 text-neutral-500">Hiện tại</div>
                                         <div
-                                            className="text-2xl font-semibold text-red-600">{formatMoney(auctionProductData?.final_price)} VNĐ
+                                            className="text-2xl font-semibold text-red-600">{formatMoney(auctionProductData?.final_price)} VND
                                         </div>
                                     </div>
                                     <div className="flex flex-grow gap-3 items-end ">
                                         <div className="text-sm mb-0.5 text-neutral-500">Giá trực tiếp</div>
                                         <div
-                                            className="text-2xl font-semibold text-neutral-900">{formatMoney(auctionProductData?.sale_price)} VNĐ
+                                            className="text-2xl font-semibold text-neutral-900">{formatMoney(auctionProductData?.sale_price)} VND
                                         </div>
                                     </div>
                                     <div className="flex flex-grow gap-3 items-end ">
                                         <div className="text-sm mb-0.5 text-neutral-500">Bước giá</div>
                                         <div
-                                            className="mt-1 text-neutral-600 text-base">{formatMoney(auctionProductData?.step_price)} VNĐ
+                                            className="mt-1 text-neutral-600 text-base">{formatMoney(auctionProductData?.step_price)} VND
                                         </div>
                                     </div>
                                     <div className="flex flex-grow gap-3 items-end mt-1 mb-4">
                                         <div className="text-sm mb-0.5 text-neutral-500">Phí giao hàng</div>
                                         <div
-                                            className="text-base ">{formatMoney(auctionProductData?.shipping_fee)} VNĐ
+                                            className="text-base ">{formatMoney(auctionProductData?.shipping_fee)} VND
                                         </div>
                                     </div>
                                     <div className="flex flex-row items-center gap-5 pb-0.5 pt-1">
@@ -478,7 +478,7 @@ const ProductDetail = () => {
                                                 <div className="grid md:grid-cols-3 min-[200px]:grid-cols-2 text-sm items-center">
                                                     <div className="">Giá đấu thầu tối thiểu</div>
                                                     <span
-                                                        className="text-red-400">{formatMoney(auctionProductData?.min_auction_price)} VNĐ</span>
+                                                        className="text-red-400">{formatMoney(auctionProductData?.min_auction_price)} VND</span>
                                                     <button
                                                         type="primary"
                                                         onClick={handleQuickBid}
@@ -513,7 +513,7 @@ const ProductDetail = () => {
                                                                 rootClassName='hover:border-orange-500 w-full'
                                                                 formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                                                 parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                                                                suffix="VNĐ"/>
+                                                                suffix="VND"/>
                                                         </Form.Item>
 
                                                         <Form.Item>
@@ -556,7 +556,7 @@ const ProductDetail = () => {
                                                 <div className="flex gap-8 items-center">
                                                     <div className="">Giá bán trực tiếp</div>
                                                     <span
-                                                        className="text-red-400">{formatMoney(auctionProductData?.sale_price)} VNĐ</span>
+                                                        className="text-red-400">{formatMoney(auctionProductData?.sale_price)} VND</span>
                                                 </div>
 
                                             </div>
@@ -662,13 +662,13 @@ const ProductDetail = () => {
                                         <div className="flex-row flex gap-3 mb-3">
                                             <div className="basis-2/5 font-medium">Giá khởi điểm</div>
                                             <div
-                                                className="basis-3/5">{formatMoney(auctionProductData?.reserve_price)} VNĐ
+                                                className="basis-3/5">{formatMoney(auctionProductData?.reserve_price)} VND
                                             </div>
                                         </div>
                                         <div className="flex-row flex gap-3 mb-3">
                                             <div className="basis-2/5 font-medium">Giá bán trực tiếp</div>
                                             <div
-                                                className="basis-3/5">{formatMoney(auctionProductData?.sale_price)} VNĐ
+                                                className="basis-3/5">{formatMoney(auctionProductData?.sale_price)} VND
                                             </div>
                                         </div>
                                         <div className="flex-row flex gap-3 mb-3">

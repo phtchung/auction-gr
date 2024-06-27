@@ -4,6 +4,7 @@ import {getConfirmDeposit} from "../../Services/biddingService.jsx";
 import {useParams} from "react-router-dom";
 import CustomSpinner from "../../Components/CustomSpinner/CustomSpinner.jsx";
 import FZFNotFound from "../../Components/PageNotFound/404NotFound.jsx";
+import {formatMoney} from "../../Utils/constant.js";
 
 const ConfirmCheckOut = () => {
     const {id} = useParams()
@@ -111,16 +112,16 @@ const ConfirmCheckOut = () => {
                                                 <dl className="space-y-6 border-t border-gray-200 pt-10 text-sm">
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Thành tiền</dt>
-                                                        <dd className="text-gray-700">{data?.deposit_price} đ</dd>
+                                                        <dd className="text-gray-700">{data?.deposit_price} VND</dd>
                                                     </div>
 
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Phí đăng kí</dt>
-                                                        <dd className="text-gray-700">50.000 đ</dd>
+                                                        <dd className="text-gray-700">50,000 VND</dd>
                                                     </div>
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Tổng tiền</dt>
-                                                        <dd className="text-gray-900">{parseInt(data?.deposit_price) + 50000} đ</dd>
+                                                        <dd className="text-gray-900">{formatMoney(parseInt(data?.deposit_price) + 50000)} VND</dd>
                                                     </div>
                                                 </dl>
                                             </div>
