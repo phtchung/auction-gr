@@ -337,6 +337,61 @@ export const formatDateTimeMiliSecond = (inputDateString) => {
     return ` ${hours}:${minutes}:${seconds}:${miliseconds} ${day}-${month}-${year} `;
 };
 
+export function docSoTiengViet(number) {
+    const hangDonVi = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+    const hangChuc = ["", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi"];
+    const hangTram = ["", "một trăm", "hai trăm", "ba trăm", "bốn trăm", "năm trăm", "sáu trăm", "bảy trăm", "tám trăm", "chín trăm"];
+
+    if (number === 0) return "không";
+
+    function docBaChuSo(n) {
+        let tram = Math.floor(n / 100);
+        let chuc = Math.floor((n % 100) / 10);
+        let donVi = n % 10;
+        let result = '';
+
+        if (tram !== 0) {
+            result += hangTram[tram] + " ";
+        }
+
+        if (chuc === 0 && donVi !== 0 && tram !== 0) {
+            result += "linh ";
+        }
+
+        if (chuc !== 0) {
+            result += hangChuc[chuc] + " ";
+        }
+
+        if (chuc === 0 && donVi === 5 && tram !== 0) {
+            result += "lăm ";
+        } else if (donVi !== 0 || (tram === 0 && chuc === 0 && donVi === 0)) {
+            result += hangDonVi[donVi] + " ";
+        }
+
+        return result.trim();
+    }
+
+    function docPhan(number, unit) {
+        if (number === 0) return '';
+        return docBaChuSo(number) + " " + unit + " ";
+    }
+
+    let result = '';
+    let trieu = Math.floor(number / 1000000);
+    let nghin = Math.floor((number % 1000000) / 1000);
+    let tram = number % 1000;
+
+    result += docPhan(trieu, "triệu");
+    if (nghin > 0 || (nghin === 0 && tram > 0)) {
+        result += docPhan(nghin, "nghìn");
+    }
+    if (tram > 0 || (trieu > 0 || nghin > 0)) {
+        result += docBaChuSo(tram);
+    }
+
+    return result.trim();
+}
+
 
  export function readMoney(amount) {
     const ones = ['', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];

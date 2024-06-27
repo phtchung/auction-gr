@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import {useAuthContext} from "./AuthContext.jsx";
 import useAuctionOnlineTracking from "../../zustand/useAuctionOnlineTracking.jsx";
 import useConversation from "../../zustand/useConversation.js";
+import {baseUrl} from "../../Services/Http/baseUrl.jsx";
 
 const SocketContext = createContext();
 
@@ -22,7 +23,7 @@ export const SocketContextProvider = ({children}) => {
     useEffect(() => {
         if (currentUser) {
             if (selectedAuction) {
-                const socket = io(`http://localhost:8088/auction/${selectedAuction}`, {
+                const socket = io(`${baseUrl}/auction/${selectedAuction}`, {
                     query: {
                         userId: currentUser.id,
                     },
@@ -41,7 +42,7 @@ export const SocketContextProvider = ({children}) => {
 
     useEffect(() => {
         if (currentUser && openChat) {
-            const socket1 = io('http://localhost:8088', {
+            const socket1 = io(`${baseUrl}`, {
                     query: {
                         userId: currentUser.id,
                     },

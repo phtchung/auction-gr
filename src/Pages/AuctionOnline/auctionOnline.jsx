@@ -1,7 +1,7 @@
 import {Breadcrumb} from "antd";
 import MainLayOut from "../../Components/Layout/mainLayout.jsx";
 import useAuctionOnline from "./useAuctionOnline.jsx";
-import {formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
+import {docSoTiengViet, formatDateTimeMiliSecond, formatMoney, readMoney} from "../../Utils/constant.js";
 import {useEffect, useState} from "react";
 import {Modal} from 'antd';
 import {toast} from "react-toastify";
@@ -192,15 +192,12 @@ const AuctionOnline = () => {
                                                               {formatMoney(highestPrice)} VND
                                                         </span>
                                                     </div>
-                                                    <div className=" justify-between items-center ">
+                                                    <div className=" justify-between my-2 items-center ">
                                                         <div
                                                             onClick={() => handleOnlineBidding(highestPrice + productData.step_price)}
                                                             className="p-3 text-center cursor-pointer bg-orange-700 hover:bg-orange-500 mx-8 mt-3 mb-3 font-semibold text-lg">
                                                         <span>Trả giá <span
                                                             className='font-bold'> {formatMoney(highestPrice + productData.step_price)} VND</span> </span>
-                                                        </div>
-                                                        <div
-                                                            className="text-xs capitalize text-center m-3">{readMoney(highestPrice + productData.step_price)} Đồng
                                                         </div>
                                                     </div>
                                                 </div>
