@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useAuthContext} from "../../Pages/Context/AuthContext.jsx";
 import Swal from 'sweetalert2'
 import {formatMoney} from "../../Utils/constant.js";
+import {baseUrl} from "../../Services/Http/baseUrl.jsx";
 
 const CountDownOnline = ({targetDate, id}) => {
     const [auctionData, setAuctionData] = useState({productId: id})
@@ -23,7 +24,7 @@ const CountDownOnline = ({targetDate, id}) => {
     const [currentTime, setCurrentTime] = useState(calculateTimeRemaining());
 
     useEffect(() => {
-        const eventSource = new EventSource('http://localhost:8088/events');
+        const eventSource = new EventSource(`${baseUrl}/events`);
         eventSource.addEventListener(`finishAuctionOnline_${id}`, function (event) {
             const res = JSON.parse(event.data);
             {
@@ -77,7 +78,7 @@ const CountDownOnline = ({targetDate, id}) => {
             if (hours === 0 && minutes === 0 && seconds === 0) {
                 clearInterval(interval);
                 setIsLoading(true);
-                const eventSource = new EventSource('http://localhost:8088/events');
+                const eventSource = new EventSource(`${baseUrl}/events`);
                 eventSource.addEventListener(`finishAuctionOnline_${id}`, function (event) {
                     const res = JSON.parse(event.data);
                     {

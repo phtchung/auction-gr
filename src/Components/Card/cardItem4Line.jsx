@@ -55,7 +55,7 @@ const CardItem4Line = ({data}) => {
 
                       <div className="flex flex-row items-center gap-1 ">
                           <div><ClockCircleOutlined/></div>
-                          <span>{daysRemaining(data?.finish_time)}  </span>
+                          <span>{daysRemaining(data?.countdownTime)}  </span>
                       </div>
 
                   </div>
