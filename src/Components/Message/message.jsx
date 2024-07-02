@@ -16,13 +16,8 @@ const Message = ({message}) => {
               {
                   message !== null ?
                       <>
-                          <div className="py-2 px-3">
-                              <div className="flex justify-center mb-2">
-                                  <div className="rounded py-1 px-3" style={{backgroundColor: "#F2F2F2"}}>
-                                      <p className="text-xs ">
-                                          February 20, 2018
-                                      </p>
-                                  </div>
+                          <div className=" px-3">
+                              <div className="flex justify-center mb-0.5">
                               </div>
 
                               <div className={chatClassName}>

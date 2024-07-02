@@ -7,6 +7,7 @@ import useGetMessages from "./useGetMessages.jsx";
 import useListenMessage from "../../Hooks/useListenMessage.js";
 import {Avatar} from "antd";
 import {UserOutlined} from "@ant-design/icons";
+import {getColorForLetter, getFirstLetter} from "../../Utils/constant.js";
 
 const Messages = () => {
     const [loading, setLoading] = useState(false);
@@ -78,11 +79,21 @@ const Messages = () => {
                                         <div className="flex gap-2 items-center">
                                         <div>
                                                 {
-                                                    selectedConversation.avatar ?
-                                                        <img className="w-6 h-6 rounded-full" alt='avatar'
-                                                             src={selectedConversation.avatar}/>
-                                                        :
-                                                        <Avatar size='small' style={{width:24,height:24 }} icon={<UserOutlined/>}/>
+                                                    selectedConversation.avatar &&
+                                                    <>
+                                                        <Avatar
+                                                            style={{
+                                                                backgroundColor: getColorForLetter(getFirstLetter(selectedConversation?.name)),
+                                                                verticalAlign: 'middle',
+                                                            }}
+                                                            size='medium'
+                                                        >
+                                                            <span className="font-medium text-lg">{getFirstLetter(selectedConversation?.name)}</span>
+                                                        </Avatar>
+                                                    </>
+
+
+
                                                 }
                                             </div>
                                             <div>
