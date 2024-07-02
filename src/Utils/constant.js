@@ -96,11 +96,11 @@ export const tabData = [
 ];
 
 export const tabData1 = [
-    {value: "1", name: "Auction winning", top: "Win", color: "bg-yellow-500"},
-    {value: "2", name: "Delivery wait", top: "Wait", color: "bg-indigo-800"},
-    {value: "3", name: "Completed", top: "Completed", color: "bg-emerald-800"},
-    {value: "4", name: "Cancel", top: "Cancel", color: "bg-red-600"},
-    {value: "5", name: "Return", top: "Return", color: "bg-cyan-500"},
+    {value: "1", name: "Thắng đấu giá", top: "Thắng", color: "bg-yellow-500"},
+    {value: "2", name: "Chờ giao hàng", top: "Chờ", color: "bg-indigo-800"},
+    {value: "3", name: "Hoàn thành", top: "Hoàn thành", color: "bg-emerald-800"},
+    {value: "4", name: "Hủy", top: "Hủy", color: "bg-red-600"},
+    {value: "5", name: "Trả hàng", top: "Trả hàng", color: "bg-cyan-500"},
 ];
 
 export const colFail = [

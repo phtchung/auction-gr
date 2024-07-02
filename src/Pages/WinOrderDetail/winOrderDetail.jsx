@@ -333,16 +333,6 @@ const WinOrderDetail = () => {
                                                                                         Tiền mặt
                                                                                     </div>
                                                                                 </Radio>
-                                                                                <Radio value={1}>
-                                                                                    <div
-                                                                                        className="flex-row mt-0.5 gap-2 items-center flex ">
-                                                                                        <img
-                                                                                            src="https://minio.thecoffeehouse.com/image/tchmobileapp/386_ic_momo@3x.png"
-                                                                                            style={{maxWidth: "25%"}}
-                                                                                            alt=""/>
-                                                                                        Momo
-                                                                                    </div>
-                                                                                </Radio>
                                                                                 <Radio value={2}>
                                                                                     <div
                                                                                         className="flex-row gap-2 mt-0.5 items-center flex ">
