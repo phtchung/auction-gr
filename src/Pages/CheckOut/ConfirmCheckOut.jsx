@@ -112,16 +112,16 @@ const ConfirmCheckOut = () => {
                                                 <dl className="space-y-6 border-t border-gray-200 pt-10 text-sm">
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Thành tiền</dt>
-                                                        <dd className="text-gray-700">{data?.deposit_price} VND</dd>
+                                                        <dd className="text-gray-700">{formatMoney(data?.deposit_price)} VND</dd>
                                                     </div>
 
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Phí đăng kí</dt>
-                                                        <dd className="text-gray-700">50,000 VND</dd>
+                                                        <dd className="text-gray-700">10,000 VND</dd>
                                                     </div>
                                                     <div className="flex justify-between">
                                                         <dt className="font-medium text-gray-900">Tổng tiền</dt>
-                                                        <dd className="text-gray-900">{formatMoney(parseInt(data?.deposit_price) + 50000)} VND</dd>
+                                                        <dd className="text-gray-900">{formatMoney(parseInt(data?.deposit_price) + 10000)} VND</dd>
                                                     </div>
                                                 </dl>
                                             </div>

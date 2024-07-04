@@ -56,6 +56,17 @@ const MainLayOut = ({children}) => {
                 }
             });
 
+
+            eventSource.addEventListener(`cancelProduct_${currentUser.id}`, function (event) {
+                const data = JSON.parse(event.data);
+                if (data) {
+                    setStatus(0)
+                    queryClient.invalidateQueries({
+                        queryKey: ["getCountNotify", currentUser.id],
+                    });
+                }
+            });
+
             // thoog báo đấu giá thành coonng cho người bán
             eventSource.addEventListener(`auctionSuccess_${currentUser.id}`, function (event) {
                 const data = JSON.parse(event.data);
@@ -475,7 +486,7 @@ const MainLayOut = ({children}) => {
                     {
                         currentUser &&
                         <>
-                            <div style={{display: !openChat ? 'block' : 'none'}}>
+                            <div className="z-40" style={{display: !openChat ? 'block' : 'none'}}>
                                 <div onClick={() => setOpenChat(true)}
                                      className="fixed bottom-2 right-3 px-3 py-3 cursor-pointer bg-orange-500 rounded shadow-md">
                                     <div className="flex gap-2 items-center">

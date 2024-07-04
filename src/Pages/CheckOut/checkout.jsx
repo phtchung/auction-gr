@@ -91,14 +91,14 @@ const CheckOut = () => {
                                                 <div
                                                     className="flex items-center justify-between border-b border-solid border-neutral-300">
                                                     <p className="text-sm leading-[44px] font-normal text-neutral-700">Phí đăng ký </p>
-                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">50,000 VND</p>
+                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">10,000 VND</p>
                                                 </div>
 
                                                 <div
                                                     className="flex items-center leading-[44px] justify-between mt-5">
                                                     <p className="text-sm font-normal text-neutral-700">Phí đăng
                                                         ký </p>
-                                                    <p className="text-2xl font-semibold text-neutral-800">{formatMoney(parseInt(data.data.deposit_price) + 50000)} VND</p>
+                                                    <p className="text-2xl font-semibold text-neutral-800">{formatMoney(parseInt(data.data.deposit_price) + 10000)} VND</p>
                                                 </div>
                                             </div>
                                         </div>

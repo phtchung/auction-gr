@@ -3,6 +3,13 @@ import { baseUrl } from "./baseUrl.jsx";
 import { toast } from "react-toastify";
 import token from "../../Utils/token.js";
 
+const handleLogout = () => {
+    localStorage.removeItem("data");
+    localStorage.removeItem("id");
+    localStorage.removeItem("accessToken");
+    window.location.href = '/login';
+};
+
 const privateHttp = axios.create({
   baseURL: baseUrl,
   headers: {
@@ -37,6 +44,10 @@ privateHttp.interceptors.response.use(
       window.location.href = "/login";
       return Promise.reject(error);
     }
+      if (error.response && error.response.status === 403) {
+          // Handle logout
+          handleLogout()
+      }
     return Promise.reject(error);
   },
 );

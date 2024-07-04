@@ -167,7 +167,7 @@ const StreamGeneral = () => {
                         {
                             <div>
                                 <div className=" w-full h-full max-w-md md:h-auto">
-                                    <div className="relative bg-white rounded-lg  dark:bg-gray-700">
+                                    <div className="relative bg-white rounded-lg ">
                                         <div className="px-6 py-3 lg:px-8">
                                             <div className="space-y-6" >
                                                 <div>

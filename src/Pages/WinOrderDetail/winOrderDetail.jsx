@@ -236,7 +236,10 @@ const WinOrderDetail = () => {
                                                                                 <h6 className={`text-sm font-bold ${winDetailData.is_review ? 'text-green-500' : ' text-gray-300'} `}>Đánh
                                                                                     giá
                                                                                 </h6>
-                                                                                <p className={`text-xs ${winDetailData.is_review ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(winDetailData.updatedAt)}</p>
+                                                                                {
+                                                                                    winDetailData.is_review === 1 &&
+                                                                                    <p className={`text-xs ${winDetailData.is_review ? 'text-green-500' : 'text-gray-300'} `}>{formatDateTime(winDetailData.updatedAt)}</p>
+                                                                                }
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -261,7 +264,7 @@ const WinOrderDetail = () => {
                                                                     </div>
                                                                 </div>
                                                                 <form onSubmit={handleOpen}
-                                                                    className="items-center font-medium text-neutral-600 text-sm gap-4 mt-8 px-1 space-y-4  ">
+                                                                    className="items-center font-medium  text-neutral-600 text-sm gap-4 mt-8 px-1 space-y-4  ">
                                                                     <div
                                                                         className="grid grid-cols-6 text-left items-center">
                                                                         <div className="col-span-2"> Tên :</div>
@@ -271,8 +274,9 @@ const WinOrderDetail = () => {
                                                                                 type="text"
                                                                                 name="price"
                                                                                 id="name"
+                                                                                placeholder="Tên"
                                                                                 onChange={(e) => handleDlvInfor("name", e.target.value)}
-                                                                                className="block focus:outline-none focus:border-none border-0 py-1.5 px-2 w-full text-gray-900 ring-1 ring-inset ring-gray-300
+                                                                                className="block bg-white focus:outline-none focus:border-none border-0 py-1.5 px-2 w-full text-gray-900 ring-1 ring-inset ring-gray-300
                                                                                   focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
@@ -290,7 +294,7 @@ const WinOrderDetail = () => {
                                                                                 placeholder="Số điện thoại"
                                                                                 onChange={(e) => handleDlvInfor("phone", e.target.value)}
                                                                                 className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset
-                                                                                 ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
+                                                                                 ring-gray-300  focus:ring-1 focus:ring-inset bg-white  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -307,7 +311,7 @@ const WinOrderDetail = () => {
                                                                                 onChange={(e) =>
                                                                                     handleDlvInfor("address", e.target.value)
                                                                                 }
-                                                                                className="block w-full focus:outline-none focus:border-none border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset
+                                                                                className="block w-full focus:outline-none focus:border-none bg-white border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset
                                                                                  ring-gray-300  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                                                             />
                                                                         </div>
@@ -516,13 +520,13 @@ const WinOrderDetail = () => {
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <div className="flex flex-row gap-4 items-center">
+                                                        <div className="flex flex-row gap-4  items-center">
                                                             <button onClick={() => setOpen1(!open1)}
-                                                                    className="border border-gray-200 hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
+                                                                    className="border bg-white border-gray-200 hover:border-orange-500 hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
                                                                 Chi tiết
                                                             </button>
                                                             <button onClick={() => setOpen2(!open2)}
-                                                                    className="border border-gray-200 hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
+                                                                    className="border bg-white border-gray-200 hover:border-orange-500  hover:bg-neutral-100 text-gray-600 flex items-center gap-1 rounded px-2 text-xs py-1 outline-none">
                                                                 Thông tin đấu giá
                                                             </button>
                                                         </div>

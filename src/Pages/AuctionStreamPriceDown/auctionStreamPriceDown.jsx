@@ -114,7 +114,7 @@ const AuctionStreamPriceDown = () => {
                                                         items={[
                                                             {
                                                                 title: <div  className="  p-1 px-4">
-                                                                    <NavLink className="hover:bg-orange-500"  to={'/streamGenera'}>
+                                                                    <NavLink className="hover:bg-orange-500"  to={'/streamGeneral'}>
                                                                         <ArrowLeftOutlined  style={{fontSize : 24 , width : 28}} />
                                                                     </NavLink>
                                                                 </div>,
