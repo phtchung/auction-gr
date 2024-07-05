@@ -139,7 +139,7 @@ const Messages = () => {
                                             value={message}
                                             onChange={(e) => setMessage(e.target.value)}
                                             placeholder='Nhập nội dung tin nhắn'
-                                            className="w-full row-2 resize-none focus:outline-none text-sm flex-1 overflow-y-auto  px-2 py-2"
+                                            className="w-full row-2 resize-none bg-white focus:outline-none text-sm flex-1 overflow-y-auto  px-2 py-2"
                                         />
 
                                         <div className="ml-auto cursor-pointer  flex justify-end mx-3 pb-1"

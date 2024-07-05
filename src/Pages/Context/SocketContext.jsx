@@ -27,6 +27,7 @@ export const SocketContextProvider = ({children}) => {
                     query: {
                         userId: currentUser.id,
                     },
+                    reconnection : true,
                 });
                 setSocket(socket);
 

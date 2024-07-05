@@ -32,7 +32,7 @@ const Conversations = () => {
                                 <input type="text"
                                        value={filter}
                                        onChange={handleFilterChange}
-                                       className="w-full border border-orange-500  focus:outline-orange-300 px-2 py-2 text-sm"
+                                       className="w-full border border-orange-500 bg-white   focus:outline-orange-300 px-2 py-2 text-sm"
                                        placeholder="Tìm kiếm"/>
                             </div>
 
