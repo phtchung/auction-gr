@@ -230,6 +230,13 @@ const Home = () => {
                                                         THÚC
                                                     </div>
                                                 </div>
+                                                {
+                                                    productsPreEnd && productsPreEnd.length > 4 && <>
+                                                        <div onClick={() => navigate('/search?sortBy=finish_time-asc&page=1')} className="text-base cursor-pointer text-orange-400 hover:bg-orange-50 active:bg-orange-200 mx-2 view_all">
+                                                            <span>Xem tất cả  →</span>
+                                                        </div>
+                                                    </>
+                                                }
                                             </div>
 
                                             <Carousel
@@ -296,39 +303,46 @@ const Home = () => {
 
 
                                 {/*giá rẻ */}
-                                <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
-                                    <div className="flex flex-grow  justify-between p-2">
-                                        <div className="flex gap-2 items-center mb-2 ">
+                                {
+                                    is1dSc && products1k?.length > 0 &&
+                                    <>
+                                        <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
+                                            <div className="flex flex-grow  justify-between p-2">
+                                                <div className="flex gap-2 items-center mb-2 ">
                                             <span className="relative flex h-3 w-3">
                                                 <span
                                                     className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
                                                 <span
                                                     className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                             </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẢN PHẨM
-                                                DƯỚI 1K
+                                                    <div className="text-left text-lg font-semibold text-gray-900 ">SẢN
+                                                        PHẨM GIÁ RẺ
+                                                    </div>
+                                                </div>
+                                                {
+                                                    products1k && products1k.length > 4 && <>
+                                                        <div onClick={() => navigate('/search?sortBy=reserve_price-asc&page=1')} className="text-base cursor-pointer text-orange-400 hover:bg-orange-50 active:bg-orange-200 mx-2 view_all">
+                                                            <span>Xem tất cả  →</span>
+                                                        </div>
+                                                    </>
+                                                }
+                                            </div>
+
+                                            <div className="flex flex-wrap">
+                                                {
+                                                    is1dSc && products1k && products1k.map((product, index) => (
+                                                        <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                             key={index}
+                                                             className="md:basis-1/5 p-1.5 py-3 ">
+                                                            <CardNormal data={product}/>
+                                                        </div>
+                                                    ))
+                                                }
                                             </div>
                                         </div>
-                                        {
-                                            products1k && products1k.length > 9 && <>
-                                                <div className="text-base cursor-pointer view_all">
-                                                    <span>Xem tất cả  →</span>
-                                                </div>
-                                            </>
-                                        }
-                                    </div>
+                                    </>
+                                }
 
-                                    <div className="flex flex-wrap">
-                                        {
-                                            is1dSc && products1k && products1k.map((product, index) => (
-                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
-                                                     className="md:basis-1/5 p-1.5 py-3 ">
-                                                    <CardNormal data={product}/>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
 
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>
                                     <div className="flex flex-grow items-center justify-between p-2">
@@ -344,8 +358,8 @@ const Home = () => {
                                             </div>
                                         </div>
                                         {
-                                            productRare && productRare.length > 9 && <>
-                                                <div className="text-base cursor-pointer view_all">
+                                            productRare && productRare.length > 4 && <>
+                                                <div onClick={() => navigate('/search?sortBy=reserve_price-desc&page=1')} className="text-base cursor-pointer text-orange-400 hover:bg-orange-50 active:bg-orange-200 mx-2 view_all">
                                                     <span>Xem tất cả  →</span>
                                                 </div>
                                             </>
@@ -355,7 +369,7 @@ const Home = () => {
 
                                     <div className="grid xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
                                         {
-                                            isRareSc && productRare && productRare.map((product, index) => (
+                                        isRareSc && productRare && productRare.map((product, index) => (
                                                 <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
                                                      className=" p-2 ">
                                                     <CardNormal data={product}/>

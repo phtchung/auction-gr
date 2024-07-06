@@ -24,7 +24,7 @@ const CardItem4Line = ({data}) => {
                   <div
                       className="truncate text-sm font-sans font-semibold leading-6 hover:text-orange-300 ">{data?.product_name}
                   </div>
-                  <div className="flex flex-row items-center gap-1 overflow_css">
+                  <div className="flex flex-row items-center gap-1 truncate">
                       <div
                           className="text-neutral-500 hover:text-neutral-700 "
                           style={{fontSize: 12}}>Hiện
@@ -35,7 +35,7 @@ const CardItem4Line = ({data}) => {
                           style={{fontSize: 16}}> {formatMoney(data?.final_price)} đ
                       </div>
                   </div>
-                  <div className="flex flex-row items-center gap-1 overflow_css">
+                  <div className="flex flex-row items-center gap-1 truncate">
                       <div
                           className="text-neutral-500 hover:text-neutral-700 "
                           style={{fontSize: 12}}>Vận chuyển:

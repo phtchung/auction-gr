@@ -294,10 +294,19 @@ const SearchPage = () => {
                                         </div>
 
                                         <div className=" md:basis-4/5 sm:basis-3/4  flex-col gap-y-4">
-                                            <div className="text-left text-neutral-600 font-medium text-lg mb-3">Kết quả
-                                                tìm kiếm cho từ khóa
-                                                <span className="text-orange-500 "> &#39;{queryString.keyword}&#39;</span>
-                                            </div>
+                                            {
+                                                queryString?.keyword &&
+                                                <>
+                                                    <div
+                                                        className="text-left text-neutral-600 font-medium text-lg mb-3">Kết
+                                                        quả
+                                                        tìm kiếm cho từ khóa
+                                                        <span
+                                                            className="text-orange-500 "> &#39;{queryString.keyword}&#39;</span>
+                                                    </div>
+                                                </>
+                                            }
+
                                             {(totalPage && totalPage !== 0 && currentPage) ? (
                                                     <>
                                                         <div className="flex flex-col bg-white pt-3 p-2 mb-4">
@@ -318,6 +327,14 @@ const SearchPage = () => {
                                                                             nhất</Select.Option>
                                                                         <Select.Option label='finish_time'
                                                                                        value='finish_time-desc'>Xa
+                                                                            nhất</Select.Option>
+                                                                    </Select.OptGroup>
+                                                                    <Select.OptGroup label='Giá khởi điêm'>
+                                                                        <Select.Option label='reserve_price'
+                                                                                       value='reserve_price-asc'>Thấp
+                                                                            nhất</Select.Option>
+                                                                        <Select.Option label='reserve_price'
+                                                                                       value='reserve_price-desc'>Cao
                                                                             nhất</Select.Option>
                                                                     </Select.OptGroup>
                                                                     <Select.OptGroup label='Số lượt đấu giá'>
