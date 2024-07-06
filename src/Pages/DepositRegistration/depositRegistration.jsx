@@ -20,7 +20,7 @@ const DepositRegistration = () => {
     const [selectedPackage, setSelectedPackage] = useState({payment_method : 1});
     const [dataWithdraw , setDataWithDraw] = useState({})
     const {isSuccess : sc , data : dataBidding,} = useProductBidding();
-
+    console.log(dataBidding)
     const handleSelect = (data) => {
         setSelectedPackage({...selectedPackage,data})
         setIsPaymentScreen(true);
@@ -86,14 +86,16 @@ const DepositRegistration = () => {
         <>
             <MainLayOut>
                 <div className="wrapper ">
-                    <SideBar/>
-                    <div className="home-right">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         <div className="">
                             <div className="text-left px-5 pt-3 pb-3 text-xl  font-bold text-neutral-600  bg-white">
                                 Đăng ký cọc đấu giá
                             </div>
+                            <div className="border-b border-neutral-300 "></div>
 
-                            <div className="border-b-2 border-gray-300">
+                            <div className=" border-gray-300">
                                 <div
                                     className="lg:col-span-2 md:col-span-1 sm:col-span-1 px-1.5 mt-4 md:ml-0 md:mt-6 sm:ml-0  lg:mt-0 sm:mt-6">
                                     <div className="w-full h-full rounded-lg ">
@@ -107,19 +109,20 @@ const DepositRegistration = () => {
                                                             <CustomSpinner h={10} w={10} font={'sm'}/>
                                                             :
                                                             <>
-                                                            {
-                                                                isSuccess &&
-                                                                (
-                                                                    data.auction_deposit === 0 ?
-                                                                        <>{
-                                                                        !isPaymentScreen ?
-                                                                            <>
-                                                                                        <div className="flex flex-col gap-4">
+                                                                {
+                                                                    isSuccess &&
+                                                                    (
+                                                                        data.auction_deposit === 0 ?
+                                                                            <>{
+                                                                                !isPaymentScreen ?
+                                                                                    <>
+                                                                                        <div
+                                                                                            className="flex flex-col gap-4">
                                                                                             <div
                                                                                                 className="p-4 grid mt-3 h-full xl:grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
                                                                                                 {cardDepositRegis.map((card, index) => (
                                                                                                     <CardDeposit
-                                                                                                        select = {handleSelect}
+                                                                                                        select={handleSelect}
                                                                                                         key={index}
                                                                                                         price={card.price}
                                                                                                         deposit={card.deposit}
@@ -129,10 +132,11 @@ const DepositRegistration = () => {
                                                                                             </div>
                                                                                         </div>
                                                                                     </>
-                                                                            :
-                                                                            <>
-                                                                                <div className="p-8 ">
-                                                                                            <div className="mx-auto max-w-md font-medium">
+                                                                                    :
+                                                                                    <>
+                                                                                        <div className="p-8 ">
+                                                                                            <div
+                                                                                                className="mx-auto max-w-md font-medium">
                                                                                                 <div
                                                                                                     className="flex text-xl font-bold  text-neutral-600 mb-4 gap-2 items-center flex-row">
                                                                                                     <LeftOutlined
@@ -146,39 +150,56 @@ const DepositRegistration = () => {
                                                                                                 </div>
                                                                                                 <div
                                                                                                     className="flex text-neutral-600  flex-row gap-1 ">
-                                                                                                    <CheckOutlined style={{
-                                                                                                        fontSize: '14px',
-                                                                                                        color: '#f15502'
-                                                                                                    }}/>
-                                                                                                    <div> Tham gia phiên đấu giá {selectedPackage.data.price} <span
-                                                                                                        className="text-orange-500"></span>
+                                                                                                    <CheckOutlined
+                                                                                                        style={{
+                                                                                                            fontSize: '14px',
+                                                                                                            color: '#f15502'
+                                                                                                        }}/>
+                                                                                                    <div> Tham gia phiên
+                                                                                                        đấu
+                                                                                                        giá {selectedPackage.data.price}
+                                                                                                        <span
+                                                                                                            className="text-orange-500"></span>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div
                                                                                                     className="flex text-neutral-600 flex-row gap-2 ">
-                                                                                                    <CheckOutlined style={{
-                                                                                                        fontSize: '14px',
-                                                                                                        color: '#f15502'
-                                                                                                    }}/>
-                                                                                                    <div> Hoàn cọc bất kỳ lúc nào bạn muốn</div>
+                                                                                                    <CheckOutlined
+                                                                                                        style={{
+                                                                                                            fontSize: '14px',
+                                                                                                            color: '#f15502'
+                                                                                                        }}/>
+                                                                                                    <div> Hoàn cọc bất
+                                                                                                        kỳ lúc nào bạn
+                                                                                                        muốn
+                                                                                                    </div>
                                                                                                 </div>
 
                                                                                                 <div
                                                                                                     className="mt-6 border-t border-orange-500">
                                                                                                     <div
                                                                                                         className="flex mt-2 flex-row justify-between text-lg items-center font-semibold text-neutral-600">
-                                                                                                        <div>Tổng tiền</div>
-                                                                                                        <div>{selectedPackage.data.deposit},000 VND</div>
+                                                                                                        <div>Tổng tiền
+                                                                                                        </div>
+                                                                                                        <div>{selectedPackage.data.deposit},000
+                                                                                                            VND
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div className=" text-left mt-6 items-center">
-                                                                                                    <div className="flex flex-col item-center ">
+                                                                                                <div
+                                                                                                    className=" text-left mt-6 items-center">
+                                                                                                    <div
+                                                                                                        className="flex flex-col item-center ">
                                                                                                         <Radio.Group
                                                                                                             className="flex flex-row gap-y-1"
                                                                                                             defaultValue={1}
-                                                                                                            onChange={(e) => setSelectedPackage({...selectedPackage,payment_method: e.target.value})}
+                                                                                                            onChange={(e) => setSelectedPackage({
+                                                                                                                ...selectedPackage,
+                                                                                                                payment_method: e.target.value
+                                                                                                            })}
                                                                                                         >
-                                                                                                            <Radio value={1}>
+                                                                                                            <Radio
+                                                                                                                value={1}>
                                                                                                                 <div
                                                                                                                     className="flex-row mt-0.5 text-base gap-2 items-center flex ">
                                                                                                                     <img
@@ -188,7 +209,8 @@ const DepositRegistration = () => {
                                                                                                                     Momo
                                                                                                                 </div>
                                                                                                             </Radio>
-                                                                                                            <Radio value={2}>
+                                                                                                            <Radio
+                                                                                                                value={2}>
                                                                                                                 <div
                                                                                                                     className="flex-row gap-2 text-base mt-0.5 items-center flex ">
                                                                                                                     <img
@@ -203,14 +225,16 @@ const DepositRegistration = () => {
                                                                                                 </div>
                                                                                                 <div
                                                                                                     className="flex flex-row  gap-6 items-center justify-between">
-                                                                                                    <div className="text-left mt-6">
+                                                                                                    <div
+                                                                                                        className="text-left mt-6">
                                                                                                         {
                                                                                                             isPending ?
                                                                                                                 <>
-                                                                                                                    <button type="button"
+                                                                                                                    <button
+                                                                                                                        type="button"
                                                                                                                         // onClick={handleSubmit}
-                                                                                                                            className="flex cursor-no-drop items-center rounded-md bg-orange-500 hover:border-orange-500 px-4 py-2 text-white"
-                                                                                                                            disabled>
+                                                                                                                        className="flex cursor-no-drop items-center rounded-md bg-orange-500 hover:border-orange-500 px-4 py-2 text-white"
+                                                                                                                        disabled>
                                                                                                                         <LoadingSvg/>
                                                                                                                         <span
                                                                                                                             className="font-medium"> Đang thanh toán... </span>
@@ -222,7 +246,8 @@ const DepositRegistration = () => {
                                                                                                                         onClick={handleSubmit}
                                                                                                                         className='bg-orange-500 flex flex-row hover:border-orange-600 rounded-md items-center
                                                                                                                            py-2 gap-2 px-6 text-center text-base font-medium text-white  hover:bg-[#F27C08] active:bg-orange-400 '>
-                                                                                                                        <p> Thanh toán</p>
+                                                                                                                        <p> Thanh
+                                                                                                                            toán</p>
                                                                                                                     </button>
                                                                                                                 </>
                                                                                                         }
@@ -231,29 +256,33 @@ const DepositRegistration = () => {
                                                                                             </div>
 
                                                                                         </div>
-                                                                            </>
+                                                                                    </>
                                                                             }
-                                                                        </>
-                                                                        :
-                                                                        <>
-                                                                            <div
-                                                                                className="my-6 font-medium text-center flex flex-col gap-3  text-base text-neutral-600">Bạn
-                                                                                đã đăng ký cọc đấu giá mức {getLevel(data?.auction_deposit).level}.
+                                                                            </>
+                                                                            :
+                                                                            <>
                                                                                 <div
-                                                                                    className="flex text-neutral-600 justify-center  flex-row gap-1 ">
-                                                                                    <CheckOutlined style={{
-                                                                                        fontSize: '14px',
-                                                                                    }}/>
-                                                                                    <div className=" font-bold text-neutral-800 text-lg"> Tham gia phiên đấu
-                                                                                        giá {getLevel(data?.auction_deposit).price}
+                                                                                    className="my-6 font-medium text-center flex flex-col gap-3  text-base text-neutral-600">Bạn
+                                                                                    đã đăng ký cọc đấu giá
+                                                                                    mức {getLevel(data?.auction_deposit).level}.
+                                                                                    <div
+                                                                                        className="flex text-neutral-600 justify-center  flex-row gap-1 ">
+                                                                                        <CheckOutlined style={{
+                                                                                            fontSize: '14px',
+                                                                                        }}/>
+                                                                                        <div
+                                                                                            className=" font-bold text-neutral-800 text-lg"> Tham
+                                                                                            gia phiên đấu
+                                                                                            giá {getLevel(data?.auction_deposit).price}
+                                                                                        </div>
                                                                                     </div>
+                                                                                    Để đăng ký mức cọc mới, trước tiên
+                                                                                    hãy hủy mức cọc
+                                                                                    hiện tại.
                                                                                 </div>
-                                                                                Để đăng ký mức cọc mới, trước tiên hãy hủy mức cọc
-                                                                                hiện tại.
-                                                                            </div>
-                                                                        </>
-                                                                )
-                                                            }
+                                                                            </>
+                                                                    )
+                                                                }
 
                                                             </>
                                                     }
@@ -268,94 +297,140 @@ const DepositRegistration = () => {
                                                                 </>
                                                                 :
                                                                 <>
-                                                                {
-                                                                    isSuccess && sc && (
-                                                                        !data.auction_deposit ?
-                                                                            <>
-                                                                                <p className="text-neutral-500 flex mx-auto text-center mt-4 text-base">Bạn chưa đăng ký mức cọc đấu giá nào.</p>
-                                                                            </>
-                                                                            :
-                                                                            <>{
-                                                                                data.checkBidding || dataBidding.pages.length !== 0  ?
-                                                                                    <>
-                                                                                        <p className="text-neutral-700 gap-4 flex flex-col justify-center text-center text-base mx-auto">
-                                                                                            Sản phẩm của bạn đang được bán đấu giá hoặc
-                                                                                            Bạn đang đang trong quá trình đấu giá sản phẩm.
-                                                                                            <p>
-                                                                                                Vui lòng yêu cầu lại sau khi hoàn tất nhận hàng.
+                                                                    {
+                                                                        isSuccess && sc && (
+                                                                            !data.auction_deposit ?
+                                                                                <>
+                                                                                    <p className="text-neutral-500 flex mx-auto text-center mt-4 text-base">Bạn
+                                                                                        chưa đăng ký mức cọc đấu giá
+                                                                                        nào.</p>
+                                                                                </>
+                                                                                :
+                                                                                <>{
+                                                                                    data.checkBidding !== 0 || dataBidding.pages[0]?.data?.data?.length !== 0 ?
+                                                                                        <>
+                                                                                            <p className="text-neutral-700 gap-4 flex flex-col justify-center text-center text-base mx-auto">
+                                                                                                Sản phẩm của bạn đang được
+                                                                                                bán đấu giá hoặc
+                                                                                                Bạn đang đang trong quá
+                                                                                                trình đấu giá sản phẩm.
+                                                                                                <p>
+                                                                                                    Vui lòng yêu cầu lại sau
+                                                                                                    khi hoàn tất nhận hàng.
+                                                                                                </p>
                                                                                             </p>
-                                                                                        </p>
-                                                                                    </>
-                                                                                    :
-                                                                                    <>
-                                                                                        <form className="bg-white w-full mx-auto lg:w-1/2 flex flex-col" onSubmit={handleRequest}>
-                                                                                            <div className="max-w-lg font-medium text-neutral-600 w-full m-auto px-6 py-6 sm:py-10">
-                                                                                                <div className="mb-5">
-                                                                                                    <label  className="block text-sm font-medium mb-2 ">Card number</label>
-                                                                                                    <input
-                                                                                                        onChange={(e) => setDataWithDraw({...dataWithdraw, cardNumber : e.target.value})} required type="text" id="input-number"
-                                                                                                        className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400  shadow-sm" placeholder="0000 0000 0000 0000"/>
-                                                                                                </div>
-                                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                                                                                        </>
+                                                                                        :
+                                                                                        <>
+                                                                                            <form
+                                                                                                className="bg-white w-full mx-auto lg:w-1/2 flex flex-col"
+                                                                                                onSubmit={handleRequest}>
+                                                                                                <div
+                                                                                                    className="max-w-lg font-medium text-neutral-600 w-full m-auto px-6 py-6 sm:py-10">
                                                                                                     <div className="mb-5">
-                                                                                                        <label  className="block text-sm font-medium mb-2 ">Expiration</label>
+                                                                                                        <label
+                                                                                                            className="block text-sm font-medium mb-2 "> Số
+                                                                                                            thẻ</label>
                                                                                                         <input
-                                                                                                            onChange={(e) => setDataWithDraw({...dataWithdraw,expiration : e.target.value})} required type="text" id="input-number"
-                                                                                                            className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm   placeholder-gray-400  shadow-sm" placeholder="MM/YY"/>
+                                                                                                            onChange={(e) => setDataWithDraw({
+                                                                                                                ...dataWithdraw,
+                                                                                                                cardNumber: e.target.value
+                                                                                                            })} required
+                                                                                                            type="text"
+                                                                                                            id="input-number"
+                                                                                                            className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400  shadow-sm"
+                                                                                                            placeholder="0000 0000 0000 0000"/>
                                                                                                     </div>
-                                                                                                    <div className="mb-5">
-                                                                                                        <label  className="block text-sm font-medium mb-2 ">CVC</label>
-                                                                                                        <input
-                                                                                                            onChange={(e) => setDataWithDraw({...dataWithdraw,cvc : e.target.value})} required type="text" id="input-number"
-                                                                                                            className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm  placeholder-gray-400 shadow-sm" placeholder="CVC"/>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div className="mb-5">
-                                                                                                    <label  className="block text-sm font-medium mb-2 ">Cardholder name</label>
-                                                                                                    <input
-                                                                                                        onChange={(e) => setDataWithDraw({...dataWithdraw,cardName : e.target.value})} required type="text" id="input-number"
-                                                                                                        className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400 shadow-sm" placeholder="Nguyen Van A"/>
-                                                                                                </div>
-
-                                                                                                {isPending1 ?
-                                                                                                    <>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            className=" cursor-no-drop flex items-center rounded-md bg-orange-500 hover:border-orange-500 px-4 py-2 text-white"
-                                                                                                            disabled>
-                                                                                                            <LoadingSvg/>
-                                                                                                            <span
-                                                                                                                className="font-medium"> Đang xác nhận... </span>
-                                                                                                        </button>
-                                                                                                    </>
-                                                                                                    :
-                                                                                                    <>
-                                                                                                        <button
-                                                                                                            className='bg-orange-500  hover:border-orange-600 rounded-md items-center
-                                                                                                                py-2 gap-2 px-6 text-center text-base font-medium text-white  hover:bg-[#F27C08] active:bg-orange-400 '>
-                                                                                                            <p> Xác nhận</p>
-                                                                                                        </button>
-                                                                                                    </>
-                                                                                                }
-
-                                                                                                {
-                                                                                                    isError1 &&
                                                                                                     <div
-                                                                                                        className="mt-4 text-sm text-red-500">
-                                                                                                        {error.message}
+                                                                                                        className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                                                                                                        <div
+                                                                                                            className="mb-5">
+                                                                                                            <label
+                                                                                                                className="block text-sm font-medium mb-2 ">Hạn
+                                                                                                                sử
+                                                                                                                dụng</label>
+                                                                                                            <input
+                                                                                                                onChange={(e) => setDataWithDraw({
+                                                                                                                    ...dataWithdraw,
+                                                                                                                    expiration: e.target.value
+                                                                                                                })} required
+                                                                                                                type="text"
+                                                                                                                id="input-number"
+                                                                                                                className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm   placeholder-gray-400  shadow-sm"
+                                                                                                                placeholder="MM/YY"/>
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            className="mb-5">
+                                                                                                            <label
+                                                                                                                className="block text-sm font-medium mb-2 ">CVC</label>
+                                                                                                            <input
+                                                                                                                onChange={(e) => setDataWithDraw({
+                                                                                                                    ...dataWithdraw,
+                                                                                                                    cvc: e.target.value
+                                                                                                                })} required
+                                                                                                                type="text"
+                                                                                                                id="input-number"
+                                                                                                                className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300 rounded-lg text-sm  placeholder-gray-400 shadow-sm"
+                                                                                                                placeholder="CVC"/>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                }
-                                                                                            </div>
-                                                                                        </form>
+                                                                                                    <div className="mb-5">
+                                                                                                        <label
+                                                                                                            className="block text-sm font-medium mb-2 ">Họ
+                                                                                                            tên chủ
+                                                                                                            thẻ</label>
+                                                                                                        <input
+                                                                                                            onChange={(e) => setDataWithDraw({
+                                                                                                                ...dataWithdraw,
+                                                                                                                cardName: e.target.value
+                                                                                                            })} required
+                                                                                                            type="text"
+                                                                                                            id="input-number"
+                                                                                                            className="py-3 px-4 block w-full border-orange-200 border focus:outline-orange-300  rounded-lg text-sm  placeholder-gray-400 shadow-sm"
+                                                                                                            placeholder="Nguyen Van A"/>
+                                                                                                    </div>
 
-                                                                                    </>
-                                                                            }
-                                                                            </>
-                                                                    )
-                                                                }</>
+                                                                                                    {isPending1 ?
+                                                                                                        <>
+                                                                                                            <button
+                                                                                                                type="button"
+                                                                                                                className=" cursor-no-drop flex items-center rounded-md bg-orange-500 hover:border-orange-500 px-4 py-2 text-white"
+                                                                                                                disabled>
+                                                                                                                <LoadingSvg/>
+                                                                                                                <span
+                                                                                                                    className="font-medium"> Đang xác nhận... </span>
+                                                                                                            </button>
+                                                                                                        </>
+                                                                                                        :
+                                                                                                        <>
+                                                                                                            <button
+                                                                                                                className='bg-orange-500  hover:border-orange-600 rounded-md items-center
+                                                                                                                py-2 gap-2 px-6 text-center text-base font-medium text-white  hover:bg-[#F27C08] active:bg-orange-400 '>
+                                                                                                                <p> Xác
+                                                                                                                    nhận</p>
+                                                                                                            </button>
+                                                                                                        </>
+                                                                                                    }
+
+                                                                                                    {
+                                                                                                        isError1 &&
+                                                                                                        <div
+                                                                                                            className="mt-4 text-sm text-red-500">
+                                                                                                            {error.message}
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </form>
+
+                                                                                        </>
+                                                                                }
+                                                                                </>
+                                                                        )
+                                                                    }</>
                                                         }
 
-                                                        <div className="flex flex-row  gap-6 items-center justify-between">
+                                                        <div
+                                                            className="flex flex-row  gap-6 items-center justify-between">
                                                             <div className="text-left mt-8">
 
                                                             </div>

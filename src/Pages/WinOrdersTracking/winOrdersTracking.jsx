@@ -38,8 +38,9 @@ const WinOrdersTracking = () => {
         <>
             <MainLayOut>
                 <div className="wrapper">
-                    <SideBar></SideBar>
-                    <div className="home-right ">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
                             <div className="text-left text-xl font-bold ">
                                 Quản lý đơn thắng đấu giá
@@ -48,7 +49,7 @@ const WinOrdersTracking = () => {
                                 <CountdownTimer initialTimeInSeconds={20}/>
                             </div>
                         </div>
-                        <div className="border-b border-neutral-300 "></div>
+                        <div className="border-b border-neutral-200 "></div>
                         <div className="flex items-center font-normal  justify-center pt-10 flex-wrap  ">
                             {isSuccess && isScCount && (
                                 <div className="flex flex-wrap">
@@ -98,7 +99,7 @@ const WinOrdersTracking = () => {
                                 <div className="border border-gray-300 mt-6">
                                     <div className="flex items-center justify-between  bg-white  p-2 text-sm">
                                         <div className="text-left font-medium my-2 ml-3 ">
-                                            List - {statusToString(processStatus(status))}
+                                            Danh sách - {statusToString(processStatus(status))}
                                         </div>
                                     </div>
 

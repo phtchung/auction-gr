@@ -33,11 +33,11 @@ const ReqOrderTracking = () => {
 
     return (
         <>
-            {/*<Spin spinning={loading} tip="Đang gửi yêu cầu" >*/}
             <MainLayOut>
                 <div className="wrapper">
-                    <SideBar></SideBar>
-                    <div className="home-right ">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         <div className="flex justify-between items-center px-5 pt-3 pb-3   text-neutral-600  bg-white">
                             <div className="text-left text-xl font-bold ">
                                 Quản lý đơn bán
@@ -121,7 +121,7 @@ const ReqOrderTracking = () => {
                                 <div className="border border-gray-300 mt-6">
                                     <div className="flex items-center justify-between  bg-white  p-2 text-sm">
                                         <div className="text-left font-medium my-2 ml-3 ">
-                                            List - {numberToString(status)}
+                                            Danh sách - {numberToString(status)}
                                         </div>
                                     </div>
 

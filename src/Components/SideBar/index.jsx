@@ -20,8 +20,8 @@ const SideBar = () => {
                 {/*    */}
                 {/*</div>*/}
                 <aside
-                    className="flex flex-col w-[16.7rem]  px-2 py-3 ">
-                    <div className="flex gap-0.5 justify-end items-center mb-3">
+                    className="flex flex-col w-[14rem]  px-2 py-3 ">
+                    <div className="flex gap-0.5 px-4 justify-start items-center mb-3">
                         <Avatar
                             style={{
                                 backgroundColor: getColorForLetter(getFirstLetter(userData?.name)),
@@ -32,15 +32,15 @@ const SideBar = () => {
                             <span className="font-medium text-lg">{getFirstLetter(userData?.name)}</span>
                         </Avatar>
 
-                        <div className="overflow_css font-medium text-base text-neutral-600">
+                        <div className="overflow_css font-medium text-base  text-neutral-600">
                             <span>{userData?.username}</span>
                         </div>
                     </div>
 
-                    <hr className=" border-gray-300 dark:border-gray-600"/>
+                    <hr className=" border-gray-300 mx-4 dark:border-gray-600"/>
 
 
-                    <div className="flex flex-col justify-between flex-1 mt-6">
+                    <div className="flex flex-col justify-between  flex-1 mt-6">
                         <nav>
                             <NavLink
                                 onClick={() => handleItemClick('/user')}

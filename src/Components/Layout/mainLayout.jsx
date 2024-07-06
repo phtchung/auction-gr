@@ -235,7 +235,7 @@ const MainLayOut = ({children}) => {
                                     alt="logo"
 
                                 />
-                                <div className="text-white ml-2 text-2xl">Auction</div>
+                                <div className="text-white ml-2 text-2xl">Aucnet</div>
                             </a>
                         </div>
                         <div className="flex w-full items-center justify-between px-4">
@@ -324,7 +324,7 @@ const MainLayOut = ({children}) => {
                                                     }
                                                     {
                                                         open1 && <>
-                                                            <div className="notifications ">
+                                                            <div className="notifications bg-white">
                                                                 <div
                                                                     className="flex items-center justify-between  p-4 h-14 text-base leading-6  text-left font-semibold"
                                                                     style={{borderBottom: '1px solid rgb(222 222 222)'}}>

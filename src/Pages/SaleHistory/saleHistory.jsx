@@ -2,7 +2,6 @@ import SideBar from "../../Components/SideBar/index.jsx";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useSaleHistory from "./useSaleHistory.jsx";
 import TableDataHistory from "../../Components/TableDataHistory/TableDataHistory.jsx";
@@ -34,13 +33,15 @@ const SaleHistory = () => {
         <>
             <MainLayOut>
                 <div className="wrapper">
-                    <SideBar/>
-                    <div className="home-right">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         <div className="text-left px-5 pt-3 pb-3 text-xl  font-bold text-neutral-600  bg-white">
                             Lịch sử bán
                         </div>
                         <div className="border-b border-neutral-300 "></div>
-                        <div className="bg-white p-3 grid grid-cols-5 items-center gap-3 border-gray-300 border h-28 text-sm  justify-around">
+                        <div
+                            className="bg-white p-3 grid grid-cols-5 items-center gap-3 border-gray-300 border h-28 text-sm  justify-around">
                             <div className="font-medium text-base p-3 ">Tìm kiếm ngày :</div>
                             <div className="col-span-3">
                                 <div className="grid grid-cols-2 gap-4">
@@ -52,7 +53,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date()).subtract(7, "day")}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding: '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("start_time", dayjs(newValue).startOf('day').toDate().toISOString())
@@ -68,7 +69,7 @@ const SaleHistory = () => {
                                             defaultValue={dayjs(new Date())}
                                             sx={{
                                                 margin: 2,
-                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding : '8px'},
+                                                "& .MuiInputBase-input": {width: 200, fontSize: 13, padding: '8px'},
                                             }}
                                             onChange={(newValue) =>
                                                 handleFilter("finish_time", dayjs(newValue).endOf('day').toDate().toISOString())
@@ -91,7 +92,8 @@ const SaleHistory = () => {
 
                         {isSuccess && (
                             <>
-                                <div className="bg-white text-neutral-800 font-medium border-gray-300 border p-2 mt-6 text-sm h-24">
+                                <div
+                                    className="bg-white text-neutral-800 font-medium border-gray-300 border p-2 mt-6 text-sm h-24">
                                     <table style={{width: "100%"}}>
                                         <thead>
                                         <tr

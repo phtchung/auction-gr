@@ -39,8 +39,9 @@ const AuctionHistory = () => {
         <>
             <MainLayOut>
                 <div className="wrapper">
-                    <SideBar/>
-                    <div className="home-right ">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
                             Lịch sử đấu giá
                         </div>
@@ -97,7 +98,9 @@ const AuctionHistory = () => {
                                                                 style={{width: '30%'}}
                                                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
                                                                 alt=""/>
-                                                            <div className="text-gray-500 -mt-7 font-medium text-base">Không có sản phẩm nào.
+                                                            <div
+                                                                className="text-gray-500 -mt-7 font-medium text-base">Không
+                                                                có sản phẩm nào.
                                                             </div>
                                                         </div>
                                                     </>

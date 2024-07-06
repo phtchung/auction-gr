@@ -38,8 +38,9 @@ const ProductBidding = () => {
         <>
             <MainLayOut>
                 <div className="wrapper">
-                    <SideBar/>
-                    <div className="home-right ">
+                    <span className="w-[16.8%] min-[400px]:hidden min-[900px]:block"><SideBar/></span>
+
+                    <div className="home-right w-[81.2%]">
                         {isLoading ?
                             <>
                                 <CustomSpinner h={12} w={12} font={'sm'}/>
@@ -64,7 +65,7 @@ const ProductBidding = () => {
                                         <button
                                             onClick={handleSearch}
                                             className={`w-[7rem]  text-white border-none text-sm font-semibold focus:outline-0  rounded ${
-                                                keyword === "" ?  "bg-gray-300 cursor-not-allowed " : "bg-orange-500 cursor-pointer " 
+                                                keyword === "" ? "bg-gray-300 cursor-not-allowed " : "bg-orange-500 cursor-pointer "
                                             }`}
                                         >
                                             Tìm kiếm
@@ -92,7 +93,9 @@ const ProductBidding = () => {
                                                                 style={{width: '30%'}}
                                                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png"
                                                                 alt=""/>
-                                                            <div className="text-gray-500 -mt-3 font-medium text-base">Không có sản phẩm nào.
+                                                            <div
+                                                                className="text-gray-500 -mt-3 font-medium text-base">Không
+                                                                có sản phẩm nào.
                                                             </div>
                                                         </div>
                                                     </>

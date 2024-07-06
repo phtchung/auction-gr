@@ -12,7 +12,7 @@ const Footer = () => {
                                     alt="logo"
 
                                 />
-                                <div className="text-neutral-600 ml-2 text-2xl">Auction</div>
+                                <div className="text-neutral-600 ml-2 text-2xl">Aucnet</div>
                             </a>
                         </div>
                         <LinkGroup header="Địa chỉ">

@@ -215,78 +215,85 @@ const Home = () => {
                                     </Carousel>
                                 </div>
                                 {/*sắp kết thúc*/}
-                                <div className="flex flex-col bg-white pt-3 p-2 mb-4">
-                                    <div className="flex flex-grow items-center justify-between p-2">
-                                        <div className="flex gap-2 items-center mb-2 ">
+                                {
+                                    isSuccess && productsPreEnd?.length !== 0 && <>
+                                        <div className="flex flex-col bg-white pt-3 p-2 mb-4">
+                                            <div className="flex flex-grow items-center justify-between p-2">
+                                                <div className="flex gap-2 items-center mb-2 ">
                                         <span className="relative flex h-3 w-3">
                                             <span
                                                 className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
                                             <span
                                                 className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                         </span>
-                                            <div className="text-left text-lg font-semibold text-gray-900 ">SẮP KẾT THÚC
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <Carousel
-                                        additionalTransfrom={0}
-                                        arrows
-                                        autoPlaySpeed={3000}
-                                        className=""
-                                        containerClass="carousel-container"
-                                        dotListClass=""
-                                        draggable
-                                        focusOnSelect={false}
-                                        keyBoardControl
-                                        minimumTouchDrag={50}
-                                        pauseOnHover
-                                        renderArrowsWhenDisabled={false}
-                                        renderButtonGroupOutside={false}
-                                        renderDotsOutside={false}
-                                        responsive={{
-                                            desktop: {
-                                                breakpoint: {
-                                                    max: 3000,
-                                                    min: 1024
-                                                },
-                                                items: 4,
-                                            },
-                                            mobile: {
-                                                breakpoint: {
-                                                    max: 464,
-                                                    min: 0
-                                                },
-                                                items: 1,
-                                            },
-                                            tablet: {
-                                                breakpoint: {
-                                                    max: 1024,
-                                                    min: 464
-                                                },
-                                                items: 3,
-                                            }
-                                        }}
-                                        rewind
-                                        centerMode={true}
-                                        rewindWithAnimation={false}
-                                        rtl={false}
-                                        shouldResetAutoplay
-                                        showDots={false}
-                                        sliderClass=""
-                                        slidesToSlide={4}
-                                        swipeable
-                                    >
-                                        {
-                                            isSuccess && productsPreEnd && productsPreEnd.map((product, index) => (
-                                                <div onClick={() => handleNavigateAuction(product.product_id)} key={index}
-                                                     className="md:basis-1/5 p-2 ">
-                                                    <CardPreEnd data={product}/>
+                                                    <div className="text-left text-lg font-semibold text-gray-900 ">SẮP KẾT
+                                                        THÚC
+                                                    </div>
                                                 </div>
-                                            ))
-                                        }
-                                    </Carousel>
-                                </div>
+                                            </div>
+
+                                            <Carousel
+                                                additionalTransfrom={0}
+                                                arrows
+                                                autoPlaySpeed={3000}
+                                                className=""
+                                                containerClass="carousel-container"
+                                                dotListClass=""
+                                                draggable
+                                                focusOnSelect={false}
+                                                keyBoardControl
+                                                minimumTouchDrag={50}
+                                                pauseOnHover
+                                                renderArrowsWhenDisabled={false}
+                                                renderButtonGroupOutside={false}
+                                                renderDotsOutside={false}
+                                                responsive={{
+                                                    desktop: {
+                                                        breakpoint: {
+                                                            max: 3000,
+                                                            min: 1024
+                                                        },
+                                                        items: 4,
+                                                    },
+                                                    mobile: {
+                                                        breakpoint: {
+                                                            max: 464,
+                                                            min: 0
+                                                        },
+                                                        items: 1,
+                                                    },
+                                                    tablet: {
+                                                        breakpoint: {
+                                                            max: 1024,
+                                                            min: 464
+                                                        },
+                                                        items: 3,
+                                                    }
+                                                }}
+                                                rewind
+                                                centerMode={true}
+                                                rewindWithAnimation={false}
+                                                rtl={false}
+                                                shouldResetAutoplay
+                                                showDots={false}
+                                                sliderClass=""
+                                                slidesToSlide={4}
+                                                swipeable
+                                            >
+                                                {
+                                                      productsPreEnd && productsPreEnd.map((product, index) => (
+                                                        <div onClick={() => handleNavigateAuction(product.product_id)}
+                                                             key={index}
+                                                             className="md:basis-1/5 p-2 ">
+                                                            <CardPreEnd data={product}/>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </Carousel>
+                                        </div>
+                                    </>
+                                }
+
 
                                 {/*giá rẻ */}
                                 <div className="flex flex-col bg-white pt-3 p-2 mb-4" style={{maxHeight: 844}}>

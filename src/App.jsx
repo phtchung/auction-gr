@@ -9,6 +9,7 @@ import 'react-multi-carousel/lib/styles.css';
 import {useAuthContext} from "./Pages/Context/AuthContext.jsx";
 import Login from "./Pages/Login/login.jsx";
 import SignUp from "./Pages/SignUp/signUp.jsx";
+import FZFNotFound from "./Components/PageNotFound/404NotFound.jsx";
 
 function App() {
     const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function App() {
                             element={<RequireAuth>{route.element}</RequireAuth>}
                         ></Route>
                     ))}
+                    <Route path='*' element={currentUser?.accessToken ? <FZFNotFound btnText={'Về trang chủ'} urlReturn={'/'}  error={'Xin lỗi, trang bạn đang tìm kiếm không tồn tại!'}/> : <Login />} />
                 </Routes>
             </BrowserRouter>
         </QueryClientProvider>

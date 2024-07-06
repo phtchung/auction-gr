@@ -147,7 +147,7 @@ const AuctionHistoryCpn = ({data}) => {
                                 className=" gap-3 px-4 text-xs "
                                 style={{color: "rgba(0, 0, 0, .54)"}}
                             >
-                                <div>Đánh giá trước ngày <u>{formatDateTime1(data?.review_before)}</u> để nhận 20 điểm</div>
+                                <div>Đánh giá trước ngày <u>{formatDateTime1(data?.review_before)}</u> để nhận 10 điểm</div>
                             </div>
                         </>
                     }

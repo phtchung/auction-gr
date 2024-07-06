@@ -505,7 +505,7 @@ const ProductDetail = () => {
                                                                 validator(_, value) {
                                                                     if (auctionProductData.sale_price < value) {
                                                                         return Promise.reject(new Error('Giá phải nhỏ hơn giá quyết định!'));
-                                                                    } else if (auctionProductData.final_price > value) {
+                                                                    } else if (auctionProductData.final_price  + auctionProductData.step_price > value) {
                                                                         return Promise.reject(new Error('Giá phải lớn hơn giá tối thiểu!'));
                                                                     } else if (!value || auctionProductData.sale_price > value) {
                                                                         return Promise.resolve();

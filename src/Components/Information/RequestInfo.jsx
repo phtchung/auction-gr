@@ -76,7 +76,7 @@ const RequestInfo = ({data}) => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-6 text-left">
+                <div className="grid grid-cols-6 text-left" style={{ whiteSpace: 'pre-line' }}>
                     <div className="min-[100px]:col-span-6 md:col-span-1"> Mô tả sản phẩm</div>
                     <div className="font-normal  min-[100px]:col-span-6  md:col-span-5"> {data?.description}</div>
                 </div>
