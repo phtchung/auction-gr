@@ -20,7 +20,6 @@ const DepositRegistration = () => {
     const [selectedPackage, setSelectedPackage] = useState({payment_method : 1});
     const [dataWithdraw , setDataWithDraw] = useState({})
     const {isSuccess : sc , data : dataBidding,} = useProductBidding();
-    console.log(dataBidding)
     const handleSelect = (data) => {
         setSelectedPackage({...selectedPackage,data})
         setIsPaymentScreen(true);
@@ -298,7 +297,7 @@ const DepositRegistration = () => {
                                                                 :
                                                                 <>
                                                                     {
-                                                                        isSuccess && sc && (
+                                                                        isSuccess && (
                                                                             !data.auction_deposit ?
                                                                                 <>
                                                                                     <p className="text-neutral-500 flex mx-auto text-center mt-4 text-base">Bạn
@@ -307,7 +306,7 @@ const DepositRegistration = () => {
                                                                                 </>
                                                                                 :
                                                                                 <>{
-                                                                                    data.checkBidding !== 0 || dataBidding.pages[0]?.data?.data?.length !== 0 ?
+                                                                                    data.checkBidding !== 0 ?
                                                                                         <>
                                                                                             <p className="text-neutral-700 gap-4 flex flex-col justify-center text-center text-base mx-auto">
                                                                                                 Sản phẩm của bạn đang được
