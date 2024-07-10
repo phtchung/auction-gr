@@ -298,14 +298,16 @@ const CreateRequest = () => {
                                                                         ]}
                                                                     >
                                                                         <InputNumber
-                                                                            placeholder="Giá khởi điểm"
                                                                             onChange={(value) => handleRequest('reserve_price', value)}
-                                                                            suffix="VND"
+                                                                            className="xl:w-full lg:w-10/12"
+                                                                            placeholder="Giá khởi điểm"
                                                                             style={{
                                                                                 width: '100%',
-                                                                                maxWidth: 230
+                                                                                maxWidth: 230,
                                                                             }}
-                                                                        />
+                                                                            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                                                            parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                                                                            suffix="VND"/>
                                                                     </Form.Item>
 
                                                                     <Form.Item
@@ -320,14 +322,16 @@ const CreateRequest = () => {
                                                                         ]}
                                                                     >
                                                                         <InputNumber
-                                                                            placeholder="Bước giá"
                                                                             onChange={(value) => handleRequest('step_price', value)}
-                                                                            suffix="VND"
+                                                                            className="xl:w-full lg:w-10/12"
+                                                                            placeholder="Bước giá"
                                                                             style={{
                                                                                 width: '100%',
                                                                                 maxWidth: 230,
                                                                             }}
-                                                                        />
+                                                                            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                                                            parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                                                                            suffix="VND"/>
                                                                     </Form.Item>
                                                                 </div>
 
@@ -344,15 +348,16 @@ const CreateRequest = () => {
                                                                         ]}
                                                                     >
                                                                         <InputNumber
-                                                                            placeholder="Phí vận chuyển"
                                                                             onChange={(value) => handleRequest('shipping_fee', value)}
-                                                                            suffix="VND"
                                                                             className="xl:w-full lg:w-10/12"
+                                                                            placeholder="Phí vận chuyển"
                                                                             style={{
                                                                                 width: '100%',
                                                                                 maxWidth: 230,
                                                                             }}
-                                                                        />
+                                                                            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                                                            parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                                                                            suffix="VND"/>
                                                                     </Form.Item>
 
                                                                     {
@@ -376,12 +381,16 @@ const CreateRequest = () => {
                                                                                 }),
                                                                             ]}
                                                                         >
-                                                                            <Input
+                                                                            <InputNumber
+                                                                                onChange={(value) => handleRequest('sale_price', value)}
+                                                                                className="xl:w-full lg:w-10/12"
+                                                                                placeholder="Giá bán trực tiếp"
                                                                                 style={{
+                                                                                    width: '100%',
                                                                                     maxWidth: 230,
                                                                                 }}
-                                                                                placeholder="Giá bán trực tiếp"
-                                                                                onChange={(e) => handleRequest('sale_price', e.target.value)}
+                                                                                formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                                                                parser={value => value.replace(/\$\s?|(,*)/g, '')}
                                                                                 suffix="VND"/>
                                                                         </Form.Item>
                                                                     }
@@ -441,7 +450,7 @@ const CreateRequest = () => {
                                                                             className="font-semibold -mr-2"
                                                                             placeholder="Mô tả sản phẩm"
                                                                             onChange={(e) => handleRequest('description', e.target.value)}
-                                                                            maxLength={290}/>
+                                                                            maxLength={1000}/>
                                                                     </Form.Item>
                                                                 </div>
 
@@ -450,7 +459,7 @@ const CreateRequest = () => {
                                                                         type="primary"
                                                                         onClick={handleSubmit}
                                                                         className="px-6 mt-3 right-0 bg-orange-500 rounded text-white border-none text-sm hover:bg-orange-600 font-semibold focus:outline-0">
-                                                                        Xác nhận
+                                                                        Gửi yêu cầu
                                                                     </button>
                                                                 </Form.Item>
                                                             </Form>
@@ -510,7 +519,7 @@ const CreateRequest = () => {
                                                                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                         </svg>
                                                         <span
-                                                            className="font-medium text-sm"> Hoàn thành... </span>
+                                                            className="font-medium text-sm"> Đang gửi... </span>
                                                     </button>
                                                 </>
                                                 :
@@ -518,7 +527,7 @@ const CreateRequest = () => {
                                                     <button
                                                         onClick={handleSendRequest}
                                                         className=" px-6 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm hover:bg-orange-600 focus:outline-0">
-                                                        Hoàn thành
+                                                        Gửi
                                                     </button>
                                                 </>
                                         }

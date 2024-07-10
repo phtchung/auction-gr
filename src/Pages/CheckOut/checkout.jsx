@@ -84,21 +84,15 @@ const CheckOut = () => {
                                                 className=" border leading-10 text-left border-solid truncate border-neutral-300 rounded-lg p-3.5   ">
                                                 <span
                                                     className="text-base  w-80   font-semibold">Thông tin sản phẩm : {data?.data?.auction_name}</span>
-                                                <div className="flex items-center justify-between ">
-                                                    <p className="text-sm leading-[44px] font-normal text-neutral-700">Tiền đặt trước </p>
-                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">{formatMoney(data?.data?.deposit_price)} VND</p>
-                                                </div>
-                                                <div
-                                                    className="flex items-center justify-between border-b border-solid border-neutral-300">
-                                                    <p className="text-sm leading-[44px] font-normal text-neutral-700">Phí đăng ký </p>
-                                                    <p className="text-xl leading-[44px] font-semibold text-neutral-800">10,000 VND</p>
-                                                </div>
+                                                {/*<div className="flex items-center justify-between ">*/}
+                                                {/*    <p className="text-sm leading-[44px] font-normal text-neutral-700">Phí đăng ký </p>*/}
+                                                {/*    <p className="text-xl leading-[44px] font-semibold text-neutral-800">{formatMoney(data?.data?.deposit_price)} VND</p>*/}
+                                                {/*</div>*/}
 
                                                 <div
                                                     className="flex items-center leading-[44px] justify-between mt-5">
-                                                    <p className="text-sm font-normal text-neutral-700">Phí đăng
-                                                        ký </p>
-                                                    <p className="text-2xl font-semibold text-neutral-800">{formatMoney(parseInt(data.data.deposit_price) + 10000)} VND</p>
+                                                    <p className="text-sm font-normal text-neutral-700">Phí đăng ký </p>
+                                                    <p className="text-2xl font-semibold text-neutral-800">{formatMoney(parseInt(data.data.deposit_price))} VND</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -84,7 +84,7 @@ const ProductBidding = () => {
                                                             ))}
                                                         </div>
 
-                                                        <div ref={ref}>{isFetchingNextPage && 'Loading...'}</div>
+                                                        <div ref={ref} className="text-orange-500 mt-4">{isFetchingNextPage && 'Đang tải...'}</div>
                                                     </>
                                                     :
                                                     <>

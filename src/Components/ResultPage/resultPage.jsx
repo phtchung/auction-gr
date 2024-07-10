@@ -40,7 +40,7 @@ const ResultPage = () => {
               subTitle={subTitle}
               extra={[
                   <button
-                      onClick={() => navigate('/reqOrderTracking') }
+                      onClick={() => navigate('/winOrderTracking') }
                       className="p-2 px-6 py-2 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
                       Về trang chủ
                   </button>
