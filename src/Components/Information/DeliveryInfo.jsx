@@ -44,7 +44,7 @@ const DeliveryInfor = ({data}) => {
                     <div className="min-[100px]:col-span-6 md:col-span-1"> Giao hàng trước:
                     </div>
                     <div className="font-normal  min-[100px]:col-span-6  md:col-span-5">
-                        {data?.deliData?.delivery_before}</div>
+                        {formatDateTime(data?.deliData?.delivery_before)}</div>
                 </div>
 
 

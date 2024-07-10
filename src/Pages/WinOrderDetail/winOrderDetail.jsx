@@ -704,12 +704,12 @@ const WinOrderDetail = () => {
                                                         {isSuccess && (
                                                             <>
                                                                 <div
-                                                                    className="items-center font-medium px-2 text-sm gap-4 mt-4   space-y-3 ">
+                                                                    className="items-center font-medium px-2 text-sm gap-4 mt-4    space-y-3 ">
                                                                     {
                                                                         winDetailData.image_list &&
                                                                         <>
                                                                             <div
-                                                                                className="grid grid-cols-6 text-left mb-4">
+                                                                                className="grid grid-cols-3 text-left gap-2 mb-4">
                                                                                 <Image.PreviewGroup
                                                                                     preview={{
                                                                                         onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
